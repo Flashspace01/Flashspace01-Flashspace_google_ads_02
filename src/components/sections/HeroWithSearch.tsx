@@ -114,9 +114,9 @@ export const HeroWithSearch = () => {
               transition={{ delay: 0.1 }}
               className="mb-8"
             >
-              <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 border border-white/15">
+              <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/15 border border-white/20">
                 <Sparkles className="w-3.5 h-3.5 text-secondary" />
-                <span className="text-xs font-medium tracking-wide text-white/70 uppercase">AI-Powered Platform</span>
+                <span className="text-xs font-medium tracking-wide text-white/90 uppercase">AI-Powered Platform</span>
               </div>
             </motion.div>
 
@@ -141,7 +141,7 @@ export const HeroWithSearch = () => {
               transition={{ delay: 0.3 }}
               className="mb-10"
             >
-              <p className="text-white/60 text-base sm:text-lg max-w-lg leading-relaxed">
+              <p className="text-white/80 text-base sm:text-lg max-w-lg leading-relaxed">
                 The AI-powered platform for virtual offices, coworking spaces, meeting rooms, event venues, and enterprise workspace management.
               </p>
             </motion.div>
@@ -172,7 +172,7 @@ export const HeroWithSearch = () => {
             >
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
-                  <button className="inline-flex items-center gap-1.5 text-white/50 hover:text-white/70 transition-colors text-xs tracking-wide">
+                  <button className="inline-flex items-center gap-1.5 text-white/70 hover:text-white/90 transition-colors text-xs tracking-wide">
                     <MapPin className="w-3 h-3" />
                     <span>{selectedLocation}</span>
                     <ChevronDown className="w-3 h-3" />
@@ -219,7 +219,7 @@ export const HeroWithSearch = () => {
                           animate={{ opacity: 1, y: 0 }}
                           exit={{ opacity: 0, y: -8 }}
                           transition={{ duration: 0.25 }}
-                          className="text-white/35 text-sm"
+                          className="text-white/55 text-sm"
                         >
                           {rotatingExamples[currentExample]}
                         </motion.span>
@@ -228,7 +228,7 @@ export const HeroWithSearch = () => {
                   )}
                 </div>
                 <button className="p-1.5 rounded-full hover:bg-white/10 transition-colors" aria-label="Voice input">
-                  <Mic className="w-4 h-4 text-white/40" />
+                  <Mic className="w-4 h-4 text-white/60" />
                 </button>
                 <button className="p-2 rounded-full bg-secondary/20 hover:bg-secondary/30 transition-colors" aria-label="Send message">
                   <Send className="w-3.5 h-3.5 text-secondary" />
@@ -247,7 +247,7 @@ export const HeroWithSearch = () => {
                 <button
                   key={tag.label}
                   onClick={() => setInputValue(tag.label)}
-                  className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-medium text-white/50 hover:text-white/80 bg-white/[0.06] hover:bg-white/[0.12] border border-transparent hover:border-white/10 transition-all"
+                  className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-medium text-white/70 hover:text-white/90 bg-white/[0.08] hover:bg-white/[0.14] border border-white/10 hover:border-white/15 transition-all"
                 >
                   <tag.icon className="w-3 h-3" />
                   {tag.label}
