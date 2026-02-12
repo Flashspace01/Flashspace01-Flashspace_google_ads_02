@@ -116,7 +116,7 @@ export const HeroWithSearch = () => {
             >
               <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 border border-white/15">
                 <Sparkles className="w-3.5 h-3.5 text-secondary" />
-                <span className="text-xs font-medium tracking-wide text-white/70 uppercase">AI-Powered Platform</span>
+                <span className="text-xs font-medium tracking-wide text-white/90 uppercase">AI-Powered Platform</span>
               </div>
             </motion.div>
 
@@ -141,7 +141,7 @@ export const HeroWithSearch = () => {
               transition={{ delay: 0.3 }}
               className="mb-10"
             >
-              <p className="text-white/60 text-base sm:text-lg max-w-lg leading-relaxed">
+              <p className="text-white/80 text-base sm:text-lg max-w-lg leading-relaxed">
                 The AI-powered platform for virtual offices, coworking spaces, meeting rooms, event venues, and enterprise workspace management.
               </p>
             </motion.div>
@@ -172,7 +172,7 @@ export const HeroWithSearch = () => {
             >
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
-                  <button className="inline-flex items-center gap-1.5 text-white/50 hover:text-white/70 transition-colors text-xs tracking-wide">
+                  <button className="inline-flex items-center gap-1.5 text-white/70 hover:text-white/90 transition-colors text-xs tracking-wide">
                     <MapPin className="w-3 h-3" />
                     <span>{selectedLocation}</span>
                     <ChevronDown className="w-3 h-3" />
@@ -247,7 +247,7 @@ export const HeroWithSearch = () => {
                 <button
                   key={tag.label}
                   onClick={() => setInputValue(tag.label)}
-                  className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-medium text-white/50 hover:text-white/80 bg-white/[0.06] hover:bg-white/[0.12] border border-transparent hover:border-white/10 transition-all"
+                  className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-medium text-white/70 hover:text-white/90 bg-white/[0.06] hover:bg-white/[0.12] border border-transparent hover:border-white/10 transition-all"
                 >
                   <tag.icon className="w-3 h-3" />
                   {tag.label}
@@ -258,6 +258,14 @@ export const HeroWithSearch = () => {
           </div>
         </div>
       </div>
+
+      {/* Bottom fade into page background */}
+      <div
+        className="absolute bottom-0 left-0 right-0 h-32 z-10"
+        style={{
+          background: "linear-gradient(to bottom, transparent, hsl(60 30% 98%))",
+        }}
+      />
     </section>
   );
 };
