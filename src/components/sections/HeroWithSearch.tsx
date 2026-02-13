@@ -76,6 +76,16 @@ export const HeroWithSearch = () => {
           filter: "blur(110px)",
         }}
       />
+      {/* Dull yellow glow — bottom-right */}
+      <motion.div
+        animate={{ x: [0, -45, 0, 45, 0], y: [0, 35, 0, -35, 0] }}
+        transition={{ duration: 22, repeat: Infinity, ease: "linear" }}
+        className="absolute -bottom-[15%] -right-[10%] w-[70vw] h-[55vh] rounded-full"
+        style={{
+          background: "radial-gradient(ellipse at 70% 65%, hsl(45 30% 72% / 0.52), hsl(40 22% 78% / 0.35) 45%, transparent 70%)",
+          filter: "blur(100px)",
+        }}
+      />
 
       {/* Content */}
       <div className="relative z-10 w-full pt-32 lg:pt-40 pb-20 lg:pb-28">
