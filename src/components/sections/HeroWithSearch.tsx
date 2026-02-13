@@ -50,7 +50,7 @@ export const HeroWithSearch = () => {
       <div
         className="absolute -top-[30%] -left-[20%] w-[110vw] h-[100vh] rounded-full"
         style={{
-          background: "radial-gradient(ellipse at 25% 35%, hsl(142 35% 68% / 0.32), hsl(152 28% 74% / 0.15) 40%, transparent 70%)",
+          background: "radial-gradient(ellipse at 25% 35%, hsl(142 35% 68% / 0.10), hsl(152 28% 74% / 0.05) 40%, transparent 70%)",
           filter: "blur(90px)",
         }}
       />
@@ -58,7 +58,7 @@ export const HeroWithSearch = () => {
       <div
         className="absolute -top-[10%] -right-[20%] w-[90vw] h-[90vh] rounded-full"
         style={{
-          background: "radial-gradient(ellipse at 65% 45%, hsl(95 22% 72% / 0.28), hsl(60 18% 82% / 0.12) 45%, transparent 75%)",
+          background: "radial-gradient(ellipse at 65% 45%, hsl(95 22% 72% / 0.10), hsl(60 18% 82% / 0.04) 45%, transparent 75%)",
           filter: "blur(100px)",
         }}
       />
@@ -66,7 +66,7 @@ export const HeroWithSearch = () => {
       <div
         className="absolute -bottom-[20%] left-[10%] w-[80vw] h-[60vh] rounded-full"
         style={{
-          background: "radial-gradient(ellipse at 40% 70%, hsl(80 15% 78% / 0.18), transparent 65%)",
+          background: "radial-gradient(ellipse at 40% 70%, hsl(80 15% 78% / 0.06), transparent 65%)",
           filter: "blur(110px)",
         }}
       />
