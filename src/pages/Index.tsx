@@ -15,6 +15,7 @@ import { Stats } from "@/components/sections/Stats";
 import { ClientImpact } from "@/components/sections/ClientImpact";
 import { StackedTestimonials } from "@/components/sections/StackedTestimonials";
 import { BlogSection } from "@/components/sections/BlogSection";
+import { FounderTestimonial } from "@/components/sections/FounderTestimonial";
 import { CTA } from "@/components/sections/CTA";
 import { Footer } from "@/components/layout/Footer";
 
@@ -39,6 +40,7 @@ const Index = () => {
         <ClientImpact />
         <StackedTestimonials />
         <BlogSection />
+        <FounderTestimonial />
         <CTA />
       </main>
       <Footer />
