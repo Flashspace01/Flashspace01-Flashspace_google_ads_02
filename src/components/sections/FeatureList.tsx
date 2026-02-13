@@ -1,5 +1,12 @@
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
+
+import featureVirtualOffices from "@/assets/feature-virtual-offices.jpg";
+import featureMeetingRooms from "@/assets/feature-meeting-rooms.jpg";
+import featureGlobalAccess from "@/assets/feature-global-access.jpg";
+import featureCoworking from "@/assets/feature-coworking.jpg";
+import featureDayPasses from "@/assets/feature-day-passes.jpg";
+import featureBusinessSetup from "@/assets/feature-business-setup.jpg";
 
 const features = [
   "Virtual Offices",
@@ -8,6 +15,15 @@ const features = [
   "Coworking",
   "Day Passes",
   "Business Setup",
+];
+
+const featureImages = [
+  featureVirtualOffices,
+  featureMeetingRooms,
+  featureGlobalAccess,
+  featureCoworking,
+  featureDayPasses,
+  featureBusinessSetup,
 ];
 
 export const FeatureList = () => {
@@ -73,64 +89,20 @@ export const FeatureList = () => {
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            className="space-y-6"
+            className="relative w-full aspect-[4/3] rounded-2xl overflow-hidden"
           >
-            {/* Sidebar labels */}
-            <div className="space-y-2 mb-8">
-              <p className="text-sm text-muted-foreground uppercase tracking-wider">WORKSPACE</p>
-              <p className="text-sm text-muted-foreground uppercase tracking-wider">BOOKING</p>
-              <p className="text-sm text-muted-foreground uppercase tracking-wider">ENTERPRISE</p>
-              <p className="text-sm text-foreground uppercase tracking-wider font-semibold flex items-center gap-2">
-                <span className="w-2 h-2 rounded-full bg-foreground" />
-                SOLUTIONS
-              </p>
-            </div>
-
-            {/* Preview Card - Frosted glass */}
-            <div className="bg-gradient-to-br from-primary/10 via-primary/5 to-accent/10 rounded-2xl p-8 border border-border/50 shadow-soft">
-              <div className="bg-card/80 backdrop-blur-xl rounded-xl p-6 shadow-lg border border-border/50">
-                <div className="flex items-center justify-between mb-6">
-                  <div className="flex items-center gap-2">
-                    <div className="w-8 h-8 rounded-lg bg-primary/20 flex items-center justify-center">
-                      <span className="text-primary text-xs font-bold">FS</span>
-                    </div>
-                    <span className="text-sm text-muted-foreground">Community</span>
-                    <span className="text-sm text-muted-foreground">Academy</span>
-                  </div>
-                  <div className="w-8 h-8 rounded-full bg-accent/30" />
-                </div>
-                
-                <h3 className="text-xl font-bold text-foreground mb-2">Hello, Jane. How can we help?</h3>
-                <div className="bg-muted/50 rounded-lg p-3 mb-6">
-                  <span className="text-muted-foreground text-sm">🔍 Search for articles...</span>
-                </div>
-
-                {/* Help cards grid */}
-                <div className="grid grid-cols-2 gap-4">
-                  <div className="bg-card/90 backdrop-blur rounded-lg p-4 border border-border/30">
-                    <div className="w-6 h-6 rounded bg-primary/10 flex items-center justify-center mb-3">
-                      <span className="text-xs">🚀</span>
-                    </div>
-                    <h4 className="font-semibold text-sm text-foreground mb-1">Getting started</h4>
-                    <p className="text-xs text-muted-foreground">Learn the basics and get started with our platform.</p>
-                  </div>
-                  <div className="bg-card/90 backdrop-blur rounded-lg p-4 border border-border/30">
-                    <div className="w-6 h-6 rounded bg-accent/10 flex items-center justify-center mb-3">
-                      <span className="text-xs">⚙️</span>
-                    </div>
-                    <h4 className="font-semibold text-sm text-foreground mb-1">Settings and Account</h4>
-                    <p className="text-xs text-muted-foreground">Explore the various settings and options available.</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <p className="text-muted-foreground">
-              On-demand workspace solutions, from a fully integrated platform
-            </p>
-            <a href="#" className="text-foreground font-semibold underline underline-offset-4 hover:text-primary transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring rounded">
-              Find out more
-            </a>
+            <AnimatePresence mode="wait">
+              <motion.img
+                key={centerIndex}
+                src={featureImages[centerIndex]}
+                alt={features[centerIndex]}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.4, ease: "easeInOut" }}
+                className="absolute inset-0 w-full h-full object-cover"
+              />
+            </AnimatePresence>
           </motion.div>
 
           {/* Right side - Infinite vertical scrolling list */}
