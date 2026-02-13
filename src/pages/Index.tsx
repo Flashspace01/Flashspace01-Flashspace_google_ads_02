@@ -29,8 +29,8 @@ const Index = () => {
         <FeatureCTA />
         <Stats />
         <ClientImpact />
-        <BlogSection />
         <FounderTestimonial />
+        <BlogSection />
         <CTA />
       </main>
       <Footer />
