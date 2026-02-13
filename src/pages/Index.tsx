@@ -34,7 +34,7 @@ const Index = () => {
         <FeatureCTA />
         <Stats />
         <ClientImpact />
-        <StackedTestimonials />
+        
         <BlogSection />
         <FounderTestimonial />
         <CTA />
