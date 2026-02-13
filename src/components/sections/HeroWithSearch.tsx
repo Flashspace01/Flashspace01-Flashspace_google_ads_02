@@ -47,17 +47,17 @@ export const HeroWithSearch = () => {
       {/* Ambient Light Background */}
       <div className="absolute inset-0 bg-white" />
       <div
-        className="absolute -top-[30%] -left-[20%] w-[80vw] h-[80vh] rounded-full"
+        className="absolute -top-[40%] -left-[25%] w-[90vw] h-[90vh] rounded-full"
         style={{
-          background: "radial-gradient(circle, hsl(142 25% 60% / 0.04), transparent 70%)",
-          filter: "blur(80px)",
+          background: "radial-gradient(ellipse at 30% 30%, hsl(142 30% 65% / 0.24), hsl(142 20% 75% / 0.10) 50%, transparent 75%)",
+          filter: "blur(100px)",
         }}
       />
       <div
-        className="absolute -bottom-[20%] -right-[10%] w-[60vw] h-[60vh] rounded-full"
+        className="absolute -bottom-[25%] -right-[15%] w-[70vw] h-[70vh] rounded-full"
         style={{
-          background: "radial-gradient(circle, hsl(40 20% 70% / 0.03), transparent 70%)",
-          filter: "blur(100px)",
+          background: "radial-gradient(ellipse at 60% 60%, hsl(90 18% 72% / 0.22), hsl(45 15% 80% / 0.08) 55%, transparent 80%)",
+          filter: "blur(120px)",
         }}
       />
 
