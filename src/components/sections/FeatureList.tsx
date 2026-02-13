@@ -1,16 +1,57 @@
+import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 
 const features = [
-  { name: "Virtual Offices", active: false },
-  { name: "Meeting Rooms", active: false },
-  { name: "Global Access", active: false },
-  { name: "Coworking", active: true },
-  { name: "Day Passes", active: false },
-  { name: "Business Setup", active: false },
+  "Virtual Offices",
+  "Meeting Rooms",
+  "Global Access",
+  "Coworking",
+  "Day Passes",
+  "Business Setup",
 ];
 
+const ITEM_HEIGHT = 72; // px per item
+const VISIBLE_COUNT = 5;
+const CONTAINER_HEIGHT = ITEM_HEIGHT * VISIBLE_COUNT;
+const TOTAL_ITEMS = features.length;
+const CYCLE_DURATION = 10; // seconds for full cycle
+
 export const FeatureList = () => {
+  const trackRef = useRef<HTMLDivElement>(null);
+  const [centerIndex, setCenterIndex] = useState(0);
+
+  useEffect(() => {
+    const track = trackRef.current;
+    if (!track) return;
+
+    let animationId: number;
+    let start: number | null = null;
+    const totalHeight = TOTAL_ITEMS * ITEM_HEIGHT;
+
+    const animate = (timestamp: number) => {
+      if (!start) start = timestamp;
+      const elapsed = (timestamp - start) / 1000;
+      const progress = (elapsed % CYCLE_DURATION) / CYCLE_DURATION;
+      const translateY = -(progress * totalHeight);
+
+      track.style.transform = `translateY(${translateY}px)`;
+
+      // Calculate which item is in the center
+      const offset = progress * totalHeight;
+      const centerItemIndex = Math.round((offset + (CONTAINER_HEIGHT / 2) - (ITEM_HEIGHT / 2)) / ITEM_HEIGHT) % TOTAL_ITEMS;
+      setCenterIndex(centerItemIndex);
+
+      animationId = requestAnimationFrame(animate);
+    };
+
+    animationId = requestAnimationFrame(animate);
+    return () => cancelAnimationFrame(animationId);
+  }, []);
+
+  // Render 3 copies for seamless loop
+  const allItems = [...features, ...features, ...features];
+
   return (
     <section className="py-24 lg:py-32 bg-card">
       <div className="container mx-auto px-4 lg:px-8">
@@ -80,43 +121,46 @@ export const FeatureList = () => {
             </a>
           </motion.div>
 
-          {/* Right side - Feature list */}
-          <motion.div
-            initial={{ opacity: 0, x: 30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            className="space-y-0"
+          {/* Right side - Vertical infinite scroll */}
+          <div
+            className="relative overflow-hidden"
+            style={{ height: `${CONTAINER_HEIGHT}px` }}
           >
-            {features.map((feature, index) => (
-              <motion.a
-                key={feature.name}
-                href="#"
-                initial={{ opacity: 0, y: 10 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.05 }}
-                className={`
-                  flex items-center justify-between py-4 border-b border-border/50 
-                  group cursor-pointer transition-all duration-300
-                  ${feature.active 
-                    ? 'text-foreground' 
-                    : 'text-muted-foreground hover:text-foreground'
-                  }
-                  focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 rounded-lg
-                `}
-              >
-                <span className={`
-                  text-3xl lg:text-4xl xl:text-5xl font-extrabold tracking-tight transition-all duration-300
-                  ${feature.active ? '' : 'group-hover:translate-x-2'}
-                `}>
-                  {feature.name}
-                </span>
-                {feature.active && (
-                  <ArrowRight className="w-8 h-8 text-foreground" />
-                )}
-              </motion.a>
-            ))}
-          </motion.div>
+            {/* Top fade mask */}
+            <div className="absolute top-0 left-0 right-0 h-20 bg-gradient-to-b from-card to-transparent z-10 pointer-events-none" />
+            {/* Bottom fade mask */}
+            <div className="absolute bottom-0 left-0 right-0 h-20 bg-gradient-to-t from-card to-transparent z-10 pointer-events-none" />
+
+            <div ref={trackRef} className="will-change-transform">
+              {allItems.map((name, index) => {
+                const isCenter = (index % TOTAL_ITEMS) === centerIndex;
+                return (
+                  <div
+                    key={`${name}-${index}`}
+                    className="flex items-center justify-between cursor-pointer transition-all duration-500 ease-out"
+                    style={{ height: `${ITEM_HEIGHT}px` }}
+                  >
+                    <span
+                      className="text-3xl lg:text-4xl xl:text-5xl tracking-tight transition-all duration-500 ease-out"
+                      style={{
+                        fontWeight: isCenter ? 700 : 500,
+                        opacity: isCenter ? 1 : 0.4,
+                        color: isCenter ? 'hsl(var(--foreground))' : 'hsl(var(--muted-foreground))',
+                        transform: isCenter ? 'scale(1.02)' : 'scale(1)',
+                      }}
+                    >
+                      {name}
+                    </span>
+                    {isCenter && (
+                      <ArrowRight
+                        className="w-8 h-8 text-foreground transition-opacity duration-500"
+                      />
+                    )}
+                  </div>
+                );
+              })}
+            </div>
+          </div>
         </div>
       </div>
     </section>
