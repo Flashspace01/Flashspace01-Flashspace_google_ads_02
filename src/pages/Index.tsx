@@ -3,15 +3,12 @@ import { HeroWithSearch } from "@/components/sections/HeroWithSearch";
 import { WorkspaceCategories } from "@/components/sections/WorkspaceCategories";
 import { WorkWhereYouThrive } from "@/components/sections/WorkWhereYouThrive";
 import { PlatformFeatures } from "@/components/sections/PlatformFeatures";
-import { DarkTestimonial } from "@/components/sections/DarkTestimonial";
-import { OneSuite } from "@/components/sections/OneSuite";
 import { ProductShowcase } from "@/components/sections/ProductShowcase";
 import { TestimonialsCarousel } from "@/components/sections/TestimonialsCarousel";
 import { FeatureList } from "@/components/sections/FeatureList";
 import { FeatureCTA } from "@/components/sections/FeatureCTA";
 import { Stats } from "@/components/sections/Stats";
 import { ClientImpact } from "@/components/sections/ClientImpact";
-import { StackedTestimonials } from "@/components/sections/StackedTestimonials";
 import { BlogSection } from "@/components/sections/BlogSection";
 import { FounderTestimonial } from "@/components/sections/FounderTestimonial";
 import { CTA } from "@/components/sections/CTA";
@@ -26,15 +23,12 @@ const Index = () => {
         <WorkspaceCategories />
         <WorkWhereYouThrive />
         <PlatformFeatures />
-        <DarkTestimonial />
-        <OneSuite />
         <ProductShowcase />
         <TestimonialsCarousel />
         <FeatureList />
         <FeatureCTA />
         <Stats />
         <ClientImpact />
-        
         <BlogSection />
         <FounderTestimonial />
         <CTA />
