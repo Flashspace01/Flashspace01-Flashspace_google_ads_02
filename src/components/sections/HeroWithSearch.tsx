@@ -44,12 +44,16 @@ export const HeroWithSearch = () => {
 
   return (
     <section className="relative overflow-hidden min-h-[92vh] flex items-center">
-      {/* Subtle Radial Glow Background */}
+      {/* Soft Blended Gradient Background */}
       <div className="absolute inset-0 bg-white" />
       <div
         className="absolute inset-0"
         style={{
-          background: "radial-gradient(ellipse at 0% 0%, hsl(142 40% 45% / 0.07), transparent 60%)",
+          background: [
+            "radial-gradient(ellipse 80% 70% at 5% 10%, hsl(142 30% 50% / 0.09), transparent 55%)",
+            "radial-gradient(ellipse 60% 50% at 85% 30%, hsl(142 15% 60% / 0.06), transparent 50%)",
+            "radial-gradient(ellipse 70% 60% at 60% 90%, hsl(40 30% 75% / 0.08), transparent 50%)",
+          ].join(", "),
         }}
       />
 
