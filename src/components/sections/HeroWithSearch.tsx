@@ -2,7 +2,10 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Send, Mic, Sparkles, MapPin, ChevronDown, BadgeCheck } from "lucide-react";
-import workspaceImage from "@/assets/workspace-coworking.jpg";
+import workspaceCoworking from "@/assets/workspace-coworking.jpg";
+import workspaceMeeting from "@/assets/workspace-meeting.jpg";
+import workspaceTeam from "@/assets/workspace-team.jpg";
+import workspaceDaypass from "@/assets/workspace-daypass.jpg";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -31,8 +34,16 @@ const locations = [
   "Kolkata",
 ];
 
+const workspaceCards = [
+  { image: workspaceCoworking, name: "Nexus Workspace Hub", location: "Bandra Kurla Complex, Mumbai", type: "Coworking", badge: "AI Recommended", price: "₹8,999" },
+  { image: workspaceMeeting, name: "Summit Meeting Rooms", location: "Connaught Place, Delhi", type: "Meeting Room", badge: "Available Today", price: "₹1,499" },
+  { image: workspaceTeam, name: "Horizon Team Office", location: "HSR Layout, Bangalore", type: "Team Office", badge: "AI Recommended", price: "₹24,999" },
+  { image: workspaceDaypass, name: "FlexDesk Day Pass", location: "Anna Nagar, Chennai", type: "Day Pass", badge: "Available Today", price: "₹499" },
+];
+
 export const HeroWithSearch = () => {
   const [currentExample, setCurrentExample] = useState(0);
+  const [currentCard, setCurrentCard] = useState(0);
   const [inputValue, setInputValue] = useState("");
   const [selectedLocation, setSelectedLocation] = useState("Auto Locate");
 
@@ -40,6 +51,13 @@ export const HeroWithSearch = () => {
     const interval = setInterval(() => {
       setCurrentExample((prev) => (prev + 1) % rotatingExamples.length);
     }, 3500);
+    return () => clearInterval(interval);
+  }, []);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentCard((prev) => (prev + 1) % workspaceCards.length);
+    }, 5500);
     return () => clearInterval(interval);
   }, []);
 
@@ -237,40 +255,51 @@ export const HeroWithSearch = () => {
 
           </div>
 
-            {/* Right Side — Visual Anchor Card */}
-            <div className="hidden lg:block flex-shrink-0 w-[340px]">
-              <div className="rounded-2xl overflow-hidden bg-background shadow-xl border border-border/60">
-                {/* Image Area */}
-                <div className="relative h-[220px] overflow-hidden">
-                  <img
-                    src={workspaceImage}
-                    alt="Premium coworking workspace"
-                    className="w-full h-full object-cover"
-                  />
-                  <div className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-background/60 to-transparent" />
-                  <div className="absolute top-3 right-3 inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-background/90 backdrop-blur-sm border border-border/40">
-                    <BadgeCheck className="w-3.5 h-3.5 text-primary" />
-                    <span className="text-[11px] font-medium text-foreground/80">Verified</span>
+            {/* Right Side — Rotating Visual Anchor Cards */}
+            <div className="hidden lg:block flex-shrink-0 w-[340px] h-[400px] relative">
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={currentCard}
+                  initial={{ opacity: 0, x: 40, scale: 0.95 }}
+                  animate={{ opacity: 1, x: 0, scale: 1 }}
+                  exit={{ opacity: 0, x: -30, scale: 0.93 }}
+                  transition={{ duration: 0.6, ease: [0.4, 0, 0.2, 1] }}
+                  className="absolute inset-0"
+                >
+                  <div className="rounded-2xl overflow-hidden bg-background shadow-xl border border-border/60 h-full flex flex-col">
+                    {/* Image Area */}
+                    <div className="relative h-[220px] overflow-hidden flex-shrink-0">
+                      <img
+                        src={workspaceCards[currentCard].image}
+                        alt={workspaceCards[currentCard].name}
+                        className="w-full h-full object-cover"
+                      />
+                      <div className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-background/60 to-transparent" />
+                      <div className="absolute top-3 right-3 inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-background/90 backdrop-blur-sm border border-border/40">
+                        <BadgeCheck className="w-3.5 h-3.5 text-primary" />
+                        <span className="text-[11px] font-medium text-foreground/80">Verified</span>
+                      </div>
+                    </div>
+                    {/* Info Area */}
+                    <div className="p-5 space-y-3 flex-1">
+                      <h3 className="text-base font-semibold text-foreground leading-tight">{workspaceCards[currentCard].name}</h3>
+                      <div className="flex items-center gap-1.5 text-muted-foreground">
+                        <MapPin className="w-3.5 h-3.5" />
+                        <span className="text-xs">{workspaceCards[currentCard].location}</span>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <span className="px-2.5 py-1 rounded-full text-[11px] font-medium bg-muted/70 text-foreground/60 border border-border/50">{workspaceCards[currentCard].type}</span>
+                        <span className="px-2.5 py-1 rounded-full text-[11px] font-medium bg-primary/[0.08] text-primary border border-primary/15">{workspaceCards[currentCard].badge}</span>
+                      </div>
+                      <div className="pt-1">
+                        <span className="text-xs text-muted-foreground">Starting from</span>
+                        <span className="ml-1.5 text-lg font-semibold text-foreground">{workspaceCards[currentCard].price}</span>
+                        <span className="text-xs text-muted-foreground">/mo</span>
+                      </div>
+                    </div>
                   </div>
-                </div>
-                {/* Info Area */}
-                <div className="p-5 space-y-3">
-                  <h3 className="text-base font-semibold text-foreground leading-tight">Nexus Workspace Hub</h3>
-                  <div className="flex items-center gap-1.5 text-muted-foreground">
-                    <MapPin className="w-3.5 h-3.5" />
-                    <span className="text-xs">Bandra Kurla Complex, Mumbai</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <span className="px-2.5 py-1 rounded-full text-[11px] font-medium bg-muted/70 text-foreground/60 border border-border/50">Coworking</span>
-                    <span className="px-2.5 py-1 rounded-full text-[11px] font-medium bg-primary/[0.08] text-primary border border-primary/15">AI Recommended</span>
-                  </div>
-                  <div className="pt-1">
-                    <span className="text-xs text-muted-foreground">Starting from</span>
-                    <span className="ml-1.5 text-lg font-semibold text-foreground">₹8,999</span>
-                    <span className="text-xs text-muted-foreground">/mo</span>
-                  </div>
-                </div>
-              </div>
+                </motion.div>
+              </AnimatePresence>
             </div>
 
           </div>
