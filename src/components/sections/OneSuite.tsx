@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import meetingIllustrated from "@/assets/meeting-illustrated.jpg";
+import meetingIllustrated from "@/assets/one-platform-meeting.png";
 
 const features = [
   {
