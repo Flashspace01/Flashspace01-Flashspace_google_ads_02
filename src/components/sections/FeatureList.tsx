@@ -57,7 +57,7 @@ export const FeatureList = () => {
           transform: isCenter ? "scale(1.02)" : "scale(1)",
         }}
       >
-        <span className="text-3xl lg:text-4xl xl:text-5xl tracking-tight text-foreground">
+        <span className="text-3xl lg:text-4xl xl:text-5xl tracking-tight text-foreground whitespace-nowrap">
           {name}
         </span>
       </div>
@@ -136,8 +136,8 @@ export const FeatureList = () => {
           {/* Right side - Infinite vertical scrolling list */}
           <div
             ref={wrapperRef}
-            className="relative overflow-hidden"
-            style={{ height: "380px" }}
+            className="relative"
+            style={{ height: "380px", overflowY: "hidden", overflowX: "visible" }}
           >
             {/* Top fade mask */}
             <div className="absolute top-0 left-0 right-0 h-16 bg-gradient-to-b from-card to-transparent z-10 pointer-events-none" />
