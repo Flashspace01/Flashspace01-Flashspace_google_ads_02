@@ -63,7 +63,7 @@ export const HeroWithSearch = () => {
 
   return (
     <section className="relative overflow-hidden min-h-[92vh] flex items-center">
-      <div className="absolute inset-0 bg-white" />
+      <div className="absolute inset-0 bg-background" />
 
       {/* Content */}
       <div className="relative z-10 w-full pt-32 lg:pt-40 pb-20 lg:pb-28">
