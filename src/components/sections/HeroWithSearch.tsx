@@ -49,14 +49,14 @@ export const HeroWithSearch = () => {
       <div
         className="absolute -top-[30%] -left-[20%] w-[80vw] h-[80vh] rounded-full"
         style={{
-          background: "radial-gradient(circle, hsl(142 25% 60% / 0.04), transparent 70%)",
+          background: "radial-gradient(circle, hsl(142 25% 60% / 0.24), transparent 70%)",
           filter: "blur(80px)",
         }}
       />
       <div
         className="absolute -bottom-[20%] -right-[10%] w-[60vw] h-[60vh] rounded-full"
         style={{
-          background: "radial-gradient(circle, hsl(40 20% 70% / 0.03), transparent 70%)",
+          background: "radial-gradient(circle, hsl(40 20% 70% / 0.24), transparent 70%)",
           filter: "blur(100px)",
         }}
       />
