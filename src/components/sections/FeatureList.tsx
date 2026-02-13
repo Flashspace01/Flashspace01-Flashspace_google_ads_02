@@ -136,7 +136,7 @@ export const FeatureList = () => {
           {/* Right side - Infinite vertical scrolling list */}
           <div
             ref={wrapperRef}
-            className="relative overflow-y-hidden overflow-x-visible"
+            className="relative overflow-hidden"
             style={{ height: "380px" }}
           >
             {/* Top fade mask */}
