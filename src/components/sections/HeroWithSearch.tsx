@@ -47,26 +47,32 @@ export const HeroWithSearch = () => {
       {/* Ambient Light Background */}
       <div className="absolute inset-0 bg-white" />
       {/* Primary green glow — top-left, large and diffused */}
-      <div
+      <motion.div
+        animate={{ x: [0, 60, 0, -60, 0], y: [0, -40, 0, 40, 0] }}
+        transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
         className="absolute -top-[30%] -left-[20%] w-[110vw] h-[100vh] rounded-full"
         style={{
-          background: "radial-gradient(ellipse at 25% 35%, hsl(142 35% 68% / 0.42), hsl(152 28% 74% / 0.25) 40%, transparent 70%)",
+          background: "radial-gradient(ellipse at 25% 35%, hsl(142 35% 68% / 0.62), hsl(152 28% 74% / 0.45) 40%, transparent 70%)",
           filter: "blur(90px)",
         }}
       />
       {/* Sage/warm secondary glow — center-right, blending into white */}
-      <div
+      <motion.div
+        animate={{ x: [0, -50, 0, 50, 0], y: [0, 50, 0, -50, 0] }}
+        transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
         className="absolute -top-[10%] -right-[20%] w-[90vw] h-[90vh] rounded-full"
         style={{
-          background: "radial-gradient(ellipse at 65% 45%, hsl(95 22% 72% / 0.38), hsl(60 18% 82% / 0.22) 45%, transparent 75%)",
+          background: "radial-gradient(ellipse at 65% 45%, hsl(95 22% 72% / 0.58), hsl(60 18% 82% / 0.42) 45%, transparent 75%)",
           filter: "blur(100px)",
         }}
       />
       {/* Soft warm accent — bottom area for depth */}
-      <div
+      <motion.div
+        animate={{ x: [0, 40, 0, -40, 0], y: [0, -30, 0, 30, 0] }}
+        transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
         className="absolute -bottom-[20%] left-[10%] w-[80vw] h-[60vh] rounded-full"
         style={{
-          background: "radial-gradient(ellipse at 40% 70%, hsl(80 15% 78% / 0.28), transparent 65%)",
+          background: "radial-gradient(ellipse at 40% 70%, hsl(80 15% 78% / 0.48), transparent 65%)",
           filter: "blur(110px)",
         }}
       />
