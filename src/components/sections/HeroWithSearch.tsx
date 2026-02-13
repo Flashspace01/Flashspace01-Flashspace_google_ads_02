@@ -46,18 +46,28 @@ export const HeroWithSearch = () => {
     <section className="relative overflow-hidden min-h-[92vh] flex items-center">
       {/* Ambient Light Background */}
       <div className="absolute inset-0 bg-white" />
+      {/* Primary green glow — top-left, large and diffused */}
       <div
-        className="absolute -top-[40%] -left-[25%] w-[90vw] h-[90vh] rounded-full"
+        className="absolute -top-[30%] -left-[20%] w-[110vw] h-[100vh] rounded-full"
         style={{
-          background: "radial-gradient(ellipse at 30% 30%, hsl(142 30% 65% / 0.24), hsl(142 20% 75% / 0.10) 50%, transparent 75%)",
+          background: "radial-gradient(ellipse at 25% 35%, hsl(142 35% 68% / 0.32), hsl(152 28% 74% / 0.15) 40%, transparent 70%)",
+          filter: "blur(90px)",
+        }}
+      />
+      {/* Sage/warm secondary glow — center-right, blending into white */}
+      <div
+        className="absolute -top-[10%] -right-[20%] w-[90vw] h-[90vh] rounded-full"
+        style={{
+          background: "radial-gradient(ellipse at 65% 45%, hsl(95 22% 72% / 0.28), hsl(60 18% 82% / 0.12) 45%, transparent 75%)",
           filter: "blur(100px)",
         }}
       />
+      {/* Soft warm accent — bottom area for depth */}
       <div
-        className="absolute -bottom-[25%] -right-[15%] w-[70vw] h-[70vh] rounded-full"
+        className="absolute -bottom-[20%] left-[10%] w-[80vw] h-[60vh] rounded-full"
         style={{
-          background: "radial-gradient(ellipse at 60% 60%, hsl(90 18% 72% / 0.22), hsl(45 15% 80% / 0.08) 55%, transparent 80%)",
-          filter: "blur(120px)",
+          background: "radial-gradient(ellipse at 40% 70%, hsl(80 15% 78% / 0.18), transparent 65%)",
+          filter: "blur(110px)",
         }}
       />
 
