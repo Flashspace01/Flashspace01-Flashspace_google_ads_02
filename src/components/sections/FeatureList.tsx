@@ -1,16 +1,65 @@
-import { motion } from "framer-motion";
+import { motion, useAnimationFrame } from "framer-motion";
 import { ArrowRight } from "lucide-react";
+import { useRef, useState, useCallback, useEffect } from "react";
 
 const features = [
-  { name: "Virtual Offices", active: false },
-  { name: "Meeting Rooms", active: false },
-  { name: "Global Access", active: false },
-  { name: "Coworking", active: true },
-  { name: "Day Passes", active: false },
-  { name: "Business Setup", active: false },
+  "Virtual Offices",
+  "Meeting Rooms",
+  "Global Access",
+  "Coworking",
+  "Day Passes",
+  "Business Setup",
 ];
 
+const ITEM_HEIGHT = 80; // px per item
+const TOTAL_HEIGHT = features.length * ITEM_HEIGHT;
+const SPEED = 0.3; // pixels per frame (~18px/sec at 60fps)
+
 export const FeatureList = () => {
+  const offsetRef = useRef(0);
+  const [offset, setOffset] = useState(0);
+  const containerHeight = 5 * ITEM_HEIGHT; // show ~5 items
+  const centerY = containerHeight / 2;
+
+  useAnimationFrame(() => {
+    offsetRef.current = (offsetRef.current + SPEED) % TOTAL_HEIGHT;
+    setOffset(offsetRef.current);
+  });
+
+  // Render enough duplicates for seamless loop
+  const allItems = [...features, ...features, ...features];
+
+  const getItemStyle = useCallback(
+    (index: number) => {
+      const rawY = index * ITEM_HEIGHT - offset;
+      // Wrap into visible range
+      let y = ((rawY % TOTAL_HEIGHT) + TOTAL_HEIGHT) % TOTAL_HEIGHT;
+      // Shift so items fill from top of container
+      if (y > TOTAL_HEIGHT - ITEM_HEIGHT) y -= TOTAL_HEIGHT;
+
+      const distFromCenter = Math.abs(y + ITEM_HEIGHT / 2 - centerY);
+      const maxDist = containerHeight / 2;
+      const proximity = Math.max(0, 1 - distFromCenter / maxDist);
+      const isCenter = distFromCenter < ITEM_HEIGHT * 0.6;
+
+      return {
+        transform: `translateY(${y}px) scale(${1 + proximity * 0.02})`,
+        opacity: 0.7 + proximity * 0.3,
+        fontWeight: isCenter ? 700 : 500,
+        color: isCenter ? 'hsl(var(--foreground))' : 'hsl(var(--muted-foreground))',
+        transition: 'font-weight 0.4s ease, color 0.4s ease',
+        position: 'absolute' as const,
+        left: 0,
+        right: 0,
+        height: ITEM_HEIGHT,
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+      };
+    },
+    [offset, centerY, containerHeight]
+  );
+
   return (
     <section className="py-24 lg:py-32 bg-card">
       <div className="container mx-auto px-4 lg:px-8">
@@ -80,42 +129,38 @@ export const FeatureList = () => {
             </a>
           </motion.div>
 
-          {/* Right side - Feature list */}
+          {/* Right side - Vertical scrolling feature list */}
           <motion.div
             initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            className="space-y-0"
+            className="relative overflow-hidden"
+            style={{ height: containerHeight }}
           >
-            {features.map((feature, index) => (
-              <motion.a
-                key={feature.name}
-                href="#"
-                initial={{ opacity: 0, y: 10 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.05 }}
-                className={`
-                  flex items-center justify-between py-4 border-b border-border/50 
-                  group cursor-pointer transition-all duration-300
-                  ${feature.active 
-                    ? 'text-foreground' 
-                    : 'text-muted-foreground hover:text-foreground'
-                  }
-                  focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 rounded-lg
-                `}
-              >
-                <span className={`
-                  text-3xl lg:text-4xl xl:text-5xl font-extrabold tracking-tight transition-all duration-300
-                  ${feature.active ? '' : 'group-hover:translate-x-2'}
-                `}>
-                  {feature.name}
-                </span>
-                {feature.active && (
-                  <ArrowRight className="w-8 h-8 text-foreground" />
-                )}
-              </motion.a>
-            ))}
+            {/* Fade masks */}
+            <div className="absolute top-0 left-0 right-0 h-20 bg-gradient-to-b from-card to-transparent z-10 pointer-events-none" />
+            <div className="absolute bottom-0 left-0 right-0 h-20 bg-gradient-to-t from-card to-transparent z-10 pointer-events-none" />
+
+            {allItems.map((name, index) => {
+              const itemIndex = index % features.length;
+              const style = getItemStyle(index);
+              const isCenter = style.fontWeight === 700;
+
+              return (
+                <div
+                  key={`${name}-${index}`}
+                  style={style}
+                  className="px-2 cursor-pointer"
+                >
+                  <span className="text-3xl lg:text-4xl xl:text-5xl tracking-tight">
+                    {name}
+                  </span>
+                  {isCenter && (
+                    <ArrowRight className="w-8 h-8 text-foreground flex-shrink-0" />
+                  )}
+                </div>
+              );
+            })}
           </motion.div>
         </div>
       </div>
