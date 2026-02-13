@@ -255,19 +255,19 @@ export const HeroWithSearch = () => {
 
           </div>
 
-            {/* Right Side — Rotating Visual Anchor Cards */}
-            <div className="hidden lg:block flex-shrink-0 w-[340px] h-[400px] relative">
+            {/* Right Side — 3D Rotating Visual Anchor Cards */}
+            <div className="hidden lg:block flex-shrink-0 w-[340px] h-[400px] relative" style={{ perspective: "1200px" }}>
               <AnimatePresence mode="wait">
                 <motion.div
                   key={currentCard}
-                  initial={{ opacity: 0, x: 40, scale: 0.95 }}
-                  animate={{ opacity: 1, x: 0, scale: 1 }}
-                  exit={{ opacity: 0, x: -30, scale: 0.93 }}
-                  transition={{ duration: 0.6, ease: [0.4, 0, 0.2, 1] }}
+                  initial={{ rotateY: 65, opacity: 0, scale: 0.92, z: -80 }}
+                  animate={{ rotateY: 0, opacity: 1, scale: 1, z: 0 }}
+                  exit={{ rotateY: -45, opacity: 0, scale: 0.95, z: -60 }}
+                  transition={{ duration: 0.8, ease: [0.25, 0.1, 0.25, 1] }}
                   className="absolute inset-0"
+                  style={{ transformStyle: "preserve-3d", backfaceVisibility: "hidden" }}
                 >
                   <div className="rounded-2xl overflow-hidden bg-background shadow-xl border border-border/60 h-full flex flex-col">
-                    {/* Image Area */}
                     <div className="relative h-[220px] overflow-hidden flex-shrink-0">
                       <img
                         src={workspaceCards[currentCard].image}
@@ -280,7 +280,6 @@ export const HeroWithSearch = () => {
                         <span className="text-[11px] font-medium text-foreground/80">Verified</span>
                       </div>
                     </div>
-                    {/* Info Area */}
                     <div className="p-5 space-y-3 flex-1">
                       <h3 className="text-base font-semibold text-foreground leading-tight">{workspaceCards[currentCard].name}</h3>
                       <div className="flex items-center gap-1.5 text-muted-foreground">
