@@ -190,11 +190,11 @@ export const HeroWithSearch = () => {
               transition={{ delay: 0.6 }}
               className="flex flex-wrap items-center gap-3"
             >
-              <Button size="default" className="bg-primary text-primary-foreground hover:bg-primary/85 font-medium px-6 h-10 rounded-lg shadow-sm hover:shadow-md transition-all group">
+              <Button size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90 font-semibold px-8 h-12 rounded-xl shadow-lg hover:shadow-xl transition-all">
                 Get Started
-                <ArrowRight className="w-3.5 h-3.5 ml-1 transition-transform group-hover:translate-x-0.5" />
+                <ArrowRight className="w-4 h-4 ml-1" />
               </Button>
-              <Button size="default" variant="outline" className="font-medium px-6 h-10 rounded-lg border-border text-foreground hover:bg-muted">
+              <Button size="lg" variant="outline" className="font-semibold px-8 h-12 rounded-xl border-border text-foreground hover:bg-muted">
                 Explore Platform
               </Button>
             </motion.div>
