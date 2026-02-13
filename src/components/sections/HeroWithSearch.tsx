@@ -67,7 +67,7 @@ export const HeroWithSearch = () => {
 
       {/* Content */}
       <div className="relative z-10 w-full pt-32 lg:pt-40 pb-20 lg:pb-28">
-        <div className="container mx-auto px-6 lg:px-12 max-w-7xl">
+        <div className="container mx-auto px-6 lg:px-12 max-w-7xl flex flex-col items-center text-center">
           <div className="max-w-2xl">
 
             {/* 1. Eyebrow Tag */}
@@ -104,7 +104,7 @@ export const HeroWithSearch = () => {
               transition={{ delay: 0.3 }}
               className="mb-8"
             >
-              <p className="text-muted-foreground text-base sm:text-lg max-w-lg leading-relaxed">
+              <p className="text-muted-foreground text-base sm:text-lg max-w-lg leading-relaxed mx-auto">
                 The AI-powered platform for virtual offices, coworking spaces, meeting rooms, event venues, and enterprise workspace management.
               </p>
             </motion.div>
@@ -114,7 +114,7 @@ export const HeroWithSearch = () => {
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.4 }}
-              className="mb-4 flex flex-wrap items-center gap-3"
+              className="mb-4 flex flex-wrap items-center justify-center gap-3"
             >
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
@@ -157,7 +157,7 @@ export const HeroWithSearch = () => {
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.5 }}
-              className="max-w-xl mb-6"
+              className="max-w-xl mb-6 mx-auto"
             >
               <div className="relative bg-background backdrop-blur-xl rounded-2xl shadow-lg border border-border px-5 py-1 flex items-center gap-3">
                 <Sparkles className="w-4.5 h-4.5 text-primary/60 shrink-0" />
@@ -200,7 +200,7 @@ export const HeroWithSearch = () => {
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.6 }}
-              className="flex flex-wrap items-center gap-3"
+              className="flex flex-wrap items-center justify-center gap-3"
             >
               <Button size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90 font-semibold px-8 h-12 rounded-xl shadow-lg hover:shadow-xl transition-all">
                 Get Started
