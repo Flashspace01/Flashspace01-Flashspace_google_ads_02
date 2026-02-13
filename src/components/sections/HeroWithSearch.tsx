@@ -43,7 +43,7 @@ const workspaceCards = [
 
 export const HeroWithSearch = () => {
   const [currentExample, setCurrentExample] = useState(0);
-  const [currentCard, setCurrentCard] = useState(0);
+  const [rotation, setRotation] = useState(0);
   const [inputValue, setInputValue] = useState("");
   const [selectedLocation, setSelectedLocation] = useState("Auto Locate");
 
@@ -56,7 +56,7 @@ export const HeroWithSearch = () => {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setCurrentCard((prev) => (prev + 1) % workspaceCards.length);
+      setRotation((prev) => prev + 1);
     }, 5500);
     return () => clearInterval(interval);
   }, []);
@@ -255,51 +255,79 @@ export const HeroWithSearch = () => {
 
           </div>
 
-            {/* Right Side — Rotating Visual Anchor Cards */}
-            <div className="hidden lg:block flex-shrink-0 w-[340px] h-[400px] relative">
-              <AnimatePresence mode="wait">
-                <motion.div
-                  key={currentCard}
-                  initial={{ opacity: 0, x: 40, scale: 0.95 }}
-                  animate={{ opacity: 1, x: 0, scale: 1 }}
-                  exit={{ opacity: 0, x: -30, scale: 0.93 }}
-                  transition={{ duration: 0.6, ease: [0.4, 0, 0.2, 1] }}
-                  className="absolute inset-0"
-                >
-                  <div className="rounded-2xl overflow-hidden bg-background shadow-xl border border-border/60 h-full flex flex-col">
-                    {/* Image Area */}
-                    <div className="relative h-[220px] overflow-hidden flex-shrink-0">
-                      <img
-                        src={workspaceCards[currentCard].image}
-                        alt={workspaceCards[currentCard].name}
-                        className="w-full h-full object-cover"
-                      />
-                      <div className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-background/60 to-transparent" />
-                      <div className="absolute top-3 right-3 inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-background/90 backdrop-blur-sm border border-border/40">
-                        <BadgeCheck className="w-3.5 h-3.5 text-primary" />
-                        <span className="text-[11px] font-medium text-foreground/80">Verified</span>
+            {/* Right Side — Merry-Go-Round Circular Rotation */}
+            <div className="hidden lg:block flex-shrink-0 w-[420px] h-[420px] relative" style={{ perspective: "1200px" }}>
+              <div
+                className="relative w-full h-full"
+                style={{ transformStyle: "preserve-3d" }}
+              >
+                {workspaceCards.slice(0, 3).map((card, i) => {
+                  const totalCards = 3;
+                  const angleStep = 360 / totalCards;
+                  const angle = (rotation * angleStep) + (i * angleStep);
+                  const rad = (angle * Math.PI) / 180;
+                  
+                  // Position on circular path
+                  const translateZ = 120;
+                  const x = Math.sin(rad) * 80;
+                  const z = Math.cos(rad) * translateZ;
+                  const normalizedZ = (z + translateZ) / (2 * translateZ); // 0 (back) to 1 (front)
+                  const scale = 0.92 + normalizedZ * 0.08;
+                  const opacity = 0.7 + normalizedZ * 0.3;
+                  const zIndex = Math.round(normalizedZ * 10);
+
+                  return (
+                    <motion.div
+                      key={i}
+                      animate={{
+                        x,
+                        scale,
+                        opacity,
+                        zIndex,
+                      }}
+                      transition={{
+                        duration: 1.2,
+                        ease: [0.4, 0, 0.2, 1],
+                      }}
+                      className="absolute top-0 left-1/2 w-[300px] h-[390px]"
+                      style={{
+                        marginLeft: "-150px",
+                      }}
+                    >
+                      <div className="rounded-2xl overflow-hidden bg-background shadow-xl border border-border/60 h-full flex flex-col">
+                        <div className="relative h-[210px] overflow-hidden flex-shrink-0">
+                          <img
+                            src={card.image}
+                            alt={card.name}
+                            className="w-full h-full object-cover"
+                          />
+                          <div className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-background/60 to-transparent" />
+                          <div className="absolute top-3 right-3 inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-background/90 backdrop-blur-sm border border-border/40">
+                            <BadgeCheck className="w-3.5 h-3.5 text-primary" />
+                            <span className="text-[11px] font-medium text-foreground/80">Verified</span>
+                          </div>
+                        </div>
+                        <div className="p-5 space-y-3 flex-1">
+                          <h3 className="text-base font-semibold text-foreground leading-tight">{card.name}</h3>
+                          <div className="flex items-center gap-1.5 text-muted-foreground">
+                            <MapPin className="w-3.5 h-3.5" />
+                            <span className="text-xs">{card.location}</span>
+                          </div>
+                          <div className="flex items-center gap-2">
+                            <span className="px-2.5 py-1 rounded-full text-[11px] font-medium bg-muted/70 text-foreground/60 border border-border/50">{card.type}</span>
+                            <span className="px-2.5 py-1 rounded-full text-[11px] font-medium bg-primary/[0.08] text-primary border border-primary/15">{card.badge}</span>
+                          </div>
+                          <div className="pt-1">
+                            <span className="text-xs text-muted-foreground">Starting from</span>
+                            <span className="ml-1.5 text-lg font-semibold text-foreground">{card.price}</span>
+                            <span className="text-xs text-muted-foreground">/mo</span>
+                          </div>
+                        </div>
                       </div>
-                    </div>
-                    {/* Info Area */}
-                    <div className="p-5 space-y-3 flex-1">
-                      <h3 className="text-base font-semibold text-foreground leading-tight">{workspaceCards[currentCard].name}</h3>
-                      <div className="flex items-center gap-1.5 text-muted-foreground">
-                        <MapPin className="w-3.5 h-3.5" />
-                        <span className="text-xs">{workspaceCards[currentCard].location}</span>
-                      </div>
-                      <div className="flex items-center gap-2">
-                        <span className="px-2.5 py-1 rounded-full text-[11px] font-medium bg-muted/70 text-foreground/60 border border-border/50">{workspaceCards[currentCard].type}</span>
-                        <span className="px-2.5 py-1 rounded-full text-[11px] font-medium bg-primary/[0.08] text-primary border border-primary/15">{workspaceCards[currentCard].badge}</span>
-                      </div>
-                      <div className="pt-1">
-                        <span className="text-xs text-muted-foreground">Starting from</span>
-                        <span className="ml-1.5 text-lg font-semibold text-foreground">{workspaceCards[currentCard].price}</span>
-                        <span className="text-xs text-muted-foreground">/mo</span>
-                      </div>
-                    </div>
-                  </div>
-                </motion.div>
-              </AnimatePresence>
+                    </motion.div>
+                  );
+                })}
+              </div>
             </div>
 
           </div>
