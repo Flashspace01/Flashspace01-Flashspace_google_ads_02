@@ -67,7 +67,7 @@ export const FeatureList = () => {
   return (
     <section className="py-24 lg:py-32 bg-card">
       <div className="container mx-auto px-4 lg:px-8">
-        <div className="grid lg:grid-cols-2 gap-16 items-center">
+        <div className="grid lg:grid-cols-2 gap-16 items-start">
           {/* Left side - Feature preview card */}
           <motion.div
             initial={{ opacity: 0, x: -30 }}
@@ -136,8 +136,13 @@ export const FeatureList = () => {
           {/* Right side - Infinite vertical scrolling list */}
           <div
             ref={wrapperRef}
-            className="relative"
+            className="relative overflow-hidden"
+            style={{ height: "380px" }}
           >
+            {/* Top fade mask */}
+            <div className="absolute top-0 left-0 right-0 h-16 bg-gradient-to-b from-card to-transparent z-10 pointer-events-none" />
+            {/* Bottom fade mask */}
+            <div className="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-card to-transparent z-10 pointer-events-none" />
 
             <div
               ref={trackRef}
