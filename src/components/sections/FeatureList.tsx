@@ -67,7 +67,7 @@ export const FeatureList = () => {
   return (
     <section className="py-24 lg:py-32 bg-card">
       <div className="container mx-auto px-4 lg:px-8">
-        <div className="grid lg:grid-cols-2 gap-16 items-start">
+        <div className="grid lg:grid-cols-2 gap-16 items-center justify-center">
           {/* Left side - Feature preview card */}
           <motion.div
             initial={{ opacity: 0, x: -30 }}
