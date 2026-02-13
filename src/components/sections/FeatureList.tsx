@@ -4,11 +4,10 @@ import { ArrowRight } from "lucide-react";
 const features = [
   { name: "Virtual Offices", active: false },
   { name: "Meeting Rooms", active: false },
-  { name: "Private Offices", active: false },
+  { name: "Global Access", active: false },
   { name: "Coworking", active: true },
   { name: "Day Passes", active: false },
-  { name: "Enterprise", active: false },
-  { name: "Global Access", active: false },
+  { name: "Business Setup", active: false },
 ];
 
 export const FeatureList = () => {
