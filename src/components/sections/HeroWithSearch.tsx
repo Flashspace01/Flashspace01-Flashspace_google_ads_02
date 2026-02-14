@@ -62,8 +62,8 @@ export const HeroWithSearch = () => {
   }, []);
 
   return (
-    <section className="relative overflow-hidden min-h-[92vh] flex items-center">
-      <div className="absolute inset-0 bg-background" />
+    <section className="relative overflow-hidden min-h-[92vh] flex items-center bg-[hsl(150,15%,8%)]">
+      <div className="absolute inset-0 bg-gradient-to-b from-[hsl(150,15%,6%)] to-[hsl(150,15%,10%)]" />
 
       {/* Content */}
       <div className="relative z-10 w-full pt-32 lg:pt-40 pb-20 lg:pb-28">
@@ -78,10 +78,10 @@ export const HeroWithSearch = () => {
               transition={{ delay: 0.2 }}
               className="mb-5"
             >
-              <h1 className="text-5xl sm:text-6xl lg:text-7xl font-medium tracking-[-0.03em] text-foreground leading-[1.05]">
+              <h1 className="text-5xl sm:text-6xl lg:text-7xl font-medium tracking-[-0.03em] text-white leading-[1.05]">
                 Manage Every
                 <br />
-                <span className="text-primary">Workspace</span> With AI
+                <span className="text-[hsl(142,25%,50%)]">Workspace</span> With AI
               </h1>
             </motion.div>
 
@@ -92,7 +92,7 @@ export const HeroWithSearch = () => {
               transition={{ delay: 0.3 }}
               className="mb-8"
             >
-              <p className="text-muted-foreground text-base sm:text-lg max-w-lg leading-relaxed mx-auto">
+              <p className="text-white/60 text-base sm:text-lg max-w-lg leading-relaxed mx-auto">
                 The AI-powered platform for virtual offices, coworking spaces, meeting rooms, event venues, and enterprise workspace management.
               </p>
             </motion.div>
@@ -106,7 +106,7 @@ export const HeroWithSearch = () => {
             >
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
-                  <button className="inline-flex items-center gap-1.5 text-foreground/70 hover:text-foreground transition-colors text-sm tracking-wide">
+                  <button className="inline-flex items-center gap-1.5 text-white/70 hover:text-white transition-colors text-sm tracking-wide">
                     <MapPin className="w-3.5 h-3.5" />
                     <span>{selectedLocation}</span>
                     <ChevronDown className="w-3 h-3 opacity-60" />
@@ -126,13 +126,13 @@ export const HeroWithSearch = () => {
                 </DropdownMenuContent>
               </DropdownMenu>
 
-              <div className="w-px h-4 bg-border hidden sm:block" />
+              <div className="w-px h-4 bg-white/20 hidden sm:block" />
 
               <div className="flex flex-wrap gap-1.5">
                 {filterTags.map((tag) => (
                   <span
                     key={tag}
-                    className="px-3.5 py-1.5 rounded-full text-xs font-medium text-foreground/60 bg-muted/60 border border-border select-none"
+                    className="px-3.5 py-1.5 rounded-full text-xs font-medium text-white/50 bg-white/10 border border-white/10 select-none"
                   >
                     {tag}
                   </span>
@@ -147,14 +147,14 @@ export const HeroWithSearch = () => {
               transition={{ delay: 0.5 }}
               className="max-w-xl mb-6 mx-auto"
             >
-              <div className="relative bg-background backdrop-blur-xl rounded-2xl shadow-lg border border-border px-5 py-1 flex items-center gap-3">
-                <Sparkles className="w-4.5 h-4.5 text-primary/60 shrink-0" />
+              <div className="relative bg-white/10 backdrop-blur-xl rounded-2xl shadow-lg border border-white/15 px-5 py-1 flex items-center gap-3">
+                <Sparkles className="w-4.5 h-4.5 text-[hsl(142,25%,50%)]/60 shrink-0" />
                 <div className="flex-1 relative">
                   <input
                     type="text"
                     value={inputValue}
                     onChange={(e) => setInputValue(e.target.value)}
-                    className="w-full bg-transparent border-none outline-none text-foreground placeholder:text-transparent py-3.5 text-sm"
+                    className="w-full bg-transparent border-none outline-none text-white placeholder:text-transparent py-3.5 text-sm"
                     placeholder="Ask AI about your workspace needs…"
                   />
                   {!inputValue && (
@@ -166,7 +166,7 @@ export const HeroWithSearch = () => {
                           animate={{ opacity: 1, y: 0 }}
                           exit={{ opacity: 0, y: -8 }}
                           transition={{ duration: 0.25 }}
-                          className="text-muted-foreground text-sm"
+                          className="text-white/40 text-sm"
                         >
                           {rotatingExamples[currentExample]}
                         </motion.span>
@@ -174,11 +174,11 @@ export const HeroWithSearch = () => {
                     </div>
                   )}
                 </div>
-                <button className="p-1.5 rounded-full hover:bg-muted transition-colors" aria-label="Voice input">
-                  <Mic className="w-4 h-4 text-muted-foreground" />
+                <button className="p-1.5 rounded-full hover:bg-white/10 transition-colors" aria-label="Voice input">
+                  <Mic className="w-4 h-4 text-white/50" />
                 </button>
-                <button className="p-2.5 rounded-xl bg-primary/10 hover:bg-primary/15 transition-colors" aria-label="Send message">
-                  <Send className="w-4 h-4 text-primary" />
+                <button className="p-2.5 rounded-xl bg-[hsl(142,25%,50%)]/20 hover:bg-[hsl(142,25%,50%)]/30 transition-colors" aria-label="Send message">
+                  <Send className="w-4 h-4 text-[hsl(142,25%,50%)]" />
                 </button>
               </div>
             </motion.div>
@@ -190,11 +190,11 @@ export const HeroWithSearch = () => {
               transition={{ delay: 0.6 }}
               className="flex flex-wrap items-center justify-center gap-3"
             >
-              <Button size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90 font-semibold px-8 h-12 rounded-xl shadow-lg hover:shadow-xl transition-all">
+              <Button size="lg" className="bg-[hsl(142,25%,50%)] text-white hover:bg-[hsl(142,25%,45%)] font-semibold px-8 h-12 rounded-xl shadow-lg hover:shadow-xl transition-all">
                 Get Started
                 <ArrowRight className="w-4 h-4 ml-1" />
               </Button>
-              <Button size="lg" variant="outline" className="font-semibold px-8 h-12 rounded-xl border-border text-foreground hover:bg-muted">
+              <Button size="lg" variant="outline" className="font-semibold px-8 h-12 rounded-xl border-white/20 text-white hover:bg-white/10">
                 Explore Platform
               </Button>
             </motion.div>
