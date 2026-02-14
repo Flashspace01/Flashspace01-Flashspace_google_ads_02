@@ -52,7 +52,7 @@ export const HeroWithSearch = () => {
       </section>
 
       {/* Sticky wrapper — sticks below navbar while dashboard scrolls under */}
-      <div className="sticky top-[68px] lg:top-[100px] z-20 bg-[#f5f5f5]">
+      <div className="sticky top-[68px] lg:top-[100px] z-30 bg-[#f5f5f5]/85 backdrop-blur-md py-4">
         <div className="w-full flex flex-col items-center text-center px-6">
           <div className="max-w-[1100px] w-full">
             <div className="flex flex-col items-center pb-6 sm:pb-8">
