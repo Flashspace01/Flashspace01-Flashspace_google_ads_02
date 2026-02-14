@@ -27,9 +27,9 @@ export const HeroWithSearch = () => {
   const subOpacity = useTransform(scrollY, [0, 120], [1, 0.8]);
 
   return (
-    <section ref={sectionRef} className="relative min-h-screen w-full flex items-center justify-center overflow-hidden">
+    <section ref={sectionRef} className="relative min-h-screen w-full flex items-center justify-center">
       {/* Background Image — scrolls naturally */}
-      <div className="absolute inset-0">
+      <div className="absolute inset-0 overflow-hidden">
         <img
           src={heroBg}
           alt="Premium workspace"
@@ -62,12 +62,16 @@ export const HeroWithSearch = () => {
             >
               Structured Infrastructure
             </motion.span>
-            <motion.span
-              style={{ scale: line3Scale, transformOrigin: "center top" }}
-              className="block text-5xl sm:text-6xl lg:text-7xl font-medium tracking-[-0.03em] text-white leading-[1.08] transition-all duration-[400ms] ease-out"
-            >
-              Not Just Listings
-            </motion.span>
+
+            {/* Line 3 — sticky wrapper */}
+            <div className="sticky top-[90px] z-[5]">
+              <motion.span
+                style={{ scale: line3Scale, transformOrigin: "center top" }}
+                className="block text-5xl sm:text-6xl lg:text-7xl font-medium tracking-[-0.03em] text-white leading-[1.08] transition-all duration-[400ms] ease-out"
+              >
+                Not Just Listings
+              </motion.span>
+            </div>
           </motion.div>
 
           {/* Subheading — scroll-reduced */}
