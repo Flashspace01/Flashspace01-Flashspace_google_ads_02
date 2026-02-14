@@ -35,14 +35,14 @@ export const HeroWithSearch = () => {
               transition={{ duration: 0.6, ease: "easeOut" }}
             >
               <motion.span
-                style={{ opacity: line1Opacity, y: line1Y }}
-                className={`block text-[34px] sm:text-[52px] lg:text-[68px] font-medium tracking-[-0.03em] text-foreground leading-[1.2] sm:leading-[1.15] lg:leading-[1.12] transition-all duration-[400ms] ease-out ${collapsed ? 'hidden' : ''}`}
+                style={{ opacity: line1Opacity, y: line1Y, visibility: collapsed ? 'hidden' : 'visible', maxHeight: collapsed ? 0 : 100, overflow: 'hidden', willChange: 'transform, opacity' }}
+                className="block text-[34px] sm:text-[52px] lg:text-[68px] font-medium tracking-[-0.03em] text-foreground leading-[1.2] sm:leading-[1.15] lg:leading-[1.12] transition-[max-height,visibility] duration-[400ms] ease-[cubic-bezier(0.4,0,0.2,1)]"
               >
                 Where Workspaces Become
               </motion.span>
               <motion.span
-                style={{ opacity: line2Opacity, y: line2Y }}
-                className={`block text-[34px] sm:text-[52px] lg:text-[68px] font-medium tracking-[-0.03em] text-foreground leading-[1.2] sm:leading-[1.15] lg:leading-[1.12] transition-all duration-[400ms] ease-out ${collapsed ? 'hidden' : ''}`}
+                style={{ opacity: line2Opacity, y: line2Y, visibility: collapsed ? 'hidden' : 'visible', maxHeight: collapsed ? 0 : 100, overflow: 'hidden', willChange: 'transform, opacity' }}
+                className="block text-[34px] sm:text-[52px] lg:text-[68px] font-medium tracking-[-0.03em] text-foreground leading-[1.2] sm:leading-[1.15] lg:leading-[1.12] transition-[max-height,visibility] duration-[400ms] ease-[cubic-bezier(0.4,0,0.2,1)]"
               >
                 Structured Infrastructure
               </motion.span>
