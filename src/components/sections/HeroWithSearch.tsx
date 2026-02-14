@@ -1,5 +1,5 @@
-import { motion, useScroll, useTransform } from "framer-motion";
-import { useRef } from "react";
+import { motion, useScroll, useTransform, useMotionValueEvent } from "framer-motion";
+import { useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Sparkles } from "lucide-react";
 
@@ -7,25 +7,18 @@ import { ArrowRight, Sparkles } from "lucide-react";
 export const HeroWithSearch = () => {
   const sectionRef = useRef<HTMLElement>(null);
   const { scrollY } = useScroll();
+  const [collapsed, setCollapsed] = useState(false);
 
-  // Smooth scroll interpolation 0–200px range
-  const line1Opacity = useTransform(scrollY, [0, 120], [1, 0]);
-  const line1Y = useTransform(scrollY, [0, 120], [0, -24]);
-  const line2Opacity = useTransform(scrollY, [20, 140], [1, 0]);
-  const line2Y = useTransform(scrollY, [20, 140], [0, -20]);
+  useMotionValueEvent(scrollY, "change", (latest) => {
+    setCollapsed(latest > 100);
+  });
 
-  // Lines 1&2 collapse height smoothly via maxHeight + scale
-  const linesMaxHeight = useTransform(scrollY, [0, 160], [300, 0]);
-  const linesScale = useTransform(scrollY, [0, 160], [1, 0.95]);
+  // Line 1 & 2: fade out and translate up
+  const line1Opacity = useTransform(scrollY, [0, 100], [1, 0]);
+  const line1Y = useTransform(scrollY, [0, 100], [0, -20]);
+  const line2Opacity = useTransform(scrollY, [0, 100], [1, 0]);
+  const line2Y = useTransform(scrollY, [0, 100], [0, -20]);
 
-  // Subheading spacing interpolation
-  const subMt = useTransform(scrollY, [0, 160], [24, 8]);
-  // CTA spacing interpolation
-  const ctaMt = useTransform(scrollY, [0, 160], [32, 16]);
-
-  // Dashboard smooth reveal
-  const dashY = useTransform(scrollY, [0, 200], [20, 0]);
-  const dashOpacity = useTransform(scrollY, [50, 250], [0.85, 1]);
 
   return (
     <>
@@ -35,33 +28,24 @@ export const HeroWithSearch = () => {
         <div className="relative z-10 w-full flex flex-col items-center text-center px-6">
           <div className="max-w-[1100px] w-full pt-24 sm:pt-[100px] lg:pt-[140px] pb-12 sm:pb-16 lg:pb-20">
 
-            {/* Lines 1 & 2 — smooth fade + collapse */}
+            {/* Lines 1 & 2 — fade out on scroll */}
             <motion.div
-              style={{
-                maxHeight: linesMaxHeight,
-                scale: linesScale,
-                overflow: "hidden",
-              }}
-              className="origin-top will-change-transform"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, ease: "easeOut" }}
             >
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, ease: "easeOut" }}
+              <motion.span
+                style={{ opacity: line1Opacity, y: line1Y }}
+                className={`block text-[34px] sm:text-[52px] lg:text-[68px] font-medium tracking-[-0.03em] text-foreground leading-[1.2] sm:leading-[1.15] lg:leading-[1.12] transition-all duration-[400ms] ease-out ${collapsed ? 'hidden' : ''}`}
               >
-                <motion.span
-                  style={{ opacity: line1Opacity, y: line1Y }}
-                  className="block text-[34px] sm:text-[52px] lg:text-[68px] font-medium tracking-[-0.03em] text-foreground leading-[1.2] sm:leading-[1.15] lg:leading-[1.12] will-change-transform"
-                >
-                  Where Workspaces Become
-                </motion.span>
-                <motion.span
-                  style={{ opacity: line2Opacity, y: line2Y }}
-                  className="block text-[34px] sm:text-[52px] lg:text-[68px] font-medium tracking-[-0.03em] text-foreground leading-[1.2] sm:leading-[1.15] lg:leading-[1.12] will-change-transform"
-                >
-                  Structured Infrastructure
-                </motion.span>
-              </motion.div>
+                Where Workspaces Become
+              </motion.span>
+              <motion.span
+                style={{ opacity: line2Opacity, y: line2Y }}
+                className={`block text-[34px] sm:text-[52px] lg:text-[68px] font-medium tracking-[-0.03em] text-foreground leading-[1.2] sm:leading-[1.15] lg:leading-[1.12] transition-all duration-[400ms] ease-out ${collapsed ? 'hidden' : ''}`}
+              >
+                Structured Infrastructure
+              </motion.span>
             </motion.div>
 
             {/* CompactHeroWrapper — becomes sticky on scroll */}
@@ -83,8 +67,7 @@ export const HeroWithSearch = () => {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, ease: "easeOut", delay: 0.15 }}
-                  style={{ marginTop: subMt }}
-                  className="text-muted-foreground mx-auto max-w-xl text-base sm:text-lg leading-relaxed will-change-transform transition-[margin] duration-[400ms] ease-[cubic-bezier(0.4,0,0.2,1)]"
+                  className={`text-muted-foreground mx-auto max-w-xl text-base sm:text-lg leading-relaxed ${collapsed ? 'mt-2' : 'mt-6'}`}
                 >
                   AI-powered platform to manage virtual offices, coworking spaces, meeting rooms, and enterprise workspace portfolios — all in one place.
                 </motion.p>
@@ -94,8 +77,7 @@ export const HeroWithSearch = () => {
                   initial={{ opacity: 0, y: 15 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, ease: "easeOut", delay: 0.2 }}
-                  style={{ marginTop: ctaMt }}
-                  className="flex flex-wrap items-center justify-center gap-4 will-change-transform transition-[margin] duration-[400ms] ease-[cubic-bezier(0.4,0,0.2,1)]"
+                  className={`flex flex-wrap items-center justify-center gap-4 ${collapsed ? 'mt-4' : 'mt-8'}`}
                 >
                   <Button size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90 font-semibold px-8 h-12 rounded-xl shadow-lg hover:shadow-xl transition-all">
                     <Sparkles className="w-4 h-4 mr-1" />
@@ -119,8 +101,7 @@ export const HeroWithSearch = () => {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, ease: "easeOut", delay: 0.35 }}
-            style={{ y: dashY, opacity: dashOpacity }}
-            className="mt-8 sm:mt-12 lg:mt-16 w-full max-w-[1200px] mx-auto pb-16 will-change-transform"
+            className="mt-8 sm:mt-12 lg:mt-16 w-full max-w-[1200px] mx-auto pb-16"
           >
             <div className="flex justify-center mb-4">
               <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-foreground/10 text-muted-foreground text-xs font-medium tracking-wide border border-foreground/10">
