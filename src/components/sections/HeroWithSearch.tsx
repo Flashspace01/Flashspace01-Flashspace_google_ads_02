@@ -27,7 +27,7 @@ export const HeroWithSearch = () => {
   const subOpacity = useTransform(scrollY, [0, 120], [1, 0.8]);
 
   return (
-    <section ref={sectionRef} className="relative min-h-screen w-full flex items-center justify-center">
+    <section ref={sectionRef} className="relative w-full">
       {/* Background Image — scrolls naturally */}
       <div className="absolute inset-0 overflow-hidden">
         <img
@@ -39,7 +39,7 @@ export const HeroWithSearch = () => {
       </div>
 
       {/* Content */}
-      <div className="relative z-10 w-full flex flex-col items-center text-center px-6">
+      <div className="relative z-10 w-full flex flex-col items-center text-center px-6 min-h-screen justify-center">
         <div className="max-w-[1100px] w-full pt-12 sm:pt-[80px] lg:pt-[120px]">
 
           {/* Heading — 3 independent lines */}
@@ -63,7 +63,7 @@ export const HeroWithSearch = () => {
             </motion.span>
 
             {/* Line 3 — sticky wrapper */}
-            <div className="sticky top-[90px] z-[5]">
+            <div className="sticky top-[90px] z-10">
               <motion.span
                 style={{ scale: line3Scale, transformOrigin: "center top" }}
                 className="block text-5xl sm:text-6xl lg:text-7xl font-medium tracking-[-0.03em] text-white leading-[1.08] transition-all duration-[400ms] ease-out"
@@ -110,7 +110,7 @@ export const HeroWithSearch = () => {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, ease: "easeOut", delay: 0.35 }}
-            className="mt-16 w-full max-w-[1200px] mx-auto"
+            className="mt-16 w-full max-w-[1200px] mx-auto pb-16"
           >
             <div className="flex justify-center mb-4">
               <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/15 backdrop-blur-sm text-white/80 text-xs font-medium tracking-wide border border-white/10">
