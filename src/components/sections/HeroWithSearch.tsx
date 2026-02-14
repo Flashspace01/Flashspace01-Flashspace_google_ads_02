@@ -19,11 +19,6 @@ export const HeroWithSearch = () => {
   const line2Opacity = useTransform(scrollY, [0, 100], [1, 0]);
   const line2Y = useTransform(scrollY, [0, 100], [0, -20]);
 
-  // Line 3: scale down ~20%
-  const line3Scale = useTransform(scrollY, [0, 120], [1, 0.8]);
-
-  // Subheading: scale down ~15%
-  const subScale = useTransform(scrollY, [0, 120], [1, 0.85]);
 
   return (
     <section ref={sectionRef} className="relative w-full">
@@ -56,19 +51,18 @@ export const HeroWithSearch = () => {
 
           {/* CompactHeroWrapper — becomes sticky on scroll */}
           <div className="sticky top-[80px] z-20 bg-[#f5f5f5]">
-            <div className={`flex flex-col items-center transition-all duration-[400ms] ease-out ${collapsed ? 'py-4' : 'py-0'}`}>
+            <div className="flex flex-col items-center">
               {/* Line 3 */}
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, ease: "easeOut" }}
               >
-                <motion.span
-                  style={{ scale: line3Scale, transformOrigin: "center top" }}
-                  className="block text-5xl sm:text-6xl lg:text-7xl font-medium tracking-[-0.03em] text-foreground leading-[1.08] transition-all duration-[400ms] ease-out"
+                <span
+                  className="block text-5xl sm:text-6xl lg:text-7xl font-medium tracking-[-0.03em] text-foreground leading-[1.08]"
                 >
                   Not Just Listings
-                </motion.span>
+                </span>
               </motion.div>
 
               {/* Subheading */}
@@ -76,11 +70,7 @@ export const HeroWithSearch = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, ease: "easeOut", delay: 0.15 }}
-                style={{
-                  scale: subScale,
-                  transformOrigin: "center top",
-                }}
-                className={`text-muted-foreground max-w-xl mx-auto transition-all duration-[400ms] ease-out ${collapsed ? 'text-sm leading-snug mt-2 whitespace-nowrap' : 'text-base sm:text-lg leading-relaxed mt-6'}`}
+                className={`text-muted-foreground max-w-xl mx-auto ${collapsed ? 'mt-2 whitespace-nowrap' : 'mt-6'} text-base sm:text-lg leading-relaxed`}
               >
                 AI-powered platform to manage virtual offices, coworking spaces, meeting rooms, and enterprise workspace portfolios — all in one place.
               </motion.p>
@@ -90,7 +80,7 @@ export const HeroWithSearch = () => {
                 initial={{ opacity: 0, y: 15 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, ease: "easeOut", delay: 0.2 }}
-                className={`flex flex-wrap items-center justify-center gap-4 transition-all duration-[400ms] ease-out ${collapsed ? 'mt-3' : 'mt-8'}`}
+                className="flex flex-wrap items-center justify-center gap-4 mt-8"
               >
                 <Button size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90 font-semibold px-8 h-12 rounded-xl shadow-lg hover:shadow-xl transition-all">
                   <Sparkles className="w-4 h-4 mr-1" />
