@@ -27,8 +27,8 @@ export const HeroWithSearch = () => {
   const subOpacity = useTransform(scrollY, [0, 120], [1, 0.8]);
 
   return (
-    <section ref={sectionRef} className="relative min-h-screen w-full flex items-center justify-center overflow-hidden">
-      {/* Background Image — scrolls naturally */}
+    <section ref={sectionRef} className="relative min-h-screen w-full flex flex-col overflow-hidden">
+      {/* Background Image */}
       <div className="absolute inset-0">
         <img
           src={heroBg}
@@ -40,15 +40,15 @@ export const HeroWithSearch = () => {
       </div>
 
       {/* Content */}
-      <div className="relative z-10 w-full flex flex-col items-center text-center px-6">
+      <div className="relative z-10 w-full flex-1 flex flex-col items-center justify-center text-center px-6">
         <div className="max-w-[1100px] w-full">
 
-          {/* Heading — 3 independent lines */}
+          {/* Lines 1 & 2 — fade out and collapse */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, ease: "easeOut" }}
-            className="mb-6"
+            className="mb-0"
           >
             <motion.span
               style={{ opacity: line1Opacity, y: line1Y }}
@@ -62,15 +62,25 @@ export const HeroWithSearch = () => {
             >
               Structured Infrastructure
             </motion.span>
-            <motion.span
-              style={{ scale: line3Scale, transformOrigin: "center top" }}
-              className="block text-5xl sm:text-6xl lg:text-7xl font-medium tracking-[-0.03em] text-white leading-[1.08] transition-all duration-[400ms] ease-out"
-            >
-              Not Just Listings
-            </motion.span>
           </motion.div>
 
-          {/* Subheading — scroll-reduced */}
+          {/* Line 3 — sticky within hero */}
+          <div className="sticky top-20 z-20">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, ease: "easeOut" }}
+            >
+              <motion.span
+                style={{ scale: line3Scale, transformOrigin: "center top" }}
+                className="block text-5xl sm:text-6xl lg:text-7xl font-medium tracking-[-0.03em] text-white leading-[1.08] transition-all duration-[400ms] ease-out"
+              >
+                Not Just Listings
+              </motion.span>
+            </motion.div>
+          </div>
+
+          {/* Subheading */}
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -80,7 +90,7 @@ export const HeroWithSearch = () => {
               opacity: subOpacity,
               transformOrigin: "center top",
             }}
-            className="text-base sm:text-lg text-white/70 max-w-xl mx-auto leading-relaxed mb-10"
+            className="text-base sm:text-lg text-white/70 max-w-xl mx-auto leading-relaxed mb-10 mt-6"
           >
             AI-powered platform to manage virtual offices, coworking spaces, meeting rooms, and enterprise workspace portfolios — all in one place.
           </motion.p>
