@@ -32,15 +32,6 @@ export const HeroWithSearch = () => {
       {/* Content */}
       <div className="relative z-10 w-full flex flex-col items-center text-center px-6">
         <div className="max-w-[1100px] w-full">
-          {/* Small Label */}
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, ease: "easeOut" }}
-            className="text-sm tracking-widest uppercase text-white/60 mb-6"
-          >
-            AI Workspace Infrastructure
-          </motion.p>
 
           {/* Heading — scroll-compressed */}
           <motion.h1
