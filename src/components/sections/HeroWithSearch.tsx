@@ -19,12 +19,11 @@ export const HeroWithSearch = () => {
   const line2Opacity = useTransform(scrollY, [0, 100], [1, 0]);
   const line2Y = useTransform(scrollY, [0, 100], [0, -20]);
 
-  // Line 3: slight scale reduction
-  const line3Scale = useTransform(scrollY, [0, 120], [1, 0.85]);
+  // Line 3: scale down ~20%
+  const line3Scale = useTransform(scrollY, [0, 120], [1, 0.8]);
 
-  // Subheading
+  // Subheading: scale down ~15%
   const subScale = useTransform(scrollY, [0, 120], [1, 0.85]);
-  const subOpacity = useTransform(scrollY, [0, 120], [1, 0.8]);
 
   return (
     <section ref={sectionRef} className="relative w-full">
@@ -32,15 +31,14 @@ export const HeroWithSearch = () => {
       <div className="absolute inset-0 bg-[#f5f5f5]" />
 
       {/* Content */}
-      <div className="relative z-10 w-full flex flex-col items-center text-center px-6 min-h-screen justify-center">
-        <div className="max-w-[1100px] w-full pt-12 sm:pt-[80px] lg:pt-[120px]">
+      <div className="relative z-10 w-full flex flex-col items-center text-center px-6">
+        <div className="max-w-[1100px] w-full pt-24 sm:pt-[100px] lg:pt-[140px]">
 
-          {/* Heading — 3 independent lines */}
+          {/* Lines 1 & 2 — fade out on scroll */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, ease: "easeOut" }}
-            className="mb-6"
           >
             <motion.span
               style={{ opacity: line1Opacity, y: line1Y }}
@@ -54,51 +52,59 @@ export const HeroWithSearch = () => {
             >
               Structured Infrastructure
             </motion.span>
+          </motion.div>
 
-            {/* Line 3 — sticky wrapper */}
-            <div className="sticky top-[90px] z-10">
-              <motion.span
-                style={{ scale: line3Scale, transformOrigin: "center top" }}
-                className="block text-5xl sm:text-6xl lg:text-7xl font-medium tracking-[-0.03em] text-foreground leading-[1.08] transition-all duration-[400ms] ease-out"
+          {/* CompactHeroWrapper — becomes sticky on scroll */}
+          <div className="sticky top-[80px] z-20 bg-[#f5f5f5]">
+            <div className={`flex flex-col items-center transition-all duration-[400ms] ease-out ${collapsed ? 'py-4' : 'py-0'}`}>
+              {/* Line 3 */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, ease: "easeOut" }}
               >
-                Not Just Listings
-              </motion.span>
+                <motion.span
+                  style={{ scale: line3Scale, transformOrigin: "center top" }}
+                  className="block text-5xl sm:text-6xl lg:text-7xl font-medium tracking-[-0.03em] text-foreground leading-[1.08] transition-all duration-[400ms] ease-out"
+                >
+                  Not Just Listings
+                </motion.span>
+              </motion.div>
+
+              {/* Subheading */}
+              <motion.p
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, ease: "easeOut", delay: 0.15 }}
+                style={{
+                  scale: subScale,
+                  transformOrigin: "center top",
+                }}
+                className={`text-muted-foreground max-w-xl mx-auto transition-all duration-[400ms] ease-out ${collapsed ? 'text-sm leading-snug mt-2 whitespace-nowrap' : 'text-base sm:text-lg leading-relaxed mt-6'}`}
+              >
+                AI-powered platform to manage virtual offices, coworking spaces, meeting rooms, and enterprise workspace portfolios — all in one place.
+              </motion.p>
+
+              {/* CTAs */}
+              <motion.div
+                initial={{ opacity: 0, y: 15 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, ease: "easeOut", delay: 0.2 }}
+                className={`flex flex-wrap items-center justify-center gap-4 transition-all duration-[400ms] ease-out ${collapsed ? 'mt-3' : 'mt-8'}`}
+              >
+                <Button size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90 font-semibold px-8 h-12 rounded-xl shadow-lg hover:shadow-xl transition-all">
+                  <Sparkles className="w-4 h-4 mr-1" />
+                  Chat with AI
+                </Button>
+                <Button size="lg" variant="outline" className="font-semibold px-8 h-12 rounded-xl border-foreground/20 text-foreground hover:bg-foreground/5 hover:border-foreground/40 bg-transparent">
+                  Explore Platform
+                  <ArrowRight className="w-4 h-4 ml-1" />
+                </Button>
+              </motion.div>
             </div>
-          </motion.div>
+          </div>
 
-          {/* Subheading — scroll-reduced */}
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, ease: "easeOut", delay: 0.15 }}
-            style={{
-              scale: subScale,
-              opacity: subOpacity,
-              transformOrigin: "center top",
-            }}
-            className="text-base sm:text-lg text-muted-foreground max-w-xl mx-auto leading-relaxed mb-10"
-          >
-            AI-powered platform to manage virtual offices, coworking spaces, meeting rooms, and enterprise workspace portfolios — all in one place.
-          </motion.p>
-
-          {/* CTAs */}
-          <motion.div
-            initial={{ opacity: 0, y: 15 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, ease: "easeOut", delay: 0.2 }}
-            className="flex flex-wrap items-center justify-center gap-4"
-          >
-            <Button size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90 font-semibold px-8 h-12 rounded-xl shadow-lg hover:shadow-xl transition-all">
-              <Sparkles className="w-4 h-4 mr-1" />
-              Chat with AI
-            </Button>
-            <Button size="lg" variant="outline" className="font-semibold px-8 h-12 rounded-xl border-foreground/20 text-foreground hover:bg-foreground/5 hover:border-foreground/40 bg-transparent">
-              Explore Platform
-              <ArrowRight className="w-4 h-4 ml-1" />
-            </Button>
-          </motion.div>
-
-          {/* Dashboard Preview */}
+          {/* Dashboard Preview — scrolls normally */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
