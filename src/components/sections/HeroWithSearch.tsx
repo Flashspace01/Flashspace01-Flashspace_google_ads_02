@@ -14,10 +14,10 @@ export const HeroWithSearch = () => {
   });
 
   // Line 1 & 2: fade out and translate up
-  const line1Opacity = useTransform(scrollY, [0, 100], [1, 0]);
-  const line1Y = useTransform(scrollY, [0, 100], [0, -20]);
-  const line2Opacity = useTransform(scrollY, [0, 100], [1, 0]);
-  const line2Y = useTransform(scrollY, [0, 100], [0, -20]);
+  const line1Opacity = useTransform(scrollY, [0, 150], [1, 0]);
+  const line1Y = useTransform(scrollY, [0, 150], [0, -20]);
+  const line2Opacity = useTransform(scrollY, [0, 150], [1, 0]);
+  const line2Y = useTransform(scrollY, [0, 150], [0, -20]);
 
 
   return (
@@ -36,13 +36,13 @@ export const HeroWithSearch = () => {
             >
               <motion.span
                 style={{ opacity: line1Opacity, y: line1Y, visibility: collapsed ? 'hidden' : 'visible', maxHeight: collapsed ? 0 : 100, overflow: 'hidden', willChange: 'transform, opacity' }}
-                className="block text-[34px] sm:text-[52px] lg:text-[68px] font-medium tracking-[-0.03em] text-foreground leading-[1.2] sm:leading-[1.15] lg:leading-[1.12] transition-[max-height,visibility] duration-[400ms] ease-[cubic-bezier(0.4,0,0.2,1)]"
+                className="block text-[34px] sm:text-[52px] lg:text-[68px] font-medium tracking-[-0.03em] text-foreground leading-[1.2] sm:leading-[1.15] lg:leading-[1.12] transition-[max-height,visibility] duration-[650ms] ease-[cubic-bezier(0.22,1,0.36,1)]"
               >
                 Where Workspaces Become
               </motion.span>
               <motion.span
                 style={{ opacity: line2Opacity, y: line2Y, visibility: collapsed ? 'hidden' : 'visible', maxHeight: collapsed ? 0 : 100, overflow: 'hidden', willChange: 'transform, opacity' }}
-                className="block text-[34px] sm:text-[52px] lg:text-[68px] font-medium tracking-[-0.03em] text-foreground leading-[1.2] sm:leading-[1.15] lg:leading-[1.12] transition-[max-height,visibility] duration-[400ms] ease-[cubic-bezier(0.4,0,0.2,1)]"
+                className="block text-[34px] sm:text-[52px] lg:text-[68px] font-medium tracking-[-0.03em] text-foreground leading-[1.2] sm:leading-[1.15] lg:leading-[1.12] transition-[max-height,visibility] duration-[650ms] ease-[cubic-bezier(0.22,1,0.36,1)]"
               >
                 Structured Infrastructure
               </motion.span>
@@ -67,7 +67,7 @@ export const HeroWithSearch = () => {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, ease: "easeOut", delay: 0.15 }}
-                  className={`text-muted-foreground mx-auto max-w-xl text-base sm:text-lg leading-relaxed ${collapsed ? 'mt-2' : 'mt-6'}`}
+                  className={`text-muted-foreground mx-auto max-w-xl text-base sm:text-lg leading-relaxed transition-[margin] duration-[650ms] ease-[cubic-bezier(0.22,1,0.36,1)] ${collapsed ? 'mt-2' : 'mt-6'}`}
                 >
                   AI-powered platform to manage virtual offices, coworking spaces, meeting rooms, and enterprise workspace portfolios — all in one place.
                 </motion.p>
@@ -77,7 +77,7 @@ export const HeroWithSearch = () => {
                   initial={{ opacity: 0, y: 15 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, ease: "easeOut", delay: 0.2 }}
-                  className={`flex flex-wrap items-center justify-center gap-4 ${collapsed ? 'mt-4' : 'mt-8'}`}
+                  className={`flex flex-wrap items-center justify-center gap-4 transition-[margin] duration-[650ms] ease-[cubic-bezier(0.22,1,0.36,1)] ${collapsed ? 'mt-4' : 'mt-8'}`}
                 >
                   <Button size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90 font-semibold px-8 h-12 rounded-xl shadow-lg hover:shadow-xl transition-all">
                     <Sparkles className="w-4 h-4 mr-1" />
