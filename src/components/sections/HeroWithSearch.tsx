@@ -70,7 +70,7 @@ export const HeroWithSearch = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, ease: "easeOut", delay: 0.15 }}
-                className={`text-muted-foreground mx-auto ${collapsed ? 'mt-2 max-w-[900px] sm:[display:-webkit-box] sm:[-webkit-line-clamp:2] sm:[-webkit-box-orient:vertical] sm:overflow-hidden' : 'mt-6 max-w-xl'} text-base sm:text-lg leading-relaxed`}
+                className={`text-muted-foreground mx-auto text-base sm:text-lg leading-relaxed ${collapsed ? 'mt-2 max-w-xl sm:[display:-webkit-box] sm:[-webkit-line-clamp:2] sm:[-webkit-box-orient:vertical] sm:overflow-hidden' : 'mt-6 max-w-xl'}`}
               >
                 AI-powered platform to manage virtual offices, coworking spaces, meeting rooms, and enterprise workspace portfolios — all in one place.
               </motion.p>
@@ -80,7 +80,7 @@ export const HeroWithSearch = () => {
                 initial={{ opacity: 0, y: 15 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, ease: "easeOut", delay: 0.2 }}
-                className="flex flex-wrap items-center justify-center gap-4 mt-8"
+                className={`flex flex-wrap items-center justify-center gap-4 ${collapsed ? 'mt-4' : 'mt-8'}`}
               >
                 <Button size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90 font-semibold px-8 h-12 rounded-xl shadow-lg hover:shadow-xl transition-all">
                   <Sparkles className="w-4 h-4 mr-1" />
