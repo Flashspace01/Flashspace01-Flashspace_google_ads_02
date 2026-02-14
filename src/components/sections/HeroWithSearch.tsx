@@ -28,15 +28,8 @@ export const HeroWithSearch = () => {
 
   return (
     <section ref={sectionRef} className="relative w-full">
-      {/* Background Image — scrolls naturally */}
-      <div className="absolute inset-0 overflow-hidden">
-        <img
-          src={heroBg}
-          alt="Premium workspace"
-          className="w-full h-full object-cover"
-        />
-        <div className="absolute inset-0 bg-foreground/20" />
-      </div>
+      {/* Background */}
+      <div className="absolute inset-0 bg-foreground" />
 
       {/* Content */}
       <div className="relative z-10 w-full flex flex-col items-center text-center px-6 min-h-screen justify-center">
