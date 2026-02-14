@@ -2,7 +2,7 @@ import { motion, useScroll, useTransform, useMotionValueEvent } from "framer-mot
 import { useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Sparkles } from "lucide-react";
-import heroBg from "@/assets/hero-premium-bg.jpg";
+
 
 export const HeroWithSearch = () => {
   const sectionRef = useRef<HTMLElement>(null);
@@ -29,7 +29,7 @@ export const HeroWithSearch = () => {
   return (
     <section ref={sectionRef} className="relative w-full">
       {/* Background */}
-      <div className="absolute inset-0 bg-foreground" />
+      <div className="absolute inset-0 bg-[#f5f5f5]" />
 
       {/* Content */}
       <div className="relative z-10 w-full flex flex-col items-center text-center px-6 min-h-screen justify-center">
@@ -44,13 +44,13 @@ export const HeroWithSearch = () => {
           >
             <motion.span
               style={{ opacity: line1Opacity, y: line1Y }}
-              className={`block text-5xl sm:text-6xl lg:text-7xl font-medium tracking-[-0.03em] text-white leading-[1.08] transition-all duration-[400ms] ease-out ${collapsed ? 'hidden' : ''}`}
+              className={`block text-5xl sm:text-6xl lg:text-7xl font-medium tracking-[-0.03em] text-foreground leading-[1.08] transition-all duration-[400ms] ease-out ${collapsed ? 'hidden' : ''}`}
             >
               Where Workspaces Become
             </motion.span>
             <motion.span
               style={{ opacity: line2Opacity, y: line2Y }}
-              className={`block text-5xl sm:text-6xl lg:text-7xl font-medium tracking-[-0.03em] text-white leading-[1.08] transition-all duration-[400ms] ease-out ${collapsed ? 'hidden' : ''}`}
+              className={`block text-5xl sm:text-6xl lg:text-7xl font-medium tracking-[-0.03em] text-foreground leading-[1.08] transition-all duration-[400ms] ease-out ${collapsed ? 'hidden' : ''}`}
             >
               Structured Infrastructure
             </motion.span>
@@ -59,7 +59,7 @@ export const HeroWithSearch = () => {
             <div className="sticky top-[90px] z-10">
               <motion.span
                 style={{ scale: line3Scale, transformOrigin: "center top" }}
-                className="block text-5xl sm:text-6xl lg:text-7xl font-medium tracking-[-0.03em] text-white leading-[1.08] transition-all duration-[400ms] ease-out"
+                className="block text-5xl sm:text-6xl lg:text-7xl font-medium tracking-[-0.03em] text-foreground leading-[1.08] transition-all duration-[400ms] ease-out"
               >
                 Not Just Listings
               </motion.span>
@@ -76,7 +76,7 @@ export const HeroWithSearch = () => {
               opacity: subOpacity,
               transformOrigin: "center top",
             }}
-            className="text-base sm:text-lg text-white/70 max-w-xl mx-auto leading-relaxed mb-10"
+            className="text-base sm:text-lg text-muted-foreground max-w-xl mx-auto leading-relaxed mb-10"
           >
             AI-powered platform to manage virtual offices, coworking spaces, meeting rooms, and enterprise workspace portfolios — all in one place.
           </motion.p>
@@ -92,7 +92,7 @@ export const HeroWithSearch = () => {
               <Sparkles className="w-4 h-4 mr-1" />
               Chat with AI
             </Button>
-            <Button size="lg" variant="outline" className="font-semibold px-8 h-12 rounded-xl border-white/30 text-white hover:bg-white/10 hover:border-white/50 bg-transparent">
+            <Button size="lg" variant="outline" className="font-semibold px-8 h-12 rounded-xl border-foreground/20 text-foreground hover:bg-foreground/5 hover:border-foreground/40 bg-transparent">
               Explore Platform
               <ArrowRight className="w-4 h-4 ml-1" />
             </Button>
@@ -106,12 +106,12 @@ export const HeroWithSearch = () => {
             className="mt-16 w-full max-w-[1200px] mx-auto pb-16"
           >
             <div className="flex justify-center mb-4">
-              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/15 backdrop-blur-sm text-white/80 text-xs font-medium tracking-wide border border-white/10">
+              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-foreground/10 text-muted-foreground text-xs font-medium tracking-wide border border-foreground/10">
                 <span className="w-1.5 h-1.5 rounded-full bg-status-success animate-pulse" />
                 Live Preview
               </span>
             </div>
-            <div className="rounded-2xl border border-white/10 bg-white/5 backdrop-blur-md shadow-2xl overflow-hidden p-1">
+            <div className="rounded-2xl border border-foreground/10 bg-background shadow-2xl overflow-hidden p-1">
               <div className="rounded-xl bg-background/90 backdrop-blur-sm p-6 sm:p-8">
                 {/* Mock browser bar */}
                 <div className="flex items-center gap-2 mb-6">
