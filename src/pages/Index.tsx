@@ -1,9 +1,9 @@
 import { Navbar } from "@/components/layout/Navbar";
 import { HeroWithSearch } from "@/components/sections/HeroWithSearch";
 import { DashboardPreview } from "@/components/sections/DashboardPreview";
+import { ScrollNavLayout } from "@/components/sections/ScrollNavLayout";
 import { WorkspaceCategories } from "@/components/sections/WorkspaceCategories";
 import { WorkWhereYouThrive } from "@/components/sections/WorkWhereYouThrive";
-import { PlatformFeatures } from "@/components/sections/PlatformFeatures";
 import { ProductShowcase } from "@/components/sections/ProductShowcase";
 
 import { FeatureCTA } from "@/components/sections/FeatureCTA";
@@ -21,9 +21,9 @@ const Index = () => {
       <main>
         <HeroWithSearch />
         <DashboardPreview />
+        <ScrollNavLayout />
         <WorkspaceCategories />
         <WorkWhereYouThrive />
-        <PlatformFeatures />
         <ProductShowcase />
         
         <FeatureCTA />
