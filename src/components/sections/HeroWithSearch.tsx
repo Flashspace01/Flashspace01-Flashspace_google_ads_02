@@ -1,27 +1,37 @@
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
+import { useRef } from "react";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Sparkles } from "lucide-react";
 import heroBg from "@/assets/hero-premium-bg.jpg";
 
 export const HeroWithSearch = () => {
+  const sectionRef = useRef<HTMLElement>(null);
+  const { scrollY } = useScroll();
+
+  // Heading: scale down to ~70% over 0-120px scroll
+  const headingScale = useTransform(scrollY, [0, 120], [1, 0.7]);
+  const headingLineHeight = useTransform(scrollY, [0, 120], [1.05, 1.4]);
+
+  // Subheading: reduce size ~85% and opacity to 80%
+  const subScale = useTransform(scrollY, [0, 120], [1, 0.85]);
+  const subOpacity = useTransform(scrollY, [0, 120], [1, 0.8]);
+
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      {/* Background Image */}
+    <section ref={sectionRef} className="relative min-h-screen w-full flex items-center justify-center overflow-hidden">
+      {/* Background Image — scrolls naturally */}
       <div className="absolute inset-0">
         <img
           src={heroBg}
           alt="Premium workspace"
           className="w-full h-full object-cover"
         />
-        {/* Dark overlay */}
-        <div className="absolute inset-0 bg-foreground/25" />
-        {/* Bottom fade to blend into next section */}
+        <div className="absolute inset-0 bg-foreground/20" />
         <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-background to-transparent" />
       </div>
 
       {/* Content */}
       <div className="relative z-10 w-full flex flex-col items-center text-center px-6">
-        <div className="max-w-[900px]">
+        <div className="max-w-[1100px] w-full">
           {/* Small Label */}
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -32,23 +42,36 @@ export const HeroWithSearch = () => {
             AI Workspace Infrastructure
           </motion.p>
 
-          {/* Heading */}
+          {/* Heading — scroll-compressed */}
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, ease: "easeOut" }}
-            className="text-5xl sm:text-6xl lg:text-7xl font-medium tracking-[-0.03em] text-white leading-[1.05] mb-6"
+            style={{
+              scale: headingScale,
+              lineHeight: headingLineHeight,
+              transformOrigin: "center top",
+              transition: "line-height 0.45s ease-out",
+            }}
+            className="text-5xl sm:text-6xl lg:text-7xl font-medium tracking-[-0.03em] text-white mb-6"
           >
             The Operating System
             <br />
-            for Modern Workspaces
+            for Modern
+            <br />
+            Workspaces
           </motion.h1>
 
-          {/* Subheading */}
+          {/* Subheading — scroll-reduced */}
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, ease: "easeOut", delay: 0.15 }}
+            style={{
+              scale: subScale,
+              opacity: subOpacity,
+              transformOrigin: "center top",
+            }}
             className="text-base sm:text-lg text-white/70 max-w-xl mx-auto leading-relaxed mb-10"
           >
             AI-powered platform to manage virtual offices, coworking spaces, meeting rooms, and enterprise workspace portfolios — all in one place.
