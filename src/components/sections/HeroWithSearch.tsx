@@ -40,7 +40,7 @@ export const HeroWithSearch = () => {
 
       {/* Content */}
       <div className="relative z-10 w-full flex flex-col items-center text-center px-6">
-        <div className="max-w-[1100px] w-full pt-12 sm:pt-[60px] lg:pt-20">
+        <div className="max-w-[1100px] w-full pt-12 sm:pt-[80px] lg:pt-[120px]">
 
           {/* Heading — 3 independent lines */}
           <motion.div
