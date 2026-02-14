@@ -1,5 +1,5 @@
 import { Navbar } from "@/components/layout/Navbar";
-import { HeroWithSearch } from "@/components/sections/HeroWithSearch";
+import { HeroWithSearch, DashboardPreview } from "@/components/sections/HeroWithSearch";
 import { WorkspaceCategories } from "@/components/sections/WorkspaceCategories";
 import { WorkWhereYouThrive } from "@/components/sections/WorkWhereYouThrive";
 import { PlatformFeatures } from "@/components/sections/PlatformFeatures";
@@ -19,6 +19,7 @@ const Index = () => {
       <Navbar />
       <main>
         <HeroWithSearch />
+        <DashboardPreview />
         <WorkspaceCategories />
         <WorkWhereYouThrive />
         <PlatformFeatures />
