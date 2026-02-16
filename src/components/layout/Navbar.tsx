@@ -66,13 +66,12 @@ export const Navbar = () => {
                       className="absolute top-full left-0 mt-1 w-52 py-2 bg-card rounded-xl shadow-lg border border-border"
                     >
                       {link.dropdown.map((item) => (
-                        <a
+                        <span
                           key={item.label}
-                          href={item.href}
-                          className="block px-4 py-2.5 text-sm font-normal text-foreground/80 hover:text-foreground hover:bg-primary/5 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring rounded-lg"
+                          className="block px-4 py-2.5 text-sm font-normal text-foreground/80 hover:text-foreground hover:bg-primary/5 transition-colors rounded-lg cursor-default"
                         >
                           {item.label}
-                        </a>
+                        </span>
                       ))}
                     </motion.div>
                   )}
