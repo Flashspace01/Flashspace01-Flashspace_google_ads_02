@@ -13,8 +13,8 @@ const capabilities = [
 
 export const AISection = () => {
   return (
-    <section id="ai-platform" className="py-24 lg:py-32">
-      <div className="space-y-16">
+    <section id="ai-platform" className="py-12 lg:py-16">
+      <div className="space-y-10">
         {/* AI Hero banner */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
