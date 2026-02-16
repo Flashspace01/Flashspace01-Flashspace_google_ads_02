@@ -4,12 +4,14 @@ import { ArrowUpRight, Globe, MapPin, Plane, Building2 } from "lucide-react";
 import featureGlobalAccess from "@/assets/feature-global-access.jpg";
 
 const locations = [
-  { city: "Mumbai", count: "45+ spaces" },
-  { city: "Bangalore", count: "60+ spaces" },
-  { city: "Delhi NCR", count: "50+ spaces" },
-  { city: "Chennai", count: "30+ spaces" },
-  { city: "Hyderabad", count: "25+ spaces" },
-  { city: "Pune", count: "20+ spaces" },
+  { city: "New York", count: "120+ spaces" },
+  { city: "London", count: "95+ spaces" },
+  { city: "Singapore", count: "60+ spaces" },
+  { city: "Dubai", count: "45+ spaces" },
+  { city: "Berlin", count: "40+ spaces" },
+  { city: "Sydney", count: "35+ spaces" },
+  { city: "Toronto", count: "50+ spaces" },
+  { city: "Tokyo", count: "70+ spaces" },
 ];
 
 export const GlobalAccessSection = () => {
@@ -32,9 +34,9 @@ export const GlobalAccessSection = () => {
           <div className="absolute bottom-0 left-0 right-0 p-8 lg:p-12">
             <span className="text-primary-foreground/70 text-sm font-semibold uppercase tracking-wider mb-2 block">Global Access</span>
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white leading-tight tracking-tight">
-              One membership,
+              One membership.
               <br />
-              <span className="text-white/70">every city in India.</span>
+              <span className="text-white/70">Work from anywhere in the world.</span>
             </h2>
           </div>
         </motion.div>
@@ -42,8 +44,7 @@ export const GlobalAccessSection = () => {
         {/* Description */}
         <div className="max-w-2xl">
           <p className="text-lg text-muted-foreground mb-6 leading-relaxed">
-            Access any FlashSpace location across India with a single membership. 
-            Walk into any workspace, anywhere — no extra bookings, no extra fees.
+            Access premium workspaces across North America, Europe, Asia-Pacific, and the Middle East — with one unified membership. No extra bookings, no extra fees.
           </p>
           <Button variant="outline" size="lg" className="group border-primary/30 hover:bg-primary/5 font-semibold">
             View all locations
@@ -52,7 +53,7 @@ export const GlobalAccessSection = () => {
         </div>
 
         {/* Location grid */}
-        <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
           {locations.map((loc, i) => (
             <motion.div
               key={loc.city}
@@ -76,9 +77,9 @@ export const GlobalAccessSection = () => {
         {/* Stats */}
         <div className="flex flex-wrap gap-8 lg:gap-16 pt-8 border-t border-border/50">
           {[
-            { value: "30+", label: "Cities covered" },
-            { value: "1,000+", label: "Workspace locations" },
-            { value: "1", label: "Membership needed" },
+            { value: "50+", label: "Countries covered" },
+            { value: "1,500+", label: "Workspace locations" },
+            { value: "1", label: "Global membership" },
           ].map((stat) => (
             <div key={stat.label}>
               <div className="text-2xl lg:text-3xl font-extrabold text-foreground tracking-tight">{stat.value}</div>
