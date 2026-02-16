@@ -1,13 +1,15 @@
-import { motion, useScroll, useTransform, useMotionValueEvent } from "framer-motion";
-import { useRef, useState } from "react";
+import { motion, useScroll, useTransform, useMotionValueEvent, AnimatePresence } from "framer-motion";
+import { useRef, useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Sparkles } from "lucide-react";
+import { ArrowRight, Sparkles, Mic, Send } from "lucide-react";
 
 
 export const HeroWithSearch = () => {
   const containerRef = useRef<HTMLDivElement>(null);
+  const inputRef = useRef<HTMLInputElement>(null);
   const { scrollY } = useScroll();
   const [collapsed, setCollapsed] = useState(false);
+  const [chatExpanded, setChatExpanded] = useState(false);
 
   useMotionValueEvent(scrollY, "change", (latest) => {
     setCollapsed(latest > 100);
@@ -84,10 +86,49 @@ export const HeroWithSearch = () => {
                 transition={{ duration: 0.6, ease: "easeOut", delay: 0.2 }}
                 className={`flex flex-wrap items-center justify-center gap-4 ${collapsed ? 'mt-4' : 'mt-8'}`}
               >
-                <Button size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90 font-semibold px-8 h-12 rounded-xl shadow-lg hover:shadow-xl transition-all">
-                  <Sparkles className="w-4 h-4 mr-1" />
-                  Chat with AI
-                </Button>
+                <div className="min-h-[52px] flex items-center">
+                  <AnimatePresence mode="wait">
+                    {!chatExpanded ? (
+                      <motion.div
+                        key="button"
+                        initial={false}
+                        exit={{ opacity: 0, scale: 0.95 }}
+                        transition={{ duration: 0.15 }}
+                      >
+                        <Button
+                          size="lg"
+                          className="bg-primary text-primary-foreground hover:bg-primary/90 font-semibold px-8 h-12 rounded-xl shadow-lg hover:shadow-xl transition-all"
+                          onClick={() => setChatExpanded(true)}
+                        >
+                          <Sparkles className="w-4 h-4 mr-1" />
+                          Chat with AI
+                        </Button>
+                      </motion.div>
+                    ) : (
+                      <motion.div
+                        key="input"
+                        initial={{ width: 180, opacity: 0.5 }}
+                        animate={{ width: 400, opacity: 1 }}
+                        transition={{ duration: 0.35, ease: [0.4, 0, 0.2, 1] }}
+                        className="flex items-center h-12 rounded-xl border border-foreground/10 bg-white overflow-hidden shadow-lg max-w-[90vw]"
+                        onAnimationComplete={() => inputRef.current?.focus()}
+                      >
+                        <input
+                          ref={inputRef}
+                          type="text"
+                          placeholder="Ask anything about workspaces…"
+                          className="flex-1 h-full px-4 bg-transparent text-sm text-foreground placeholder:text-muted-foreground outline-none min-w-0"
+                        />
+                        <button className="p-2.5 text-muted-foreground hover:text-foreground transition-opacity">
+                          <Mic className="w-4 h-4" />
+                        </button>
+                        <button className="p-2.5 mr-1 text-primary hover:text-primary/80 transition-opacity">
+                          <Send className="w-4 h-4" />
+                        </button>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
                 <Button size="lg" variant="outline" className="font-semibold px-8 h-12 rounded-xl border-foreground/20 text-foreground hover:bg-foreground/5 hover:border-foreground/40 bg-transparent">
                   Explore Platform
                   <ArrowRight className="w-4 h-4 ml-1" />
