@@ -97,7 +97,7 @@ const WorkspaceCard = ({ title, subtitle, image, features, index }: WorkspaceCar
       />
     </div>
     <div className="p-5">
-      <h3 className="text-lg font-bold text-foreground mb-1">{title}</h3>
+      <h3 className="text-lg font-semibold text-foreground mb-1">{title}</h3>
       <p className="text-sm text-primary mb-3">{subtitle}</p>
       <ul className="space-y-1.5 mb-4">
         {features.map((feature, i) => (
@@ -109,7 +109,7 @@ const WorkspaceCard = ({ title, subtitle, image, features, index }: WorkspaceCar
       </ul>
       <a
         href="#"
-        className="inline-flex items-center gap-1 text-sm font-semibold text-primary hover:text-primary/80 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring rounded"
+        className="inline-flex items-center gap-1 text-sm font-medium text-primary hover:text-primary/80 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring rounded"
       >
         Explore {title}
         <ArrowRight className="w-4 h-4" />
@@ -145,7 +145,7 @@ export const WorkspaceCategories = () => {
             viewport={{ once: true }}
             className="mb-6"
           >
-            <h3 className="text-xl font-bold text-foreground flex items-center gap-3">
+            <h3 className="text-xl font-semibold text-foreground flex items-center gap-3">
               Rent longer-term
               <span className="w-12 h-0.5 bg-primary" />
             </h3>
@@ -165,7 +165,7 @@ export const WorkspaceCategories = () => {
             viewport={{ once: true }}
             className="mb-6"
           >
-            <h3 className="text-xl font-bold text-foreground flex items-center gap-3">
+            <h3 className="text-xl font-semibold text-foreground flex items-center gap-3">
               Book on-demand
               <span className="w-12 h-0.5 bg-primary" />
             </h3>

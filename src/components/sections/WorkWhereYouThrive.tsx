@@ -70,21 +70,21 @@ export const WorkWhereYouThrive = () => {
                   <div>
                     <div className="flex items-center gap-2 mb-1">
                       <Building2 className="w-4 h-4 text-primary/60" />
-                      <span className="text-xl lg:text-2xl font-bold text-foreground">1000+</span>
+                      <span className="text-xl lg:text-2xl font-semibold text-foreground">1000+</span>
                     </div>
                     <div className="text-sm text-muted-foreground">Workspaces</div>
                   </div>
                   <div>
                     <div className="flex items-center gap-2 mb-1">
                       <Globe className="w-4 h-4 text-primary/60" />
-                      <span className="text-xl lg:text-2xl font-bold text-foreground">100+</span>
+                      <span className="text-xl lg:text-2xl font-semibold text-foreground">100+</span>
                     </div>
                     <div className="text-sm text-muted-foreground">Cities</div>
                   </div>
                   <div>
                     <div className="flex items-center gap-2 mb-1">
                       <Users className="w-4 h-4 text-primary/60" />
-                      <span className="text-xl lg:text-2xl font-bold text-foreground">50K+</span>
+                      <span className="text-xl lg:text-2xl font-semibold text-foreground">50K+</span>
                     </div>
                     <div className="text-sm text-muted-foreground">Members</div>
                   </div>
@@ -105,7 +105,7 @@ export const WorkWhereYouThrive = () => {
                     <Sparkles className="w-6 h-6 text-primary" />
                   </div>
                   <div>
-                    <h3 className="font-bold text-foreground mb-1">AI-Powered Recommendations</h3>
+                    <h3 className="font-semibold text-foreground mb-1">AI-Powered Recommendations</h3>
                     <p className="text-sm text-muted-foreground">Get personalized workspace suggestions based on your team size, budget, and preferences.</p>
                   </div>
                 </div>
@@ -116,7 +116,7 @@ export const WorkWhereYouThrive = () => {
                     <Clock className="w-6 h-6 text-primary" />
                   </div>
                   <div>
-                    <h3 className="font-bold text-foreground mb-1">Real-time Availability</h3>
+                    <h3 className="font-semibold text-foreground mb-1">Real-time Availability</h3>
                     <p className="text-sm text-muted-foreground">See live availability across all locations and book instantly with one click.</p>
                   </div>
                 </div>
@@ -127,7 +127,7 @@ export const WorkWhereYouThrive = () => {
                     <TrendingUp className="w-6 h-6 text-primary" />
                   </div>
                   <div>
-                    <h3 className="font-bold text-foreground mb-1">Cost Optimization</h3>
+                    <h3 className="font-semibold text-foreground mb-1">Cost Optimization</h3>
                     <p className="text-sm text-muted-foreground">Reduce workspace costs by up to 40% with smart utilization insights and flexible plans.</p>
                   </div>
                 </div>

@@ -69,10 +69,10 @@ export const CTA = () => {
                   className="px-8 py-9 lg:px-12 lg:py-9"
                   style={index > 0 ? { borderLeft: '1px solid rgba(0, 0, 0, 0.04)' } : {}}
                 >
-                  <span className="inline-block px-4 py-1.5 text-xs font-bold tracking-wider text-foreground bg-muted/60 rounded-full mb-5">
+                  <span className="inline-block px-4 py-1.5 text-xs font-medium tracking-wider text-foreground bg-muted/60 rounded-full mb-5">
                     {feature.badge}
                   </span>
-                  <h3 className="text-xl font-extrabold text-foreground leading-snug tracking-tight">
+                  <h3 className="text-xl font-semibold text-foreground leading-snug tracking-tight">
                     {feature.title}
                   </h3>
                 </motion.div>
@@ -88,7 +88,7 @@ export const CTA = () => {
             transition={{ delay: 0.4 }}
             className="flex flex-col sm:flex-row gap-4 justify-center"
           >
-            <Button size="lg" className="bg-primary hover:bg-primary/90 text-primary-foreground shadow-md text-base px-8 font-bold">
+            <Button size="lg" className="bg-primary hover:bg-primary/90 text-primary-foreground shadow-md text-base px-8 font-semibold">
               Get Started Free
               <ArrowRight className="w-5 h-5 ml-2" />
             </Button>

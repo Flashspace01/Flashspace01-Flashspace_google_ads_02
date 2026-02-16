@@ -29,7 +29,7 @@ export const CoworkingSection = () => {
           <div className="absolute inset-0 bg-gradient-to-t from-foreground/80 via-foreground/30 to-transparent" />
           <div className="absolute bottom-0 left-0 right-0 p-8 lg:p-12">
             <span className="text-primary-foreground/70 text-sm font-semibold uppercase tracking-wider mb-2 block">Coworking</span>
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white leading-tight tracking-tight">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white leading-tight tracking-tight">
               Flexible desks & cabins
               <br />
               <span className="text-white/70">for every team size.</span>
@@ -75,7 +75,7 @@ export const CoworkingSection = () => {
             { value: "24/7", label: "Access available" },
           ].map((stat) => (
             <div key={stat.label}>
-              <div className="text-2xl lg:text-3xl font-extrabold text-foreground tracking-tight">{stat.value}</div>
+              <div className="text-2xl lg:text-3xl font-bold text-foreground tracking-tight">{stat.value}</div>
               <div className="text-sm text-muted-foreground">{stat.label}</div>
             </div>
           ))}

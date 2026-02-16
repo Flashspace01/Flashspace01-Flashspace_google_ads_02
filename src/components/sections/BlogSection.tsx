@@ -44,7 +44,7 @@ export const BlogSection = () => {
                 transition={{ delay: index * 0.1 }}
                 className="flex items-center justify-between py-5 px-6 -mx-6 border-b border-border group cursor-pointer transition-all duration-200 hover:bg-muted/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 rounded-lg"
               >
-                <h3 className="text-lg lg:text-xl font-medium text-foreground tracking-tight">
+                <h3 className="text-base lg:text-lg font-medium text-foreground tracking-tight">
                   {post.title}
                 </h3>
                 <ArrowUpRight className="w-5 h-5 text-foreground/60 group-hover:text-foreground transition-all group-hover:translate-x-1 group-hover:-translate-y-1 shrink-0 ml-6" />

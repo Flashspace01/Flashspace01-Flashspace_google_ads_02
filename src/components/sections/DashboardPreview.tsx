@@ -33,7 +33,7 @@ export const DashboardPreview = () => {
                 {["Total Spaces", "Active Clients", "Revenue", "Bookings"].map((label, i) => (
                   <div key={i} className="rounded-lg bg-muted/40 p-4">
                     <p className="text-[11px] text-muted-foreground font-medium">{label}</p>
-                    <p className="text-lg font-bold text-foreground mt-1">
+                    <p className="text-lg font-semibold text-foreground mt-1">
                       {["1,247", "892", "₹24.5L", "3,891"][i]}
                     </p>
                   </div>

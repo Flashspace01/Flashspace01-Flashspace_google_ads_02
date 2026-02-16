@@ -27,7 +27,7 @@ export const ProductShowcase = () => {
           viewport={{ once: true }}
           className="text-center max-w-4xl mx-auto mb-16"
         >
-          <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-foreground leading-tight mb-6 tracking-tight">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground leading-tight mb-6 tracking-tight">
             Part of the only complete, AI-first
             <br />
             <span className="text-primary">workspace management platform</span>
@@ -53,7 +53,7 @@ export const ProductShowcase = () => {
                 <div className="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center">
                   <span className="text-primary font-bold text-sm">F</span>
                 </div>
-                <span className="font-semibold text-foreground">Flashspace</span>
+                <span className="font-medium text-foreground">Flashspace</span>
               </div>
               <div className="flex items-center gap-2">
                 <div className="flex items-center gap-2 px-3 py-1.5 bg-muted rounded-lg">

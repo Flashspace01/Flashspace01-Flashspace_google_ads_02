@@ -29,7 +29,7 @@ export const BusinessSetupSection = () => {
           <div className="absolute inset-0 bg-gradient-to-t from-foreground/80 via-foreground/30 to-transparent" />
           <div className="absolute bottom-0 left-0 right-0 p-8 lg:p-12">
             <span className="text-primary-foreground/70 text-sm font-semibold uppercase tracking-wider mb-2 block">Business Setup</span>
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white leading-tight tracking-tight">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white leading-tight tracking-tight">
               Launch your business
               <br />
               <span className="text-white/70">in any city, hassle-free.</span>
@@ -61,12 +61,12 @@ export const BusinessSetupSection = () => {
               className="flex items-start gap-5 p-6 rounded-2xl bg-card border border-border"
             >
               <div className="flex items-center justify-center w-10 h-10 rounded-full bg-primary/10 shrink-0">
-                <span className="text-sm font-bold text-primary">{i + 1}</span>
+                <span className="text-sm font-semibold text-primary">{i + 1}</span>
               </div>
               <div className="flex-1">
                 <div className="flex items-center gap-3 mb-1">
                   <step.icon className="w-4 h-4 text-primary" />
-                  <h4 className="font-bold text-foreground">{step.title}</h4>
+                  <h4 className="font-semibold text-foreground">{step.title}</h4>
                 </div>
                 <p className="text-sm text-muted-foreground leading-relaxed">{step.desc}</p>
               </div>

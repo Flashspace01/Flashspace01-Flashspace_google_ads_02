@@ -34,7 +34,7 @@ export const AISection = () => {
               <Sparkles className="w-4 h-4 text-secondary-foreground" />
               <span className="text-white/90 text-sm font-medium">AI-Powered</span>
             </div>
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-extrabold text-white leading-tight tracking-tight">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white leading-tight tracking-tight">
               Flash. The #1 AI
               <br />
               <span className="text-white/70">for workspace management.</span>
@@ -95,11 +95,11 @@ export const AISection = () => {
                 <div className="flex items-center gap-3">
                   <div className="w-10 h-10 rounded-full bg-gradient-to-br from-accent to-accent/70 flex items-center justify-center text-white font-bold">AP</div>
                   <div>
-                    <span className="font-bold text-foreground block">Amit Patel</span>
+                    <span className="font-semibold text-foreground block">Amit Patel</span>
                     <span className="text-xs text-muted-foreground">Mumbai HQ • Hot Desk</span>
                   </div>
                 </div>
-                <span className="text-xs px-2 py-1 bg-primary/10 text-primary rounded-full font-semibold">✓ Active</span>
+                <span className="text-xs px-2 py-1 bg-primary/10 text-primary rounded-full font-medium">✓ Active</span>
               </div>
               
               <div className="space-y-4">
@@ -117,7 +117,7 @@ export const AISection = () => {
                   <div className="bg-primary/10 border border-primary/20 rounded-2xl rounded-tr-sm px-4 py-3 max-w-md">
                     <div className="flex items-center gap-2 mb-2">
                       <Bot className="w-4 h-4 text-primary" />
-                      <span className="text-xs font-bold text-primary">Flash AI</span>
+                      <span className="text-xs font-semibold text-primary">Flash AI</span>
                     </div>
                     <p className="text-sm text-foreground">I found 3 meeting rooms available tomorrow 2-5 PM. Conference Room A (12 seats) has video conferencing. Shall I book it?</p>
                   </div>
@@ -128,7 +128,7 @@ export const AISection = () => {
             {/* Details panel */}
             <div className="p-6 bg-muted/30">
               <div className="flex items-center gap-4 mb-6">
-                <button className="text-sm font-bold text-foreground border-b-2 border-primary pb-1">Details</button>
+                <button className="text-sm font-semibold text-foreground border-b-2 border-primary pb-1">Details</button>
                 <button className="text-sm text-muted-foreground font-medium">AI Assist</button>
               </div>
               
@@ -136,7 +136,7 @@ export const AISection = () => {
                 <div className="p-4 bg-primary/10 border border-primary/20 rounded-xl">
                   <div className="flex items-center gap-2 mb-2">
                     <MessageSquare className="w-4 h-4 text-primary" />
-                    <h4 className="font-bold text-foreground">Booking Request</h4>
+                    <h4 className="font-semibold text-foreground">Booking Request</h4>
                   </div>
                   <p className="text-sm text-muted-foreground">
                     Meeting room for 10 people. Suggested: Conference Room A with VC setup.
@@ -177,7 +177,7 @@ export const AISection = () => {
           <div className="absolute inset-0 bg-foreground/40" />
           
           <div className="absolute top-8 left-8">
-            <span className="text-white/80 font-bold tracking-wider">TECHSTART</span>
+            <span className="text-white/80 font-semibold tracking-wider">TECHSTART</span>
           </div>
 
           <div className="absolute inset-0 flex items-center justify-center">
@@ -193,7 +193,7 @@ export const AISection = () => {
 
         {/* Quote */}
         <blockquote className="max-w-3xl">
-          <p className="text-2xl lg:text-3xl font-bold text-foreground leading-snug mb-6 tracking-tight">
+          <p className="text-2xl lg:text-3xl font-semibold text-foreground leading-snug mb-6 tracking-tight">
             "If you're debating whether to build your own workspace solution 
             or use FlashSpace, my advice would be to use FlashSpace—it's 
             transformed how we operate."
@@ -205,7 +205,7 @@ export const AISection = () => {
               className="w-12 h-12 rounded-full object-cover ring-2 ring-primary/20"
             />
             <div>
-              <div className="font-bold text-foreground">Rajesh Kumar</div>
+              <div className="font-semibold text-foreground">Rajesh Kumar</div>
               <div className="text-sm text-muted-foreground">CEO at TechStart India</div>
             </div>
           </footer>

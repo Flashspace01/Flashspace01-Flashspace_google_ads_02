@@ -15,7 +15,7 @@ export const OnDemandSection = () => {
           viewport={{ once: true }}
         >
           <span className="text-primary text-sm font-semibold uppercase tracking-wider mb-3 block">On Demand</span>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-foreground leading-tight tracking-tight mb-4">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground leading-tight tracking-tight mb-4">
             Book by the hour
             <br />
             <span className="text-muted-foreground">or by the day.</span>
@@ -38,7 +38,7 @@ export const OnDemandSection = () => {
               <img src={featureDayPasses} alt="Day passes" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
             </div>
             <div className="p-6">
-              <h3 className="text-xl font-bold text-foreground mb-2">Day Pass</h3>
+              <h3 className="text-xl font-semibold text-foreground mb-2">Day Pass</h3>
               <p className="text-muted-foreground text-sm mb-4 leading-relaxed">
                 Drop into any coworking space for a day. Starting at ₹200/day with all amenities included.
               </p>
@@ -60,7 +60,7 @@ export const OnDemandSection = () => {
               <img src={featureMeetingRooms} alt="Meeting rooms" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
             </div>
             <div className="p-6">
-              <h3 className="text-xl font-bold text-foreground mb-2">Meeting Rooms</h3>
+              <h3 className="text-xl font-semibold text-foreground mb-2">Meeting Rooms</h3>
               <p className="text-muted-foreground text-sm mb-4 leading-relaxed">
                 Conference rooms, board rooms, and training spaces. Book by the hour with AV equipment included.
               </p>

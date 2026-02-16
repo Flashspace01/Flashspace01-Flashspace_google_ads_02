@@ -51,7 +51,7 @@ export const FounderTestimonial = () => {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.4 }}
-              className="text-2xl sm:text-3xl lg:text-4xl font-bold text-primary-foreground leading-snug tracking-tight"
+              className="text-2xl sm:text-3xl lg:text-4xl font-semibold text-primary-foreground leading-snug tracking-tight"
             >
               "{current.quote}"
             </motion.blockquote>
