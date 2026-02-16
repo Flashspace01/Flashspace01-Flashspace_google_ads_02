@@ -21,9 +21,9 @@ const Index = () => {
       <main>
         <HeroWithSearch />
         <DashboardPreview />
-        <ScrollNavLayout />
         <WorkspaceCategories />
         <WorkWhereYouThrive />
+        <ScrollNavLayout />
         <ProductShowcase />
         
         <FeatureCTA />
