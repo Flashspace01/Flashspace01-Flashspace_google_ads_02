@@ -5,13 +5,21 @@ import { VirtualOfficeSection } from "./scroll-sections/VirtualOfficeSection";
 import { CoworkingSection } from "./scroll-sections/CoworkingSection";
 import { OnDemandSection } from "./scroll-sections/OnDemandSection";
 import { BusinessSetupSection } from "./scroll-sections/BusinessSetupSection";
+import { GlobalAccessSection } from "./scroll-sections/GlobalAccessSection";
 
-const navItems = [
+type NavItem = {
+  id: string;
+  label: string;
+  indent?: boolean;
+};
+
+const navItems: NavItem[] = [
   { id: "ai-platform", label: "AI Platform" },
   { id: "virtual-office", label: "Virtual Office" },
   { id: "coworking", label: "Coworking" },
-  { id: "on-demand", label: "On Demand" },
+  { id: "on-demand", label: "On Demand", indent: true },
   { id: "business-setup", label: "Business Setup" },
+  { id: "global-access", label: "Global Access" },
 ];
 
 export const ScrollNavLayout = () => {
@@ -20,7 +28,7 @@ export const ScrollNavLayout = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      const offset = 140; // navbar height + breathing room
+      const offset = 140;
       for (let i = navItems.length - 1; i >= 0; i--) {
         const el = document.getElementById(navItems[i].id);
         if (el) {
@@ -61,7 +69,9 @@ export const ScrollNavLayout = () => {
                   <button
                     key={item.id}
                     onClick={() => scrollTo(item.id)}
-                    className="flex items-center gap-3 w-full text-left py-2 group transition-all duration-200"
+                    className={`flex items-center gap-3 w-full text-left py-2 group transition-all duration-200 ${
+                      item.indent ? "pl-5" : ""
+                    }`}
                   >
                     <div
                       className={`w-2 h-2 rounded-full transition-all duration-200 ${
@@ -71,7 +81,9 @@ export const ScrollNavLayout = () => {
                       }`}
                     />
                     <span
-                      className={`text-sm uppercase tracking-wider transition-all duration-200 ${
+                      className={`uppercase tracking-wider transition-all duration-200 ${
+                        item.indent ? "text-xs" : "text-sm"
+                      } ${
                         isActive
                           ? "text-foreground font-semibold opacity-100"
                           : "text-muted-foreground font-medium opacity-70 group-hover:opacity-90"
@@ -92,6 +104,7 @@ export const ScrollNavLayout = () => {
             <CoworkingSection />
             <OnDemandSection />
             <BusinessSetupSection />
+            <GlobalAccessSection />
           </div>
         </div>
       </div>
