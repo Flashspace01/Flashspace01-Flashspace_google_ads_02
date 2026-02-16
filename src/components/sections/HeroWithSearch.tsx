@@ -2,7 +2,6 @@ import { motion, useScroll, useTransform, useMotionValueEvent } from "framer-mot
 import { useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Sparkles, Mic, Send } from "lucide-react";
-import heroAmbientBg from "@/assets/hero-ambient-bg.mp4";
 
 const wordVariants = {
   hidden: { opacity: 0, y: 40, filter: "blur(8px)" },
@@ -54,17 +53,7 @@ export const HeroWithSearch = () => {
   const totalWordDelay = allWords.length * 0.08 + 0.3; // when last word finishes
 
   return (
-    <div ref={containerRef} className="relative w-full bg-[#f5f5f5] overflow-hidden">
-      {/* Subtle ambient background video */}
-      <video
-        autoPlay
-        loop
-        muted
-        playsInline
-        className="absolute inset-0 w-full h-full object-cover opacity-[0.15] pointer-events-none z-0"
-        src={heroAmbientBg}
-      />
-
+    <div ref={containerRef} className="relative w-full bg-[#f5f5f5]">
       {/* Hero Content */}
       <section id="hero" className="relative w-full">
         <div className="relative z-10 w-full flex flex-col items-center text-center px-6">
