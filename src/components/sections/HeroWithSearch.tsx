@@ -26,7 +26,7 @@ export const HeroWithSearch = () => {
 
 
   return (
-    <div ref={containerRef} className="relative w-full bg-[#f5f5f5]">
+    <div ref={containerRef} className="relative w-full" style={{ background: 'linear-gradient(180deg, #E8F0EA 0%, #F5F8F6 100%)' }}>
       {/* Hero Content */}
       <section id="hero" className="relative w-full">
         <div className="relative z-10 w-full flex flex-col items-center text-center px-6">
@@ -57,7 +57,7 @@ export const HeroWithSearch = () => {
       </section>
 
       {/* Sticky wrapper — sticks below navbar while dashboard scrolls under */}
-      <div className="sticky top-[68px] lg:top-[100px] z-20 bg-[#f5f5f5]">
+      <div className="sticky top-[68px] lg:top-[100px] z-20" style={{ background: 'linear-gradient(180deg, #E8F0EA 0%, #F5F8F6 100%)' }}>
         <div className="w-full flex flex-col items-center text-center px-6">
           <div className="max-w-[1100px] w-full">
             <div className="flex flex-col items-center pb-6 sm:pb-8">
