@@ -1,8 +1,35 @@
 import { motion, useScroll, useTransform, useMotionValueEvent } from "framer-motion";
-import { useRef, useState, useEffect } from "react";
+import { useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Sparkles, Mic, Send } from "lucide-react";
 
+const wordVariants = {
+  hidden: { opacity: 0, y: 40, filter: "blur(8px)" },
+  visible: (i: number) => ({
+    opacity: 1,
+    y: 0,
+    filter: "blur(0px)",
+    transition: {
+      duration: 0.6,
+      delay: i * 0.08,
+      ease: [0.25, 0.4, 0.25, 1] as [number, number, number, number],
+    },
+  }),
+};
+
+const fadeUp = {
+  hidden: { opacity: 0, y: 20 },
+  visible: (delay: number) => ({
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.7, delay, ease: [0.25, 0.4, 0.25, 1] as [number, number, number, number] },
+  }),
+};
+
+const line1Words = ["Where", "Workspaces", "Become"];
+const line2Words = ["Structured", "Infrastructure"];
+const line3Words = ["Not", "Just", "Listings"];
+const allWords = [...line1Words, ...line2Words, ...line3Words];
 
 export const HeroWithSearch = () => {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -18,12 +45,12 @@ export const HeroWithSearch = () => {
     }
   });
 
-  // Line 1 & 2: fade out and translate up
   const line1Opacity = useTransform(scrollY, [0, 100], [1, 0]);
   const line1Y = useTransform(scrollY, [0, 100], [0, -20]);
   const line2Opacity = useTransform(scrollY, [0, 100], [1, 0]);
   const line2Y = useTransform(scrollY, [0, 100], [0, -20]);
 
+  const totalWordDelay = allWords.length * 0.08 + 0.3; // when last word finishes
 
   return (
     <div ref={containerRef} className="relative w-full bg-[#f5f5f5]">
@@ -32,51 +59,76 @@ export const HeroWithSearch = () => {
         <div className="relative z-10 w-full flex flex-col items-center text-center px-6">
           <div className="max-w-[1100px] w-full pt-24 sm:pt-[100px] lg:pt-[140px]">
 
-            {/* Lines 1 & 2 — fade out on scroll */}
+            {/* Lines 1 & 2 — fade out on scroll, staggered word entrance */}
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, ease: "easeOut" }}
+              initial="hidden"
+              animate="visible"
               style={{ willChange: 'auto' }}
             >
-              <motion.span
+              <motion.div
                 style={{ opacity: line1Opacity, y: line1Y, visibility: collapsed ? 'hidden' : 'visible', maxHeight: collapsed ? 0 : 100, overflow: 'hidden', willChange: 'transform, opacity' }}
                 className="block text-[34px] sm:text-[52px] lg:text-[68px] font-medium tracking-[-0.03em] text-foreground leading-[1.2] sm:leading-[1.15] lg:leading-[1.12] transition-[max-height,visibility] duration-[400ms] ease-[cubic-bezier(0.4,0,0.2,1)]"
               >
-                Where Workspaces Become
-              </motion.span>
-              <motion.span
+                {line1Words.map((word, i) => (
+                  <motion.span
+                    key={word}
+                    custom={i}
+                    variants={wordVariants}
+                    className="inline-block mr-[0.3em]"
+                  >
+                    {word}
+                  </motion.span>
+                ))}
+              </motion.div>
+              <motion.div
                 style={{ opacity: line2Opacity, y: line2Y, visibility: collapsed ? 'hidden' : 'visible', maxHeight: collapsed ? 0 : 100, overflow: 'hidden', willChange: 'transform, opacity' }}
                 className="block text-[34px] sm:text-[52px] lg:text-[68px] font-medium tracking-[-0.03em] text-foreground leading-[1.2] sm:leading-[1.15] lg:leading-[1.12] transition-[max-height,visibility] duration-[400ms] ease-[cubic-bezier(0.4,0,0.2,1)]"
               >
-                Structured Infrastructure
-              </motion.span>
+                {line2Words.map((word, i) => (
+                  <motion.span
+                    key={word}
+                    custom={line1Words.length + i}
+                    variants={wordVariants}
+                    className="inline-block mr-[0.3em]"
+                  >
+                    {word}
+                  </motion.span>
+                ))}
+              </motion.div>
             </motion.div>
           </div>
         </div>
       </section>
 
-      {/* Sticky wrapper — sticks below navbar while dashboard scrolls under */}
+      {/* Sticky wrapper */}
       <div className="sticky top-[68px] lg:top-[100px] z-20 bg-[#f5f5f5]">
         <div className="w-full flex flex-col items-center text-center px-6">
           <div className="max-w-[1100px] w-full">
             <div className="flex flex-col items-center pb-6 sm:pb-8">
-              {/* Line 3 */}
+              {/* Line 3 — staggered words */}
               <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, ease: "easeOut" }}
+                initial="hidden"
+                animate="visible"
+                className="block text-[34px] sm:text-[52px] lg:text-[68px] font-medium tracking-[-0.03em] text-foreground leading-[1.2] sm:leading-[1.15] lg:leading-[1.12]"
               >
-                <span className="block text-[34px] sm:text-[52px] lg:text-[68px] font-medium tracking-[-0.03em] text-foreground leading-[1.2] sm:leading-[1.15] lg:leading-[1.12]">
-                  Not Just Listings
-                </span>
+                {line3Words.map((word, i) => (
+                  <motion.span
+                    key={word}
+                    custom={line1Words.length + line2Words.length + i}
+                    variants={wordVariants}
+                    className="inline-block mr-[0.3em]"
+                  >
+                    {word}
+                  </motion.span>
+                ))}
               </motion.div>
 
               {/* Subheading */}
               <motion.p
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, ease: "easeOut", delay: 0.15 }}
+                custom={totalWordDelay}
+                variants={fadeUp}
+                initial="hidden"
+                animate="visible"
                 className={`text-muted-foreground mx-auto max-w-xl text-base sm:text-lg leading-relaxed ${collapsed ? 'mt-2' : 'mt-6'}`}
               >
                 AI-powered platform to manage virtual offices, coworking spaces, meeting rooms, and enterprise workspace portfolios — all in one place.
@@ -84,9 +136,10 @@ export const HeroWithSearch = () => {
 
               {/* CTAs */}
               <motion.div
-                initial={{ opacity: 0, y: 15 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, ease: "easeOut", delay: 0.2 }}
+                custom={totalWordDelay + 0.15}
+                variants={fadeUp}
+                initial="hidden"
+                animate="visible"
                 className={`flex flex-wrap items-center justify-center gap-4 ${collapsed ? 'mt-4' : 'mt-8'}`}
               >
                 <div className="min-h-[52px] flex items-center">
