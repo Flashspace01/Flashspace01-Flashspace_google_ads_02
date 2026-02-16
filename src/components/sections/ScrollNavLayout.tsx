@@ -65,33 +65,47 @@ export const ScrollNavLayout = () => {
             <nav className="sticky top-[120px] space-y-1 py-8">
               {navItems.map((item) => {
                 const isActive = activeSection === item.id;
+                const showOnDemand = item.id === "on-demand"
+                  ? activeSection === "coworking" || activeSection === "on-demand"
+                  : true;
+
                 return (
-                  <button
+                  <motion.div
                     key={item.id}
-                    onClick={() => scrollTo(item.id)}
-                    className={`flex items-center gap-3 w-full text-left py-2 group transition-all duration-200 ${
-                      item.indent ? "pl-5" : ""
-                    }`}
+                    initial={false}
+                    animate={{
+                      opacity: showOnDemand ? 1 : 0,
+                      height: showOnDemand ? "auto" : 0,
+                    }}
+                    transition={{ duration: 0.3, ease: "easeInOut" }}
+                    className="overflow-hidden"
                   >
-                    <div
-                      className={`w-2 h-2 rounded-full transition-all duration-200 ${
-                        isActive
-                          ? "bg-primary scale-125"
-                          : "bg-muted-foreground/40 group-hover:bg-muted-foreground/60"
-                      }`}
-                    />
-                    <span
-                      className={`uppercase tracking-wider transition-all duration-200 ${
-                        item.indent ? "text-xs" : "text-sm"
-                      } ${
-                        isActive
-                          ? "text-foreground font-semibold opacity-100"
-                          : "text-muted-foreground font-medium opacity-70 group-hover:opacity-90"
+                    <button
+                      onClick={() => scrollTo(item.id)}
+                      className={`flex items-center gap-3 w-full text-left py-2 group transition-all duration-300 ease-in-out ${
+                        item.indent ? "pl-5" : ""
                       }`}
                     >
-                      {item.label}
-                    </span>
-                  </button>
+                      <div
+                        className={`w-2 h-2 rounded-full transition-all duration-300 ${
+                          isActive
+                            ? "bg-primary scale-125 opacity-100"
+                            : "opacity-0 scale-[0.6]"
+                        }`}
+                      />
+                      <span
+                        className={`uppercase tracking-wider transition-all duration-300 ${
+                          item.indent ? "text-xs" : "text-sm"
+                        } ${
+                          isActive
+                            ? "text-primary font-semibold opacity-100"
+                            : "text-muted-foreground font-normal opacity-50 group-hover:opacity-70"
+                        }`}
+                      >
+                        {item.label}
+                      </span>
+                    </button>
+                  </motion.div>
                 );
               })}
             </nav>
