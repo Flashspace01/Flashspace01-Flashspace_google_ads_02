@@ -13,6 +13,9 @@ export const HeroWithSearch = () => {
 
   useMotionValueEvent(scrollY, "change", (latest) => {
     setCollapsed(latest > 100);
+    if (latest > 300 && chatExpanded) {
+      setChatExpanded(false);
+    }
   });
 
   // Line 1 & 2: fade out and translate up
