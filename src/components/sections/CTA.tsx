@@ -50,9 +50,15 @@ export const CTA = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.2 }}
-            className="bg-card/60 backdrop-blur-3xl rounded-2xl border border-border/70 shadow-[0_8px_32px_rgba(0,0,0,0.08),inset_0_1px_2px_rgba(255,255,255,0.9)] mb-16 max-w-5xl mx-auto overflow-hidden"
+            className="mt-14 mb-16 max-w-5xl mx-auto overflow-hidden rounded-2xl"
+            style={{
+              background: 'rgba(255, 255, 255, 0.85)',
+              backdropFilter: 'blur(6px)',
+              border: '1px solid rgba(0, 0, 0, 0.05)',
+              boxShadow: '0 10px 30px rgba(0,0,0,0.04)',
+            }}
           >
-            <div className="grid md:grid-cols-3 divide-x divide-border/40">
+            <div className="grid md:grid-cols-3">
               {features.map((feature, index) => (
                 <motion.div
                   key={feature.badge}
@@ -60,9 +66,10 @@ export const CTA = () => {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: 0.1 * index }}
-                  className="p-8 lg:p-10"
+                  className="px-8 py-9 lg:px-12 lg:py-9"
+                  style={index > 0 ? { borderLeft: '1px solid rgba(0, 0, 0, 0.04)' } : {}}
                 >
-                  <span className="inline-block px-4 py-1.5 text-xs font-bold tracking-wider text-foreground bg-card/90 backdrop-blur-xl rounded-full mb-5 shadow-sm border border-border/80">
+                  <span className="inline-block px-4 py-1.5 text-xs font-bold tracking-wider text-foreground bg-muted/60 rounded-full mb-5">
                     {feature.badge}
                   </span>
                   <h3 className="text-xl font-extrabold text-foreground leading-snug tracking-tight">
