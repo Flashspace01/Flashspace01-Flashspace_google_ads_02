@@ -61,7 +61,7 @@ export const ScrollNavLayout = () => {
       <div className="container mx-auto px-4 lg:px-8">
         <div className="grid lg:grid-cols-[200px_1fr] gap-8 lg:gap-16">
           {/* Sticky left nav */}
-          <div className="hidden lg:block" style={{ backgroundColor: '#FAFAF8', borderRight: '1px solid rgba(0,0,0,0.05)' }}>
+          <div className="hidden lg:block" style={{ backgroundColor: '#F5F7F4', borderRight: '1px solid rgba(0,0,0,0.05)' }}>
             <nav className="sticky top-[120px] space-y-1 py-8">
               {navItems.map((item) => {
                 const isActive = activeSection === item.id;
