@@ -6,8 +6,8 @@ import featureMeetingRooms from "@/assets/feature-meeting-rooms.jpg";
 
 export const OnDemandSection = () => {
   return (
-    <section id="on-demand" className="py-24 lg:py-32 border-t border-border/50">
-      <div className="space-y-16">
+    <section id="on-demand" className="py-12 lg:py-16 border-t border-border/50">
+      <div className="space-y-10">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}

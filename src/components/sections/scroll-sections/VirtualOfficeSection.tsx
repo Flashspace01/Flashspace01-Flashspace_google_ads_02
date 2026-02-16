@@ -12,8 +12,8 @@ const features = [
 
 export const VirtualOfficeSection = () => {
   return (
-    <section id="virtual-office" className="py-24 lg:py-32 border-t border-border/50">
-      <div className="space-y-16">
+    <section id="virtual-office" className="py-12 lg:py-16 border-t border-border/50">
+      <div className="space-y-10">
         {/* Banner */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
