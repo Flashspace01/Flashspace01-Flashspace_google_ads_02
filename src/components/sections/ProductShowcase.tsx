@@ -229,11 +229,11 @@ export const ProductShowcase = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 0.3 }}
-          className="max-w-5xl mx-auto"
+          className="max-w-5xl mx-auto mt-[60px]"
         >
-          <div className="grid md:grid-cols-3 gap-8 pt-8 border-t border-border">
+          <div className="grid md:grid-cols-3 gap-[60px]">
             {features.map((feature, index) => (
-              <div key={index}>
+              <div key={index} className={index > 0 ? "md:border-l md:border-foreground/[0.06] md:pl-[60px]" : ""}>
                 <h3 className="font-semibold text-foreground mb-2">{feature.title}</h3>
                 <p className="text-muted-foreground text-sm leading-relaxed">{feature.description}</p>
               </div>
