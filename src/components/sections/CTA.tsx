@@ -44,41 +44,16 @@ export const CTA = () => {
             Ready to transform your workspace?
           </motion.h2>
 
-          {/* Feature cards - Enhanced frosted glass effect */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
+          {/* Supporting subtext */}
+          <motion.p
+            initial={{ opacity: 0, y: 15 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ delay: 0.2 }}
-            className="mt-14 mb-16 max-w-5xl mx-auto overflow-hidden rounded-2xl"
-            style={{
-              background: 'rgba(255, 255, 255, 0.85)',
-              backdropFilter: 'blur(6px)',
-              border: '1px solid rgba(0, 0, 0, 0.05)',
-              boxShadow: '0 10px 30px rgba(0,0,0,0.04)',
-            }}
+            transition={{ delay: 0.15 }}
+            className="text-muted-foreground text-lg max-w-xl mx-auto text-center mb-12"
           >
-            <div className="grid md:grid-cols-3">
-              {features.map((feature, index) => (
-                <motion.div
-                  key={feature.badge}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: 0.1 * index }}
-                  className="px-8 py-9 lg:px-12 lg:py-9"
-                  style={index > 0 ? { borderLeft: '1px solid rgba(0, 0, 0, 0.04)' } : {}}
-                >
-                  <span className="inline-block px-4 py-1.5 text-xs font-bold tracking-wider text-foreground bg-muted/60 rounded-full mb-5">
-                    {feature.badge}
-                  </span>
-                  <h3 className="text-xl font-extrabold text-foreground leading-snug tracking-tight">
-                    {feature.title}
-                  </h3>
-                </motion.div>
-              ))}
-            </div>
-          </motion.div>
+            Join thousands of businesses using FlashSpace to book, manage, and scale their workspaces effortlessly.
+          </motion.p>
 
           {/* CTA Buttons */}
           <motion.div
