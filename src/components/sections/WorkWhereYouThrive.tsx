@@ -1,21 +1,12 @@
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Play, Building2, Users, Globe, Sparkles, Clock, TrendingUp } from "lucide-react";
-import heroIllustrated from "@/assets/hero-illustrated.jpg";
 
 export const WorkWhereYouThrive = () => {
   return (
     <section className="relative overflow-hidden">
       {/* Background */}
-      <div className="absolute inset-0">
-        <img 
-          src={heroIllustrated}
-          alt="Modern coworking space illustration"
-          className="w-full h-full object-cover"
-        />
-        <div className="absolute inset-0 bg-gradient-to-r from-background/90 via-background/60 to-background/30" />
-        <div className="absolute inset-0 bg-gradient-to-b from-background/50 via-transparent to-background/40" />
-      </div>
+      <div className="absolute inset-0 bg-background" />
 
       {/* Full width glass section */}
       <div className="relative z-10 py-16 lg:py-24">
