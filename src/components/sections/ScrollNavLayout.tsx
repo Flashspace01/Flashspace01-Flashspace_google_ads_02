@@ -82,16 +82,16 @@ export const ScrollNavLayout = () => {
                   >
                     <button
                       onClick={() => scrollTo(item.id)}
-                      className={`relative flex items-center w-full text-left rounded-[10px] transition-all duration-200 ease-in-out ${
-                        item.indent ? "ml-4 py-2.5 px-5" : "py-2.5 px-5"
-                      } ${
-                        isActive
-                          ? "-mr-4 pr-9"
-                          : "hover:bg-[rgba(0,0,0,0.03)]"
+                      className={`relative flex items-center w-full text-left transition-all duration-200 ease-in-out bg-transparent ${
+                        item.indent ? "ml-4 py-2 pl-0" : "py-2 pl-0"
                       }`}
-                      style={isActive ? { background: 'rgba(54,80,63,0.08)' } : undefined}
                     >
-                      
+                      {isActive && (
+                        <span
+                          className="inline-block w-1.5 h-1.5 rounded-full mr-2 flex-shrink-0"
+                          style={{ backgroundColor: '#36503F' }}
+                        />
+                      )}
                       <span
                         className={`whitespace-nowrap transition-colors duration-200 ${
                           item.indent ? "text-[13px]" : "text-[14px]"
