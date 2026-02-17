@@ -90,15 +90,7 @@ export const ScrollNavLayout = () => {
                           : "hover:bg-[rgba(0,0,0,0.03)]"
                       }`}
                     >
-                      {/* Vertical indicator bar */}
-                      {isActive && (
-                        <motion.div
-                          layoutId="navIndicator"
-                          className="absolute left-0 top-1/2 -translate-y-1/2 w-[3px] rounded-sm"
-                          style={{ height: '60%', backgroundColor: '#36503F' }}
-                          transition={{ duration: 0.25, ease: "easeInOut" }}
-                        />
-                      )}
+                      
                       <span
                         className={`transition-colors duration-200 ${
                           item.indent ? "text-[13px]" : "text-[14px]"
