@@ -83,7 +83,7 @@ export const ScrollNavLayout = () => {
                     <button
                       onClick={() => scrollTo(item.id)}
                       className={`relative flex items-center w-full text-left rounded-[10px] transition-all duration-200 ease-in-out ${
-                        item.indent ? "ml-4 py-2 px-3" : "py-2 px-3"
+                        item.indent ? "ml-4 py-2.5 px-5" : "py-2.5 px-5"
                       } ${
                         isActive
                           ? "bg-[rgba(54,80,63,0.08)]"
