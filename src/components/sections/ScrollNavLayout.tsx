@@ -93,7 +93,7 @@ export const ScrollNavLayout = () => {
                     >
                       
                       <span
-                        className={`transition-colors duration-200 ${
+                        className={`whitespace-nowrap transition-colors duration-200 ${
                           item.indent ? "text-[13px]" : "text-[14px]"
                         } ${
                           isActive
