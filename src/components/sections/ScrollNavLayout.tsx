@@ -86,9 +86,10 @@ export const ScrollNavLayout = () => {
                         item.indent ? "ml-4 py-2.5 px-5" : "py-2.5 px-5"
                       } ${
                         isActive
-                          ? "bg-[rgba(54,80,63,0.08)]"
+                          ? "-mr-4 pr-9"
                           : "hover:bg-[rgba(0,0,0,0.03)]"
                       }`}
+                      style={isActive ? { background: 'rgba(54,80,63,0.08)' } : undefined}
                     >
                       
                       <span
