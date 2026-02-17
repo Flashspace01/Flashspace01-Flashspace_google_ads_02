@@ -2,7 +2,7 @@ import { motion, useScroll, useTransform, useMotionValueEvent } from "framer-mot
 import { useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Sparkles, Mic, Send } from "lucide-react";
-import heroVideo from "@/assets/hero-video.mp4";
+
 
 const wordVariants = {
   hidden: { opacity: 0, y: 40, filter: "blur(8px)" },
@@ -62,19 +62,8 @@ export const HeroWithSearch = () => {
 
   return (
     <div ref={containerRef} className="relative w-full">
-      {/* Background Video */}
-      <div className="absolute inset-0 z-0 overflow-hidden">
-        <video
-          autoPlay
-          muted
-          loop
-          playsInline
-          className="w-full h-full object-cover"
-          style={{ filter: 'saturate(0.8) contrast(0.9) brightness(1.05)' }}
-          src={heroVideo}
-        />
-        <div className="absolute inset-0" style={{ background: 'rgba(250, 248, 244, 0.70)' }} />
-      </div>
+      {/* Clean background */}
+      <div className="absolute inset-0 z-0" style={{ backgroundColor: '#f8f7f4' }} />
       {/* Hero Content */}
       <section id="hero" className="relative w-full">
         <div className="relative z-10 w-full flex flex-col items-center text-center px-6">
