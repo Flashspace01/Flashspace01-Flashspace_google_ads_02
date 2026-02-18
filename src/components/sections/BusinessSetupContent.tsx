@@ -66,8 +66,8 @@ export const BusinessSetupContent = () => {
 
   return (
     <section className="py-20 lg:py-28">
-      <div className="container mx-auto px-4 lg:px-8">
-        <div className="grid lg:grid-cols-[180px_1fr] gap-8 lg:gap-12 max-w-[1200px]">
+      <div className="mx-auto px-4 lg:px-8 xl:px-12">
+        <div className="grid lg:grid-cols-[140px_1fr] gap-8 lg:gap-8">
           {/* Sticky sidebar */}
           <div className="hidden lg:block">
             <nav className="sticky top-[120px] space-y-1.5 py-4">
@@ -125,7 +125,7 @@ export const BusinessSetupContent = () => {
             {/* CAPABILITIES */}
             <div id="bs-capabilities">
               <motion.div {...fadeIn} transition={{ duration: 0.5, delay: 0.1 }}>
-                <div className="relative rounded-[4px] overflow-hidden shadow-soft">
+                <div className="relative rounded-[6px] overflow-hidden shadow-soft">
                   <img
                     src={capabilitiesBanner}
                     alt="Business registration and compliance"
@@ -155,7 +155,7 @@ export const BusinessSetupContent = () => {
             {/* PROCESS */}
             <div id="bs-process">
               <motion.div {...fadeIn} transition={{ duration: 0.5, delay: 0.1 }}>
-                <div className="relative rounded-[4px] overflow-hidden shadow-soft">
+                <div className="relative rounded-[6px] overflow-hidden shadow-soft">
                   <img
                     src={processImage}
                     alt="Consultation and document verification"
@@ -189,7 +189,7 @@ export const BusinessSetupContent = () => {
             {/* ADVANTAGE */}
             <div id="bs-advantage">
               <motion.div {...fadeIn} transition={{ duration: 0.5, delay: 0.1 }}>
-                <div className="relative rounded-[4px] overflow-hidden shadow-soft">
+                <div className="relative rounded-[6px] overflow-hidden shadow-soft">
                   <img
                     src={advantageImage}
                     alt="Startup founder in modern office"
@@ -237,7 +237,7 @@ export const BusinessSetupContent = () => {
               </motion.h2>
 
               <motion.div {...fadeIn} transition={{ duration: 0.5, delay: 0.1 }}>
-                <div className="relative rounded-[4px] overflow-hidden shadow-soft">
+                <div className="relative rounded-[6px] overflow-hidden shadow-soft">
                   <img
                     src={aiPlatformBanner}
                     alt="AI compliance dashboard"
