@@ -2,13 +2,14 @@ import { useState } from "react";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { Button } from "@/components/ui/button";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Input } from "@/components/ui/input";
+import { Search, Mic, Send, ArrowRight } from "lucide-react";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { BusinessSetupContent } from "@/components/sections/BusinessSetupContent";
 import { TestimonialSection } from "@/components/sections/TestimonialSection";
 import { motion } from "framer-motion";
 
-const cities = ["Mumbai", "Delhi", "Bangalore", "Hyderabad", "Chennai"];
+
 
 const faqs = [
   {
@@ -30,7 +31,7 @@ const faqs = [
 ];
 
 const BusinessSetup = () => {
-  const [city, setCity] = useState("");
+  const [searchQuery, setSearchQuery] = useState("");
 
   return (
     <div className="min-h-screen">
@@ -70,29 +71,32 @@ const BusinessSetup = () => {
                 licenses, and legal compliance — launch your business in 7–10 days.
               </motion.p>
 
-              {/* Input Group */}
+              {/* Search + Chat CTA */}
               <motion.div
-                className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 max-w-md mx-auto"
+                className="flex flex-col sm:flex-row items-center gap-3 max-w-xl mx-auto"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.3 }}
               >
-                <div className="flex-1 min-w-0">
-                  <Select value={city} onValueChange={setCity}>
-                    <SelectTrigger className="h-12 rounded-xl bg-card border-border shadow-soft text-sm w-full">
-                      <SelectValue placeholder="Select your city" />
-                    </SelectTrigger>
-                    <SelectContent className="rounded-xl">
-                      {cities.map((c) => (
-                        <SelectItem key={c} value={c}>
-                          {c}
-                        </SelectItem>
-                      ))}
-                    </SelectContent>
-                  </Select>
+                <div className="relative flex-1 w-full">
+                  <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+                  <Input
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
+                    placeholder="Search your preferred city..."
+                    className="h-12 pl-11 pr-20 rounded-full bg-card border-border shadow-soft text-sm w-full"
+                  />
+                  <div className="absolute right-3 top-1/2 -translate-y-1/2 flex items-center gap-1.5">
+                    <button className="p-1.5 text-muted-foreground hover:text-foreground transition-colors">
+                      <Mic className="w-4 h-4" />
+                    </button>
+                    <button className="p-1.5 text-muted-foreground hover:text-foreground transition-colors">
+                      <Send className="w-4 h-4" />
+                    </button>
+                  </div>
                 </div>
-                <Button size="lg" className="h-12 rounded-xl px-8 w-full sm:w-auto shadow-soft">
-                  Get Started
+                <Button variant="outline" className="h-12 rounded-full px-6 border-border shadow-soft gap-2 whitespace-nowrap">
+                  Chat with AI <ArrowRight className="w-4 h-4" />
                 </Button>
               </motion.div>
 
