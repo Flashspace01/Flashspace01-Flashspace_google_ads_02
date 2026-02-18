@@ -124,13 +124,6 @@ export const BusinessSetupContent = () => {
 
             {/* CAPABILITIES */}
             <div id="bs-capabilities">
-              <motion.h2
-                {...fadeIn}
-                className="text-[40px] sm:text-[48px] lg:text-[56px] font-medium text-foreground tracking-tight leading-[1.08] mb-10"
-              >
-                Launch with Complete<br className="hidden sm:block" /> Legal Confidence
-              </motion.h2>
-
               <motion.div {...fadeIn} transition={{ duration: 0.5, delay: 0.1 }}>
                 <div className="relative rounded-[20px] overflow-hidden shadow-soft">
                   <img
@@ -138,7 +131,12 @@ export const BusinessSetupContent = () => {
                     alt="Business registration and compliance"
                     className="w-full h-[280px] sm:h-[380px] lg:h-[460px] object-cover"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-black/15 to-transparent" />
+                  <div className="absolute bottom-0 left-0 p-6 sm:p-10">
+                    <h2 className="text-[32px] sm:text-[44px] lg:text-[56px] font-medium text-white tracking-tight leading-[1.08]">
+                      Launch with Complete<br /> Legal Confidence
+                    </h2>
+                  </div>
                 </div>
               </motion.div>
 
