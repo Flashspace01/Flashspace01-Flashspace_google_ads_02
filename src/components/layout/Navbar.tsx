@@ -13,7 +13,7 @@ const navLinks = [
       { label: "Virtual Office", href: "#virtual-office" },
       { label: "Coworking Space", href: "#coworking" },
       { label: "On Demand", href: "#on-demand" },
-      { label: "Business Setup", href: "#business-setup" },
+      { label: "Business Setup", href: "/business-setup" },
     ],
   },
   { label: "Workspaces", href: "#workspaces" },

@@ -4,6 +4,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
+import BusinessSetup from "./pages/BusinessSetup";
 import NotFound from "./pages/NotFound";
 import CustomerPortal from "./pages/portals/CustomerPortal";
 import SpacePartnerPortal from "./pages/portals/SpacePartnerPortal";
@@ -66,6 +67,7 @@ const App = () => (
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Index />} />
+          <Route path="/business-setup" element={<BusinessSetup />} />
           
           {/* Customer Portal Routes */}
           <Route path="/customer-portal" element={<CustomerPortal />} />
