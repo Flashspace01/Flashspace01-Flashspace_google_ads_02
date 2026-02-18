@@ -174,8 +174,7 @@ export const BusinessSetupContent = () => {
                         {s.num}
                       </span>
                       <div>
-                        <h3 className="text-[15px] font-semibold text-foreground mb-1">{s.title}</h3>
-                        <p className="text-sm text-muted-foreground leading-relaxed">{s.desc}</p>
+                        <h3 className="text-[15px] font-semibold text-foreground">{s.title}</h3>
                       </div>
                     </motion.div>
                   ))}
