@@ -30,8 +30,19 @@ const faqs = [
   },
 ];
 
+const cities = [
+  "Mumbai", "Delhi", "Bangalore", "Hyderabad", "Chennai",
+  "Pune", "Kolkata", "Ahmedabad", "Jaipur", "Lucknow",
+  "Chandigarh", "Goa", "Kochi", "Indore", "Noida", "Gurugram"
+];
+
 const BusinessSetup = () => {
   const [searchQuery, setSearchQuery] = useState("");
+  const [showDropdown, setShowDropdown] = useState(false);
+
+  const filteredCities = cities.filter((city) =>
+    city.toLowerCase().includes(searchQuery.toLowerCase())
+  );
 
   return (
     <div className="min-h-screen">
@@ -82,9 +93,13 @@ const BusinessSetup = () => {
                   <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
                   <Input
                     value={searchQuery}
-                    onChange={(e) => setSearchQuery(e.target.value)}
+                    onChange={(e) => {
+                      setSearchQuery(e.target.value);
+                      setShowDropdown(true);
+                    }}
+                    onFocus={() => setShowDropdown(true)}
                     placeholder="Search your preferred city..."
-                    className="h-12 pl-11 pr-20 rounded-full bg-card border-border shadow-soft text-sm w-full"
+                    className="h-12 pl-11 pr-20 rounded-xl bg-card border-border shadow-soft text-sm w-full"
                   />
                   <div className="absolute right-3 top-1/2 -translate-y-1/2 flex items-center gap-1.5">
                     <button className="p-1.5 text-muted-foreground hover:text-foreground transition-colors">
@@ -94,8 +109,25 @@ const BusinessSetup = () => {
                       <Send className="w-4 h-4" />
                     </button>
                   </div>
+                  {/* City Dropdown */}
+                  {showDropdown && searchQuery.length > 0 && filteredCities.length > 0 && (
+                    <div className="absolute top-full left-0 right-0 mt-2 bg-card border border-border rounded-xl shadow-lg z-50 overflow-hidden">
+                      {filteredCities.map((city) => (
+                        <button
+                          key={city}
+                          onClick={() => {
+                            setSearchQuery(city);
+                            setShowDropdown(false);
+                          }}
+                          className="w-full text-left px-4 py-3 text-sm text-foreground hover:bg-muted transition-colors"
+                        >
+                          {city}
+                        </button>
+                      ))}
+                    </div>
+                  )}
                 </div>
-                <Button variant="outline" className="h-12 rounded-full px-6 border-border shadow-soft gap-2 whitespace-nowrap">
+                <Button variant="outline" className="h-12 rounded-xl px-6 border-border shadow-soft gap-2 whitespace-nowrap">
                   Chat with AI <ArrowRight className="w-4 h-4" />
                 </Button>
               </motion.div>

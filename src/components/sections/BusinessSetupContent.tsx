@@ -66,8 +66,8 @@ export const BusinessSetupContent = () => {
 
   return (
     <section className="py-20 lg:py-28">
-      <div className="container mx-auto px-4 lg:px-8 max-w-[1200px]">
-        <div className="grid lg:grid-cols-[180px_1fr] gap-8 lg:gap-14">
+      <div className="container mx-auto px-4 lg:px-8">
+        <div className="grid lg:grid-cols-[180px_1fr] gap-8 lg:gap-12 max-w-[1200px]">
           {/* Sticky sidebar */}
           <div className="hidden lg:block">
             <nav className="sticky top-[120px] space-y-1.5 py-4">
