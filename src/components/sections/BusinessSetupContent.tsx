@@ -154,80 +154,77 @@ export const BusinessSetupContent = () => {
 
             {/* PROCESS */}
             <div id="bs-process">
-              <motion.h2
-                {...fadeIn}
-                className="text-[40px] sm:text-[48px] lg:text-[56px] font-medium text-foreground tracking-tight leading-[1.08] mb-12"
-              >
-                Structured. Transparent.<br className="hidden sm:block" /> Efficient.
-              </motion.h2>
-
-              <div className="grid lg:grid-cols-2 gap-10 lg:gap-14 items-start">
-                <div className="space-y-8">
-                  {steps.map((s, i) => (
-                    <motion.div
-                      key={i}
-                      {...fadeIn}
-                      transition={{ duration: 0.4, delay: i * 0.07 }}
-                      className="flex gap-5"
-                    >
-                      <span className="text-[13px] font-bold text-primary mt-0.5 w-6 flex-shrink-0">
-                        {s.num}
-                      </span>
-                      <div>
-                        <h3 className="text-[15px] font-semibold text-foreground">{s.title}</h3>
-                      </div>
-                    </motion.div>
-                  ))}
-                </div>
-
-                <motion.div {...fadeIn} transition={{ duration: 0.5, delay: 0.15 }}>
+              <motion.div {...fadeIn} transition={{ duration: 0.5, delay: 0.1 }}>
+                <div className="relative rounded-[20px] overflow-hidden shadow-soft">
                   <img
                     src={processImage}
                     alt="Consultation and document verification"
-                    className="w-full rounded-[20px] shadow-soft object-cover h-[360px] lg:h-[440px]"
+                    className="w-full h-[480px] sm:h-[540px] lg:h-[600px] object-cover"
                   />
-                </motion.div>
-              </div>
+                  <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/40 to-transparent" />
+                  <div className="absolute inset-0 flex flex-col justify-center p-6 sm:p-10 lg:p-14">
+                    <h2 className="text-[32px] sm:text-[40px] lg:text-[48px] font-medium text-white tracking-tight leading-[1.08] mb-8 lg:mb-12">
+                      Structured. Transparent.<br /> Efficient.
+                    </h2>
+                    <div className="space-y-5 max-w-md">
+                      {steps.map((s, i) => (
+                        <motion.div
+                          key={i}
+                          {...fadeIn}
+                          transition={{ duration: 0.4, delay: 0.2 + i * 0.07 }}
+                          className="flex gap-4 items-baseline"
+                        >
+                          <span className="text-[13px] font-bold text-white/60 w-6 flex-shrink-0">
+                            {s.num}
+                          </span>
+                          <h3 className="text-[15px] font-semibold text-white">{s.title}</h3>
+                        </motion.div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
             </div>
 
             {/* ADVANTAGE */}
             <div id="bs-advantage">
-              <motion.h2
-                {...fadeIn}
-                className="text-[40px] sm:text-[48px] lg:text-[56px] font-medium text-foreground tracking-tight leading-[1.08] mb-12"
-              >
-                Built for Ambitious Founders
-              </motion.h2>
-
-              <div className="grid lg:grid-cols-2 gap-10 lg:gap-14 items-center">
-                <motion.div {...fadeIn} transition={{ duration: 0.5, delay: 0.1 }}>
+              <motion.div {...fadeIn} transition={{ duration: 0.5, delay: 0.1 }}>
+                <div className="relative rounded-[20px] overflow-hidden shadow-soft">
                   <img
                     src={advantageImage}
                     alt="Startup founder in modern office"
-                    className="w-full rounded-[20px] shadow-soft object-cover h-[360px] lg:h-[460px]"
+                    className="w-full h-[480px] sm:h-[540px] lg:h-[600px] object-cover"
                   />
-                </motion.div>
-
-                <motion.div {...fadeIn} transition={{ duration: 0.45, delay: 0.2 }}>
-                  <ul className="space-y-5">
-                    {benefits.map((b, i) => (
-                      <li key={i} className="flex items-start gap-3">
-                        <span className="w-1.5 h-1.5 rounded-full bg-primary mt-2.5 flex-shrink-0" />
-                        <span className="text-[15px] sm:text-base text-foreground leading-relaxed">
-                          {b.highlight ? (
-                            <>
-                              <span className="font-semibold text-primary">{b.highlight}</span>
-                              {" "}{b.label.replace(b.highlight, "").trim()}
-                            </>
-                          ) : (
-                            b.label
-                          )}
-                        </span>
-                      </li>
-                    ))}
-                  </ul>
-                </motion.div>
-              </div>
+                  <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/40 to-transparent" />
+                  <div className="absolute inset-0 flex flex-col justify-center p-6 sm:p-10 lg:p-14">
+                    <h2 className="text-[32px] sm:text-[40px] lg:text-[48px] font-medium text-white tracking-tight leading-[1.08] mb-8 lg:mb-12">
+                      Built for Ambitious<br /> Founders
+                    </h2>
+                    <ul className="space-y-4 max-w-md">
+                      {benefits.map((b, i) => (
+                        <motion.li
+                          key={i}
+                          {...fadeIn}
+                          transition={{ duration: 0.4, delay: 0.2 + i * 0.06 }}
+                          className="flex items-start gap-3"
+                        >
+                          <span className="w-1.5 h-1.5 rounded-full bg-white/60 mt-2 flex-shrink-0" />
+                          <span className="text-[15px] text-white/90 leading-relaxed">
+                            {b.highlight ? (
+                              <>
+                                <span className="font-semibold text-white">{b.highlight}</span>
+                                {" "}{b.label.replace(b.highlight, "").trim()}
+                              </>
+                            ) : (
+                              b.label
+                            )}
+                          </span>
+                        </motion.li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+              </motion.div>
             </div>
 
             {/* AI PLATFORM */}
