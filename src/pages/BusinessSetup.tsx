@@ -36,7 +36,7 @@ const BusinessSetup = () => {
       <Navbar />
       <main>
         {/* Hero Section */}
-        <section className="relative overflow-hidden pt-28 pb-24 lg:pt-36 lg:pb-32" style={{ background: 'hsla(0, 0%, 97%, 0.9)' }}>
+        <section className="relative overflow-hidden min-h-[calc(100vh-80px)] flex items-center" style={{ background: 'hsla(0, 0%, 97%, 0.9)' }}>
           {/* Subtle gradient blobs */}
           <div className="absolute top-0 right-0 w-[600px] h-[600px] opacity-[0.07] pointer-events-none">
             <div className="absolute inset-0 rounded-full bg-primary blur-[120px] translate-x-1/3 -translate-y-1/4" />
