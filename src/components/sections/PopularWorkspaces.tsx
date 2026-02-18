@@ -29,7 +29,7 @@ const cities = [
 export const PopularWorkspaces = () => {
   return (
     <section className="py-20 lg:py-28" style={{ background: "hsl(0, 0%, 97%)" }}>
-      <div className="container mx-auto px-4 lg:px-8 max-w-[1400px]">
+      <div className="container mx-auto px-4 lg:px-8 max-w-[1600px]">
         {/* Header */}
         <motion.h2
           className="text-3xl sm:text-4xl lg:text-[48px] font-medium text-foreground tracking-tight mb-14 text-center"
@@ -87,7 +87,7 @@ export const PopularWorkspaces = () => {
           viewport={{ once: true }}
           transition={{ duration: 0.4, delay: 0.3 }}
         >
-          <p className="text-muted-foreground text-sm sm:text-base max-w-md">
+          <p className="text-muted-foreground text-sm sm:text-base max-w-2xl">
             Whether you're scaling your team or need a ready-to-use office, our expert team is here to assist you every step of the way.
           </p>
           <Button variant="outline" className="rounded-xl gap-2 shrink-0">
