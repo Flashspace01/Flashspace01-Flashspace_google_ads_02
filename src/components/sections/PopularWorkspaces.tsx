@@ -29,10 +29,10 @@ const cities = [
 export const PopularWorkspaces = () => {
   return (
     <section className="py-20 lg:py-28" style={{ background: "hsl(0, 0%, 97%)" }}>
-      <div className="container mx-auto px-4 lg:px-8 max-w-[1100px]">
+      <div className="container mx-auto px-4 lg:px-8 max-w-[1400px]">
         {/* Header */}
         <motion.h2
-          className="text-3xl sm:text-4xl lg:text-[42px] font-bold text-foreground tracking-tight mb-14"
+          className="text-3xl sm:text-4xl lg:text-[48px] font-medium text-foreground tracking-tight mb-14 text-center"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
