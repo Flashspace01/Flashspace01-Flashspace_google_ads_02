@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { BusinessSetupContent } from "@/components/sections/BusinessSetupContent";
+import { TestimonialSection } from "@/components/sections/TestimonialSection";
 import { motion } from "framer-motion";
 
 const cities = ["Mumbai", "Delhi", "Bangalore", "Hyderabad", "Chennai"];
@@ -139,6 +140,9 @@ const BusinessSetup = () => {
             </div>
           </div>
         </section>
+
+        {/* Testimonial Section */}
+        <TestimonialSection />
 
         {/* FAQ Section */}
         <section className="py-20 lg:py-28" style={{ background: 'hsl(0, 0%, 97%)' }}>
