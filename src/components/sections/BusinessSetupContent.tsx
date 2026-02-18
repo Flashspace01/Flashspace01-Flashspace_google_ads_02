@@ -67,34 +67,52 @@ export const BusinessSetupContent = () => {
   return (
     <section className="py-20 lg:py-28">
       <div className="container mx-auto px-4 lg:px-8">
-        <div className="grid lg:grid-cols-[180px_1fr] gap-8 lg:gap-12 max-w-[1200px]">
-          {/* Sticky sidebar */}
+        <div className="grid lg:grid-cols-[160px_1fr] gap-5 lg:gap-5">
+          {/* Sticky sidebar — Intercom-style */}
           <div className="hidden lg:block">
-            <nav className="sticky top-[120px] space-y-1.5 py-4">
-              {navItems.map((item) => {
-                const isActive = activeSection === item.id;
-                return (
-                  <button
-                    key={item.id}
-                    onClick={() => scrollTo(item.id)}
-                    className="flex items-center w-full text-left py-2 bg-transparent transition-colors duration-200"
-                  >
-                    {isActive && (
-                      <span className="inline-block w-1.5 h-1.5 rounded-full bg-primary mr-2 flex-shrink-0" />
-                    )}
-                    <span
-                      className={`text-[14px] whitespace-nowrap transition-all duration-200 ${
-                        isActive
-                          ? "font-semibold text-primary"
-                          : "font-medium text-muted-foreground"
-                      }`}
+            <div
+              className="sticky top-[120px] rounded-[16px] p-5"
+              style={{
+                background: 'hsl(0, 0%, 97%)',
+                border: '1px solid rgba(0,0,0,0.06)',
+                boxShadow: '0 1px 2px rgba(0,0,0,0.04)',
+              }}
+            >
+              <nav className="space-y-0.5">
+                {navItems.map((item) => {
+                  const isActive = activeSection === item.id;
+                  return (
+                    <button
+                      key={item.id}
+                      onClick={() => scrollTo(item.id)}
+                      className="flex items-center w-full text-left px-3 py-2 rounded-lg transition-all duration-200"
+                      style={{
+                        background: isActive ? 'hsl(0, 0%, 93%)' : 'transparent',
+                      }}
+                      onMouseEnter={(e) => {
+                        if (!isActive) (e.currentTarget.style.background = 'hsl(0, 0%, 94.5%)');
+                      }}
+                      onMouseLeave={(e) => {
+                        if (!isActive) (e.currentTarget.style.background = 'transparent');
+                      }}
                     >
-                      {item.label}
-                    </span>
-                  </button>
-                );
-              })}
-            </nav>
+                      {isActive && (
+                        <span className="inline-block w-1.5 h-1.5 rounded-full bg-primary mr-2 flex-shrink-0" />
+                      )}
+                      <span
+                        className={`text-[13px] whitespace-nowrap transition-all duration-200 ${
+                          isActive
+                            ? "font-semibold text-foreground"
+                            : "font-medium text-muted-foreground"
+                        }`}
+                      >
+                        {item.label}
+                      </span>
+                    </button>
+                  );
+                })}
+              </nav>
+            </div>
           </div>
 
           {/* Mobile horizontal nav */}
