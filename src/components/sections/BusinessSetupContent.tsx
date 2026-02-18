@@ -67,33 +67,55 @@ export const BusinessSetupContent = () => {
   return (
     <section className="py-20 lg:py-28">
       <div className="container mx-auto px-4 lg:px-8">
-        <div className="grid lg:grid-cols-[180px_1fr] gap-8 lg:gap-12 max-w-[1200px]">
-          {/* Sticky sidebar */}
+        <div className="grid lg:grid-cols-[200px_1fr] gap-5 lg:gap-5 max-w-[1200px]">
+          {/* Sticky sidebar — Intercom-style */}
           <div className="hidden lg:block">
-            <nav className="sticky top-[120px] space-y-1.5 py-4">
-              {navItems.map((item) => {
-                const isActive = activeSection === item.id;
-                return (
-                  <button
-                    key={item.id}
-                    onClick={() => scrollTo(item.id)}
-                    className="flex items-center w-full text-left py-2 bg-transparent transition-colors duration-200"
-                  >
-                    {isActive && (
-                      <span className="inline-block w-1.5 h-1.5 rounded-full bg-primary mr-2 flex-shrink-0" />
-                    )}
-                    <span
-                      className={`text-[14px] whitespace-nowrap transition-all duration-200 ${
-                        isActive
-                          ? "font-semibold text-primary"
-                          : "font-medium text-muted-foreground"
-                      }`}
+            <nav
+              className="sticky top-[120px] rounded-2xl px-5 py-5"
+              style={{
+                backgroundColor: '#f7f7f8',
+                border: '1px solid rgba(0,0,0,0.06)',
+                boxShadow: '0 1px 2px rgba(0,0,0,0.04)',
+              }}
+            >
+              <div className="space-y-1">
+                {navItems.map((item) => {
+                  const isActive = activeSection === item.id;
+                  return (
+                    <button
+                      key={item.id}
+                      onClick={() => scrollTo(item.id)}
+                      className="flex items-center w-full text-left rounded-lg px-3 py-2 transition-all duration-200 ease-in-out"
+                      style={{
+                        backgroundColor: isActive ? 'rgba(0,0,0,0.05)' : 'transparent',
+                      }}
+                      onMouseEnter={(e) => {
+                        if (!isActive) (e.currentTarget as HTMLButtonElement).style.backgroundColor = 'rgba(0,0,0,0.03)';
+                      }}
+                      onMouseLeave={(e) => {
+                        if (!isActive) (e.currentTarget as HTMLButtonElement).style.backgroundColor = 'transparent';
+                      }}
                     >
-                      {item.label}
-                    </span>
-                  </button>
-                );
-              })}
+                      {isActive && (
+                        <span
+                          className="inline-block w-1.5 h-1.5 rounded-full mr-2.5 flex-shrink-0"
+                          style={{ backgroundColor: '#36503F' }}
+                        />
+                      )}
+                      <span
+                        className={`text-[13.5px] whitespace-nowrap transition-colors duration-200 ${
+                          isActive ? "font-semibold" : "font-medium"
+                        }`}
+                        style={{
+                          color: isActive ? '#36503F' : 'rgba(0,0,0,0.55)',
+                        }}
+                      >
+                        {item.label}
+                      </span>
+                    </button>
+                  );
+                })}
+              </div>
             </nav>
           </div>
 
