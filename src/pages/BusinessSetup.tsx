@@ -6,6 +6,7 @@ import { Input } from "@/components/ui/input";
 import { Search, Mic, Send, ArrowRight } from "lucide-react";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { BusinessSetupContent } from "@/components/sections/BusinessSetupContent";
+import { PopularWorkspaces } from "@/components/sections/PopularWorkspaces";
 import { TestimonialSection } from "@/components/sections/TestimonialSection";
 import { motion } from "framer-motion";
 
@@ -174,6 +175,9 @@ const BusinessSetup = () => {
 
         {/* Sticky sidebar content sections */}
         <BusinessSetupContent />
+
+        {/* Popular Workspaces */}
+        <PopularWorkspaces />
 
         {/* Testimonial Section */}
         <TestimonialSection />
