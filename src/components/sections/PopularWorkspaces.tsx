@@ -87,7 +87,7 @@ export const PopularWorkspaces = () => {
           viewport={{ once: true }}
           transition={{ duration: 0.4, delay: 0.3 }}
         >
-          <p className="text-muted-foreground text-sm sm:text-base max-w-2xl">
+          <p className="text-muted-foreground text-sm sm:text-base max-w-4xl">
             Whether you're scaling your team or need a ready-to-use office, our expert team is here to assist you every step of the way.
           </p>
           <Button variant="outline" className="rounded-xl gap-2 shrink-0">
