@@ -15,7 +15,7 @@ const BusinessSetup = () => {
       <Navbar />
       <main>
         {/* Hero Section */}
-        <section className="relative overflow-hidden bg-background pt-28 pb-24 lg:pt-36 lg:pb-32">
+        <section className="relative overflow-hidden pt-28 pb-24 lg:pt-36 lg:pb-32" style={{ background: 'hsla(0, 0%, 97%, 0.9)' }}>
           {/* Subtle gradient blobs */}
           <div className="absolute top-0 right-0 w-[600px] h-[600px] opacity-[0.07] pointer-events-none">
             <div className="absolute inset-0 rounded-full bg-primary blur-[120px] translate-x-1/3 -translate-y-1/4" />
@@ -26,18 +26,6 @@ const BusinessSetup = () => {
 
           <div className="container mx-auto px-4 lg:px-8 relative z-10">
             <div className="max-w-3xl mx-auto text-center">
-              {/* Badge */}
-              <motion.div
-                initial={{ opacity: 0, y: 16 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5 }}
-              >
-                <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-medium bg-secondary text-secondary-foreground mb-6">
-                  <span className="w-1.5 h-1.5 rounded-full bg-primary" />
-                  Launch in 7–10 days
-                </span>
-              </motion.div>
-
               {/* Heading */}
               <motion.h1
                 className="text-4xl sm:text-5xl lg:text-[56px] font-medium text-foreground tracking-tight leading-[1.1] mb-5"
