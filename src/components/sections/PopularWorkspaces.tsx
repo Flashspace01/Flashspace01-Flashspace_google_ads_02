@@ -46,7 +46,7 @@ export const PopularWorkspaces = () => {
           {cities.map((city, i) => (
             <motion.div
               key={city.name}
-              className="group relative rounded-2xl overflow-hidden cursor-pointer border border-border bg-card"
+              className="group relative rounded-lg overflow-hidden cursor-pointer border border-border bg-card"
               style={{ minHeight: "380px" }}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
