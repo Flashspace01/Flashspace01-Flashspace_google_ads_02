@@ -4,6 +4,7 @@ import { Footer } from "@/components/layout/Footer";
 import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import { BusinessSetupContent } from "@/components/sections/BusinessSetupContent";
 import { motion } from "framer-motion";
 
 const cities = ["Mumbai", "Delhi", "Bangalore", "Hyderabad", "Chennai"];
@@ -106,6 +107,10 @@ const BusinessSetup = () => {
             </div>
           </div>
         </section>
+
+        {/* Sticky sidebar content sections */}
+        <BusinessSetupContent />
+
         {/* FAQ Section */}
         <section className="py-20 lg:py-28" style={{ background: 'hsl(0, 0%, 97%)' }}>
           <div className="container mx-auto px-4 lg:px-8 max-w-[1100px]">
