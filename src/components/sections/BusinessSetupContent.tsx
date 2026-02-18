@@ -1,11 +1,9 @@
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import {
-  Building2, FileText, Shield, ClipboardCheck, Users,
-  MessageSquare, FolderOpen, Send, CreditCard, CheckCircle2,
-  BadgePercent, Zap, Clock, HeadphonesIcon, Layers, MapPin,
-  Brain, Bell, Lock, Lightbulb, Activity,
-} from "lucide-react";
+import capabilitiesBanner from "@/assets/bs-capabilities-banner.jpg";
+import processImage from "@/assets/bs-process-image.jpg";
+import advantageImage from "@/assets/bs-advantage-image.jpg";
+import aiPlatformBanner from "@/assets/bs-ai-platform-banner.jpg";
 
 const navItems = [
   { id: "bs-capabilities", label: "Capabilities" },
@@ -14,37 +12,21 @@ const navItems = [
   { id: "bs-ai-platform", label: "AI Platform" },
 ];
 
-const features = [
-  { icon: Building2, title: "Company Incorporation", desc: "Private Limited, LLP, and OPC registrations managed end-to-end." },
-  { icon: FileText, title: "GST Setup & Compliance", desc: "Registration, filings, and structured compliance guidance." },
-  { icon: Shield, title: "Licenses & Approvals", desc: "Assistance with mandatory registrations and regulatory documentation." },
-  { icon: ClipboardCheck, title: "Regulatory Documentation", desc: "Accurate filings and structured compliance management." },
-  { icon: Users, title: "Dedicated Advisory Support", desc: "A single expert point of contact throughout your setup journey." },
-];
-
 const steps = [
-  { icon: MessageSquare, title: "Initial Consultation", desc: "Business structure alignment and requirement assessment." },
-  { icon: FolderOpen, title: "Documentation Review", desc: "Collection and verification of required documents." },
-  { icon: Send, title: "Filing & Submission", desc: "Preparation and submission of statutory applications." },
-  { icon: CreditCard, title: "Processing & Tracking", desc: "Application monitoring and status updates." },
-  { icon: CheckCircle2, title: "Registration Completion", desc: "Delivery of incorporation certificates and GST credentials." },
+  { num: "01", title: "Initial Consultation", desc: "Business structure alignment and requirement assessment." },
+  { num: "02", title: "Documentation Alignment", desc: "Collection and verification of required documents." },
+  { num: "03", title: "Filing & Submission", desc: "Preparation and submission of statutory applications." },
+  { num: "04", title: "Processing & Monitoring", desc: "Application monitoring and status updates." },
+  { num: "05", title: "Registration Completion", desc: "Delivery of incorporation certificates and GST credentials." },
 ];
 
 const benefits = [
-  { icon: BadgePercent, title: "Up to 90% Cost Efficiency", desc: "Optimized processes eliminate unnecessary overhead." },
-  { icon: Zap, title: "7–10 Day Setup Timeline", desc: "Accelerated incorporation workflow." },
-  { icon: Clock, title: "24-Hour Initiation", desc: "Documentation begins within one business day." },
-  { icon: HeadphonesIcon, title: "Dedicated Expert Guidance", desc: "Consistent advisory support from start to completion." },
-  { icon: Layers, title: "Integrated Service Stack", desc: "Registration, GST, compliance — unified under one platform." },
-  { icon: MapPin, title: "Nationwide Flexibility", desc: "Launch across cities without operational complexity." },
-];
-
-const aiFeatures = [
-  { icon: Activity, text: "Automated compliance tracking" },
-  { icon: Bell, text: "Smart deadline reminders" },
-  { icon: Lock, text: "Secure document management" },
-  { icon: Lightbulb, text: "Guided filing recommendations" },
-  { icon: Brain, text: "Real-time status visibility" },
+  { label: "Up to 90% Cost Efficiency", highlight: "90%" },
+  { label: "7–10 Day Setup Timeline", highlight: "7–10 Day" },
+  { label: "24-Hour Initiation", highlight: "24-Hour" },
+  { label: "Dedicated Expert Advisory", highlight: null },
+  { label: "Integrated Service Stack", highlight: null },
+  { label: "Nationwide Flexibility", highlight: null },
 ];
 
 const fadeIn = {
@@ -138,116 +120,150 @@ export const BusinessSetupContent = () => {
           </div>
 
           {/* Content */}
-          <div className="space-y-24 lg:space-y-32">
-            {/* Capabilities */}
+          <div className="space-y-28 lg:space-y-36">
+
+            {/* CAPABILITIES */}
             <div id="bs-capabilities">
-              <motion.h2 {...fadeIn} className="text-3xl sm:text-4xl font-bold text-foreground tracking-tight mb-3">
-                Launch with Complete Legal Confidence
+              <motion.h2
+                {...fadeIn}
+                className="text-[40px] sm:text-[48px] lg:text-[56px] font-medium text-foreground tracking-tight leading-[1.08] mb-10"
+              >
+                Launch with Complete<br className="hidden sm:block" /> Legal Confidence
               </motion.h2>
-              <motion.p {...fadeIn} transition={{ duration: 0.45, delay: 0.08 }} className="text-muted-foreground text-base sm:text-lg mb-10 max-w-xl">
-                Comprehensive business registration and compliance support — structured for speed and clarity.
-              </motion.p>
-              <div className="grid sm:grid-cols-2 gap-5">
-                {features.map((f, i) => (
-                  <motion.div
-                    key={i}
-                    {...fadeIn}
-                    transition={{ duration: 0.4, delay: i * 0.06 }}
-                    className="bg-card border border-border/60 rounded-2xl p-6 shadow-soft hover:shadow-soft-lg transition-shadow"
-                  >
-                    <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center mb-4">
-                      <f.icon className="w-5 h-5 text-primary" />
-                    </div>
-                    <h3 className="text-[15px] font-semibold text-foreground mb-1.5">{f.title}</h3>
-                    <p className="text-sm text-muted-foreground leading-relaxed">{f.desc}</p>
-                  </motion.div>
-                ))}
-              </div>
+
+              <motion.div {...fadeIn} transition={{ duration: 0.5, delay: 0.1 }}>
+                <div className="relative rounded-[20px] overflow-hidden shadow-soft">
+                  <img
+                    src={capabilitiesBanner}
+                    alt="Business registration and compliance"
+                    className="w-full h-[280px] sm:h-[380px] lg:h-[460px] object-cover"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent" />
+                </div>
+              </motion.div>
+
+              <motion.div {...fadeIn} transition={{ duration: 0.45, delay: 0.2 }} className="mt-10 max-w-2xl">
+                <h3 className="text-xl sm:text-2xl font-semibold text-foreground mb-3">
+                  Company Incorporation & Compliance Infrastructure
+                </h3>
+                <p className="text-[15px] sm:text-base text-muted-foreground leading-relaxed">
+                  End-to-end support for Private Limited, LLP, and OPC registration — including GST setup,
+                  regulatory filings, and documentation management. Built for founders who want clarity and
+                  speed without legal complexity.
+                </p>
+              </motion.div>
             </div>
 
-            {/* Process */}
+            {/* PROCESS */}
             <div id="bs-process">
-              <motion.h2 {...fadeIn} className="text-3xl sm:text-4xl font-bold text-foreground tracking-tight mb-10">
-                Structured. Transparent. Efficient.
+              <motion.h2
+                {...fadeIn}
+                className="text-[40px] sm:text-[48px] lg:text-[56px] font-medium text-foreground tracking-tight leading-[1.08] mb-12"
+              >
+                Structured. Transparent.<br className="hidden sm:block" /> Efficient.
               </motion.h2>
-              <div className="relative pl-8 space-y-8">
-                <div className="absolute left-[15px] top-2 bottom-2 w-px bg-border" />
-                {steps.map((s, i) => (
-                  <motion.div key={i} {...fadeIn} transition={{ duration: 0.4, delay: i * 0.07 }} className="relative flex gap-5">
-                    <div className="absolute -left-8 top-0.5 w-[30px] h-[30px] rounded-full bg-primary text-primary-foreground flex items-center justify-center text-xs font-bold z-10">
-                      {String(i + 1).padStart(2, "0")}
-                    </div>
-                    <div>
-                      <h3 className="text-[15px] font-semibold text-foreground mb-1">{s.title}</h3>
-                      <p className="text-sm text-muted-foreground">{s.desc}</p>
-                    </div>
-                  </motion.div>
-                ))}
-              </div>
-            </div>
 
-            {/* Advantage */}
-            <div id="bs-advantage" className="bg-muted/50 -mx-4 sm:-mx-6 lg:-mx-8 px-4 sm:px-6 lg:px-8 py-14 rounded-3xl">
-              <motion.h2 {...fadeIn} className="text-3xl sm:text-4xl font-bold text-foreground tracking-tight mb-10">
-                Built for Ambitious Founders
-              </motion.h2>
-              <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
-                {benefits.map((b, i) => (
-                  <motion.div
-                    key={i}
-                    {...fadeIn}
-                    transition={{ duration: 0.4, delay: i * 0.06 }}
-                    className="bg-card border border-border/60 rounded-2xl p-6 shadow-soft"
-                  >
-                    <div className="w-9 h-9 rounded-lg bg-primary/10 flex items-center justify-center mb-3">
-                      <b.icon className="w-4.5 h-4.5 text-primary" />
-                    </div>
-                    <h3 className="text-[15px] font-semibold text-foreground mb-1">{b.title}</h3>
-                    <p className="text-sm text-muted-foreground leading-relaxed">{b.desc}</p>
-                  </motion.div>
-                ))}
-              </div>
-            </div>
-
-            {/* AI Platform */}
-            <div id="bs-ai-platform">
-              <motion.h2 {...fadeIn} className="text-3xl sm:text-4xl font-bold text-foreground tracking-tight mb-3">
-                AI-Powered Compliance Engine
-              </motion.h2>
-              <motion.p {...fadeIn} transition={{ duration: 0.45, delay: 0.08 }} className="text-muted-foreground text-base sm:text-lg mb-10 max-w-xl">
-                Technology-driven oversight for modern businesses.
-              </motion.p>
-
-              <div className="grid sm:grid-cols-2 gap-8 items-start">
-                <div className="space-y-4">
-                  <p className="text-sm font-medium text-foreground mb-4">Flashspace AI helps you:</p>
-                  {aiFeatures.map((f, i) => (
-                    <motion.div key={i} {...fadeIn} transition={{ duration: 0.35, delay: i * 0.06 }} className="flex items-center gap-3">
-                      <div className="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0">
-                        <f.icon className="w-4 h-4 text-primary" />
+              <div className="grid lg:grid-cols-2 gap-10 lg:gap-14 items-start">
+                <div className="space-y-8">
+                  {steps.map((s, i) => (
+                    <motion.div
+                      key={i}
+                      {...fadeIn}
+                      transition={{ duration: 0.4, delay: i * 0.07 }}
+                      className="flex gap-5"
+                    >
+                      <span className="text-[13px] font-bold text-primary mt-0.5 w-6 flex-shrink-0">
+                        {s.num}
+                      </span>
+                      <div>
+                        <h3 className="text-[15px] font-semibold text-foreground mb-1">{s.title}</h3>
+                        <p className="text-sm text-muted-foreground leading-relaxed">{s.desc}</p>
                       </div>
-                      <span className="text-sm text-foreground">{f.text}</span>
                     </motion.div>
                   ))}
                 </div>
 
-                <motion.div {...fadeIn} transition={{ duration: 0.5, delay: 0.2 }} className="bg-card border border-border/60 rounded-2xl p-6 shadow-soft">
-                  <div className="bg-secondary/40 rounded-xl p-5">
-                    <p className="text-sm font-medium text-foreground italic leading-relaxed">
-                      "Built for founders who value precision, speed, and control."
-                    </p>
-                  </div>
-                  <div className="mt-5 space-y-3">
-                    {[1, 2, 3].map((n) => (
-                      <div key={n} className="flex items-center gap-3">
-                        <div className="w-2 h-2 rounded-full bg-primary/30" />
-                        <div className={`h-2.5 rounded-full bg-muted ${n === 1 ? "w-3/4" : n === 2 ? "w-1/2" : "w-2/3"}`} />
-                      </div>
-                    ))}
-                  </div>
+                <motion.div {...fadeIn} transition={{ duration: 0.5, delay: 0.15 }}>
+                  <img
+                    src={processImage}
+                    alt="Consultation and document verification"
+                    className="w-full rounded-[20px] shadow-soft object-cover h-[360px] lg:h-[440px]"
+                  />
                 </motion.div>
               </div>
             </div>
+
+            {/* ADVANTAGE */}
+            <div id="bs-advantage">
+              <motion.h2
+                {...fadeIn}
+                className="text-[40px] sm:text-[48px] lg:text-[56px] font-medium text-foreground tracking-tight leading-[1.08] mb-12"
+              >
+                Built for Ambitious Founders
+              </motion.h2>
+
+              <div className="grid lg:grid-cols-2 gap-10 lg:gap-14 items-center">
+                <motion.div {...fadeIn} transition={{ duration: 0.5, delay: 0.1 }}>
+                  <img
+                    src={advantageImage}
+                    alt="Startup founder in modern office"
+                    className="w-full rounded-[20px] shadow-soft object-cover h-[360px] lg:h-[460px]"
+                  />
+                </motion.div>
+
+                <motion.div {...fadeIn} transition={{ duration: 0.45, delay: 0.2 }}>
+                  <ul className="space-y-5">
+                    {benefits.map((b, i) => (
+                      <li key={i} className="flex items-start gap-3">
+                        <span className="w-1.5 h-1.5 rounded-full bg-primary mt-2.5 flex-shrink-0" />
+                        <span className="text-[15px] sm:text-base text-foreground leading-relaxed">
+                          {b.highlight ? (
+                            <>
+                              <span className="font-semibold text-primary">{b.highlight}</span>
+                              {" "}{b.label.replace(b.highlight, "").trim()}
+                            </>
+                          ) : (
+                            b.label
+                          )}
+                        </span>
+                      </li>
+                    ))}
+                  </ul>
+                </motion.div>
+              </div>
+            </div>
+
+            {/* AI PLATFORM */}
+            <div id="bs-ai-platform">
+              <motion.h2
+                {...fadeIn}
+                className="text-[40px] sm:text-[48px] lg:text-[56px] font-medium text-foreground tracking-tight leading-[1.08] mb-10"
+              >
+                AI-Powered Compliance Engine
+              </motion.h2>
+
+              <motion.div {...fadeIn} transition={{ duration: 0.5, delay: 0.1 }}>
+                <div className="relative rounded-[20px] overflow-hidden shadow-soft">
+                  <img
+                    src={aiPlatformBanner}
+                    alt="AI compliance dashboard"
+                    className="w-full h-[300px] sm:h-[400px] lg:h-[500px] object-cover"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent flex flex-col justify-end p-6 sm:p-10">
+                    <p className="text-white/90 text-sm sm:text-base max-w-xl leading-relaxed mb-4">
+                      Flashspace AI monitors deadlines, tracks filings, and simplifies compliance
+                      management — all in one intelligent platform.
+                    </p>
+                    <div className="inline-block bg-white/15 backdrop-blur-sm border border-white/20 rounded-xl px-5 py-3 max-w-max">
+                      <p className="text-white text-sm font-medium italic">
+                        "Built for founders who value precision, speed, and control."
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
+            </div>
+
           </div>
         </div>
       </div>
