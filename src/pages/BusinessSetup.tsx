@@ -3,9 +3,29 @@ import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { motion } from "framer-motion";
 
 const cities = ["Mumbai", "Delhi", "Bangalore", "Hyderabad", "Chennai"];
+
+const faqs = [
+  {
+    question: "How long does it take to register a company in India?",
+    answer: "The entire process typically takes 7–10 business days, depending on the type of entity and document readiness. With Flashspace, we handle all filings and follow-ups so you can focus on building your business."
+  },
+  {
+    question: "What is the difference between Pvt Ltd, LLP, and OPC?",
+    answer: "A Private Limited (Pvt Ltd) company is ideal for startups seeking funding, offering limited liability and share-based ownership. An LLP (Limited Liability Partnership) suits professional services with flexible management. An OPC (One Person Company) is designed for solo entrepreneurs who want corporate benefits with a single member."
+  },
+  {
+    question: "What documents are required for company registration?",
+    answer: "You'll need PAN and Aadhaar of all directors, passport-size photographs, proof of registered office address (utility bill or rent agreement), and a No Objection Certificate from the property owner. Flashspace guides you through each document step-by-step."
+  },
+  {
+    question: "Do I need GST registration for my business?",
+    answer: "GST registration is mandatory if your annual turnover exceeds ₹20 lakhs (₹10 lakhs for special category states) or if you sell goods/services online. Even below the threshold, voluntary registration can help you claim input tax credits and build credibility."
+  },
+];
 
 const BusinessSetup = () => {
   const [city, setCity] = useState("");
@@ -84,6 +104,55 @@ const BusinessSetup = () => {
                 Trusted by 500+ startups across India
               </motion.p>
             </div>
+          </div>
+        </section>
+        {/* FAQ Section */}
+        <section className="py-20 lg:py-28" style={{ background: 'hsl(0, 0%, 97%)' }}>
+          <div className="container mx-auto px-4 lg:px-8 max-w-[1100px]">
+            <div className="text-center mb-14">
+              <motion.h2
+                className="text-3xl sm:text-4xl lg:text-[42px] font-bold text-foreground tracking-tight mb-4"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5 }}
+              >
+                Frequently Asked Questions
+              </motion.h2>
+              <motion.p
+                className="text-muted-foreground text-base sm:text-lg max-w-lg mx-auto"
+                initial={{ opacity: 0, y: 16 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.1 }}
+              >
+                Everything you need to know about business registration and setup
+              </motion.p>
+            </div>
+
+            <Accordion type="single" collapsible className="space-y-5">
+              {faqs.map((faq, i) => (
+                <motion.div
+                  key={i}
+                  initial={{ opacity: 0, y: 16 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.4, delay: i * 0.08 }}
+                >
+                  <AccordionItem
+                    value={`faq-${i}`}
+                    className="bg-card border border-border/60 rounded-2xl px-6 shadow-soft transition-shadow hover:shadow-soft-lg data-[state=open]:border-primary/30"
+                  >
+                    <AccordionTrigger className="text-[15px] sm:text-base font-medium text-foreground hover:no-underline py-5">
+                      {faq.question}
+                    </AccordionTrigger>
+                    <AccordionContent className="text-muted-foreground text-sm sm:text-[15px] leading-relaxed pb-5">
+                      {faq.answer}
+                    </AccordionContent>
+                  </AccordionItem>
+                </motion.div>
+              ))}
+            </Accordion>
           </div>
         </section>
       </main>
