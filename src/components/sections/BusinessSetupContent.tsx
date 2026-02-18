@@ -159,7 +159,7 @@ export const BusinessSetupContent = () => {
                   <img
                     src={processImage}
                     alt="Consultation and document verification"
-                    className="w-full h-[280px] sm:h-[320px] lg:h-[380px] object-cover"
+                    className="w-full h-[480px] sm:h-[540px] lg:h-[600px] object-cover"
                   />
                   <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/40 to-transparent" />
                   <div className="absolute inset-0 flex flex-col justify-center p-6 sm:p-10 lg:p-14">
@@ -193,7 +193,7 @@ export const BusinessSetupContent = () => {
                   <img
                     src={advantageImage}
                     alt="Startup founder in modern office"
-                    className="w-full h-[280px] sm:h-[320px] lg:h-[380px] object-cover"
+                    className="w-full h-[480px] sm:h-[540px] lg:h-[600px] object-cover"
                   />
                   <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/40 to-transparent" />
                   <div className="absolute inset-0 flex flex-col justify-center p-6 sm:p-10 lg:p-14">
