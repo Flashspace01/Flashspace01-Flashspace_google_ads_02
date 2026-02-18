@@ -120,7 +120,7 @@ export const BusinessSetupContent = () => {
           </div>
 
           {/* Content */}
-          <div className="space-y-28 lg:space-y-36">
+          <div className="space-y-10 lg:space-y-14">
 
             {/* CAPABILITIES */}
             <div id="bs-capabilities">
@@ -140,8 +140,8 @@ export const BusinessSetupContent = () => {
                 </div>
               </motion.div>
 
-              <motion.div {...fadeIn} transition={{ duration: 0.45, delay: 0.2 }} className="mt-10 max-w-2xl">
-                <h3 className="text-xl sm:text-2xl font-semibold text-foreground mb-3">
+              <motion.div {...fadeIn} transition={{ duration: 0.45, delay: 0.2 }} className="mt-6 max-w-2xl">
+                <h3 className="text-xl sm:text-2xl font-semibold text-foreground mb-2">
                   Company Incorporation & Compliance Infrastructure
                 </h3>
                 <p className="text-[15px] sm:text-base text-muted-foreground leading-relaxed">
@@ -154,7 +154,16 @@ export const BusinessSetupContent = () => {
 
             {/* PROCESS */}
             <div id="bs-process">
-              <motion.div {...fadeIn} transition={{ duration: 0.5, delay: 0.1 }}>
+              <motion.div {...fadeIn} transition={{ duration: 0.45, delay: 0.1 }} className="mb-6 max-w-2xl">
+                <h3 className="text-xl sm:text-2xl font-semibold text-foreground mb-2">
+                  From Consultation to Completion
+                </h3>
+                <p className="text-[15px] sm:text-base text-muted-foreground leading-relaxed">
+                  A proven five-step framework that takes you from initial assessment to full registration — with real-time tracking, expert guidance, and zero guesswork at every stage.
+                </p>
+              </motion.div>
+
+              <motion.div {...fadeIn} transition={{ duration: 0.5, delay: 0.15 }}>
                 <div className="relative rounded-[6px] overflow-hidden shadow-soft">
                   <img
                     src={processImage}
@@ -188,7 +197,16 @@ export const BusinessSetupContent = () => {
 
             {/* ADVANTAGE */}
             <div id="bs-advantage">
-              <motion.div {...fadeIn} transition={{ duration: 0.5, delay: 0.1 }}>
+              <motion.div {...fadeIn} transition={{ duration: 0.45, delay: 0.1 }} className="mb-6 max-w-2xl">
+                <h3 className="text-xl sm:text-2xl font-semibold text-foreground mb-2">
+                  Why Founders Choose Flashspace
+                </h3>
+                <p className="text-[15px] sm:text-base text-muted-foreground leading-relaxed">
+                  Industry-leading cost efficiency, rapid turnaround, and dedicated advisory — everything you need to incorporate with confidence and scale without friction.
+                </p>
+              </motion.div>
+
+              <motion.div {...fadeIn} transition={{ duration: 0.5, delay: 0.15 }}>
                 <div className="relative rounded-[6px] overflow-hidden shadow-soft">
                   <img
                     src={advantageImage}
@@ -229,14 +247,16 @@ export const BusinessSetupContent = () => {
 
             {/* AI PLATFORM */}
             <div id="bs-ai-platform">
-              <motion.h2
-                {...fadeIn}
-                className="text-[40px] sm:text-[48px] lg:text-[56px] font-medium text-foreground tracking-tight leading-[1.08] mb-10"
-              >
-                AI-Powered Compliance Engine
-              </motion.h2>
+              <motion.div {...fadeIn} transition={{ duration: 0.45, delay: 0.1 }} className="mb-6 max-w-2xl">
+                <h3 className="text-[40px] sm:text-[48px] lg:text-[56px] font-medium text-foreground tracking-tight leading-[1.08]">
+                  AI-Powered Compliance Engine
+                </h3>
+                <p className="text-[15px] sm:text-base text-muted-foreground leading-relaxed mt-3">
+                  Intelligent automation that monitors deadlines, tracks filings, and keeps your compliance on autopilot — so you can focus on building your business.
+                </p>
+              </motion.div>
 
-              <motion.div {...fadeIn} transition={{ duration: 0.5, delay: 0.1 }}>
+              <motion.div {...fadeIn} transition={{ duration: 0.5, delay: 0.15 }}>
                 <div className="relative rounded-[6px] overflow-hidden shadow-soft">
                   <img
                     src={aiPlatformBanner}
@@ -244,10 +264,6 @@ export const BusinessSetupContent = () => {
                     className="w-full h-[300px] sm:h-[400px] lg:h-[500px] object-cover"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent flex flex-col justify-end p-6 sm:p-10">
-                    <p className="text-white/90 text-sm sm:text-base max-w-xl leading-relaxed mb-4">
-                      Flashspace AI monitors deadlines, tracks filings, and simplifies compliance
-                      management — all in one intelligent platform.
-                    </p>
                     <div className="inline-block bg-white/15 backdrop-blur-sm border border-white/20 rounded-xl px-5 py-3 max-w-max">
                       <p className="text-white text-sm font-medium italic">
                         "Built for founders who value precision, speed, and control."
@@ -257,7 +273,6 @@ export const BusinessSetupContent = () => {
                 </div>
               </motion.div>
             </div>
-
           </div>
         </div>
       </div>
