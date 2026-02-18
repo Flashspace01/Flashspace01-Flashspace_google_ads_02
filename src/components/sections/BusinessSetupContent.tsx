@@ -140,7 +140,7 @@ export const BusinessSetupContent = () => {
                 </div>
               </motion.div>
 
-              <motion.div {...fadeIn} transition={{ duration: 0.45, delay: 0.2 }} className="mt-6 max-w-2xl">
+              <motion.div {...fadeIn} transition={{ duration: 0.45, delay: 0.2 }} className="mt-6">
                 <h3 className="text-xl sm:text-2xl font-semibold text-foreground mb-2">
                   Company Incorporation & Compliance Infrastructure
                 </h3>
@@ -154,7 +154,7 @@ export const BusinessSetupContent = () => {
 
             {/* PROCESS */}
             <div id="bs-process">
-              <motion.div {...fadeIn} transition={{ duration: 0.45, delay: 0.1 }} className="mb-6 max-w-2xl">
+              <motion.div {...fadeIn} transition={{ duration: 0.45, delay: 0.1 }} className="mb-6">
                 <h3 className="text-xl sm:text-2xl font-semibold text-foreground mb-2">
                   From Consultation to Completion
                 </h3>
@@ -197,7 +197,7 @@ export const BusinessSetupContent = () => {
 
             {/* ADVANTAGE */}
             <div id="bs-advantage">
-              <motion.div {...fadeIn} transition={{ duration: 0.45, delay: 0.1 }} className="mb-6 max-w-2xl">
+              <motion.div {...fadeIn} transition={{ duration: 0.45, delay: 0.1 }} className="mb-6">
                 <h3 className="text-xl sm:text-2xl font-semibold text-foreground mb-2">
                   Why Founders Choose Flashspace
                 </h3>
@@ -247,7 +247,7 @@ export const BusinessSetupContent = () => {
 
             {/* AI PLATFORM */}
             <div id="bs-ai-platform">
-              <motion.div {...fadeIn} transition={{ duration: 0.45, delay: 0.1 }} className="mb-6 max-w-2xl">
+              <motion.div {...fadeIn} transition={{ duration: 0.45, delay: 0.1 }} className="mb-6">
                 <h3 className="text-[40px] sm:text-[48px] lg:text-[56px] font-medium text-foreground tracking-tight leading-[1.08]">
                   AI-Powered Compliance Engine
                 </h3>
