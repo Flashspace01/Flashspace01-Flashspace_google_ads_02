@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import capabilitiesBanner from "@/assets/od-capabilities-banner.jpg";
 import processImage from "@/assets/od-process-image.jpg";
 import advantageImage from "@/assets/od-advantage-image.jpg";
-import aiPlatformBanner from "@/assets/od-ai-platform-banner.jpg";
+import aiPlatformBanner from "@/assets/od-ai-dashboard.jpg";
 
 const navItems = [
   { id: "od-capabilities", label: "Overview" },
