@@ -142,10 +142,29 @@ export const OnDemandContent = () => {
                 <h3 className="text-xl sm:text-2xl font-semibold text-foreground mb-2">
                   Choose Your Workspace
                 </h3>
-                <p className="text-[15px] sm:text-base text-muted-foreground leading-relaxed">
+                <p className="text-[15px] sm:text-base text-primary leading-relaxed mb-5">
                   From hot desks and dedicated seats to meeting rooms and event venues — access premium coworking
                   spaces across India instantly. No contracts, no commitments, just work.
                 </p>
+                <ul className="space-y-2.5 mb-5">
+                  {["Hot Desks & Flex Seating", "Dedicated Desks", "Meeting Rooms", "Event Spaces"].map((item) => (
+                    <li key={item} className="flex items-center gap-2.5 text-[15px] text-primary">
+                      <span className="text-primary">✓</span>
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+                <div className="flex flex-wrap gap-2 mb-5">
+                  {["Instant Booking", "No Contracts", "Premium Locations"].map((tag) => (
+                    <span key={tag} className="text-[13px] border border-border rounded-full px-3 py-1 text-foreground">
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+                <p className="text-[13px] text-primary mb-4">Available across 15+ cities</p>
+                <button className="border border-border rounded-[6px] px-5 py-2.5 text-[14px] font-medium text-foreground hover:bg-muted transition-colors flex items-center gap-2">
+                  Explore Spaces <span>→</span>
+                </button>
               </motion.div>
             </div>
 
@@ -190,6 +209,32 @@ export const OnDemandContent = () => {
                     </div>
                   </div>
                 </div>
+              </motion.div>
+
+              <motion.div {...fadeIn} transition={{ duration: 0.45, delay: 0.25 }} className="mt-6">
+                <p className="text-[15px] sm:text-base text-primary leading-relaxed mb-5">
+                  Three simple steps from discovery to check-in — with real-time availability,
+                  instant confirmation, and zero paperwork at every stage.
+                </p>
+                <ul className="space-y-2.5 mb-5">
+                  {["Search available spaces in your city", "Book instantly with real-time confirmation", "Show up and start working — everything's ready"].map((item) => (
+                    <li key={item} className="flex items-center gap-2.5 text-[15px] text-primary">
+                      <span className="text-primary">✓</span>
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+                <div className="flex flex-wrap gap-2 mb-5">
+                  {["60-Second Booking", "Zero Paperwork", "Real-Time Confirmation"].map((tag) => (
+                    <span key={tag} className="text-[13px] border border-border rounded-full px-3 py-1 text-foreground">
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+                <p className="text-[13px] text-primary mb-4">Get started in under a minute</p>
+                <button className="border border-border rounded-[6px] px-5 py-2.5 text-[14px] font-medium text-foreground hover:bg-muted transition-colors flex items-center gap-2">
+                  Book a Space <span>→</span>
+                </button>
               </motion.div>
             </div>
 
@@ -241,6 +286,32 @@ export const OnDemandContent = () => {
                     </ul>
                   </div>
                 </div>
+              </motion.div>
+
+              <motion.div {...fadeIn} transition={{ duration: 0.45, delay: 0.25 }} className="mt-6">
+                <p className="text-[15px] sm:text-base text-primary leading-relaxed mb-5">
+                  Everything you need to work at your best — fully equipped spaces with enterprise-grade
+                  infrastructure and round-the-clock support.
+                </p>
+                <ul className="space-y-2.5 mb-5">
+                  {["24/7 Secure Access", "Reception & Guest Handling", "Printing & Scanning", "Visitor Management", "Security & CCTV"].map((item) => (
+                    <li key={item} className="flex items-center gap-2.5 text-[15px] text-primary">
+                      <span className="text-primary">✓</span>
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+                <div className="flex flex-wrap gap-2 mb-5">
+                  {["Secure Workspace", "Fully Equipped", "Flexible Access"].map((tag) => (
+                    <span key={tag} className="text-[13px] border border-border rounded-full px-3 py-1 text-foreground">
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+                <p className="text-[13px] text-primary mb-4">Amenities available across all locations</p>
+                <button className="border border-border rounded-[6px] px-5 py-2.5 text-[14px] font-medium text-foreground hover:bg-muted transition-colors flex items-center gap-2">
+                  Learn More <span>→</span>
+                </button>
               </motion.div>
             </div>
 
