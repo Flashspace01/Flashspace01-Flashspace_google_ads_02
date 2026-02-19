@@ -13,20 +13,20 @@ import { motion } from "framer-motion";
 
 const faqs = [
   {
-    question: "Do I need to sign a contract to book a workspace?",
-    answer: "No contracts required. Flashspace operates on a fully flexible, on-demand model. You can book by the hour, day, or week without any long-term commitment or paperwork.",
+    question: "Can I book a workspace for just an hour?",
+    answer: "Yes. Meeting rooms and certain spaces can be booked hourly. Simply select your preferred time slot during checkout and confirm instantly.",
   },
   {
-    question: "How quickly can I book a desk or meeting room?",
-    answer: "Most bookings are confirmed instantly. Simply search for available spaces in your city, select your preferred option, and check in within seconds using the app or a QR code at the entrance.",
+    question: "Is internet included with every booking?",
+    answer: "Yes, high-speed WiFi is included at all locations at no extra charge. Meeting rooms also come with video conferencing setup and presentation equipment.",
   },
   {
-    question: "What amenities are included with my booking?",
-    answer: "All bookings include high-speed WiFi, printing and scanning, reception services, and access to common areas. Meeting rooms include presentation equipment, video conferencing setup, and whiteboards.",
+    question: "Do I need a membership to book?",
+    answer: "No membership required. Anyone can book instantly. Simply search for available spaces in your city, select your preferred option, and check in within seconds.",
   },
   {
-    question: "Can I extend my booking if I need more time?",
-    answer: "Yes. You can extend your booking in real time directly from the app, subject to space availability. There's no need to speak to anyone — the entire process is seamless and self-serve.",
+    question: "Can I cancel or reschedule my booking?",
+    answer: "Yes, flexible cancellation options are available depending on the space. You can also reschedule directly from the app, subject to availability.",
   },
 ];
 
@@ -68,7 +68,7 @@ const OnDemand = () => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.1 }}
               >
-                On-Demand Business Solutions{" "}
+                On-Demand Workspaces{" "}
                 <span className="text-primary">On Your Schedule</span>
               </motion.h1>
 
@@ -80,9 +80,9 @@ const OnDemand = () => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.2 }}
               >
-                Book workspaces, meeting rooms, and event spaces instantly.
+                Book desks, meeting rooms, and event spaces instantly across premium coworking locations.
                 <br />
-                No contracts, no commitments.
+                No contracts. No long-term commitments.
               </motion.p>
 
               {/* Search + Chat CTA */}
@@ -101,7 +101,7 @@ const OnDemand = () => {
                       setShowDropdown(true);
                     }}
                     onFocus={() => setShowDropdown(true)}
-                    placeholder="Search spaces in your city..."
+                    placeholder="Search workspaces in your city…"
                     className="h-12 pl-11 pr-20 rounded-xl bg-card border-border shadow-soft text-sm w-full"
                   />
                   <div className="absolute right-3 top-1/2 -translate-y-1/2 flex items-center gap-1.5">
@@ -130,8 +130,8 @@ const OnDemand = () => {
                     </div>
                   )}
                 </div>
-                <Button variant="outline" className="h-12 rounded-xl px-6 border-border shadow-soft gap-2 whitespace-nowrap">
-                  Explore Spaces <ArrowRight className="w-4 h-4" />
+              <Button variant="outline" className="h-12 rounded-xl px-6 border-border shadow-soft gap-2 whitespace-nowrap">
+                  Book a Space <ArrowRight className="w-4 h-4" />
                 </Button>
               </motion.div>
             </div>
@@ -145,7 +145,7 @@ const OnDemand = () => {
               animate={{ opacity: 1 }}
               transition={{ duration: 0.5, delay: 0.45 }}
             >
-              Trusted by Growing Teams
+              Trusted by 10,000+ Professionals Across India
             </motion.p>
             <div className="relative overflow-hidden">
               <div className="absolute left-0 top-0 bottom-0 w-24 z-10" style={{ background: "linear-gradient(to right, hsla(0, 0%, 97%, 0.9), transparent)" }} />
@@ -203,7 +203,7 @@ const OnDemand = () => {
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: 0.1 }}
               >
-                Everything you need to know about on-demand workspace booking
+                Everything you need to know about booking on-demand workspaces
               </motion.p>
             </div>
 

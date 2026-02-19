@@ -1,35 +1,35 @@
 import { useState, useCallback, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowUpRight, ChevronLeft, ChevronRight } from "lucide-react";
-import cityDelhi from "@/assets/city-delhi.jpg";
-import cityMumbai from "@/assets/city-mumbai.jpg";
-import cityHyderabad from "@/assets/city-hyderabad.jpg";
-import coworkingBanner from "@/assets/coworking-banner.jpg";
+import hotDesksImg from "@/assets/od-hot-desks.jpg";
+import dedicatedDesksImg from "@/assets/od-dedicated-desks.jpg";
+import meetingRoomsImg from "@/assets/od-meeting-rooms.jpg";
+import communityEventsImg from "@/assets/od-community-events.jpg";
 
 const slides = [
   {
     title: "Hot Desks",
     tag: "Day Pass Available",
     status: "12 Seats Available",
-    chips: ["Flexible Seating", "Instant Booking", "High-Speed WiFi", "Day Pass Available"],
+    chips: ["Flexible Seating", "High-Speed WiFi", "Power & Charging", "Day Pass Available"],
     cta: "Book a Desk",
-    image: coworkingBanner,
+    image: hotDesksImg,
   },
   {
     title: "Dedicated Desks",
     tag: "Most Popular",
     status: null,
-    chips: ["Reserved Workspace", "24/7 Access", "Storage Included", "Member Benefits"],
+    chips: ["Reserved Workspace", "Storage Included", "24/7 Access", "Member Perks"],
     cta: "Explore Plans",
-    image: cityMumbai,
+    image: dedicatedDesksImg,
   },
   {
     title: "Meeting Rooms",
     tag: null,
     status: "2 Rooms Available",
-    chips: ["Hourly Booking", "Presentation Ready", "Video Conferencing", "Whiteboard Included"],
+    chips: ["Hourly Booking", "Presentation Screen", "Video Conferencing", "Whiteboard Included"],
     cta: "Check Availability",
-    image: cityDelhi,
+    image: meetingRoomsImg,
   },
   {
     title: "Community & Events",
@@ -37,7 +37,7 @@ const slides = [
     status: "100+ Events Hosted",
     chips: ["Networking Events", "Workshops", "Founder Meetups", "Community App"],
     cta: "View Events",
-    image: cityHyderabad,
+    image: communityEventsImg,
   },
 ];
 

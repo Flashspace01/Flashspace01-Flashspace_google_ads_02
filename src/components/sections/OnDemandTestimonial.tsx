@@ -4,21 +4,21 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 
 const testimonials = [
   {
-    quote: "Flashspace has completely changed how I work. I book a hot desk whenever I need one, no contracts, no fuss. The spaces are always top-notch and the booking process takes less than a minute.",
-    name: "Arjun Mehta",
-    title: "Freelance Product Designer",
+    quote: "Booking meeting rooms has never been this seamless. The process is fast, and the spaces are top quality. I use Flashspace every week for client presentations.",
+    name: "Rahul Mehta",
+    title: "Freelance Designer",
     city: "Bangalore",
   },
   {
-    quote: "Our remote team uses Flashspace across three cities. The meeting rooms are always well-equipped and available on short notice. It's become an essential part of how we operate.",
-    name: "Sneha Kapoor",
-    title: "Head of Operations, RemoteFirst",
+    quote: "The day passes give our remote team the flexibility we need without long-term commitments. Great locations, always available when we need them.",
+    name: "Priya Sharma",
+    title: "Tech Startup Founder",
     city: "Mumbai",
   },
   {
-    quote: "As a startup founder always on the move, having access to professional spaces without a long-term lease is a game changer. The community events have also helped us find our first few clients!",
-    name: "Vikram Nair",
-    title: "Co-founder, LaunchPad Ventures",
+    quote: "Professional spaces, great locations, and smooth booking every time. I've recommended Flashspace to every consultant I know.",
+    name: "Amit Khanna",
+    title: "Consulting Firm Director",
     city: "Delhi",
   },
 ];
