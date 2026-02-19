@@ -1,0 +1,213 @@
+import { useState, useCallback, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { ArrowUpRight, ChevronLeft, ChevronRight } from "lucide-react";
+import cityDelhi from "@/assets/city-delhi.jpg";
+import cityMumbai from "@/assets/city-mumbai.jpg";
+import cityHyderabad from "@/assets/city-hyderabad.jpg";
+import coworkingBanner from "@/assets/coworking-banner.jpg";
+
+const slides = [
+  {
+    title: "Hot Desks",
+    tag: "Day Pass Available",
+    status: "12 Seats Available",
+    chips: ["Flexible Seating", "Instant Booking", "High-Speed WiFi", "Day Pass Available"],
+    cta: "Book a Desk",
+    image: coworkingBanner,
+  },
+  {
+    title: "Dedicated Desks",
+    tag: "Most Popular",
+    status: null,
+    chips: ["Reserved Workspace", "24/7 Access", "Storage Included", "Member Benefits"],
+    cta: "Explore Plans",
+    image: cityMumbai,
+  },
+  {
+    title: "Meeting Rooms",
+    tag: null,
+    status: "2 Rooms Available",
+    chips: ["Hourly Booking", "Presentation Ready", "Video Conferencing", "Whiteboard Included"],
+    cta: "Check Availability",
+    image: cityDelhi,
+  },
+  {
+    title: "Community & Events",
+    tag: null,
+    status: "100+ Events Hosted",
+    chips: ["Networking Events", "Workshops", "Founder Meetups", "Community App"],
+    cta: "View Events",
+    image: cityHyderabad,
+  },
+];
+
+export const OnDemandWorkspaces = () => {
+  const [current, setCurrent] = useState(0);
+  const [direction, setDirection] = useState(0);
+
+  const navigate = useCallback((dir: number) => {
+    setDirection(dir);
+    setCurrent((prev) => (prev + dir + slides.length) % slides.length);
+  }, []);
+
+  useEffect(() => {
+    const handler = (e: KeyboardEvent) => {
+      if (e.key === "ArrowLeft") navigate(-1);
+      if (e.key === "ArrowRight") navigate(1);
+    };
+    window.addEventListener("keydown", handler);
+    return () => window.removeEventListener("keydown", handler);
+  }, [navigate]);
+
+  useEffect(() => {
+    let startX = 0;
+    const onStart = (e: TouchEvent) => { startX = e.touches[0].clientX; };
+    const onEnd = (e: TouchEvent) => {
+      const diff = startX - e.changedTouches[0].clientX;
+      if (Math.abs(diff) > 60) navigate(diff > 0 ? 1 : -1);
+    };
+    window.addEventListener("touchstart", onStart, { passive: true });
+    window.addEventListener("touchend", onEnd, { passive: true });
+    return () => {
+      window.removeEventListener("touchstart", onStart);
+      window.removeEventListener("touchend", onEnd);
+    };
+  }, [navigate]);
+
+  const slide = slides[current];
+
+  const slideVariants = {
+    enter: (dir: number) => ({ x: dir > 0 ? 80 : -80, opacity: 0, scale: 0.96 }),
+    center: { x: 0, opacity: 1, scale: 1 },
+    exit: (dir: number) => ({ x: dir > 0 ? -80 : 80, opacity: 0, scale: 0.96 }),
+  };
+
+  return (
+    <section className="relative w-full h-screen overflow-hidden flex items-center justify-center">
+      {/* Full-screen background images with crossfade */}
+      <AnimatePresence mode="popLayout">
+        <motion.div
+          key={`bg-${current}`}
+          className="absolute inset-0 z-0"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.7, ease: "easeInOut" }}
+        >
+          <img
+            src={slide.image}
+            alt=""
+            className="w-full h-full object-cover"
+            style={{ filter: "blur(6px) brightness(0.55)", transform: "scale(1.05)" }}
+          />
+        </motion.div>
+      </AnimatePresence>
+
+      {/* Gradient overlay */}
+      <div className="absolute inset-0 z-[1] bg-gradient-to-b from-black/40 via-black/20 to-black/60" />
+
+      {/* Content layer */}
+      <div className="relative z-10 w-full flex flex-col items-center justify-center px-4 ml-[5px]">
+        {/* Section title */}
+        <motion.p
+          className="text-white/60 text-sm font-medium tracking-[0.2em] uppercase mb-10 self-start ml-[5%] sm:ml-[10%] lg:ml-[15%]"
+          initial={{ opacity: 0, y: -10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+        >
+          Workspace Options
+        </motion.p>
+
+        {/* Card */}
+        <div className="relative w-[90%] sm:w-[80%] lg:w-[70%] max-w-[1000px]">
+          <AnimatePresence mode="wait" custom={direction}>
+            <motion.div
+              key={current}
+              custom={direction}
+              variants={slideVariants}
+              initial="enter"
+              animate="center"
+              exit="exit"
+              transition={{ duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] }}
+              className="group rounded-[10px] border border-white/[0.12] shadow-2xl cursor-default"
+              style={{
+                background: "rgba(255, 255, 255, 0.08)",
+                backdropFilter: "blur(24px)",
+                WebkitBackdropFilter: "blur(24px)",
+              }}
+            >
+              <div className="px-8 py-10 sm:px-12 sm:py-14 lg:px-16 lg:py-20">
+                {/* Tag / status badge */}
+                <div className="flex items-center gap-3 mb-4">
+                  {slide.status && (
+                    <span className="inline-flex items-center gap-1.5 text-xs font-semibold tracking-widest uppercase text-white/50">
+                      <span className="w-1.5 h-1.5 rounded-full bg-status-success" />
+                      {slide.status}
+                    </span>
+                  )}
+                  {slide.tag && (
+                    <span className="inline-block text-xs font-semibold tracking-widest uppercase text-white/50">
+                      {slide.tag}
+                    </span>
+                  )}
+                </div>
+
+                {/* Title */}
+                <h2 className="text-4xl sm:text-5xl lg:text-7xl font-bold text-white tracking-tight mb-4 lg:mb-6">
+                  {slide.title}
+                </h2>
+
+                {/* Chips */}
+                <div className="flex flex-wrap gap-2 mb-8 lg:mb-10">
+                  {slide.chips.map((chip) => (
+                    <span
+                      key={chip}
+                      className="inline-block px-3 py-1 rounded-full border border-white/20 text-xs font-medium text-white/70"
+                    >
+                      {chip}
+                    </span>
+                  ))}
+                </div>
+
+                {/* CTA */}
+                <a
+                  href="#"
+                  className="inline-flex items-center gap-2 text-sm font-medium text-white/80 hover:text-white transition-colors duration-300"
+                >
+                  {slide.cta}{" "}
+                  <ArrowUpRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                </a>
+              </div>
+            </motion.div>
+          </AnimatePresence>
+        </div>
+
+        {/* Navigation */}
+        <div className="flex items-center gap-6 mt-10">
+          <button
+            onClick={() => navigate(-1)}
+            className="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center text-white/60 hover:text-white hover:border-white/40 transition-all duration-300 hover:scale-105"
+            aria-label="Previous slide"
+          >
+            <ChevronLeft className="w-5 h-5" />
+          </button>
+
+          <a
+            href="#"
+            className="px-6 py-2.5 rounded-full border border-white/20 text-sm font-medium text-white/80 hover:text-white hover:border-white/40 transition-all duration-300"
+          >
+            View All
+          </a>
+
+          <button
+            onClick={() => navigate(1)}
+            className="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center text-white/60 hover:text-white hover:border-white/40 transition-all duration-300 hover:scale-105"
+            aria-label="Next slide"
+          >
+            <ChevronRight className="w-5 h-5" />
+          </button>
+        </div>
+      </div>
+    </section>
+  );
+};
