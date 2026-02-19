@@ -1,32 +1,30 @@
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import capabilitiesBanner from "@/assets/bs-capabilities-banner.jpg";
-import processImage from "@/assets/bs-process-image.jpg";
-import advantageImage from "@/assets/bs-advantage-image.jpg";
-import aiPlatformBanner from "@/assets/bs-ai-platform-banner.jpg";
+import capabilitiesBanner from "@/assets/od-capabilities-banner.jpg";
+import processImage from "@/assets/od-process-image.jpg";
+import advantageImage from "@/assets/od-advantage-image.jpg";
+import aiPlatformBanner from "@/assets/od-ai-platform-banner.jpg";
 
 const navItems = [
-  { id: "od-capabilities", label: "Capabilities" },
-  { id: "od-amenities", label: "Amenities" },
+  { id: "od-capabilities", label: "Overview" },
+  { id: "od-amenities", label: "How It Works" },
   { id: "od-advantage", label: "Advantage" },
-  { id: "od-ai-platform", label: "AI Platform" },
+  { id: "od-ai-platform", label: "Smart Booking" },
 ];
 
 const steps = [
-  { num: "01", title: "Search & Discover", desc: "Find available desks, rooms and event spaces near you." },
-  { num: "02", title: "Instant Booking", desc: "Book in seconds — no contracts, no paperwork required." },
-  { num: "03", title: "Check-In & Access", desc: "Arrive, check in via app or QR, and get to work." },
-  { num: "04", title: "Use & Extend", desc: "Extend your booking in real time if you need more time." },
-  { num: "05", title: "Pay & Review", desc: "Seamless payment and space review to help the community." },
+  { num: "01", title: "Search", desc: "Find available desks and rooms in your preferred location." },
+  { num: "02", title: "Book Instantly", desc: "Select your time slot and confirm your booking in seconds." },
+  { num: "03", title: "Show Up & Work", desc: "Arrive at the workspace and get started. Everything is ready." },
 ];
 
 const benefits = [
   { label: "No Contracts or Lock-Ins", highlight: "No Contracts" },
-  { label: "Book in Under 60 Seconds", highlight: "60 Seconds" },
-  { label: "24/7 Access to Workspaces", highlight: "24/7" },
-  { label: "Real-Time Availability Updates", highlight: null },
-  { label: "Nationwide Network of Spaces", highlight: null },
-  { label: "Community Events & Networking", highlight: null },
+  { label: "24/7 Secure Access", highlight: "24/7" },
+  { label: "Reception & Guest Handling", highlight: null },
+  { label: "Printing & Scanning Included", highlight: null },
+  { label: "Visitor Management System", highlight: null },
+  { label: "CCTV & Security Monitoring", highlight: null },
 ];
 
 const fadeIn = {
@@ -128,13 +126,13 @@ export const OnDemandContent = () => {
                 <div className="relative rounded-[6px] overflow-hidden shadow-soft">
                   <img
                     src={capabilitiesBanner}
-                    alt="On-demand workspace booking"
+                    alt="Premium coworking workspace"
                     className="w-full h-[280px] sm:h-[380px] lg:h-[460px] object-cover"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-black/15 to-transparent" />
                   <div className="absolute bottom-0 left-0 p-6 sm:p-10">
                     <h2 className="text-[32px] sm:text-[44px] lg:text-[56px] font-medium text-white tracking-tight leading-[1.08]">
-                      Book, Work & Leave —<br /> No Commitment Needed.
+                      Choose Your Space —<br /> Work on Your Terms.
                     </h2>
                   </div>
                 </div>
@@ -142,11 +140,11 @@ export const OnDemandContent = () => {
 
               <motion.div {...fadeIn} transition={{ duration: 0.45, delay: 0.2 }} className="mt-6">
                 <h3 className="text-xl sm:text-2xl font-semibold text-foreground mb-2">
-                  On-Demand Access to Premium Workspaces
+                  Choose Your Workspace
                 </h3>
                 <p className="text-[15px] sm:text-base text-muted-foreground leading-relaxed">
-                  Instant access to hot desks, dedicated desks, meeting rooms, and event spaces across India.
-                  No contracts, no commitments — just flexible workspaces that fit your schedule and budget.
+                  From hot desks and dedicated seats to meeting rooms and event venues — access premium coworking
+                  spaces across India instantly. No contracts, no commitments, just work.
                 </p>
               </motion.div>
             </div>
@@ -155,10 +153,10 @@ export const OnDemandContent = () => {
             <div id="od-amenities">
               <motion.div {...fadeIn} transition={{ duration: 0.45, delay: 0.1 }} className="mb-6">
                 <h3 className="text-xl sm:text-2xl font-semibold text-foreground mb-2">
-                  From Search to Seated in Minutes
+                  How It Works
                 </h3>
                 <p className="text-[15px] sm:text-base text-muted-foreground leading-relaxed">
-                  A seamless five-step flow that takes you from discovery to check-in — with real-time availability,
+                  Three simple steps from discovery to check-in — with real-time availability,
                   instant confirmation, and zero paperwork at every stage.
                 </p>
               </motion.div>
@@ -173,7 +171,7 @@ export const OnDemandContent = () => {
                   <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/40 to-transparent" />
                   <div className="absolute inset-0 flex flex-col justify-center p-6 sm:p-10 lg:p-14">
                     <h2 className="text-[32px] sm:text-[40px] lg:text-[48px] font-medium text-white tracking-tight leading-[1.08] mb-8 lg:mb-12">
-                      Simple. Fast.<br /> Flexible.
+                      Search. Book.<br /> Show Up.
                     </h2>
                     <div className="space-y-5 max-w-md">
                       {steps.map((s, i) => (
@@ -199,11 +197,11 @@ export const OnDemandContent = () => {
             <div id="od-advantage">
               <motion.div {...fadeIn} transition={{ duration: 0.45, delay: 0.1 }} className="mb-6">
                 <h3 className="text-xl sm:text-2xl font-semibold text-foreground mb-2">
-                  Why Professionals Choose Flashspace
+                  Workspace Amenities & Access
                 </h3>
                 <p className="text-[15px] sm:text-base text-muted-foreground leading-relaxed">
-                  No lock-ins, real-time availability, and a growing network of premium spaces — everything
-                  you need to work productively without the overhead of a fixed lease.
+                  Every booking includes enterprise-grade amenities — from reception services and printing to
+                  24/7 secure access and visitor management. Fully equipped, every time.
                 </p>
               </motion.div>
 
@@ -211,13 +209,13 @@ export const OnDemandContent = () => {
                 <div className="relative rounded-[6px] overflow-hidden shadow-soft">
                   <img
                     src={advantageImage}
-                    alt="Professional in modern coworking space"
+                    alt="Professionals collaborating in modern coworking space"
                     className="w-full h-[480px] sm:h-[540px] lg:h-[600px] object-cover"
                   />
                   <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/40 to-transparent" />
                   <div className="absolute inset-0 flex flex-col justify-center p-6 sm:p-10 lg:p-14">
                     <h2 className="text-[32px] sm:text-[40px] lg:text-[48px] font-medium text-white tracking-tight leading-[1.08] mb-8 lg:mb-12">
-                      Built for Modern<br /> Professionals
+                      Secure. Equipped.<br /> Flexible Access.
                     </h2>
                     <ul className="space-y-4 max-w-md">
                       {benefits.map((b, i) => (
@@ -250,11 +248,11 @@ export const OnDemandContent = () => {
             <div id="od-ai-platform">
               <motion.div {...fadeIn} transition={{ duration: 0.45, delay: 0.1 }} className="mb-6">
                 <h3 className="text-[40px] sm:text-[48px] lg:text-[56px] font-medium text-foreground tracking-tight leading-[1.08]">
-                  AI-Powered Booking Engine
+                  Smart Booking Platform
                 </h3>
                 <p className="text-[15px] sm:text-base text-muted-foreground leading-relaxed mt-3">
-                  Real-time desk availability, instant room booking, member check-in, event registration,
-                  and usage tracking — all powered by intelligent automation so you never miss a workspace.
+                  Our AI-powered system helps you discover available desks and rooms instantly, manage bookings,
+                  and track usage effortlessly — so you always find the right space at the right time.
                 </p>
               </motion.div>
 
@@ -262,13 +260,13 @@ export const OnDemandContent = () => {
                 <div className="relative rounded-[6px] overflow-hidden shadow-soft">
                   <img
                     src={aiPlatformBanner}
-                    alt="AI workspace booking dashboard"
+                    alt="Smart workspace booking platform dashboard"
                     className="w-full h-[300px] sm:h-[400px] lg:h-[500px] object-cover"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent flex flex-col justify-end p-6 sm:p-10">
                     <div className="inline-block bg-white/15 backdrop-blur-sm border border-white/20 rounded-xl px-5 py-3 max-w-max">
                       <p className="text-white text-sm font-medium italic">
-                        "Built for professionals who value flexibility, speed, and simplicity."
+                        "Real-time availability. Instant booking. Zero friction."
                       </p>
                     </div>
                   </div>
