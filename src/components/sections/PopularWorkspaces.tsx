@@ -1,6 +1,6 @@
 import { useState, useCallback, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ArrowUpRight, ChevronLeft, ChevronRight } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 import cityDelhi from "@/assets/city-delhi.jpg";
 import cityMumbai from "@/assets/city-mumbai.jpg";
 import cityHyderabad from "@/assets/city-hyderabad.jpg";
@@ -172,44 +172,14 @@ export const PopularWorkspaces = () => {
           </AnimatePresence>
         </div>
 
-        {/* Navigation */}
-        <div className="flex items-center gap-6 mt-10">
-          {/* Prev */}
-          <button
-            onClick={() => navigate(-1)}
-            className="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center text-white/60 hover:text-white hover:border-white/40 transition-all duration-300 hover:scale-105"
-            aria-label="Previous city"
+        {/* View All CTA */}
+        <div className="mt-10">
+          <a
+            href="#"
+            className="inline-flex items-center gap-2 text-sm font-medium text-white/70 hover:text-white transition-colors duration-300 border border-white/20 hover:border-white/40 rounded-full px-6 py-2.5"
           >
-            <ChevronLeft className="w-5 h-5" />
-          </button>
-
-          {/* Dots */}
-          <div className="flex items-center gap-2.5">
-            {cities.map((_, i) => (
-              <button
-                key={i}
-                onClick={() => {
-                  setDirection(i > current ? 1 : -1);
-                  setCurrent(i);
-                }}
-                className={`rounded-full transition-all duration-500 ${
-                  i === current
-                    ? "w-8 h-2 bg-white/90"
-                    : "w-2 h-2 bg-white/30 hover:bg-white/50"
-                }`}
-                aria-label={`Go to ${cities[i].name}`}
-              />
-            ))}
-          </div>
-
-          {/* Next */}
-          <button
-            onClick={() => navigate(1)}
-            className="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center text-white/60 hover:text-white hover:border-white/40 transition-all duration-300 hover:scale-105"
-            aria-label="Next city"
-          >
-            <ChevronRight className="w-5 h-5" />
-          </button>
+            View all <ArrowUpRight className="w-4 h-4" />
+          </a>
         </div>
       </div>
     </section>
