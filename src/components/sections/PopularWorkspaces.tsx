@@ -114,7 +114,7 @@ export const PopularWorkspaces = () => {
       <div className="absolute inset-0 z-[1] bg-gradient-to-b from-black/40 via-black/20 to-black/60" />
 
       {/* Content layer */}
-      <div className="relative z-10 w-full flex flex-col items-center justify-center px-4">
+      <div className="relative z-10 w-full flex flex-col items-center justify-center px-4 ml-[5px]">
         {/* Section title */}
         <motion.p
           className="text-white/60 text-sm font-medium tracking-[0.2em] uppercase mb-10 self-start ml-[5%] sm:ml-[10%] lg:ml-[15%]"
