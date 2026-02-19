@@ -183,24 +183,13 @@ export const PopularWorkspaces = () => {
             <ChevronLeft className="w-5 h-5" />
           </button>
 
-          {/* Dots */}
-          <div className="flex items-center gap-2.5">
-            {cities.map((_, i) => (
-              <button
-                key={i}
-                onClick={() => {
-                  setDirection(i > current ? 1 : -1);
-                  setCurrent(i);
-                }}
-                className={`rounded-full transition-all duration-500 ${
-                  i === current
-                    ? "w-8 h-2 bg-white/90"
-                    : "w-2 h-2 bg-white/30 hover:bg-white/50"
-                }`}
-                aria-label={`Go to ${cities[i].name}`}
-              />
-            ))}
-          </div>
+          {/* View All */}
+          <a
+            href="#"
+            className="px-6 py-2.5 rounded-full border border-white/20 text-sm font-medium text-white/80 hover:text-white hover:border-white/40 transition-all duration-300"
+          >
+            View All
+          </a>
 
           {/* Next */}
           <button
