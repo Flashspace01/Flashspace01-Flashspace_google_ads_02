@@ -117,7 +117,7 @@ export const PopularWorkspaces = () => {
       <div className="relative z-10 w-full flex flex-col items-center justify-center px-4">
         {/* Section title */}
         <motion.p
-          className="text-white/60 text-sm font-medium tracking-[0.2em] uppercase mb-10"
+          className="text-white/60 text-sm font-medium tracking-[0.2em] uppercase mb-10 self-start ml-[5%] sm:ml-[10%] lg:ml-[15%]"
           initial={{ opacity: 0, y: -10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
