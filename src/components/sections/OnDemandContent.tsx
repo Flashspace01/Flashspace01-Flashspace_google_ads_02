@@ -7,7 +7,7 @@ import aiPlatformBanner from "@/assets/od-ai-platform-banner.jpg";
 
 const navItems = [
   { id: "od-capabilities", label: "Overview" },
-  { id: "od-amenities", label: "How It Works" },
+  { id: "od-amenities", label: "Instant Setup" },
   { id: "od-advantage", label: "Advantage" },
   { id: "od-ai-platform", label: "Smart Booking" },
 ];
