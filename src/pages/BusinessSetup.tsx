@@ -140,7 +140,7 @@ const BusinessSetup = () => {
           </div>
 
           {/* Companies Marquee */}
-          <div className="mt-28 lg:mt-32">
+          <div className="mt-12 lg:mt-16">
             <motion.p
               className="text-center text-sm font-medium text-muted-foreground/70 mb-8"
               initial={{ opacity: 0 }}
