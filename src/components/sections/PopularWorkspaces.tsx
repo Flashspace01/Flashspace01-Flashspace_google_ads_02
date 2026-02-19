@@ -46,32 +46,30 @@ export const PopularWorkspaces = () => {
           {cities.map((city, i) => (
             <motion.div
               key={city.name}
-              className="group relative rounded-lg overflow-hidden cursor-pointer border border-border bg-card"
-              style={{ minHeight: "380px" }}
+              className="group cursor-pointer rounded-2xl border border-border/40 bg-card overflow-hidden shadow-soft hover:shadow-soft-lg transition-all duration-300"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.4, delay: i * 0.1 }}
             >
-              {/* Background Image */}
-              <div className="absolute inset-0">
+              {/* Image */}
+              <div className="relative overflow-hidden rounded-t-2xl" style={{ height: "240px" }}>
                 <img
                   src={city.image}
                   alt={`${city.name} workspace`}
                   className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-foreground/90 via-foreground/40 to-transparent" />
               </div>
 
               {/* Content */}
-              <div className="relative h-full flex flex-col justify-end p-6 text-white">
+              <div className="p-6">
                 <div className="flex items-center gap-2 mb-2">
-                  <MapPin className="w-4 h-4 text-primary-foreground/80" />
-                  <span className="text-sm font-medium text-primary-foreground/80">{city.spaces}</span>
+                  <MapPin className="w-4 h-4 text-muted-foreground" />
+                  <span className="text-sm font-medium text-muted-foreground">{city.spaces}</span>
                 </div>
-                <h3 className="text-2xl font-bold mb-2">{city.name}</h3>
-                <p className="text-sm text-white/70 leading-relaxed">{city.description}</p>
-                <div className="mt-4 flex items-center gap-1.5 text-sm font-medium text-white group-hover:text-accent transition-colors">
+                <h3 className="text-xl font-semibold text-foreground mb-2">{city.name}</h3>
+                <p className="text-sm text-muted-foreground leading-relaxed mb-4">{city.description}</p>
+                <div className="flex items-center gap-1.5 text-sm font-medium text-foreground group-hover:text-primary transition-colors">
                   Learn more <ArrowUpRight className="w-4 h-4" />
                 </div>
               </div>
