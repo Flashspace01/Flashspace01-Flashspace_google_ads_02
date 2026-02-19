@@ -134,7 +134,7 @@ export const BusinessSetupContent = () => {
                   <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-black/15 to-transparent" />
                   <div className="absolute bottom-0 left-0 p-6 sm:p-10">
                     <h2 className="text-[32px] sm:text-[44px] lg:text-[56px] font-medium text-white tracking-tight leading-[1.08]">
-                      Launch with Complete<br /> Legal Confidence
+                      Register, Comply & Operate —<br /> All in One Platform.
                     </h2>
                   </div>
                 </div>
