@@ -130,6 +130,7 @@ export const BusinessSetupContent = () => {
                     src={capabilitiesBanner}
                     alt="Business registration and compliance"
                     className="w-full h-[280px] sm:h-[380px] lg:h-[460px] object-cover"
+                    style={{ borderTopLeftRadius: '10px', borderTopRightRadius: '10px', borderBottomLeftRadius: 0, borderBottomRightRadius: 0 }}
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-black/15 to-transparent" />
                   <div className="absolute bottom-0 left-0 p-6 sm:p-10">
@@ -169,6 +170,7 @@ export const BusinessSetupContent = () => {
                     src={processImage}
                     alt="Consultation and document verification"
                     className="w-full h-[480px] sm:h-[540px] lg:h-[600px] object-cover"
+                    style={{ borderRadius: 0 }}
                   />
                   <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/40 to-transparent" />
                   <div className="absolute inset-0 flex flex-col justify-center p-6 sm:p-10 lg:p-14">
@@ -212,6 +214,7 @@ export const BusinessSetupContent = () => {
                     src={advantageImage}
                     alt="Startup founder in modern office"
                     className="w-full h-[480px] sm:h-[540px] lg:h-[600px] object-cover"
+                    style={{ borderRadius: 0 }}
                   />
                   <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/40 to-transparent" />
                   <div className="absolute inset-0 flex flex-col justify-center p-6 sm:p-10 lg:p-14">
@@ -262,6 +265,7 @@ export const BusinessSetupContent = () => {
                     src={aiPlatformBanner}
                     alt="AI compliance dashboard"
                     className="w-full h-[300px] sm:h-[400px] lg:h-[500px] object-cover"
+                    style={{ borderTopLeftRadius: '12px', borderTopRightRadius: '12px', borderBottomLeftRadius: 0, borderBottomRightRadius: 0 }}
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent flex flex-col justify-end p-6 sm:p-10">
                     <div className="inline-block bg-white/15 backdrop-blur-sm border border-white/20 rounded-xl px-5 py-3 max-w-max">
