@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetClose } from "@/components/ui/sheet";
 import {
@@ -37,7 +38,7 @@ const navLinks = [
 const sidebarMenuItems = [
   { label: "Start Chatting", href: "#", icon: MessageCircle },
   { label: "Business Setup", href: "/business-setup", icon: FileText },
-  { label: "Get Workspaces", href: "#workspaces", icon: LayoutGrid },
+  { label: "Get Workspaces", href: "/get-workspaces", icon: LayoutGrid },
   { label: "Your Bookings", href: "#", icon: CalendarDays },
   { label: "Flash Tribe", href: "#", icon: Users },
   { label: "Updates", href: "#", icon: Bell },
@@ -45,6 +46,7 @@ const sidebarMenuItems = [
 ];
 
 export const Navbar = () => {
+  const navigate = useNavigate();
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
 
@@ -147,18 +149,21 @@ export const Navbar = () => {
           <nav className="flex-1 px-3 py-2 overflow-y-auto">
             {sidebarMenuItems.map((item, index) => {
               const Icon = item.icon;
-              const showDivider = [1, 4].includes(index); // divider after Business Setup and Flash Tribe
+              const showDivider = [1, 4].includes(index);
+              const isExternal = item.href.startsWith("#");
               return (
                 <div key={item.label}>
                   {showDivider && <hr className="my-2 border-border" />}
-                  <a
-                    href={item.href}
-                    onClick={() => setSidebarOpen(false)}
-                    className="flex items-center gap-3 px-3 py-3 rounded-xl text-[15px] font-medium text-foreground/80 hover:text-foreground hover:bg-primary/5 transition-colors"
+                  <button
+                    onClick={() => {
+                      setSidebarOpen(false);
+                      if (!isExternal) navigate(item.href);
+                    }}
+                    className="w-full flex items-center gap-3 px-3 py-3 rounded-xl text-[15px] font-medium text-foreground/80 hover:text-foreground hover:bg-primary/5 transition-colors text-left"
                   >
                     <Icon className="w-5 h-5 text-foreground/60 flex-shrink-0" />
                     {item.label}
-                  </a>
+                  </button>
                 </div>
               );
             })}
