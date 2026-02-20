@@ -437,46 +437,52 @@ const GetWorkspaces = () => {
                   Discover premium workspaces tailored to your business needs.
                 </p>
 
-                {/* Search + Filter Panel */}
-                <div className="bg-card rounded-2xl border border-border/60 shadow-soft p-4 mb-6">
-                  <div className="flex gap-3">
-                    {/* City Search */}
-                    <div className="flex-1 flex items-center gap-2.5 bg-[#F8FAFC] dark:bg-muted/30 border border-border/60 rounded-xl px-4 py-2.5 focus-within:border-primary/50 focus-within:ring-2 focus-within:ring-primary/10 transition-all">
-                      <Search className="w-4 h-4 text-muted-foreground flex-shrink-0" />
-                      <div className="flex-1 flex flex-col">
-                        <span className="text-[10px] font-semibold text-muted-foreground uppercase tracking-widest leading-none mb-0.5">
-                          City
-                        </span>
-                        <Input
-                          value={searchCity}
-                          onChange={(e) => setSearchCity(e.target.value)}
-                          className="border-0 shadow-none p-0 h-auto text-sm font-medium focus-visible:ring-0 bg-transparent"
-                          placeholder="Enter city..."
-                        />
-                      </div>
-                    </div>
+                {/* Search + Filter Panel — Unified Pill Container */}
+                <div className="bg-card rounded-[28px] border border-border/50 shadow-soft mb-6 flex flex-col sm:flex-row items-stretch sm:items-center sm:h-[72px] overflow-hidden">
 
-                    {/* Type Select */}
-                    <div className="flex flex-col gap-0.5">
-                      <span className="text-[10px] font-semibold text-muted-foreground uppercase tracking-widest px-1">
-                        Space Type
-                      </span>
-                      <Select value={workspaceType} onValueChange={setWorkspaceType}>
-                        <SelectTrigger className="w-44 rounded-xl border-border/60 bg-[#F8FAFC] dark:bg-muted/30 text-sm font-medium h-[42px] focus:ring-primary/20">
-                          <SelectValue />
-                        </SelectTrigger>
-                        <SelectContent>
-                          <SelectItem value="virtual-office">Virtual Office</SelectItem>
-                          <SelectItem value="coworking">Coworking Space</SelectItem>
-                          <SelectItem value="private-office">Private Office</SelectItem>
-                          <SelectItem value="meeting-room">Meeting Room</SelectItem>
-                          <SelectItem value="day-pass">Day Pass</SelectItem>
-                        </SelectContent>
-                      </Select>
-                    </div>
+                  {/* City Field */}
+                  <div className="flex-1 flex flex-col justify-center px-6 py-4 sm:py-0 group focus-within:bg-muted/20 transition-colors duration-200">
+                    <span className="text-[10px] font-bold text-muted-foreground uppercase tracking-widest mb-0.5">
+                      City
+                    </span>
+                    <Input
+                      value={searchCity}
+                      onChange={(e) => setSearchCity(e.target.value)}
+                      className="border-0 shadow-none p-0 h-auto text-[15px] font-semibold text-foreground focus-visible:ring-0 bg-transparent placeholder:text-muted-foreground/60"
+                      placeholder="Enter city..."
+                    />
+                  </div>
 
-                    {/* Search Button */}
-                    <button className="flex items-center gap-2 px-5 py-2.5 bg-foreground text-background rounded-xl text-sm font-semibold hover:bg-primary hover:text-primary-foreground transition-all duration-200 shadow-sm hover:shadow-md self-end h-[42px]">
+                  {/* Vertical Divider */}
+                  <div className="hidden sm:block w-px self-stretch my-4 bg-border/50" />
+                  <div className="block sm:hidden h-px mx-6 bg-border/50" />
+
+                  {/* Space Type Field */}
+                  <div className="flex flex-col justify-center px-6 py-4 sm:py-0 sm:w-56 group focus-within:bg-muted/20 transition-colors duration-200">
+                    <span className="text-[10px] font-bold text-muted-foreground uppercase tracking-widest mb-0.5">
+                      Space Type
+                    </span>
+                    <Select value={workspaceType} onValueChange={setWorkspaceType}>
+                      <SelectTrigger className="border-0 shadow-none p-0 h-auto text-[15px] font-semibold text-foreground focus:ring-0 focus-visible:ring-0 bg-transparent [&>svg]:ml-auto">
+                        <SelectValue />
+                      </SelectTrigger>
+                      <SelectContent className="z-50 bg-card">
+                        <SelectItem value="virtual-office">Virtual Office</SelectItem>
+                        <SelectItem value="coworking">Coworking Space</SelectItem>
+                        <SelectItem value="private-office">Private Office</SelectItem>
+                        <SelectItem value="meeting-room">Meeting Room</SelectItem>
+                        <SelectItem value="day-pass">Day Pass</SelectItem>
+                      </SelectContent>
+                    </Select>
+                  </div>
+
+                  {/* Vertical Divider */}
+                  <div className="hidden sm:block w-px self-stretch my-4 bg-border/50" />
+                  <div className="block sm:hidden h-px mx-6 bg-border/50" />
+
+                  {/* Search Button */}
+                  <div className="px-3 py-3 sm:py-0 sm:pr-3">
+                    <button className="w-full sm:w-auto flex items-center justify-center gap-2 px-8 sm:px-7 py-3.5 sm:py-0 sm:h-[48px] bg-primary text-primary-foreground rounded-[20px] text-sm font-bold hover:bg-primary/90 hover:-translate-y-0.5 hover:shadow-lg transition-all duration-200 shadow-md">
                       <Search className="w-4 h-4" /> Search
                     </button>
                   </div>
