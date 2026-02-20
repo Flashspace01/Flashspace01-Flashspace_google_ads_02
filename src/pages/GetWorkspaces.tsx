@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Navbar } from "@/components/layout/Navbar";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { ResizablePanelGroup, ResizablePanel, ResizableHandle } from "@/components/ui/resizable";
 import {
   Select,
   SelectContent,
@@ -283,111 +284,120 @@ const GetWorkspaces = () => {
     <div className="min-h-screen bg-background">
       <Navbar />
 
-      <div className="flex h-screen pt-16 lg:pt-20">
-        {/* ── Left Panel ── */}
-        <div className="w-full lg:w-[52%] flex flex-col h-full overflow-hidden">
-          <div className="flex-1 overflow-y-auto px-5 lg:px-8 py-5">
-            {/* Breadcrumb */}
-            <nav className="flex items-center gap-1.5 text-sm text-muted-foreground mb-3">
-              <a href="/" className="hover:text-foreground transition-colors">Home</a>
-              <ChevronRight className="w-3.5 h-3.5" />
-              <span className="hover:text-foreground transition-colors cursor-pointer">{typeLabel[workspaceType]}</span>
-              <ChevronRight className="w-3.5 h-3.5" />
-              <span className="text-foreground font-medium">{searchCity}</span>
-            </nav>
+      <div className="h-[calc(100vh-4rem)] lg:h-[calc(100vh-5rem)] mt-16 lg:mt-20">
+        <ResizablePanelGroup direction="horizontal" className="h-full w-full">
+          {/* ── Left Panel ── */}
+          <ResizablePanel defaultSize={52} minSize={35} maxSize={70}>
+            <div className="h-full overflow-y-auto px-5 lg:px-8 py-5">
+              {/* Breadcrumb */}
+              <nav className="flex items-center gap-1.5 text-sm text-muted-foreground mb-3">
+                <a href="/" className="hover:text-foreground transition-colors">Home</a>
+                <ChevronRight className="w-3.5 h-3.5" />
+                <span className="hover:text-foreground transition-colors cursor-pointer">{typeLabel[workspaceType]}</span>
+                <ChevronRight className="w-3.5 h-3.5" />
+                <span className="text-foreground font-medium">{searchCity}</span>
+              </nav>
 
-            {/* Title */}
-            <h1 className="text-2xl lg:text-3xl font-bold text-foreground mb-5">
-              {typeLabel[workspaceType]} Space In {searchCity}
-            </h1>
+              {/* Title */}
+              <h1 className="text-2xl lg:text-3xl font-bold text-foreground mb-5">
+                {typeLabel[workspaceType]} Space In {searchCity}
+              </h1>
 
-            {/* Search + Filter Bar */}
-            <div className="flex gap-3 mb-4">
-              <div className="flex-1 flex items-center gap-2 border border-border rounded-xl px-4 py-2.5 bg-card shadow-sm">
-                <span className="text-[11px] font-semibold text-muted-foreground uppercase tracking-widest whitespace-nowrap">
-                  Search City
-                </span>
-                <div className="w-px h-4 bg-border mx-1" />
-                <Input
-                  value={searchCity}
-                  onChange={(e) => setSearchCity(e.target.value)}
-                  className="border-0 shadow-none p-0 h-auto text-sm focus-visible:ring-0 bg-transparent"
-                  placeholder="Enter city..."
-                />
-                <button className="w-8 h-8 rounded-lg bg-primary flex items-center justify-center flex-shrink-0 hover:bg-primary/90 transition-colors">
-                  <Search className="w-4 h-4 text-primary-foreground" />
-                </button>
+              {/* Search + Filter Bar */}
+              <div className="flex gap-3 mb-4">
+                <div className="flex-1 flex items-center gap-2 border border-border rounded-xl px-4 py-2.5 bg-card shadow-sm">
+                  <span className="text-[11px] font-semibold text-muted-foreground uppercase tracking-widest whitespace-nowrap">
+                    Search City
+                  </span>
+                  <div className="w-px h-4 bg-border mx-1" />
+                  <Input
+                    value={searchCity}
+                    onChange={(e) => setSearchCity(e.target.value)}
+                    className="border-0 shadow-none p-0 h-auto text-sm focus-visible:ring-0 bg-transparent"
+                    placeholder="Enter city..."
+                  />
+                  <button className="w-8 h-8 rounded-lg bg-primary flex items-center justify-center flex-shrink-0 hover:bg-primary/90 transition-colors">
+                    <Search className="w-4 h-4 text-primary-foreground" />
+                  </button>
+                </div>
+                <Select value={workspaceType} onValueChange={setWorkspaceType}>
+                  <SelectTrigger className="w-44 rounded-xl border-border bg-card shadow-sm text-sm">
+                    <SelectValue />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="virtual-office">Virtual Office</SelectItem>
+                    <SelectItem value="coworking">Coworking Space</SelectItem>
+                    <SelectItem value="private-office">Private Office</SelectItem>
+                    <SelectItem value="meeting-room">Meeting Room</SelectItem>
+                    <SelectItem value="day-pass">Day Pass</SelectItem>
+                  </SelectContent>
+                </Select>
               </div>
-              <Select value={workspaceType} onValueChange={setWorkspaceType}>
-                <SelectTrigger className="w-44 rounded-xl border-border bg-card shadow-sm text-sm">
-                  <SelectValue />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="virtual-office">Virtual Office</SelectItem>
-                  <SelectItem value="coworking">Coworking Space</SelectItem>
-                  <SelectItem value="private-office">Private Office</SelectItem>
-                  <SelectItem value="meeting-room">Meeting Room</SelectItem>
-                  <SelectItem value="day-pass">Day Pass</SelectItem>
-                </SelectContent>
-              </Select>
-            </div>
 
-            {/* Results count + view toggle */}
-            <div className="flex items-center justify-between mb-4">
-              <p className="text-sm text-muted-foreground">
-                Showing <span className="font-semibold text-foreground">{workspaces.length} result(s)</span> for {typeLabel[workspaceType].toLowerCase()} space in {searchCity}
-              </p>
-              <div className="flex items-center gap-1 bg-muted rounded-xl p-1">
-                <button
-                  onClick={() => setViewMode("list")}
-                  className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-sm font-medium transition-colors ${
-                    viewMode === "list"
-                      ? "bg-primary text-primary-foreground shadow-sm"
-                      : "text-muted-foreground hover:text-foreground"
-                  }`}
-                >
-                  <List className="w-3.5 h-3.5" /> List
-                </button>
-                <button
-                  onClick={() => setViewMode("grid")}
-                  className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-sm font-medium transition-colors ${
-                    viewMode === "grid"
-                      ? "bg-primary text-primary-foreground shadow-sm"
-                      : "text-muted-foreground hover:text-foreground"
-                  }`}
-                >
-                  <LayoutGrid className="w-3.5 h-3.5" /> Grid
-                </button>
+              {/* Results count + view toggle */}
+              <div className="flex items-center justify-between mb-4">
+                <p className="text-sm text-muted-foreground">
+                  Showing <span className="font-semibold text-foreground">{workspaces.length} result(s)</span> for {typeLabel[workspaceType].toLowerCase()} space in {searchCity}
+                </p>
+                <div className="flex items-center gap-1 bg-muted rounded-xl p-1">
+                  <button
+                    onClick={() => setViewMode("list")}
+                    className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-sm font-medium transition-colors ${
+                      viewMode === "list"
+                        ? "bg-primary text-primary-foreground shadow-sm"
+                        : "text-muted-foreground hover:text-foreground"
+                    }`}
+                  >
+                    <List className="w-3.5 h-3.5" /> List
+                  </button>
+                  <button
+                    onClick={() => setViewMode("grid")}
+                    className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-sm font-medium transition-colors ${
+                      viewMode === "grid"
+                        ? "bg-primary text-primary-foreground shadow-sm"
+                        : "text-muted-foreground hover:text-foreground"
+                    }`}
+                  >
+                    <LayoutGrid className="w-3.5 h-3.5" /> Grid
+                  </button>
+                </div>
+              </div>
+
+              {/* Workspace Cards */}
+              <div className={
+                viewMode === "grid"
+                  ? "grid grid-cols-1 sm:grid-cols-2 gap-4 pb-6"
+                  : "flex flex-col gap-3 pb-6"
+              }>
+                {workspaces.map((ws) => (
+                  <WorkspaceCard key={ws.id} ws={ws} view={viewMode} />
+                ))}
               </div>
             </div>
+          </ResizablePanel>
 
-            {/* Workspace Cards */}
-            <div className={
-              viewMode === "grid"
-                ? "grid grid-cols-1 sm:grid-cols-2 gap-4 pb-6"
-                : "flex flex-col gap-3 pb-6"
-            }>
-              {workspaces.map((ws) => (
-                <WorkspaceCard key={ws.id} ws={ws} view={viewMode} />
-              ))}
-            </div>
-          </div>
-        </div>
-
-        {/* ── Right Panel: Map ── */}
-        <div className="hidden lg:block lg:w-[48%] h-full sticky top-0">
-          <iframe
-            title="Workspace Map"
-            className="w-full h-full border-0"
-            src="https://www.openstreetmap.org/export/embed.html?bbox=77.05%2C28.50%2C77.40%2C28.72&layer=mapnik&marker=28.644%2C77.231"
-            allowFullScreen
+          {/* ── Resizable Handle ── */}
+          <ResizableHandle
+            withHandle
+            className="w-1.5 bg-border hover:bg-primary/40 transition-colors duration-200 data-[resize-handle-active]:bg-primary/60"
           />
-          {/* Map overlaid workspace pins */}
-          <div className="absolute top-4 right-4 flex flex-col gap-1.5 z-10">
-            <button className="w-8 h-8 bg-white rounded-lg shadow-md flex items-center justify-center text-foreground hover:bg-muted transition-colors border border-border font-bold text-lg leading-none">+</button>
-            <button className="w-8 h-8 bg-white rounded-lg shadow-md flex items-center justify-center text-foreground hover:bg-muted transition-colors border border-border font-bold text-lg leading-none">−</button>
-          </div>
-        </div>
+
+          {/* ── Right Panel: Map ── */}
+          <ResizablePanel defaultSize={48} minSize={30} maxSize={65}>
+            <div className="relative h-full">
+              <iframe
+                title="Workspace Map"
+                className="w-full h-full border-0"
+                src="https://www.openstreetmap.org/export/embed.html?bbox=77.05%2C28.50%2C77.40%2C28.72&layer=mapnik&marker=28.644%2C77.231"
+                allowFullScreen
+              />
+              <div className="absolute top-4 right-4 flex flex-col gap-1.5 z-10">
+                <button className="w-8 h-8 bg-white rounded-lg shadow-md flex items-center justify-center text-foreground hover:bg-muted transition-colors border border-border font-bold text-lg leading-none">+</button>
+                <button className="w-8 h-8 bg-white rounded-lg shadow-md flex items-center justify-center text-foreground hover:bg-muted transition-colors border border-border font-bold text-lg leading-none">−</button>
+              </div>
+            </div>
+          </ResizablePanel>
+        </ResizablePanelGroup>
       </div>
     </div>
   );
