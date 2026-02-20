@@ -1,8 +1,6 @@
 import { useState } from "react";
 import { Navbar } from "@/components/layout/Navbar";
-import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { ResizablePanelGroup, ResizablePanel, ResizableHandle } from "@/components/ui/resizable";
 import {
   Select,
   SelectContent,
@@ -19,7 +17,9 @@ import {
   List,
   LayoutGrid,
   ChevronRight,
+  ChevronLeft,
   Flame,
+  Phone,
 } from "lucide-react";
 import spaceDelhi from "@/assets/space-connaught-delhi.jpg";
 import spaceMumbai from "@/assets/space-bkc-mumbai.jpg";
@@ -39,13 +39,16 @@ const workspaces = [
     rating: 4.9,
     reviews: 245,
     tags: ["High-Speed WiFi", "Meeting Rooms"],
-    plan: "GST Plan",
-    price: "₹900/month",
+    plans: [
+      { label: "GST Plan", price: "₹900/month" },
+      { label: "Mailing Plan", price: "₹650/month" },
+      { label: "Business Reg", price: "₹1,200/month" },
+    ],
     image: spaceDelhi,
     popular: true,
     available: true,
-    lat: 28.644,
-    lng: 77.231,
+    negotiable: true,
+    lat: 28.644, lng: 77.231,
   },
   {
     id: 2,
@@ -54,13 +57,16 @@ const workspaces = [
     rating: 4.6,
     reviews: 167,
     tags: ["South Delhi", "Premium Facilities"],
-    plan: "GST Plan",
-    price: "₹1,083/month",
+    plans: [
+      { label: "GST Plan", price: "₹1,083/month" },
+      { label: "Mailing Plan", price: "₹867/month" },
+      { label: "Business Reg", price: "₹1,275/month" },
+    ],
     image: spaceMumbai,
     popular: true,
     available: true,
-    lat: 28.558,
-    lng: 77.207,
+    negotiable: true,
+    lat: 28.558, lng: 77.207,
   },
   {
     id: 3,
@@ -69,13 +75,15 @@ const workspaces = [
     rating: 4.4,
     reviews: 98,
     tags: ["Dedicated Desk", "24/7 Access"],
-    plan: "Basic Plan",
-    price: "₹750/month",
+    plans: [
+      { label: "Basic Plan", price: "₹750/month" },
+      { label: "GST Plan", price: "₹950/month" },
+    ],
     image: spaceHSR,
     popular: false,
     available: true,
-    lat: 28.57,
-    lng: 77.322,
+    negotiable: false,
+    lat: 28.57, lng: 77.322,
   },
   {
     id: 4,
@@ -84,13 +92,16 @@ const workspaces = [
     rating: 4.8,
     reviews: 312,
     tags: ["Prime Location", "Café Lounge"],
-    plan: "GST Plan",
-    price: "₹1,200/month",
+    plans: [
+      { label: "GST Plan", price: "₹1,200/month" },
+      { label: "Mailing Plan", price: "₹900/month" },
+      { label: "Business Reg", price: "₹1,500/month" },
+    ],
     image: spaceChennai,
     popular: true,
     available: false,
-    lat: 28.632,
-    lng: 77.219,
+    negotiable: true,
+    lat: 28.632, lng: 77.219,
   },
   {
     id: 5,
@@ -99,13 +110,15 @@ const workspaces = [
     rating: 4.3,
     reviews: 54,
     tags: ["Hot Desk", "Locker Storage"],
-    plan: "Basic Plan",
-    price: "₹600/month",
+    plans: [
+      { label: "Basic Plan", price: "₹600/month" },
+      { label: "GST Plan", price: "₹800/month" },
+    ],
     image: odHotDesks,
     popular: false,
     available: true,
-    lat: 28.569,
-    lng: 77.243,
+    negotiable: false,
+    lat: 28.569, lng: 77.243,
   },
   {
     id: 6,
@@ -114,13 +127,15 @@ const workspaces = [
     rating: 4.5,
     reviews: 88,
     tags: ["Virtual Office", "GST Address"],
-    plan: "Virtual Plan",
-    price: "₹499/month",
+    plans: [
+      { label: "Virtual Plan", price: "₹499/month" },
+      { label: "GST Plan", price: "₹699/month" },
+    ],
     image: odDedicated,
     popular: false,
     available: true,
-    lat: 28.549,
-    lng: 77.252,
+    negotiable: true,
+    lat: 28.549, lng: 77.252,
   },
   {
     id: 7,
@@ -129,13 +144,16 @@ const workspaces = [
     rating: 4.7,
     reviews: 130,
     tags: ["Private Cabin", "Event Space"],
-    plan: "GST Plan",
-    price: "₹950/month",
+    plans: [
+      { label: "GST Plan", price: "₹950/month" },
+      { label: "Mailing Plan", price: "₹720/month" },
+      { label: "Business Reg", price: "₹1,100/month" },
+    ],
     image: odMeeting,
     popular: true,
     available: true,
-    lat: 28.535,
-    lng: 77.268,
+    negotiable: true,
+    lat: 28.535, lng: 77.268,
   },
   {
     id: 8,
@@ -144,13 +162,14 @@ const workspaces = [
     rating: 4.1,
     reviews: 40,
     tags: ["Budget Friendly", "Parking"],
-    plan: "Basic Plan",
-    price: "₹550/month",
+    plans: [
+      { label: "Basic Plan", price: "₹550/month" },
+    ],
     image: workspaceCoworking,
     popular: false,
     available: true,
-    lat: 28.524,
-    lng: 77.131,
+    negotiable: false,
+    lat: 28.524, lng: 77.131,
   },
   {
     id: 9,
@@ -159,15 +178,19 @@ const workspaces = [
     rating: 4.6,
     reviews: 75,
     tags: ["Meeting Room", "High-Speed WiFi"],
-    plan: "GST Plan",
-    price: "₹880/month",
+    plans: [
+      { label: "GST Plan", price: "₹880/month" },
+      { label: "Mailing Plan", price: "₹680/month" },
+    ],
     image: workspaceMeeting,
     popular: false,
     available: true,
-    lat: 28.652,
-    lng: 77.19,
+    negotiable: false,
+    lat: 28.652, lng: 77.19,
   },
 ];
+
+import { ResizablePanelGroup, ResizablePanel, ResizableHandle } from "@/components/ui/resizable";
 
 type ViewMode = "list" | "grid";
 
@@ -176,91 +199,136 @@ const WorkspaceCard = ({ ws, view }: { ws: typeof workspaces[0]; view: ViewMode 
 
   if (view === "list") {
     return (
-      <div className="flex gap-4 p-3 rounded-lg border border-border bg-card hover:shadow-md transition-shadow cursor-pointer group">
-        <div className="relative w-48 h-36 flex-shrink-0 rounded-lg overflow-hidden">
+      <div className="flex gap-4 cursor-pointer group border-b border-border pb-4">
+        {/* Image */}
+        <div className="relative w-48 h-36 flex-shrink-0 rounded-[3px] overflow-hidden">
           <img src={ws.image} alt={ws.name} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
           {ws.popular && (
-            <span className="absolute top-2 left-2 flex items-center gap-1 bg-primary text-primary-foreground text-[11px] font-semibold px-2 py-0.5 rounded-lg">
+            <span className="absolute top-2 left-2 flex items-center gap-1 bg-primary text-primary-foreground text-[11px] font-semibold px-2 py-0.5 rounded-[3px]">
               <Flame className="w-3 h-3" /> Popular
             </span>
           )}
-          <span className={`absolute bottom-2 left-2 text-[11px] font-medium px-2.5 py-1 rounded-lg backdrop-blur-sm ${ws.available ? "bg-black/60 text-white" : "bg-black/50 text-white/70"}`}>
+          <span className={`absolute bottom-2 left-2 text-[11px] font-medium px-2.5 py-1 rounded-[3px] backdrop-blur-sm ${ws.available ? "bg-black/60 text-white" : "bg-black/50 text-white/70"}`}>
             {ws.available ? "Available Now" : "Fully Booked"}
           </span>
         </div>
+        {/* Content */}
         <div className="flex-1 min-w-0 py-1">
           <div className="flex items-start justify-between gap-2">
-            <h3 className="font-semibold text-base text-foreground">{ws.name}</h3>
-            <div className="flex items-center gap-1 flex-shrink-0 text-sm">
-              <Star className="w-3.5 h-3.5 fill-secondary text-secondary" />
-              <span className="font-semibold text-foreground">{ws.rating}</span>
-              <span className="text-muted-foreground">({ws.reviews})</span>
+            <h3 className="font-bold text-sm text-primary">{ws.name}</h3>
+            <div className="flex items-center gap-0.5 flex-shrink-0 text-xs">
+              <Star className="w-3 h-3 fill-secondary text-secondary" />
+              <span className="font-semibold text-foreground ml-0.5">{ws.rating}</span>
+              <span className="text-muted-foreground ml-0.5">({ws.reviews})</span>
             </div>
           </div>
-          <p className="flex items-start gap-1 text-xs text-muted-foreground mt-1 line-clamp-1">
+          <p className="flex items-start gap-1 text-xs text-muted-foreground mt-0.5 line-clamp-1">
             <MapPin className="w-3 h-3 mt-0.5 flex-shrink-0" /> {ws.address}
           </p>
-          <div className="flex flex-wrap gap-1.5 mt-2">
+          <div className="flex flex-wrap gap-1 mt-1.5">
             {ws.tags.map((t) => (
-              <span key={t} className="text-[11px] px-2.5 py-0.5 rounded-lg bg-muted text-muted-foreground border border-border">{t}</span>
+              <span key={t} className="text-[10px] px-2 py-0.5 rounded-[3px] bg-muted text-muted-foreground border border-border">{t}</span>
             ))}
           </div>
-          <div className="flex items-center justify-between mt-3">
-            <span className="text-xs text-muted-foreground">{ws.plan}</span>
-            <span className="font-bold text-sm text-foreground">{ws.price}</span>
+          <div className="mt-2 space-y-0.5">
+            {ws.plans.map((p) => (
+              <div key={p.label} className="flex items-center justify-between">
+                <span className="text-[11px] text-muted-foreground">{p.label}</span>
+                <span className="text-[11px] font-semibold text-foreground">{p.price}</span>
+              </div>
+            ))}
           </div>
+          {ws.negotiable && <p className="text-[10px] italic text-muted-foreground mt-1">Price negotiable</p>}
         </div>
       </div>
     );
   }
 
   return (
-    <div className="rounded-lg border border-border bg-card hover:shadow-md transition-shadow cursor-pointer group overflow-hidden">
-      <div className="relative h-44 overflow-hidden">
+    <div className="cursor-pointer group overflow-hidden bg-card border border-border rounded-[3px] hover:shadow-md transition-shadow">
+      {/* Image */}
+      <div className="relative h-48 overflow-hidden rounded-[3px]">
         <img src={ws.image} alt={ws.name} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
         {ws.popular && (
-          <span className="absolute top-2 left-2 flex items-center gap-1 bg-primary text-primary-foreground text-[11px] font-semibold px-2.5 py-1 rounded-lg">
+          <span className="absolute top-2 left-2 flex items-center gap-1 bg-primary text-primary-foreground text-[11px] font-semibold px-2.5 py-1 rounded-[3px]">
             <Flame className="w-3 h-3" /> Popular
           </span>
         )}
+        {/* Heart + Plus */}
         <div className="absolute top-2 right-2 flex gap-1.5">
-          <button onClick={(e) => { e.stopPropagation(); setLiked(!liked); }} className="w-8 h-8 rounded-lg bg-white/90 backdrop-blur-sm flex items-center justify-center hover:bg-white transition-colors shadow-sm">
+          <button onClick={(e) => { e.stopPropagation(); setLiked(!liked); }} className="w-8 h-8 rounded-[3px] bg-white/90 backdrop-blur-sm flex items-center justify-center hover:bg-white transition-colors shadow-sm">
             <Heart className={`w-4 h-4 ${liked ? "fill-red-500 text-red-500" : "text-foreground/60"}`} />
           </button>
-          <button className="w-8 h-8 rounded-lg bg-white/90 backdrop-blur-sm flex items-center justify-center hover:bg-white transition-colors shadow-sm">
+          <button className="w-8 h-8 rounded-[3px] bg-white/90 backdrop-blur-sm flex items-center justify-center hover:bg-white transition-colors shadow-sm">
             <Plus className="w-4 h-4 text-foreground/60" />
           </button>
         </div>
-        <span className={`absolute bottom-2 left-2 text-[11px] font-medium px-2.5 py-1 rounded-lg backdrop-blur-sm ${ws.available ? "bg-black/60 text-white" : "bg-black/50 text-white/70"}`}>
+        {/* Prev / Next arrows */}
+        <button className="absolute left-2 top-1/2 -translate-y-1/2 w-7 h-7 rounded-[3px] bg-white/80 backdrop-blur-sm flex items-center justify-center shadow-sm hover:bg-white transition-colors">
+          <ChevronLeft className="w-4 h-4 text-foreground/70" />
+        </button>
+        <button className="absolute right-2 top-1/2 -translate-y-1/2 w-7 h-7 rounded-[3px] bg-white/80 backdrop-blur-sm flex items-center justify-center shadow-sm hover:bg-white transition-colors">
+          <ChevronRight className="w-4 h-4 text-foreground/70" />
+        </button>
+        {/* Available badge */}
+        <span className={`absolute bottom-2 left-2 text-[11px] font-medium px-2.5 py-1 rounded-[3px] backdrop-blur-sm ${ws.available ? "bg-black/60 text-white" : "bg-black/50 text-white/70"}`}>
           {ws.available ? "Available Now" : "Fully Booked"}
         </span>
         {/* Dot indicators */}
-        <div className="absolute bottom-2 right-2 flex gap-1">
-          {[0, 1, 2].map((i) => (
-            <span key={i} className={`w-1.5 h-1.5 rounded-lg ${i === 0 ? "bg-white" : "bg-white/50"}`} />
+        <div className="absolute bottom-3 right-1/2 translate-x-1/2 flex gap-1">
+          {[0, 1, 2, 3].map((i) => (
+            <span key={i} className={`w-1.5 h-1.5 rounded-[3px] ${i === 0 ? "bg-white" : "bg-white/50"}`} />
           ))}
         </div>
       </div>
-      <div className="p-3">
-        <div className="flex items-start justify-between gap-2">
-          <h3 className="font-semibold text-sm text-foreground">{ws.name}</h3>
-                <div className="flex items-center gap-0.5 flex-shrink-0 text-xs">
-                  <Star className="w-3 h-3 fill-secondary text-secondary" />
-                  <span className="font-semibold text-foreground">{ws.rating}</span>
-                  <span className="text-muted-foreground ml-0.5">({ws.reviews})</span>
+
+      {/* Content — flat, no inner card */}
+      <div className="px-3 pt-2.5 pb-3">
+        {/* Name + Rating */}
+        <div className="flex items-center justify-between gap-2">
+          <h3 className="font-bold text-sm text-primary leading-tight">{ws.name}</h3>
+          <div className="flex items-center gap-0.5 flex-shrink-0 text-xs">
+            <Star className="w-3 h-3 fill-secondary text-secondary" />
+            <span className="font-semibold text-foreground ml-0.5">{ws.rating}</span>
+            <span className="text-muted-foreground ml-0.5">({ws.reviews})</span>
           </div>
         </div>
-        <p className="flex items-start gap-1 text-xs text-muted-foreground mt-1 line-clamp-1">
+
+        {/* Address */}
+        <p className="flex items-start gap-1 text-[11px] text-muted-foreground mt-0.5 line-clamp-1">
           <MapPin className="w-3 h-3 mt-0.5 flex-shrink-0" /> {ws.address}
         </p>
-        <div className="flex flex-wrap gap-1 mt-2">
+
+        {/* Tags */}
+        <div className="flex flex-wrap gap-1 mt-1.5">
           {ws.tags.map((t) => (
-            <span key={t} className="text-[10px] px-2 py-0.5 rounded-lg bg-muted text-muted-foreground border border-border">{t}</span>
+            <span key={t} className="text-[10px] px-2 py-0.5 rounded-[3px] bg-muted text-muted-foreground border border-border">{t}</span>
           ))}
         </div>
-        <div className="flex items-center justify-between mt-2 pt-2 border-t border-border">
-          <span className="text-[11px] text-muted-foreground">{ws.plan}</span>
-          <span className="font-bold text-sm text-foreground">{ws.price}</span>
+
+        {/* Pricing rows */}
+        <div className="mt-2.5 space-y-1">
+          {ws.plans.map((p) => (
+            <div key={p.label} className="flex items-center justify-between">
+              <span className="text-[11px] text-muted-foreground">{p.label}</span>
+              <span className="text-[11px] font-semibold text-foreground">{p.price}</span>
+            </div>
+          ))}
+        </div>
+
+        {/* Price negotiable */}
+        {ws.negotiable && (
+          <p className="text-[10px] italic text-muted-foreground mt-1">Price negotiable</p>
+        )}
+
+        {/* CTA Buttons */}
+        <div className="flex gap-2 mt-3">
+          <button className="flex-1 py-2 text-xs font-semibold rounded-[3px] bg-foreground text-background hover:bg-foreground/90 transition-colors">
+            Get Best Price
+          </button>
+          <button className="flex-1 py-2 text-xs font-semibold rounded-[3px] border border-border text-foreground hover:bg-muted transition-colors flex items-center justify-center gap-1.5">
+            <Phone className="w-3 h-3" /> Contact Sales
+          </button>
         </div>
       </div>
     </div>
@@ -305,7 +373,7 @@ const GetWorkspaces = () => {
 
               {/* Search + Filter Bar */}
               <div className="flex gap-3 mb-4">
-                <div className="flex-1 flex items-center gap-2 border border-border rounded-lg px-4 py-2.5 bg-card shadow-sm">
+                <div className="flex-1 flex items-center gap-2 border border-border rounded-[3px] px-4 py-2.5 bg-card shadow-sm">
                   <span className="text-[11px] font-semibold text-muted-foreground uppercase tracking-widest whitespace-nowrap">
                     Search City
                   </span>
@@ -316,12 +384,12 @@ const GetWorkspaces = () => {
                     className="border-0 shadow-none p-0 h-auto text-sm focus-visible:ring-0 bg-transparent"
                     placeholder="Enter city..."
                   />
-                  <button className="w-8 h-8 rounded-lg bg-primary flex items-center justify-center flex-shrink-0 hover:bg-primary/90 transition-colors">
+                  <button className="w-8 h-8 rounded-[3px] bg-primary flex items-center justify-center flex-shrink-0 hover:bg-primary/90 transition-colors">
                     <Search className="w-4 h-4 text-primary-foreground" />
                   </button>
                 </div>
                 <Select value={workspaceType} onValueChange={setWorkspaceType}>
-                  <SelectTrigger className="w-44 rounded-lg border-border bg-card shadow-sm text-sm">
+                  <SelectTrigger className="w-44 rounded-[3px] border-border bg-card shadow-sm text-sm">
                     <SelectValue />
                   </SelectTrigger>
                   <SelectContent>
@@ -339,10 +407,10 @@ const GetWorkspaces = () => {
                 <p className="text-sm text-muted-foreground">
                   Showing <span className="font-semibold text-foreground">{workspaces.length} result(s)</span> for {typeLabel[workspaceType].toLowerCase()} space in {searchCity}
                 </p>
-                <div className="flex items-center gap-1 bg-muted rounded-lg p-1">
+                <div className="flex items-center gap-1 bg-muted rounded-[3px] p-1">
                   <button
                     onClick={() => setViewMode("list")}
-                    className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-sm font-medium transition-colors ${
+                    className={`flex items-center gap-1.5 px-3 py-1.5 rounded-[3px] text-sm font-medium transition-colors ${
                       viewMode === "list"
                         ? "bg-primary text-primary-foreground shadow-sm"
                         : "text-muted-foreground hover:text-foreground"
@@ -352,7 +420,7 @@ const GetWorkspaces = () => {
                   </button>
                   <button
                     onClick={() => setViewMode("grid")}
-                    className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-sm font-medium transition-colors ${
+                    className={`flex items-center gap-1.5 px-3 py-1.5 rounded-[3px] text-sm font-medium transition-colors ${
                       viewMode === "grid"
                         ? "bg-primary text-primary-foreground shadow-sm"
                         : "text-muted-foreground hover:text-foreground"
@@ -367,7 +435,7 @@ const GetWorkspaces = () => {
               <div className={
                 viewMode === "grid"
                   ? "grid grid-cols-1 sm:grid-cols-2 gap-4 pb-6"
-                  : "flex flex-col gap-3 pb-6"
+                  : "flex flex-col gap-4 pb-6"
               }>
                 {workspaces.map((ws) => (
                   <WorkspaceCard key={ws.id} ws={ws} view={viewMode} />
@@ -392,8 +460,8 @@ const GetWorkspaces = () => {
                 allowFullScreen
               />
               <div className="absolute top-4 right-4 flex flex-col gap-1.5 z-10">
-                <button className="w-8 h-8 bg-white rounded-lg shadow-md flex items-center justify-center text-foreground hover:bg-muted transition-colors border border-border font-bold text-lg leading-none">+</button>
-                <button className="w-8 h-8 bg-white rounded-lg shadow-md flex items-center justify-center text-foreground hover:bg-muted transition-colors border border-border font-bold text-lg leading-none">−</button>
+                <button className="w-8 h-8 bg-white rounded-[3px] shadow-md flex items-center justify-center text-foreground hover:bg-muted transition-colors border border-border font-bold text-lg leading-none">+</button>
+                <button className="w-8 h-8 bg-white rounded-[3px] shadow-md flex items-center justify-center text-foreground hover:bg-muted transition-colors border border-border font-bold text-lg leading-none">−</button>
               </div>
             </div>
           </ResizablePanel>
@@ -404,3 +472,4 @@ const GetWorkspaces = () => {
 };
 
 export default GetWorkspaces;
+
