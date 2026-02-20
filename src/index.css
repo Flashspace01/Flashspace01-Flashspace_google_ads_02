@@ -4,6 +4,8 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
 
+@import url("https://fonts.googleapis.com/css2?family=Inter&display=swap");
+
 @layer base {
   :root {
     /* Deep green & soft yellow palette */
@@ -18,7 +20,7 @@
 
     /* Primary: Deep forest green #35503f */
     --primary: 142 20% 26%;
-    --primary-foreground: 0 0% 100%;
+    --primary-foreground: 54 97% 88%;
 
     /* Secondary: Soft yellow #fef8c4 */
     --secondary: 54 96% 88%;
@@ -47,7 +49,7 @@
     --yellow-light: 54 80% 94%;
     --cream: 60 30% 96%;
     --glow-blue: 142 20% 26%;
-    
+
     /* Status colors */
     --status-success: 142 60% 35%;
     --status-success-bg: 142 50% 92%;
@@ -57,7 +59,7 @@
     --status-danger-bg: 0 60% 94%;
     --status-info: 210 70% 50%;
     --status-info-bg: 210 60% 94%;
-    
+
     --success: 142 40% 40%;
     --warning: 38 92% 50%;
 
@@ -141,7 +143,7 @@
   .illustrated-bg {
     position: relative;
   }
-  
+
   .illustrated-bg::before {
     content: '';
     position: absolute;
@@ -174,7 +176,7 @@
   .illustrated-overlay {
     position: relative;
   }
-  
+
   .illustrated-overlay::after {
     content: '';
     position: absolute;
