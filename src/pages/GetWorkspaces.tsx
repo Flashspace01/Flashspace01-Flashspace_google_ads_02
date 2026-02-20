@@ -176,15 +176,15 @@ const WorkspaceCard = ({ ws, view }: { ws: typeof workspaces[0]; view: ViewMode 
 
   if (view === "list") {
     return (
-      <div className="flex gap-4 p-3 rounded-2xl border border-border bg-card hover:shadow-md transition-shadow cursor-pointer group">
-        <div className="relative w-48 h-36 flex-shrink-0 rounded-xl overflow-hidden">
+      <div className="flex gap-4 p-3 rounded-lg border border-border bg-card hover:shadow-md transition-shadow cursor-pointer group">
+        <div className="relative w-48 h-36 flex-shrink-0 rounded-lg overflow-hidden">
           <img src={ws.image} alt={ws.name} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
           {ws.popular && (
-            <span className="absolute top-2 left-2 flex items-center gap-1 bg-primary text-primary-foreground text-[11px] font-semibold px-2 py-0.5 rounded-full">
+            <span className="absolute top-2 left-2 flex items-center gap-1 bg-primary text-primary-foreground text-[11px] font-semibold px-2 py-0.5 rounded-lg">
               <Flame className="w-3 h-3" /> Popular
             </span>
           )}
-          <span className={`absolute bottom-2 left-2 text-[11px] font-medium px-2.5 py-1 rounded-full backdrop-blur-sm ${ws.available ? "bg-black/60 text-white" : "bg-black/50 text-white/70"}`}>
+          <span className={`absolute bottom-2 left-2 text-[11px] font-medium px-2.5 py-1 rounded-lg backdrop-blur-sm ${ws.available ? "bg-black/60 text-white" : "bg-black/50 text-white/70"}`}>
             {ws.available ? "Available Now" : "Fully Booked"}
           </span>
         </div>
@@ -202,7 +202,7 @@ const WorkspaceCard = ({ ws, view }: { ws: typeof workspaces[0]; view: ViewMode 
           </p>
           <div className="flex flex-wrap gap-1.5 mt-2">
             {ws.tags.map((t) => (
-              <span key={t} className="text-[11px] px-2.5 py-0.5 rounded-full bg-muted text-muted-foreground border border-border">{t}</span>
+              <span key={t} className="text-[11px] px-2.5 py-0.5 rounded-lg bg-muted text-muted-foreground border border-border">{t}</span>
             ))}
           </div>
           <div className="flex items-center justify-between mt-3">
@@ -215,29 +215,29 @@ const WorkspaceCard = ({ ws, view }: { ws: typeof workspaces[0]; view: ViewMode 
   }
 
   return (
-    <div className="rounded-2xl border border-border bg-card hover:shadow-md transition-shadow cursor-pointer group overflow-hidden">
+    <div className="rounded-lg border border-border bg-card hover:shadow-md transition-shadow cursor-pointer group overflow-hidden">
       <div className="relative h-44 overflow-hidden">
         <img src={ws.image} alt={ws.name} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
         {ws.popular && (
-          <span className="absolute top-2 left-2 flex items-center gap-1 bg-primary text-primary-foreground text-[11px] font-semibold px-2.5 py-1 rounded-full">
+          <span className="absolute top-2 left-2 flex items-center gap-1 bg-primary text-primary-foreground text-[11px] font-semibold px-2.5 py-1 rounded-lg">
             <Flame className="w-3 h-3" /> Popular
           </span>
         )}
         <div className="absolute top-2 right-2 flex gap-1.5">
-          <button onClick={(e) => { e.stopPropagation(); setLiked(!liked); }} className="w-8 h-8 rounded-full bg-white/90 backdrop-blur-sm flex items-center justify-center hover:bg-white transition-colors shadow-sm">
+          <button onClick={(e) => { e.stopPropagation(); setLiked(!liked); }} className="w-8 h-8 rounded-lg bg-white/90 backdrop-blur-sm flex items-center justify-center hover:bg-white transition-colors shadow-sm">
             <Heart className={`w-4 h-4 ${liked ? "fill-red-500 text-red-500" : "text-foreground/60"}`} />
           </button>
-          <button className="w-8 h-8 rounded-full bg-white/90 backdrop-blur-sm flex items-center justify-center hover:bg-white transition-colors shadow-sm">
+          <button className="w-8 h-8 rounded-lg bg-white/90 backdrop-blur-sm flex items-center justify-center hover:bg-white transition-colors shadow-sm">
             <Plus className="w-4 h-4 text-foreground/60" />
           </button>
         </div>
-        <span className={`absolute bottom-2 left-2 text-[11px] font-medium px-2.5 py-1 rounded-full backdrop-blur-sm ${ws.available ? "bg-black/60 text-white" : "bg-black/50 text-white/70"}`}>
+        <span className={`absolute bottom-2 left-2 text-[11px] font-medium px-2.5 py-1 rounded-lg backdrop-blur-sm ${ws.available ? "bg-black/60 text-white" : "bg-black/50 text-white/70"}`}>
           {ws.available ? "Available Now" : "Fully Booked"}
         </span>
         {/* Dot indicators */}
         <div className="absolute bottom-2 right-2 flex gap-1">
           {[0, 1, 2].map((i) => (
-            <span key={i} className={`w-1.5 h-1.5 rounded-full ${i === 0 ? "bg-white" : "bg-white/50"}`} />
+            <span key={i} className={`w-1.5 h-1.5 rounded-lg ${i === 0 ? "bg-white" : "bg-white/50"}`} />
           ))}
         </div>
       </div>
@@ -255,7 +255,7 @@ const WorkspaceCard = ({ ws, view }: { ws: typeof workspaces[0]; view: ViewMode 
         </p>
         <div className="flex flex-wrap gap-1 mt-2">
           {ws.tags.map((t) => (
-            <span key={t} className="text-[10px] px-2 py-0.5 rounded-full bg-muted text-muted-foreground border border-border">{t}</span>
+            <span key={t} className="text-[10px] px-2 py-0.5 rounded-lg bg-muted text-muted-foreground border border-border">{t}</span>
           ))}
         </div>
         <div className="flex items-center justify-between mt-2 pt-2 border-t border-border">
@@ -305,7 +305,7 @@ const GetWorkspaces = () => {
 
               {/* Search + Filter Bar */}
               <div className="flex gap-3 mb-4">
-                <div className="flex-1 flex items-center gap-2 border border-border rounded-xl px-4 py-2.5 bg-card shadow-sm">
+                <div className="flex-1 flex items-center gap-2 border border-border rounded-lg px-4 py-2.5 bg-card shadow-sm">
                   <span className="text-[11px] font-semibold text-muted-foreground uppercase tracking-widest whitespace-nowrap">
                     Search City
                   </span>
@@ -321,7 +321,7 @@ const GetWorkspaces = () => {
                   </button>
                 </div>
                 <Select value={workspaceType} onValueChange={setWorkspaceType}>
-                  <SelectTrigger className="w-44 rounded-xl border-border bg-card shadow-sm text-sm">
+                  <SelectTrigger className="w-44 rounded-lg border-border bg-card shadow-sm text-sm">
                     <SelectValue />
                   </SelectTrigger>
                   <SelectContent>
@@ -339,7 +339,7 @@ const GetWorkspaces = () => {
                 <p className="text-sm text-muted-foreground">
                   Showing <span className="font-semibold text-foreground">{workspaces.length} result(s)</span> for {typeLabel[workspaceType].toLowerCase()} space in {searchCity}
                 </p>
-                <div className="flex items-center gap-1 bg-muted rounded-xl p-1">
+                <div className="flex items-center gap-1 bg-muted rounded-lg p-1">
                   <button
                     onClick={() => setViewMode("list")}
                     className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-sm font-medium transition-colors ${
