@@ -42,7 +42,7 @@ export const WorkWhereYouThrive = () => {
 
                 {/* CTAs */}
                 <div className="flex flex-wrap items-center gap-4 mb-10">
-                  <Button size="lg" className="bg-primary hover:bg-primary/90 text-base px-8 shadow-md font-semibold">
+                  <Button size="lg" className="bg-primary hover:bg-primary/90 text-base px-8 shadow-md font-normal">
                     Start free trial
                     <ArrowRight className="w-4 h-4 ml-2" />
                   </Button>

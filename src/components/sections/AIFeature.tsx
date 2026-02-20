@@ -68,7 +68,7 @@ export const AIFeature = () => {
                 requirements—from compliance documentation to smart access control, 
                 across all your locations.
               </p>
-              <Button variant="outline" size="lg" className="group border-primary/30 hover:bg-primary/5 font-semibold">
+              <Button variant="outline" size="lg" className="group border-primary/30 hover:bg-primary/5 font-normal">
                 Learn more
                 <ArrowUpRight className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
               </Button>
@@ -95,7 +95,7 @@ export const AIFeature = () => {
                 {capabilities.map((cap) => (
                   <button
                     key={cap.id}
-                    className={`inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-semibold transition-all ${
+                    className={`inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-normal transition-all ${
                       cap.active
                         ? "bg-primary text-primary-foreground shadow-sm"
                         : "bg-muted text-muted-foreground hover:bg-primary/10 hover:text-foreground"
@@ -107,7 +107,7 @@ export const AIFeature = () => {
                 ))}
               </div>
 
-              <Button variant="outline" size="lg" className="group border-primary/30 hover:bg-primary/5 font-semibold">
+              <Button variant="outline" size="lg" className="group border-primary/30 hover:bg-primary/5 font-normal">
                 Explore capabilities
                 <ArrowUpRight className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
               </Button>

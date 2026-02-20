@@ -195,7 +195,7 @@ export const Navbar = () => {
 
           {/* CTA */}
           <div className="px-4 pb-6">
-            <Button className="w-full rounded-xl bg-secondary hover:bg-secondary/90 text-secondary-foreground font-semibold text-base py-6">
+            <Button className="w-full rounded-xl bg-secondary hover:bg-secondary/90 text-secondary-foreground font-normal text-base py-6">
               Get Consultation
             </Button>
           </div>

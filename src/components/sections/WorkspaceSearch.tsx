@@ -145,7 +145,7 @@ export const WorkspaceSearch = () => {
             </div>
 
             {/* CTA button */}
-            <Button size="lg" className="bg-primary hover:bg-primary/90 text-primary-foreground font-bold px-8 rounded-xl">
+            <Button size="lg" className="bg-primary hover:bg-primary/90 text-primary-foreground font-normal px-8 rounded-xl">
               View Workspaces
             </Button>
           </div>
