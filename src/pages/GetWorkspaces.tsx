@@ -283,7 +283,7 @@ const WorkspaceCard = ({ ws, view }: { ws: typeof workspaces[0]; view: ViewMode 
   return (
     <div
       onClick={handleNavigate}
-      className="cursor-pointer group bg-card rounded-2xl border border-border/60 shadow-soft hover:shadow-soft-lg hover:-translate-y-1 transition-all duration-200 overflow-hidden"
+      className="cursor-pointer group bg-card rounded-2xl border border-border/60 shadow-soft hover:shadow-soft-lg hover:-translate-y-1 transition-all duration-200 overflow-hidden flex flex-col"
     >
       {/* Image Section */}
       <div className="relative h-52 overflow-hidden">
@@ -331,7 +331,7 @@ const WorkspaceCard = ({ ws, view }: { ws: typeof workspaces[0]; view: ViewMode 
       </div>
 
       {/* Card Body */}
-      <div className="p-4">
+      <div className="p-4 flex flex-col flex-1">
         {/* Name + Rating */}
         <div className="flex items-start justify-between gap-2">
           <h3 className="font-semibold text-[15px] text-foreground leading-snug">{ws.name}</h3>
@@ -360,8 +360,8 @@ const WorkspaceCard = ({ ws, view }: { ws: typeof workspaces[0]; view: ViewMode 
         {/* Divider */}
         <div className="h-px bg-border/60 mt-3 mb-3" />
 
-        {/* Plan rows */}
-        <div className="space-y-2">
+        {/* Plan rows — grows to push CTA down */}
+        <div className="space-y-2 flex-1">
           {ws.plans.map(plan => (
             <div key={plan.label} className="flex items-center justify-between">
               <span className="text-[11px] text-muted-foreground">{plan.label}</span>
@@ -375,7 +375,7 @@ const WorkspaceCard = ({ ws, view }: { ws: typeof workspaces[0]; view: ViewMode 
           <p className="text-[11px] text-muted-foreground italic mt-2">Price negotiable</p>
         )}
 
-        {/* CTA Buttons */}
+        {/* CTA Buttons — always at bottom */}
         <div className="flex gap-2 mt-4">
           <button
             onClick={(e) => e.stopPropagation()}
