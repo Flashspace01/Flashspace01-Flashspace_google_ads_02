@@ -161,7 +161,7 @@ export const HeroWithSearch = () => {
                     >
                       <Button
                         size="lg"
-                        className="bg-primary text-primary-foreground hover:bg-primary/90 font-semibold px-8 h-12 rounded-xl shadow-lg hover:shadow-xl transition-all"
+                        className="bg-primary text-primary-foreground hover:bg-primary/90 font-normal px-8 h-12 rounded-xl shadow-lg hover:shadow-xl transition-all"
                         onClick={() => setChatExpanded(true)}
                       >
                         <Sparkles className="w-4 h-4 mr-1" />
