@@ -80,7 +80,8 @@ export default {
   				DEFAULT: 'hsl(var(--card))',
   				foreground: 'hsl(var(--card-foreground))'
   			},
-  			success: 'hsl(var(--success))',
+      gold: 'hsl(var(--gold))',
+      success: 'hsl(var(--success))',
   			warning: 'hsl(var(--warning))',
   			glow: 'hsl(var(--glow-blue))',
   			status: {

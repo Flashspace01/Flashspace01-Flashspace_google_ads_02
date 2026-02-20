@@ -444,7 +444,7 @@ const WorkspaceDetail = () => {
         {/* Rating + Address row */}
         <div className="flex items-center gap-3 text-sm text-muted-foreground mb-6">
           <div className="flex items-center gap-1">
-            <Star className="w-4 h-4 fill-secondary text-secondary" />
+            <Star className="w-4 h-4 fill-gold text-gold" />
             <span className="font-semibold text-foreground">{ws.rating}</span>
             <span>({ws.reviews} reviews)</span>
           </div>
@@ -552,7 +552,7 @@ const WorkspaceDetail = () => {
                   <span className="text-sm text-muted-foreground ml-1">/ year</span>
                 </div>
                 <div className="flex items-center gap-1 mt-1">
-                  <Star className="w-4 h-4 fill-secondary text-secondary" />
+                  <Star className="w-4 h-4 fill-gold text-gold" />
                   <span className="text-sm font-semibold text-foreground">{ws.rating}</span>
                 </div>
               </div>

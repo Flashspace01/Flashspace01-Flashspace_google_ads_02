@@ -224,7 +224,7 @@ const WorkspaceCard = ({ ws, view }: { ws: typeof workspaces[0]; view: ViewMode 
             <div className="flex items-start justify-between gap-2">
               <h3 className="font-semibold text-sm text-foreground leading-snug">{ws.name}</h3>
               <div className="flex items-center gap-1 flex-shrink-0">
-              <Star className="w-3 h-3 fill-secondary text-secondary" />
+              <Star className="w-3 h-3 fill-gold text-gold" />
                 <span className="text-xs font-semibold text-foreground">{ws.rating}</span>
                 <span className="text-[11px] text-muted-foreground">({ws.reviews})</span>
               </div>
@@ -315,7 +315,7 @@ const WorkspaceCard = ({ ws, view }: { ws: typeof workspaces[0]; view: ViewMode 
         <div className="flex items-start justify-between gap-2">
           <h3 className="font-bold text-[15px] text-foreground leading-snug">{ws.name}</h3>
           <div className="flex items-center gap-1 flex-shrink-0 mt-0.5">
-            <Star className="w-3.5 h-3.5 fill-secondary text-secondary" />
+            <Star className="w-3.5 h-3.5 fill-gold text-gold" />
             <span className="text-xs font-semibold text-foreground">{ws.rating}</span>
             <span className="text-[11px] text-muted-foreground">({ws.reviews})</span>
           </div>
