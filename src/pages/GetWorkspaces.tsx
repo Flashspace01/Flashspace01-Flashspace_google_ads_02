@@ -203,10 +203,10 @@ const WorkspaceCard = ({ ws, view }: { ws: typeof workspaces[0]; view: ViewMode 
     return (
       <div
         onClick={handleNavigate}
-        className="flex gap-5 cursor-pointer group bg-card rounded-2xl border border-border/60 p-4 shadow-soft hover:shadow-soft-lg hover:-translate-y-0.5 transition-all duration-200"
+        className="flex flex-col sm:flex-row gap-4 cursor-pointer group bg-card rounded-2xl border border-border/60 p-4 shadow-soft hover:shadow-soft-lg transition-all duration-200"
       >
         {/* Image */}
-        <div className="relative w-44 h-32 flex-shrink-0 rounded-xl overflow-hidden">
+        <div className="relative w-full sm:w-40 h-48 sm:h-32 flex-shrink-0 rounded-xl overflow-hidden">
           <img
             src={ws.image}
             alt={ws.name}
@@ -226,7 +226,7 @@ const WorkspaceCard = ({ ws, view }: { ws: typeof workspaces[0]; view: ViewMode 
         {/* Content */}
         <div className="flex-1 min-w-0 flex flex-col justify-between py-0.5">
           <div>
-            <div className="flex items-start justify-between gap-2">
+            <div className="flex items-start justify-between gap-2 flex-wrap">
               <h3 className="font-semibold text-[15px] text-foreground leading-snug">{ws.name}</h3>
               <div className="flex items-center gap-1 flex-shrink-0 bg-muted/60 rounded-full px-2 py-0.5">
                 <Star className="w-3 h-3 fill-gold text-gold" />
@@ -234,7 +234,7 @@ const WorkspaceCard = ({ ws, view }: { ws: typeof workspaces[0]; view: ViewMode 
                 <span className="text-[11px] text-muted-foreground">({ws.reviews})</span>
               </div>
             </div>
-            <p className="flex items-center gap-1 text-xs text-muted-foreground mt-1 line-clamp-1">
+            <p className="flex items-center gap-1 text-xs text-muted-foreground mt-1 line-clamp-2">
               <MapPin className="w-3 h-3 flex-shrink-0 opacity-60" /> {ws.address}
             </p>
             <div className="flex flex-wrap gap-1.5 mt-2">
@@ -246,12 +246,12 @@ const WorkspaceCard = ({ ws, view }: { ws: typeof workspaces[0]; view: ViewMode 
             </div>
           </div>
 
-          {/* Pricing */}
-          <div className="mt-3 pt-3 border-t border-border/50 flex items-end justify-between gap-4">
-            <div className="space-y-1">
+          {/* Pricing + CTAs */}
+          <div className="mt-3 pt-3 border-t border-border/50 flex flex-col sm:flex-row sm:items-end gap-3">
+            <div className="space-y-1 flex-1 min-w-0">
               {ws.plans.slice(0, 2).map(plan => (
                 <div key={plan.label} className="flex items-center gap-3">
-                  <span className="text-[11px] text-muted-foreground w-24">{plan.label}</span>
+                  <span className="text-[11px] text-muted-foreground w-24 flex-shrink-0">{plan.label}</span>
                   <span className="text-xs font-bold text-foreground">{plan.price}</span>
                 </div>
               ))}
@@ -262,13 +262,13 @@ const WorkspaceCard = ({ ws, view }: { ws: typeof workspaces[0]; view: ViewMode 
             <div className="flex gap-2 flex-shrink-0">
               <button
                 onClick={(e) => { e.stopPropagation(); }}
-                className="py-2 px-4 text-xs font-normal rounded-xl bg-foreground text-secondary hover:bg-primary hover:text-primary-foreground transition-all duration-200"
+                className="py-2 px-4 text-xs font-normal rounded-xl bg-foreground text-secondary hover:bg-primary hover:text-primary-foreground transition-all duration-200 whitespace-nowrap"
               >
                 Get Best Price
               </button>
               <button
                 onClick={(e) => { e.stopPropagation(); }}
-                className="py-2 px-3 text-xs font-normal rounded-xl border border-border text-foreground hover:bg-primary hover:text-primary-foreground hover:border-primary transition-all duration-200 flex items-center gap-1"
+                className="py-2 px-3 text-xs font-normal rounded-xl border border-border text-foreground hover:bg-primary hover:text-primary-foreground hover:border-primary transition-all duration-200 flex items-center gap-1 whitespace-nowrap"
               >
                 <Phone className="w-3 h-3" /> Contact Sales
               </button>
@@ -283,7 +283,7 @@ const WorkspaceCard = ({ ws, view }: { ws: typeof workspaces[0]; view: ViewMode 
   return (
     <div
       onClick={handleNavigate}
-      className="cursor-pointer group bg-card rounded-2xl border border-border/60 shadow-soft hover:shadow-soft-lg hover:-translate-y-1 transition-all duration-200 overflow-hidden flex flex-col"
+      className="cursor-pointer group bg-card rounded-2xl border border-border/60 shadow-soft hover:shadow-soft-lg transition-all duration-200 overflow-hidden flex flex-col"
     >
       {/* Image Section */}
       <div className="relative h-52 overflow-hidden">
