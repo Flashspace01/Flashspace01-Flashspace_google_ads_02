@@ -13,9 +13,10 @@ export default {
   		}
   	},
   	extend: {
-  		fontFamily: {
-  			sans: [
-  				'Inter',
+		fontFamily: {
+			sans: [
+				'InterTight',
+				'Inter',
   				'ui-sans-serif',
   				'system-ui',
   				'sans-serif',
