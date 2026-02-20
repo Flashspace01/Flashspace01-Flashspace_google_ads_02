@@ -20,7 +20,6 @@ import {
   Plus,
   Phone,
   Flame,
-  SlidersHorizontal,
 } from "lucide-react";
 import spaceDelhi from "@/assets/space-connaught-delhi.jpg";
 import spaceMumbai from "@/assets/space-bkc-mumbai.jpg";
@@ -437,26 +436,26 @@ const GetWorkspaces = () => {
                   Discover premium workspaces tailored to your business needs.
                 </p>
 
-                {/* Search + Filter Panel — Minimal Unified Container */}
+                {/* Search + Filter Panel */}
                 <div className="bg-card rounded-xl border border-border/60 shadow-sm mb-6 flex flex-col sm:flex-row items-stretch sm:items-center sm:h-[60px] overflow-hidden">
 
                   {/* City Field */}
-                  <div className="flex-[2] flex flex-col justify-center px-5 py-3 sm:py-0 focus-within:bg-muted/10 transition-colors duration-200">
+                  <div className="flex-[2] flex flex-col justify-center pl-4 pr-3 py-3 sm:py-0 min-w-0">
                     <span className="text-[9px] font-bold text-muted-foreground uppercase tracking-widest mb-0.5">City</span>
                     <Input
                       value={searchCity}
                       onChange={(e) => setSearchCity(e.target.value)}
-                      className="border-0 shadow-none p-0 h-auto text-sm font-medium text-foreground focus-visible:ring-0 bg-transparent placeholder:text-muted-foreground/50"
+                      className="border border-border/50 shadow-none rounded-[10px] h-7 text-sm font-medium text-foreground focus-visible:ring-1 focus-visible:ring-primary/40 bg-background placeholder:text-muted-foreground/50 pl-3"
                       placeholder="Enter city..."
                     />
                   </div>
 
                   {/* Vertical Divider */}
                   <div className="hidden sm:block w-px self-stretch my-3 bg-border/60" />
-                  <div className="block sm:hidden h-px mx-5 bg-border/60" />
+                  <div className="block sm:hidden h-px mx-4 bg-border/60" />
 
                   {/* Space Type Field */}
-                  <div className="flex-1 flex flex-col justify-center px-5 py-3 sm:py-0 focus-within:bg-muted/10 transition-colors duration-200">
+                  <div className="flex-1 flex flex-col justify-center px-4 py-3 sm:py-0 min-w-0">
                     <span className="text-[9px] font-bold text-muted-foreground uppercase tracking-widest mb-0.5">Space Type</span>
                     <Select value={workspaceType} onValueChange={setWorkspaceType}>
                       <SelectTrigger className="border-0 shadow-none p-0 h-auto text-sm font-medium text-foreground focus:ring-0 focus-visible:ring-0 bg-transparent [&>svg]:ml-auto">
@@ -472,13 +471,9 @@ const GetWorkspaces = () => {
                     </Select>
                   </div>
 
-                  {/* Vertical Divider */}
-                  <div className="hidden sm:block w-px self-stretch my-3 bg-border/60" />
-                  <div className="block sm:hidden h-px mx-5 bg-border/60" />
-
                   {/* Search Button — icon only */}
                   <div className="px-2.5 py-2.5 sm:py-0">
-                    <button className="w-full sm:w-auto flex items-center justify-center px-4 sm:px-3.5 py-2 sm:h-[40px] bg-primary text-primary-foreground rounded-lg text-sm font-medium">
+                    <button className="w-full sm:w-auto flex items-center justify-center px-3.5 py-2 sm:h-[40px] bg-secondary text-secondary-foreground rounded-lg text-sm font-medium hover:bg-secondary/80 transition-colors duration-200">
                       <Search className="w-4 h-4" />
                     </button>
                   </div>
@@ -490,39 +485,34 @@ const GetWorkspaces = () => {
                     <span className="font-semibold text-foreground">{workspaces.length} spaces</span>{" "}
                     found in <span className="font-medium text-foreground">{searchCity}</span>
                   </p>
-                  <div className="flex items-center gap-2">
-                    <button className="flex items-center gap-1.5 text-xs text-muted-foreground hover:text-foreground border border-border/60 rounded-lg px-3 py-1.5 bg-card hover:bg-muted/40 transition-colors">
-                      <SlidersHorizontal className="w-3.5 h-3.5" /> Filters
+                  <div className="flex items-center gap-0.5 bg-muted/60 rounded-lg p-0.5">
+                    <button
+                      onClick={() => setViewMode("list")}
+                      className={`flex items-center gap-1.5 px-3 py-1.5 rounded-md text-xs font-medium transition-all duration-200 ${
+                        viewMode === "list"
+                          ? "bg-card text-foreground shadow-sm"
+                          : "text-muted-foreground hover:text-foreground"
+                      }`}
+                    >
+                      <List className="w-3.5 h-3.5" /> List
                     </button>
-                    <div className="flex items-center gap-0.5 bg-muted/60 rounded-lg p-0.5">
-                      <button
-                        onClick={() => setViewMode("list")}
-                        className={`flex items-center gap-1.5 px-3 py-1.5 rounded-md text-xs font-medium transition-all duration-200 ${
-                          viewMode === "list"
-                            ? "bg-card text-foreground shadow-sm"
-                            : "text-muted-foreground hover:text-foreground"
-                        }`}
-                      >
-                        <List className="w-3.5 h-3.5" /> List
-                      </button>
-                      <button
-                        onClick={() => setViewMode("grid")}
-                        className={`flex items-center gap-1.5 px-3 py-1.5 rounded-md text-xs font-medium transition-all duration-200 ${
-                          viewMode === "grid"
-                            ? "bg-card text-foreground shadow-sm"
-                            : "text-muted-foreground hover:text-foreground"
-                        }`}
-                      >
-                        <LayoutGrid className="w-3.5 h-3.5" /> Grid
-                      </button>
-                    </div>
+                    <button
+                      onClick={() => setViewMode("grid")}
+                      className={`flex items-center gap-1.5 px-3 py-1.5 rounded-md text-xs font-medium transition-all duration-200 ${
+                        viewMode === "grid"
+                          ? "bg-card text-foreground shadow-sm"
+                          : "text-muted-foreground hover:text-foreground"
+                      }`}
+                    >
+                      <LayoutGrid className="w-3.5 h-3.5" /> Grid
+                    </button>
                   </div>
                 </div>
 
                 {/* Workspace Cards */}
                 <div className={
                   viewMode === "grid"
-                    ? "grid grid-cols-1 sm:grid-cols-2 gap-4 pb-8"
+                    ? "grid grid-cols-1 min-[500px]:grid-cols-2 gap-4 pb-8"
                     : "flex flex-col gap-3 pb-8"
                 }>
                   {workspaces.map((ws) => (
