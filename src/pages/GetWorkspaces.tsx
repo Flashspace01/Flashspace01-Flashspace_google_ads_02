@@ -437,34 +437,34 @@ const GetWorkspaces = () => {
                 </p>
 
                 {/* Search Bar */}
-                <div className="bg-card rounded-xl border border-border/60 shadow-sm mb-6 flex items-center h-[56px] overflow-hidden px-4 gap-3">
+                <div className="mb-6 flex flex-col sm:flex-row items-stretch sm:items-center gap-3 bg-[#F5F6F7] border border-[#E5E7EB] rounded-[20px] p-4 sm:p-5">
 
-                  {/* Left label */}
-                  <div className="flex items-center gap-2 flex-shrink-0">
-                    <Search className="w-4 h-4 text-muted-foreground" />
-                    <span className="text-[10px] font-bold text-muted-foreground uppercase tracking-widest whitespace-nowrap">Search City</span>
+                  {/* Left: Icon + Label + City Input + Search Button */}
+                  <div className="flex items-center gap-3 flex-1 min-w-0">
+                    {/* Search icon + label */}
+                    <div className="flex items-center gap-2 flex-shrink-0">
+                      <Search className="w-4 h-4 text-muted-foreground/70" strokeWidth={1.5} />
+                      <span className="text-[10px] font-medium text-muted-foreground uppercase tracking-[0.12em] whitespace-nowrap">Search City</span>
+                    </div>
+
+                    {/* City Input + Yellow Button */}
+                    <div className="flex items-center flex-1 min-w-0 bg-white border border-[#E5E7EB] rounded-[12px] h-10 overflow-hidden">
+                      <Input
+                        value={searchCity}
+                        onChange={(e) => setSearchCity(e.target.value)}
+                        className="border-0 shadow-none h-full text-sm font-medium text-foreground focus-visible:ring-0 bg-transparent px-3 placeholder:text-muted-foreground/40 min-w-0 flex-1"
+                        placeholder="Enter city..."
+                      />
+                      <button className="flex-shrink-0 w-10 h-10 flex items-center justify-center bg-[hsl(38,80%,55%)] hover:bg-[hsl(38,80%,50%)] hover:-translate-y-px transition-all duration-150 rounded-[11px] m-0">
+                        <Search className="w-4 h-4 text-white" strokeWidth={2} />
+                      </button>
+                    </div>
                   </div>
-
-                  {/* City Input with search button inside */}
-                  <div className="flex-[2] flex items-center border border-border/50 rounded-[10px] h-9 overflow-hidden min-w-0 bg-background">
-                    <Input
-                      value={searchCity}
-                      onChange={(e) => setSearchCity(e.target.value)}
-                      className="border-0 shadow-none h-full text-sm text-foreground focus-visible:ring-0 bg-transparent px-3 placeholder:text-muted-foreground/50 min-w-0"
-                      placeholder="Enter city..."
-                    />
-                    <button className="flex-shrink-0 w-9 h-full flex items-center justify-center bg-[hsl(38,92%,50%)] hover:bg-[hsl(38,92%,45%)] transition-colors rounded-none rounded-r-[9px]">
-                      <Search className="w-4 h-4 text-white" />
-                    </button>
-                  </div>
-
-                  {/* Vertical Divider */}
-                  <div className="w-px self-stretch my-3 bg-border/60 flex-shrink-0" />
 
                   {/* Space Type Dropdown */}
-                  <div className="flex-shrink-0 min-w-[140px]">
+                  <div className="flex-shrink-0 w-full sm:w-auto sm:min-w-[160px]">
                     <Select value={workspaceType} onValueChange={setWorkspaceType}>
-                      <SelectTrigger className="border border-border/50 shadow-none rounded-[10px] h-9 text-sm text-foreground focus:ring-1 focus:ring-primary/40 focus-visible:ring-1 focus-visible:ring-primary/40 bg-background pl-3 [&>svg]:ml-auto">
+                      <SelectTrigger className="border border-[#E5E7EB] shadow-none rounded-[12px] h-10 text-sm font-medium text-foreground focus:ring-1 focus:ring-primary/30 focus-visible:ring-1 focus-visible:ring-primary/30 bg-white px-4 [&>svg]:ml-auto w-full">
                         <SelectValue />
                       </SelectTrigger>
                       <SelectContent className="z-50 bg-card">
