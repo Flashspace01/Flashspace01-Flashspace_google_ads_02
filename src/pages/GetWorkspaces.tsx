@@ -401,7 +401,7 @@ const GetWorkspaces = () => {
 
               {/* Search + Filter Bar */}
               <div className="flex gap-3 mb-4">
-                <div className="flex-1 flex items-center gap-2 border border-border rounded-[3px] px-4 py-2.5 bg-card shadow-sm">
+                <div className="flex-1 flex items-center gap-2 border border-border rounded-[8px] px-4 py-2.5 bg-card shadow-sm">
                   <span className="text-[11px] font-semibold text-muted-foreground uppercase tracking-widest whitespace-nowrap">
                     Search City
                   </span>
@@ -412,12 +412,12 @@ const GetWorkspaces = () => {
                     className="border-0 shadow-none p-0 h-auto text-sm focus-visible:ring-0 bg-transparent"
                     placeholder="Enter city..."
                   />
-                  <button className="w-8 h-8 rounded-[3px] bg-primary flex items-center justify-center flex-shrink-0 hover:bg-primary/90 transition-colors">
+                  <button className="w-8 h-8 rounded-[8px] bg-primary flex items-center justify-center flex-shrink-0 hover:bg-primary/90 transition-colors">
                     <Search className="w-4 h-4 text-primary-foreground" />
                   </button>
                 </div>
                 <Select value={workspaceType} onValueChange={setWorkspaceType}>
-                  <SelectTrigger className="w-44 rounded-[3px] border-border bg-card shadow-sm text-sm">
+                  <SelectTrigger className="w-44 rounded-[8px] border-border bg-card shadow-sm text-sm">
                     <SelectValue />
                   </SelectTrigger>
                   <SelectContent>
@@ -435,10 +435,10 @@ const GetWorkspaces = () => {
                 <p className="text-sm text-muted-foreground">
                   Showing <span className="font-semibold text-foreground">{workspaces.length} result(s)</span> for {typeLabel[workspaceType].toLowerCase()} space in {searchCity}
                 </p>
-                <div className="flex items-center gap-1 bg-muted rounded-[3px] p-1">
+                <div className="flex items-center gap-1 bg-muted rounded-[8px] p-1">
                   <button
                     onClick={() => setViewMode("list")}
-                    className={`flex items-center gap-1.5 px-3 py-1.5 rounded-[3px] text-sm font-medium transition-colors ${
+                    className={`flex items-center gap-1.5 px-3 py-1.5 rounded-[8px] text-sm font-medium transition-colors ${
                       viewMode === "list"
                         ? "bg-primary text-primary-foreground shadow-sm"
                         : "text-muted-foreground hover:text-foreground"
@@ -448,7 +448,7 @@ const GetWorkspaces = () => {
                   </button>
                   <button
                     onClick={() => setViewMode("grid")}
-                    className={`flex items-center gap-1.5 px-3 py-1.5 rounded-[3px] text-sm font-medium transition-colors ${
+                    className={`flex items-center gap-1.5 px-3 py-1.5 rounded-[8px] text-sm font-medium transition-colors ${
                       viewMode === "grid"
                         ? "bg-primary text-primary-foreground shadow-sm"
                         : "text-muted-foreground hover:text-foreground"
