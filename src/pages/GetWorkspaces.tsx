@@ -397,8 +397,13 @@ const WorkspaceCard = ({ ws, view }: { ws: typeof workspaces[0]; view: ViewMode 
 
 const GetWorkspaces = () => {
   const [searchCity, setSearchCity] = useState("Delhi");
+  const [activeCity, setActiveCity] = useState("Delhi");
   const [workspaceType, setWorkspaceType] = useState("virtual-office");
   const [viewMode, setViewMode] = useState<ViewMode>("grid");
+
+  const filteredWorkspaces = workspaces.filter((ws) =>
+    ws.address.toLowerCase().includes(activeCity.toLowerCase())
+  );
 
   const typeLabel: Record<string, string> = {
     "virtual-office": "Virtual Office",
@@ -425,12 +430,12 @@ const GetWorkspaces = () => {
                   <ChevronRight className="w-3 h-3" />
                   <span className="hover:text-foreground transition-colors cursor-pointer">{typeLabel[workspaceType]}</span>
                   <ChevronRight className="w-3 h-3" />
-                  <span className="text-foreground font-medium">{searchCity}</span>
+                  <span className="text-foreground font-medium">{activeCity}</span>
                 </nav>
 
                 {/* Page Title */}
                 <h1 className="text-2xl lg:text-[28px] font-bold text-foreground tracking-tight mb-1.5">
-                  {typeLabel[workspaceType]} in {searchCity}
+                  {typeLabel[workspaceType]} in {activeCity}
                 </h1>
                 <p className="text-sm text-muted-foreground mb-6">
                   Discover premium workspaces tailored to your business needs.
@@ -442,7 +447,7 @@ const GetWorkspaces = () => {
                   {/* Left: Icon + Label + City Input + Search Button */}
                   <div className="flex items-center gap-3 flex-1 min-w-0">
                     {/* Label only */}
-                    <span className="text-[12px] font-medium text-muted-foreground uppercase tracking-[0.12em] whitespace-nowrap flex-shrink-0">Search City</span>
+                    <span className="text-[12px] font-medium text-muted-foreground uppercase tracking-[0.12em] whitespace-nowrap flex-shrink-0 leading-tight text-center">Search<br />City</span>
 
                     {/* City Input + Yellow Button */}
                     <div className="flex items-center flex-1 min-w-0 bg-white border border-[#E5E7EB] rounded-[12px] h-10 overflow-hidden">
@@ -452,7 +457,9 @@ const GetWorkspaces = () => {
                         className="border-0 shadow-none h-full text-sm font-medium text-foreground focus-visible:ring-0 bg-transparent px-3 placeholder:text-muted-foreground/40 min-w-0 flex-1"
                         placeholder="Enter city..."
                       />
-                      <button className="flex-shrink-0 w-10 h-10 flex items-center justify-center bg-primary hover:bg-primary/90 hover:-translate-y-px transition-all duration-150 rounded-[11px] m-0">
+                      <button
+                        onClick={() => setActiveCity(searchCity)}
+                        className="flex-shrink-0 w-10 h-10 flex items-center justify-center bg-primary hover:bg-primary/90 hover:-translate-y-px transition-all duration-150 rounded-[11px] m-0">
                         <Search className="w-4 h-4 text-primary-foreground" strokeWidth={2} />
                       </button>
                     </div>
@@ -477,9 +484,9 @@ const GetWorkspaces = () => {
 
                 {/* Results count + view toggle */}
                 <div className="flex items-center justify-between mb-5">
-                  <p className="text-sm text-muted-foreground">
-                    <span className="font-semibold text-foreground">{workspaces.length} spaces</span>{" "}
-                    found in <span className="font-medium text-foreground">{searchCity}</span>
+                   <p className="text-sm text-muted-foreground">
+                    <span className="font-semibold text-foreground">{filteredWorkspaces.length} spaces</span>{" "}
+                    found in <span className="font-medium text-foreground">{activeCity}</span>
                   </p>
                   <div className="flex items-center gap-0.5 bg-muted/60 rounded-lg p-0.5">
                     <button
@@ -511,9 +518,16 @@ const GetWorkspaces = () => {
                     ? "grid grid-cols-1 min-[500px]:grid-cols-2 gap-4 pb-8"
                     : "flex flex-col gap-3 pb-8"
                 }>
-                  {workspaces.map((ws) => (
-                    <WorkspaceCard key={ws.id} ws={ws} view={viewMode} />
-                  ))}
+                  {filteredWorkspaces.length > 0 ? (
+                    filteredWorkspaces.map((ws) => (
+                      <WorkspaceCard key={ws.id} ws={ws} view={viewMode} />
+                    ))
+                  ) : (
+                    <div className="col-span-2 py-16 text-center text-muted-foreground">
+                      <p className="text-base font-medium">No spaces found in "{activeCity}"</p>
+                      <p className="text-sm mt-1">Try searching a different city.</p>
+                    </div>
+                  )}
                 </div>
               </div>
             </div>
