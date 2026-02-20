@@ -203,10 +203,10 @@ const WorkspaceCard = ({ ws, view }: { ws: typeof workspaces[0]; view: ViewMode 
     return (
       <div
         onClick={handleNavigate}
-        className="flex flex-col sm:flex-row gap-4 cursor-pointer group bg-card rounded-2xl border border-border/60 p-4 shadow-soft hover:shadow-soft-lg transition-all duration-200"
+        className="flex gap-4 cursor-pointer group bg-card rounded-2xl border border-border/60 p-4 shadow-soft hover:shadow-soft-lg transition-all duration-200"
       >
-        {/* Image */}
-        <div className="relative w-full sm:w-40 h-48 sm:h-32 flex-shrink-0 rounded-xl overflow-hidden">
+        {/* Image — fixed size, never shrinks */}
+        <div className="relative w-36 h-auto min-h-[120px] flex-shrink-0 rounded-xl overflow-hidden self-stretch">
           <img
             src={ws.image}
             alt={ws.name}
@@ -214,65 +214,71 @@ const WorkspaceCard = ({ ws, view }: { ws: typeof workspaces[0]; view: ViewMode 
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
           {ws.popular && (
-            <span className="absolute top-2.5 left-2.5 flex items-center gap-1 text-[10px] font-normal px-2 py-0.5 rounded-full bg-[hsl(38,92%,50%)] text-white shadow-sm">
+            <span className="absolute top-2 left-2 flex items-center gap-1 text-[10px] font-normal px-2 py-0.5 rounded-full bg-[hsl(38,92%,50%)] text-white shadow-sm">
               <Flame className="w-2.5 h-2.5" /> Popular
             </span>
           )}
-          <span className={`absolute bottom-2.5 left-2.5 text-[10px] font-normal px-2.5 py-1 rounded-full backdrop-blur-sm text-white shadow-sm ${ws.available ? "bg-black/50" : "bg-black/60"}`}>
+          <span className={`absolute bottom-2 left-2 text-[10px] font-normal px-2 py-0.5 rounded-full backdrop-blur-sm text-white shadow-sm ${ws.available ? "bg-black/50" : "bg-black/60"}`}>
             {ws.available ? "Available Now" : "Fully Booked"}
           </span>
         </div>
 
-        {/* Content */}
-        <div className="flex-1 min-w-0 flex flex-col justify-between py-0.5">
-          <div>
-            <div className="flex items-start justify-between gap-2 flex-wrap">
-              <h3 className="font-semibold text-[15px] text-foreground leading-snug">{ws.name}</h3>
-              <div className="flex items-center gap-1 flex-shrink-0 bg-muted/60 rounded-full px-2 py-0.5">
-                <Star className="w-3 h-3 fill-gold text-gold" />
-                <span className="text-xs font-semibold text-foreground">{ws.rating}</span>
-                <span className="text-[11px] text-muted-foreground">({ws.reviews})</span>
-              </div>
-            </div>
-            <p className="flex items-center gap-1 text-xs text-muted-foreground mt-1 line-clamp-2">
-              <MapPin className="w-3 h-3 flex-shrink-0 opacity-60" /> {ws.address}
-            </p>
-            <div className="flex flex-wrap gap-1.5 mt-2">
-              {ws.tags.map(tag => (
-                <span key={tag} className="text-[11px] px-2.5 py-0.5 rounded-full border border-border/70 text-muted-foreground bg-muted/40 hover:bg-muted/80 transition-colors">
-                  {tag}
-                </span>
-              ))}
+        {/* Content — all stacked vertically */}
+        <div className="flex-1 min-w-0 flex flex-col gap-2">
+          {/* Name + Rating */}
+          <div className="flex items-start justify-between gap-2">
+            <h3 className="font-semibold text-[15px] text-foreground leading-snug">{ws.name}</h3>
+            <div className="flex items-center gap-1 flex-shrink-0 bg-muted/60 rounded-full px-2 py-0.5">
+              <Star className="w-3 h-3 fill-gold text-gold" />
+              <span className="text-xs font-semibold text-foreground">{ws.rating}</span>
+              <span className="text-[11px] text-muted-foreground">({ws.reviews})</span>
             </div>
           </div>
 
-          {/* Pricing + CTAs */}
-          <div className="mt-3 pt-3 border-t border-border/50 flex flex-col sm:flex-row sm:items-end gap-3">
-            <div className="space-y-1 flex-1 min-w-0">
-              {ws.plans.slice(0, 2).map(plan => (
-                <div key={plan.label} className="flex items-center gap-3">
-                  <span className="text-[11px] text-muted-foreground w-24 flex-shrink-0">{plan.label}</span>
-                  <span className="text-xs font-bold text-foreground">{plan.price}</span>
-                </div>
-              ))}
-              {ws.negotiable && (
-                <p className="text-[10px] text-muted-foreground italic mt-0.5">Price negotiable</p>
-              )}
-            </div>
-            <div className="flex gap-2 flex-shrink-0">
-              <button
-                onClick={(e) => { e.stopPropagation(); }}
-                className="py-2 px-4 text-xs font-normal rounded-xl bg-foreground text-secondary hover:bg-primary hover:text-primary-foreground transition-all duration-200 whitespace-nowrap"
-              >
-                Get Best Price
-              </button>
-              <button
-                onClick={(e) => { e.stopPropagation(); }}
-                className="py-2 px-3 text-xs font-normal rounded-xl border border-border text-foreground hover:bg-primary hover:text-primary-foreground hover:border-primary transition-all duration-200 flex items-center gap-1 whitespace-nowrap"
-              >
-                <Phone className="w-3 h-3" /> Contact Sales
-              </button>
-            </div>
+          {/* Address */}
+          <p className="flex items-start gap-1 text-xs text-muted-foreground line-clamp-1">
+            <MapPin className="w-3 h-3 flex-shrink-0 opacity-60 mt-0.5" /> {ws.address}
+          </p>
+
+          {/* Tags */}
+          <div className="flex flex-wrap gap-1.5">
+            {ws.tags.map(tag => (
+              <span key={tag} className="text-[11px] px-2.5 py-0.5 rounded-full border border-border/70 text-muted-foreground bg-muted/40">
+                {tag}
+              </span>
+            ))}
+          </div>
+
+          {/* Divider */}
+          <div className="h-px bg-border/50 mt-1" />
+
+          {/* Pricing */}
+          <div className="space-y-1">
+            {ws.plans.slice(0, 2).map(plan => (
+              <div key={plan.label} className="flex items-center gap-3">
+                <span className="text-[11px] text-muted-foreground w-24 flex-shrink-0">{plan.label}</span>
+                <span className="text-xs font-bold text-foreground">{plan.price}</span>
+              </div>
+            ))}
+            {ws.negotiable && (
+              <p className="text-[10px] text-muted-foreground italic">Price negotiable</p>
+            )}
+          </div>
+
+          {/* CTAs — always on their own row */}
+          <div className="flex gap-2 mt-1">
+            <button
+              onClick={(e) => { e.stopPropagation(); }}
+              className="py-2 px-4 text-xs font-normal rounded-xl bg-foreground text-secondary hover:bg-primary hover:text-primary-foreground transition-all duration-200 whitespace-nowrap"
+            >
+              Get Best Price
+            </button>
+            <button
+              onClick={(e) => { e.stopPropagation(); }}
+              className="py-2 px-3 text-xs font-normal rounded-xl border border-border text-foreground hover:bg-primary hover:text-primary-foreground hover:border-primary transition-all duration-200 flex items-center gap-1 whitespace-nowrap"
+            >
+              <Phone className="w-3 h-3" /> Contact Sales
+            </button>
           </div>
         </div>
       </div>
