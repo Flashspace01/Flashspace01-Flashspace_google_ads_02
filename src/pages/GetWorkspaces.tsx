@@ -223,54 +223,47 @@ const WorkspaceCard = ({ ws, view }: { ws: typeof workspaces[0]; view: ViewMode 
           </span>
         </div>
 
-        {/* Content — all stacked vertically */}
-        <div className="flex-1 min-w-0 flex flex-col gap-2">
-          {/* Name + Rating */}
-          <div className="flex items-start justify-between gap-2">
-            <h3 className="font-semibold text-[15px] text-foreground leading-snug">{ws.name}</h3>
-            <div className="flex items-center gap-1 flex-shrink-0 bg-muted/60 rounded-full px-2 py-0.5">
-              <Star className="w-3 h-3 fill-gold text-gold" />
-              <span className="text-xs font-semibold text-foreground">{ws.rating}</span>
-              <span className="text-[11px] text-muted-foreground">({ws.reviews})</span>
+        {/* Content — left info + right pricing/CTA */}
+        <div className="flex-1 min-w-0 flex gap-3">
+          {/* Left: Name, Address, Tags */}
+          <div className="flex-1 min-w-0 flex flex-col gap-2">
+            {/* Name + Rating */}
+            <div className="flex items-start justify-between gap-2">
+              <h3 className="font-semibold text-[15px] text-foreground leading-snug">{ws.name}</h3>
+              <div className="flex items-center gap-1 flex-shrink-0 bg-muted/60 rounded-full px-2 py-0.5">
+                <Star className="w-3 h-3 fill-gold text-gold" />
+                <span className="text-xs font-semibold text-foreground">{ws.rating}</span>
+                <span className="text-[11px] text-muted-foreground">({ws.reviews})</span>
+              </div>
+            </div>
+
+            {/* Address */}
+            <p className="text-xs text-muted-foreground line-clamp-1">{ws.address}</p>
+
+            {/* Tags */}
+            <div className="flex flex-wrap gap-1.5">
+              {ws.tags.map(tag => (
+                <span key={tag} className="text-[11px] px-2.5 py-0.5 rounded-full border border-border/70 text-muted-foreground bg-muted/40">
+                  {tag}
+                </span>
+              ))}
             </div>
           </div>
 
-          {/* Address */}
-          <p className="text-xs text-muted-foreground line-clamp-1">{ws.address}</p>
-
-          {/* Tags */}
-          <div className="flex flex-wrap gap-1.5">
-            {ws.tags.map(tag => (
-              <span key={tag} className="text-[11px] px-2.5 py-0.5 rounded-full border border-border/70 text-muted-foreground bg-muted/40">
-                {tag}
-              </span>
-            ))}
-          </div>
-
-          {/* Divider */}
-          <div className="h-px bg-border/50 mt-1" />
-
-          {/* Pricing */}
-          <div className="space-y-1">
-            {ws.plans.slice(0, 2).map(plan => (
-              <div key={plan.label} className="flex items-center gap-3">
-                <span className="text-[11px] text-muted-foreground w-24 flex-shrink-0">{plan.label}</span>
-                <span className="text-xs font-bold text-foreground">{plan.price}</span>
-              </div>
-            ))}
-            {ws.negotiable && (
-              <p className="text-[10px] text-muted-foreground italic">Price negotiable</p>
-            )}
-          </div>
-
-          {/* CTAs — always on their own row */}
-          <div className="flex gap-2 mt-1">
-            <button
-              onClick={(e) => { e.stopPropagation(); handleNavigate(); }}
-              className="py-2 px-4 text-xs font-normal rounded-xl bg-foreground text-secondary hover:bg-primary hover:text-primary-foreground transition-all duration-200 whitespace-nowrap"
-            >
-              Get Best Price
-            </button>
+          {/* Right: Pricing + CTA pinned to bottom-right */}
+          <div className="flex flex-col items-end justify-end gap-2 flex-shrink-0">
+            {/* Pricing */}
+            <div className="space-y-0.5 text-right">
+              {ws.plans.slice(0, 2).map(plan => (
+                <div key={plan.label}>
+                  <span className="text-xs font-bold text-foreground">{plan.price}</span>
+                </div>
+              ))}
+              {ws.negotiable && (
+                <p className="text-[10px] text-muted-foreground italic">Negotiable</p>
+              )}
+            </div>
+            {/* Contact Sales CTA */}
             <button
               onClick={(e) => { e.stopPropagation(); handleNavigate(); }}
               className="py-2 px-3 text-xs font-normal rounded-xl border border-border text-foreground hover:bg-primary hover:text-primary-foreground hover:border-primary transition-all duration-200 flex items-center gap-1 whitespace-nowrap"
