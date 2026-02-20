@@ -417,7 +417,7 @@ const GetWorkspaces = () => {
         <ResizablePanelGroup direction="horizontal" className="h-full w-full">
           {/* ── Left Panel ── */}
           <ResizablePanel defaultSize={52} minSize={35} maxSize={70}>
-            <div className="h-full overflow-y-auto bg-[#F8FAFC] dark:bg-background">
+            <div className="h-full overflow-y-auto bg-[hsla(0,0%,97%,1)] dark:bg-background">
               <div className="px-6 lg:px-8 py-6">
 
                 {/* Breadcrumb */}
@@ -437,33 +437,29 @@ const GetWorkspaces = () => {
                   Discover premium workspaces tailored to your business needs.
                 </p>
 
-                {/* Search + Filter Panel — Unified Pill Container */}
-                <div className="bg-card rounded-[28px] border border-border/50 shadow-soft mb-6 flex flex-col sm:flex-row items-stretch sm:items-center sm:h-[72px] overflow-hidden">
+                {/* Search + Filter Panel — Minimal Unified Container */}
+                <div className="bg-card rounded-xl border border-border/60 shadow-sm mb-6 flex flex-col sm:flex-row items-stretch sm:items-center sm:h-[60px] overflow-hidden">
 
                   {/* City Field */}
-                  <div className="flex-1 flex flex-col justify-center px-6 py-4 sm:py-0 group focus-within:bg-muted/20 transition-colors duration-200">
-                    <span className="text-[10px] font-bold text-muted-foreground uppercase tracking-widest mb-0.5">
-                      City
-                    </span>
+                  <div className="flex-[2] flex flex-col justify-center px-5 py-3 sm:py-0 focus-within:bg-muted/10 transition-colors duration-200">
+                    <span className="text-[9px] font-bold text-muted-foreground uppercase tracking-widest mb-0.5">City</span>
                     <Input
                       value={searchCity}
                       onChange={(e) => setSearchCity(e.target.value)}
-                      className="border-0 shadow-none p-0 h-auto text-[15px] font-semibold text-foreground focus-visible:ring-0 bg-transparent placeholder:text-muted-foreground/60"
+                      className="border-0 shadow-none p-0 h-auto text-sm font-medium text-foreground focus-visible:ring-0 bg-transparent placeholder:text-muted-foreground/50"
                       placeholder="Enter city..."
                     />
                   </div>
 
                   {/* Vertical Divider */}
-                  <div className="hidden sm:block w-px self-stretch my-4 bg-border/50" />
-                  <div className="block sm:hidden h-px mx-6 bg-border/50" />
+                  <div className="hidden sm:block w-px self-stretch my-3 bg-border/60" />
+                  <div className="block sm:hidden h-px mx-5 bg-border/60" />
 
                   {/* Space Type Field */}
-                  <div className="flex flex-col justify-center px-6 py-4 sm:py-0 sm:w-56 group focus-within:bg-muted/20 transition-colors duration-200">
-                    <span className="text-[10px] font-bold text-muted-foreground uppercase tracking-widest mb-0.5">
-                      Space Type
-                    </span>
+                  <div className="flex-1 flex flex-col justify-center px-5 py-3 sm:py-0 focus-within:bg-muted/10 transition-colors duration-200">
+                    <span className="text-[9px] font-bold text-muted-foreground uppercase tracking-widest mb-0.5">Space Type</span>
                     <Select value={workspaceType} onValueChange={setWorkspaceType}>
-                      <SelectTrigger className="border-0 shadow-none p-0 h-auto text-[15px] font-semibold text-foreground focus:ring-0 focus-visible:ring-0 bg-transparent [&>svg]:ml-auto">
+                      <SelectTrigger className="border-0 shadow-none p-0 h-auto text-sm font-medium text-foreground focus:ring-0 focus-visible:ring-0 bg-transparent [&>svg]:ml-auto">
                         <SelectValue />
                       </SelectTrigger>
                       <SelectContent className="z-50 bg-card">
@@ -477,13 +473,13 @@ const GetWorkspaces = () => {
                   </div>
 
                   {/* Vertical Divider */}
-                  <div className="hidden sm:block w-px self-stretch my-4 bg-border/50" />
-                  <div className="block sm:hidden h-px mx-6 bg-border/50" />
+                  <div className="hidden sm:block w-px self-stretch my-3 bg-border/60" />
+                  <div className="block sm:hidden h-px mx-5 bg-border/60" />
 
-                  {/* Search Button */}
-                  <div className="px-3 py-3 sm:py-0 sm:pr-3">
-                    <button className="w-full sm:w-auto flex items-center justify-center gap-2 px-8 sm:px-7 py-3.5 sm:py-0 sm:h-[48px] bg-primary text-primary-foreground rounded-[20px] text-sm font-bold hover:bg-primary/90 hover:-translate-y-0.5 hover:shadow-lg transition-all duration-200 shadow-md">
-                      <Search className="w-4 h-4" /> Search
+                  {/* Search Button — icon only */}
+                  <div className="px-2.5 py-2.5 sm:py-0">
+                    <button className="w-full sm:w-auto flex items-center justify-center px-4 sm:px-3.5 py-2 sm:h-[40px] bg-primary text-primary-foreground rounded-lg text-sm font-medium">
+                      <Search className="w-4 h-4" />
                     </button>
                   </div>
                 </div>
@@ -545,7 +541,7 @@ const GetWorkspaces = () => {
 
           {/* ── Right Panel: Map ── */}
           <ResizablePanel defaultSize={48} minSize={30} maxSize={65}>
-            <div className="relative h-full bg-[#F8FAFC] dark:bg-background p-4">
+            <div className="relative h-full bg-[hsla(0,0%,97%,1)] dark:bg-background p-4">
               <div className="h-full rounded-2xl overflow-hidden shadow-soft-lg border border-border/40">
                 <iframe
                   title="Workspace Map"
