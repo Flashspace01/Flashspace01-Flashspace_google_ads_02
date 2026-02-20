@@ -214,7 +214,7 @@ const WorkspaceCard = ({ ws, view }: { ws: typeof workspaces[0]; view: ViewMode 
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
           {ws.popular && (
-            <span className="absolute top-2 left-2 flex items-center gap-1 text-[10px] font-normal px-2 py-0.5 rounded-full bg-[hsl(38,92%,50%)] text-white shadow-sm">
+            <span className="absolute top-2 left-2 flex items-center gap-1 text-[10px] font-normal px-2 py-0.5 rounded-full bg-secondary text-secondary-foreground shadow-sm">
               <Flame className="w-2.5 h-2.5" /> Popular
             </span>
           )}
@@ -236,9 +236,7 @@ const WorkspaceCard = ({ ws, view }: { ws: typeof workspaces[0]; view: ViewMode 
           </div>
 
           {/* Address */}
-          <p className="flex items-start gap-1 text-xs text-muted-foreground line-clamp-1">
-            <MapPin className="w-3 h-3 flex-shrink-0 opacity-60 mt-0.5" /> {ws.address}
-          </p>
+          <p className="text-xs text-muted-foreground line-clamp-1">{ws.address}</p>
 
           {/* Tags */}
           <div className="flex flex-wrap gap-1.5">
@@ -302,7 +300,7 @@ const WorkspaceCard = ({ ws, view }: { ws: typeof workspaces[0]; view: ViewMode 
 
         {/* Popular badge */}
         {ws.popular && (
-          <span className="absolute top-3 left-3 flex items-center gap-1 text-[10px] font-normal px-2.5 py-1 rounded-full bg-[hsl(38,92%,50%)] text-white shadow-sm">
+          <span className="absolute top-3 left-3 flex items-center gap-1 text-[10px] font-normal px-2.5 py-1 rounded-full bg-secondary text-secondary-foreground shadow-sm">
             <Flame className="w-2.5 h-2.5" /> Popular
           </span>
         )}
@@ -313,7 +311,7 @@ const WorkspaceCard = ({ ws, view }: { ws: typeof workspaces[0]; view: ViewMode 
             onClick={(e) => { e.stopPropagation(); setLiked(!liked); }}
             className="w-8 h-8 rounded-full bg-white/95 backdrop-blur-sm flex items-center justify-center shadow-sm hover:bg-white hover:scale-110 transition-all duration-200"
           >
-            <Bookmark className={`w-3.5 h-3.5 ${liked ? "fill-secondary text-secondary" : "text-foreground/60"}`} />
+            <Bookmark className={`w-3.5 h-3.5 ${liked ? "fill-primary text-primary" : "text-foreground/60"}`} />
           </button>
           <button
             onClick={(e) => e.stopPropagation()}
@@ -349,10 +347,7 @@ const WorkspaceCard = ({ ws, view }: { ws: typeof workspaces[0]; view: ViewMode 
         </div>
 
         {/* Address */}
-        <p className="flex items-center gap-1 text-xs text-muted-foreground mt-1.5 line-clamp-1">
-          <MapPin className="w-3 h-3 flex-shrink-0 opacity-60" />
-          {ws.address}
-        </p>
+        <p className="text-xs text-muted-foreground mt-1.5 line-clamp-1">{ws.address}</p>
 
         {/* Tags */}
         <div className="flex flex-wrap gap-1.5 mt-3">
