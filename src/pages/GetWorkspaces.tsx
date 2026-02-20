@@ -266,13 +266,13 @@ const WorkspaceCard = ({ ws, view }: { ws: typeof workspaces[0]; view: ViewMode 
           {/* CTAs — always on their own row */}
           <div className="flex gap-2 mt-1">
             <button
-              onClick={(e) => { e.stopPropagation(); }}
+              onClick={(e) => { e.stopPropagation(); handleNavigate(); }}
               className="py-2 px-4 text-xs font-normal rounded-xl bg-foreground text-secondary hover:bg-primary hover:text-primary-foreground transition-all duration-200 whitespace-nowrap"
             >
               Get Best Price
             </button>
             <button
-              onClick={(e) => { e.stopPropagation(); }}
+              onClick={(e) => { e.stopPropagation(); handleNavigate(); }}
               className="py-2 px-3 text-xs font-normal rounded-xl border border-border text-foreground hover:bg-primary hover:text-primary-foreground hover:border-primary transition-all duration-200 flex items-center gap-1 whitespace-nowrap"
             >
               <Phone className="w-3 h-3" /> Contact Sales
@@ -379,13 +379,13 @@ const WorkspaceCard = ({ ws, view }: { ws: typeof workspaces[0]; view: ViewMode 
         {/* CTA Buttons — always at bottom */}
         <div className="flex gap-2 mt-4">
           <button
-            onClick={(e) => e.stopPropagation()}
+            onClick={(e) => { e.stopPropagation(); handleNavigate(); }}
             className="flex-1 py-2.5 text-xs font-normal rounded-xl bg-foreground text-secondary hover:bg-primary hover:text-primary-foreground transition-all duration-200"
           >
             Get Best Price
           </button>
           <button
-            onClick={(e) => e.stopPropagation()}
+            onClick={(e) => { e.stopPropagation(); handleNavigate(); }}
             className="flex-1 py-2.5 text-xs font-normal rounded-xl border border-border text-foreground hover:bg-primary hover:text-primary-foreground hover:border-primary transition-all duration-200 flex items-center justify-center gap-1.5"
           >
             <Phone className="w-3 h-3" /> Contact Sales
