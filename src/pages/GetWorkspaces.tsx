@@ -253,8 +253,8 @@ const WorkspaceCard = ({ ws, view }: { ws: typeof workspaces[0]; view: ViewMode 
           {/* Pricing */}
           <div className="space-y-1">
             {ws.plans.slice(0, 2).map(plan => (
-              <div key={plan.label} className="flex items-center gap-3">
-                <span className="text-[11px] text-muted-foreground w-24 flex-shrink-0">{plan.label}</span>
+              <div key={plan.label} className="flex items-center justify-between">
+                <span className="text-[11px] text-muted-foreground">{plan.label}</span>
                 <span className="text-xs font-bold text-foreground">{plan.price}</span>
               </div>
             ))}
