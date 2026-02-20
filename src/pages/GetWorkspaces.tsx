@@ -16,7 +16,10 @@ import {
   List,
   LayoutGrid,
   ChevronRight,
-  ArrowRight,
+  Heart,
+  Plus,
+  Phone,
+  Flame,
 } from "lucide-react";
 import spaceDelhi from "@/assets/space-connaught-delhi.jpg";
 import spaceMumbai from "@/assets/space-bkc-mumbai.jpg";
@@ -192,22 +195,23 @@ import { ResizablePanelGroup, ResizablePanel, ResizableHandle } from "@/componen
 type ViewMode = "list" | "grid";
 
 const WorkspaceCard = ({ ws, view }: { ws: typeof workspaces[0]; view: ViewMode }) => {
-  const startingPrice = ws.plans.reduce((min, p) => {
-    const num = parseInt(p.price.replace(/[^\d]/g, ""));
-    return num < min ? num : min;
-  }, Infinity);
+  const [liked, setLiked] = useState(false);
 
   if (view === "list") {
     return (
-      <div className="flex gap-5 cursor-pointer group py-5 border-b border-border/60 hover:bg-muted/30 transition-colors rounded-xl px-2 -mx-2">
+      <div className="flex gap-4 cursor-pointer group py-4 border-b border-border/50 hover:bg-muted/20 transition-colors">
         {/* Image */}
-        <div className="relative w-44 h-32 flex-shrink-0 rounded-xl overflow-hidden">
-          <img src={ws.image} alt={ws.name} className="w-full h-full object-cover group-hover:scale-103 transition-transform duration-500" />
-          {/* Gradient overlay */}
-          <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent" />
+        <div className="relative w-40 h-28 flex-shrink-0 rounded-[14px] overflow-hidden">
+          <img src={ws.image} alt={ws.name} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
           {ws.available && (
-            <span className="absolute bottom-2 left-2 text-[10px] font-medium px-2 py-0.5 rounded-md bg-white/20 backdrop-blur-md text-white border border-white/20">
-              Available
+            <span className="absolute bottom-2 left-2 text-[10px] font-medium px-2.5 py-1 rounded-[8px] bg-black/50 backdrop-blur-sm text-white">
+              Available Now
+            </span>
+          )}
+          {!ws.available && (
+            <span className="absolute bottom-2 left-2 text-[10px] font-medium px-2.5 py-1 rounded-[8px] bg-black/60 backdrop-blur-sm text-white/70">
+              Fully Booked
             </span>
           )}
         </div>
@@ -215,28 +219,37 @@ const WorkspaceCard = ({ ws, view }: { ws: typeof workspaces[0]; view: ViewMode 
         {/* Content */}
         <div className="flex-1 min-w-0 flex flex-col justify-between py-0.5">
           <div>
-            {/* Name + Rating */}
             <div className="flex items-start justify-between gap-2">
               <h3 className="font-semibold text-sm text-foreground leading-snug">{ws.name}</h3>
               <div className="flex items-center gap-1 flex-shrink-0">
-                <Star className="w-3 h-3 fill-secondary text-secondary" />
+              <Star className="w-3 h-3 fill-secondary text-secondary" />
                 <span className="text-xs font-semibold text-foreground">{ws.rating}</span>
+                <span className="text-[11px] text-muted-foreground">({ws.reviews})</span>
               </div>
             </div>
-            {/* Address */}
-            <p className="flex items-center gap-1 text-[11px] text-muted-foreground mt-1 line-clamp-1">
+            <p className="flex items-center gap-1 text-[11px] text-muted-foreground mt-0.5 line-clamp-1">
               <MapPin className="w-3 h-3 flex-shrink-0" /> {ws.address}
             </p>
-          </div>
-
-          {/* Pricing + CTA */}
-          <div className="flex items-center justify-between mt-3 gap-3">
-            <div>
-              <p className="text-[10px] text-muted-foreground uppercase tracking-wide font-medium">Starting from</p>
-              <p className="text-sm font-bold text-foreground">₹{startingPrice.toLocaleString()}<span className="text-xs font-normal text-muted-foreground">/month</span></p>
+            <div className="flex flex-wrap gap-1 mt-1.5">
+              {ws.tags.map(tag => (
+                <span key={tag} className="text-[10px] px-2 py-0.5 rounded-[6px] border border-border text-muted-foreground bg-muted/50">{tag}</span>
+              ))}
             </div>
-            <button className="px-4 py-1.5 text-xs font-semibold rounded-xl bg-foreground text-background hover:bg-foreground/85 transition-colors flex items-center gap-1.5 flex-shrink-0">
-              View Workspace <ArrowRight className="w-3 h-3" />
+          </div>
+          <div className="mt-2 space-y-0.5">
+            {ws.plans.slice(0, 2).map(plan => (
+              <div key={plan.label} className="flex items-center justify-between">
+                <span className="text-[11px] text-primary">{plan.label}</span>
+                <span className="text-[11px] font-semibold text-foreground">{plan.price}</span>
+              </div>
+            ))}
+          </div>
+          <div className="flex gap-2 mt-2.5">
+            <button className="flex-1 py-1.5 text-xs font-semibold rounded-[10px] bg-foreground text-background hover:bg-foreground/85 transition-colors">
+              Get Best Price
+            </button>
+            <button className="flex-1 py-1.5 text-xs font-semibold rounded-[10px] border border-border text-foreground hover:bg-muted transition-colors flex items-center justify-center gap-1">
+              <Phone className="w-3 h-3" /> Contact Sales
             </button>
           </div>
         </div>
@@ -244,65 +257,105 @@ const WorkspaceCard = ({ ws, view }: { ws: typeof workspaces[0]; view: ViewMode 
     );
   }
 
+  // Grid view — matches reference image exactly
   return (
-    <div className="cursor-pointer group overflow-hidden bg-card rounded-2xl shadow-sm hover:shadow-lg transition-all duration-300 border border-border/50">
-      {/* Image */}
-      <div className="relative h-44 overflow-hidden rounded-t-2xl">
+    <div className="cursor-pointer group">
+      {/* ── Image Section ── */}
+      <div className="relative h-52 overflow-hidden rounded-[14px]">
         <img
           src={ws.image}
           alt={ws.name}
           className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
         />
         {/* Gradient overlay */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
 
-        {/* Available pill — only one subtle badge */}
-        {ws.available && (
-          <span className="absolute bottom-3 left-3 text-[10px] font-medium px-2.5 py-1 rounded-full bg-white/20 backdrop-blur-md text-white border border-white/25 tracking-wide">
-            Available Now
+        {/* Top-left: Popular badge */}
+        {ws.popular && (
+          <span className="absolute top-3 left-3 flex items-center gap-1 text-[11px] font-semibold px-2.5 py-1 rounded-[20px] bg-[hsl(38,92%,50%)] text-white shadow-sm">
+            <Flame className="w-3 h-3" /> Popular
           </span>
         )}
-        {!ws.available && (
-          <span className="absolute bottom-3 left-3 text-[10px] font-medium px-2.5 py-1 rounded-full bg-black/40 backdrop-blur-md text-white/70 border border-white/10 tracking-wide">
-            Fully Booked
+
+        {/* Top-right: Heart + Plus */}
+        <div className="absolute top-3 right-3 flex items-center gap-1.5">
+          <button
+            onClick={(e) => { e.stopPropagation(); setLiked(!liked); }}
+            className="w-8 h-8 rounded-full bg-white/90 backdrop-blur-sm flex items-center justify-center shadow-sm hover:bg-white transition-colors"
+          >
+            <Heart className={`w-3.5 h-3.5 ${liked ? "fill-destructive text-destructive" : "text-foreground/70"}`} />
+          </button>
+          <button
+            onClick={(e) => e.stopPropagation()}
+            className="w-8 h-8 rounded-full bg-white/90 backdrop-blur-sm flex items-center justify-center shadow-sm hover:bg-white transition-colors"
+          >
+            <Plus className="w-3.5 h-3.5 text-foreground/70" />
+          </button>
+        </div>
+
+        {/* Bottom-left: Available Now pill + dots */}
+        <div className="absolute bottom-3 left-3 right-3 flex items-end justify-between">
+          <span className={`text-[11px] font-medium px-3 py-1 rounded-[8px] backdrop-blur-sm text-white shadow-sm ${ws.available ? "bg-black/55" : "bg-black/60"}`}>
+            {ws.available ? "Available Now" : "Fully Booked"}
           </span>
-        )}
+          {/* Dot indicators */}
+          <div className="flex items-center gap-1 mr-1 mb-0.5">
+            {[0, 1, 2, 3].map((i) => (
+              <span key={i} className={`w-1.5 h-1.5 rounded-full ${i === 0 ? "bg-white" : "bg-white/40"}`} />
+            ))}
+          </div>
+        </div>
       </div>
 
-      {/* Card Body */}
-      <div className="px-4 pt-3.5 pb-4">
-        {/* Name + Rating row */}
-        <div className="flex items-start justify-between gap-2 mb-1">
-          <h3 className="font-semibold text-[15px] text-foreground leading-snug">{ws.name}</h3>
+      {/* ── Card Body (no border/card bg — clean open layout) ── */}
+      <div className="pt-3 pb-1">
+        {/* Name + Rating */}
+        <div className="flex items-start justify-between gap-2">
+          <h3 className="font-bold text-[15px] text-foreground leading-snug">{ws.name}</h3>
           <div className="flex items-center gap-1 flex-shrink-0 mt-0.5">
             <Star className="w-3.5 h-3.5 fill-secondary text-secondary" />
             <span className="text-xs font-semibold text-foreground">{ws.rating}</span>
+            <span className="text-[11px] text-muted-foreground">({ws.reviews})</span>
           </div>
         </div>
 
         {/* Address */}
-        <p className="flex items-center gap-1 text-[11px] text-muted-foreground line-clamp-1">
-          <MapPin className="w-3 h-3 flex-shrink-0 opacity-60" />
+        <p className="flex items-center gap-1 text-[11px] text-muted-foreground mt-0.5 line-clamp-1">
+          <MapPin className="w-3 h-3 flex-shrink-0 opacity-70" />
           {ws.address}
         </p>
 
-        {/* Divider */}
-        <div className="my-3 border-t border-border/50" />
+        {/* Tags */}
+        <div className="flex flex-wrap gap-1.5 mt-2">
+          {ws.tags.map(tag => (
+            <span key={tag} className="text-[11px] px-2.5 py-0.5 rounded-[6px] border border-border text-muted-foreground bg-background">
+              {tag}
+            </span>
+          ))}
+        </div>
 
-        {/* Pricing */}
-        <div className="flex items-end justify-between">
-          <div>
-            <p className="text-[10px] text-muted-foreground uppercase tracking-wider font-medium mb-0.5">Starting from</p>
-            <p className="text-base font-bold text-foreground leading-none">
-              ₹{startingPrice.toLocaleString()}
-              <span className="text-xs font-normal text-muted-foreground ml-1">/month</span>
-            </p>
-            <button className="text-[11px] text-primary hover:underline mt-1 block font-medium">View Plans</button>
-          </div>
+        {/* Plan rows */}
+        <div className="mt-3 space-y-1.5">
+          {ws.plans.map(plan => (
+            <div key={plan.label} className="flex items-center justify-between">
+              <span className="text-[12px] text-primary font-medium">{plan.label}</span>
+              <span className="text-[13px] font-bold text-foreground">{plan.price}</span>
+            </div>
+          ))}
+        </div>
 
-          {/* CTA */}
-          <button className="px-4 py-2 text-xs font-semibold rounded-xl bg-foreground text-background hover:bg-foreground/85 transition-all duration-200 flex items-center gap-1.5 shadow-sm hover:shadow-md">
-            Explore <ArrowRight className="w-3.5 h-3.5" />
+        {/* Price negotiable */}
+        {ws.negotiable && (
+          <p className="text-[11px] text-muted-foreground italic mt-2">Price negotiable</p>
+        )}
+
+        {/* CTA Buttons */}
+        <div className="flex gap-2.5 mt-3">
+          <button className="flex-1 py-2.5 text-sm font-semibold rounded-[12px] bg-foreground text-background hover:bg-foreground/85 transition-colors">
+            Get Best Price
+          </button>
+          <button className="flex-1 py-2.5 text-sm font-semibold rounded-[12px] border border-border text-foreground hover:bg-muted transition-colors flex items-center justify-center gap-1.5">
+            <Phone className="w-3.5 h-3.5" /> Contact Sales
           </button>
         </div>
       </div>
