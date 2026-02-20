@@ -14,8 +14,6 @@ import {
   Users,
   Bell,
   Settings,
-  LayoutDashboard,
-  LogOut,
 } from "lucide-react";
 import flashspaceLogo from "@/assets/flashspace-logo.png";
 
@@ -49,6 +47,7 @@ export const Navbar = () => {
   const navigate = useNavigate();
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
+  const [sidebarDropdown, setSidebarDropdown] = useState<string | null>(null);
 
   return (
     <>
@@ -116,18 +115,15 @@ export const Navbar = () => {
               ))}
             </div>
 
-            {/* Desktop Actions */}
-            <div className="hidden lg:flex items-center gap-3">
-              <Button variant="ghost" size="sm" className="text-foreground/80 hover:text-foreground">
+            {/* Desktop + Mobile Actions */}
+            <div className="flex items-center gap-2 lg:gap-3">
+              <Button variant="ghost" size="sm" className="text-foreground/80 hover:text-foreground text-sm px-3">
                 Sign in
               </Button>
-              <Button variant="default" size="default" className="bg-primary hover:bg-primary/90 shadow-sm">
+              <Button variant="default" size="sm" className="bg-primary hover:bg-primary/90 shadow-sm text-sm px-3">
                 Get Started
               </Button>
             </div>
-
-            {/* Mobile: empty right spacer to keep logo centered */}
-            <div className="lg:hidden w-10" />
           </nav>
         </div>
       </motion.header>
@@ -147,6 +143,56 @@ export const Navbar = () => {
 
           {/* Nav Items */}
           <nav className="flex-1 px-3 py-2 overflow-y-auto">
+            {/* Nav links with dropdowns — mobile only */}
+            <div className="mb-2 lg:hidden">
+              {navLinks.map((link) => (
+                <div key={link.label}>
+                  {link.dropdown ? (
+                    <div>
+                      <button
+                        onClick={() => setSidebarDropdown(sidebarDropdown === link.label ? null : link.label)}
+                        className="w-full flex items-center justify-between px-3 py-3 rounded-xl text-[15px] font-medium text-foreground/80 hover:text-foreground hover:bg-primary/5 transition-colors"
+                      >
+                        {link.label}
+                        <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${sidebarDropdown === link.label ? "rotate-180" : ""}`} />
+                      </button>
+                      <AnimatePresence>
+                        {sidebarDropdown === link.label && (
+                          <motion.div
+                            initial={{ opacity: 0, height: 0 }}
+                            animate={{ opacity: 1, height: "auto" }}
+                            exit={{ opacity: 0, height: 0 }}
+                            transition={{ duration: 0.2 }}
+                            className="overflow-hidden pl-4"
+                          >
+                            {link.dropdown.map((item) => (
+                              <a
+                                key={item.label}
+                                href={item.href}
+                                onClick={() => setSidebarOpen(false)}
+                                className="block px-3 py-2.5 text-sm font-normal text-foreground/70 hover:text-foreground hover:bg-primary/5 rounded-lg transition-colors"
+                              >
+                                {item.label}
+                              </a>
+                            ))}
+                          </motion.div>
+                        )}
+                      </AnimatePresence>
+                    </div>
+                  ) : (
+                    <a
+                      href={link.href}
+                      onClick={() => setSidebarOpen(false)}
+                      className="flex items-center px-3 py-3 rounded-xl text-[15px] font-medium text-foreground/80 hover:text-foreground hover:bg-primary/5 transition-colors"
+                    >
+                      {link.label}
+                    </a>
+                  )}
+                </div>
+              ))}
+              <hr className="my-2 border-border" />
+            </div>
+
             {sidebarMenuItems.map((item, index) => {
               const Icon = item.icon;
               const showDivider = [1, 4].includes(index);
