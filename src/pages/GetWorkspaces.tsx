@@ -264,7 +264,7 @@ const WorkspaceCard = ({ ws, view }: { ws: typeof workspaces[0]; view: ViewMode 
           </div>
 
           {/* CTAs — always on their own row */}
-          <div className="flex gap-2 mt-1">
+          <div className="flex justify-between gap-2 mt-1">
             <button
               onClick={(e) => { e.stopPropagation(); handleNavigate(); }}
               className="py-2 px-4 text-xs font-normal rounded-xl bg-foreground text-secondary hover:bg-primary hover:text-primary-foreground transition-all duration-200 whitespace-nowrap"
