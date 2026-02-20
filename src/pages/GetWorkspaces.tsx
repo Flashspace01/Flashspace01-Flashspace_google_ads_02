@@ -214,11 +214,11 @@ const WorkspaceCard = ({ ws, view }: { ws: typeof workspaces[0]; view: ViewMode 
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
           {ws.popular && (
-            <span className="absolute top-2.5 left-2.5 flex items-center gap-1 text-[10px] font-semibold px-2 py-0.5 rounded-full bg-[hsl(38,92%,50%)] text-white shadow-sm">
+            <span className="absolute top-2.5 left-2.5 flex items-center gap-1 text-[10px] font-normal px-2 py-0.5 rounded-full bg-[hsl(38,92%,50%)] text-white shadow-sm">
               <Flame className="w-2.5 h-2.5" /> Popular
             </span>
           )}
-          <span className={`absolute bottom-2.5 left-2.5 text-[10px] font-medium px-2.5 py-1 rounded-full backdrop-blur-sm text-white shadow-sm ${ws.available ? "bg-black/50" : "bg-black/60"}`}>
+          <span className={`absolute bottom-2.5 left-2.5 text-[10px] font-normal px-2.5 py-1 rounded-full backdrop-blur-sm text-white shadow-sm ${ws.available ? "bg-black/50" : "bg-black/60"}`}>
             {ws.available ? "Available Now" : "Fully Booked"}
           </span>
         </div>
@@ -262,13 +262,13 @@ const WorkspaceCard = ({ ws, view }: { ws: typeof workspaces[0]; view: ViewMode 
             <div className="flex gap-2 flex-shrink-0">
               <button
                 onClick={(e) => { e.stopPropagation(); }}
-                className="py-2 px-4 text-xs font-semibold rounded-xl bg-foreground text-background hover:bg-primary hover:text-primary-foreground transition-all duration-200"
+                className="py-2 px-4 text-xs font-normal rounded-xl bg-foreground text-secondary hover:bg-primary hover:text-primary-foreground transition-all duration-200"
               >
                 Get Best Price
               </button>
               <button
                 onClick={(e) => { e.stopPropagation(); }}
-                className="py-2 px-3 text-xs font-semibold rounded-xl border border-border text-foreground hover:bg-primary hover:text-primary-foreground hover:border-primary transition-all duration-200 flex items-center gap-1"
+                className="py-2 px-3 text-xs font-normal rounded-xl border border-border text-foreground hover:bg-primary hover:text-primary-foreground hover:border-primary transition-all duration-200 flex items-center gap-1"
               >
                 <Phone className="w-3 h-3" /> Contact Sales
               </button>
@@ -296,7 +296,7 @@ const WorkspaceCard = ({ ws, view }: { ws: typeof workspaces[0]; view: ViewMode 
 
         {/* Popular badge */}
         {ws.popular && (
-          <span className="absolute top-3 left-3 flex items-center gap-1 text-[10px] font-semibold px-2.5 py-1 rounded-full bg-[hsl(38,92%,50%)] text-white shadow-sm">
+          <span className="absolute top-3 left-3 flex items-center gap-1 text-[10px] font-normal px-2.5 py-1 rounded-full bg-[hsl(38,92%,50%)] text-white shadow-sm">
             <Flame className="w-2.5 h-2.5" /> Popular
           </span>
         )}
@@ -307,7 +307,7 @@ const WorkspaceCard = ({ ws, view }: { ws: typeof workspaces[0]; view: ViewMode 
             onClick={(e) => { e.stopPropagation(); setLiked(!liked); }}
             className="w-8 h-8 rounded-full bg-white/95 backdrop-blur-sm flex items-center justify-center shadow-sm hover:bg-white hover:scale-110 transition-all duration-200"
           >
-            <Heart className={`w-3.5 h-3.5 ${liked ? "fill-destructive text-destructive" : "text-foreground/60"}`} />
+            <Heart className={`w-3.5 h-3.5 ${liked ? "fill-secondary text-secondary" : "text-foreground/60"}`} />
           </button>
           <button
             onClick={(e) => e.stopPropagation()}
@@ -319,7 +319,7 @@ const WorkspaceCard = ({ ws, view }: { ws: typeof workspaces[0]; view: ViewMode 
 
         {/* Availability + dots */}
         <div className="absolute bottom-3 left-3 right-3 flex items-end justify-between">
-          <span className={`text-[10px] font-semibold px-3 py-1 rounded-full backdrop-blur-sm text-white shadow-sm ${ws.available ? "bg-black/50" : "bg-black/60"}`}>
+          <span className={`text-[10px] font-normal px-3 py-1 rounded-full backdrop-blur-sm text-white shadow-sm ${ws.available ? "bg-black/50" : "bg-black/60"}`}>
             {ws.available ? "Available Now" : "Fully Booked"}
           </span>
           <div className="flex items-center gap-1 mr-1">
@@ -379,13 +379,13 @@ const WorkspaceCard = ({ ws, view }: { ws: typeof workspaces[0]; view: ViewMode 
         <div className="flex gap-2 mt-4">
           <button
             onClick={(e) => e.stopPropagation()}
-            className="flex-1 py-2.5 text-xs font-semibold rounded-xl bg-foreground text-background hover:bg-primary hover:text-primary-foreground transition-all duration-200"
+            className="flex-1 py-2.5 text-xs font-normal rounded-xl bg-foreground text-secondary hover:bg-primary hover:text-primary-foreground transition-all duration-200"
           >
             Get Best Price
           </button>
           <button
             onClick={(e) => e.stopPropagation()}
-            className="flex-1 py-2.5 text-xs font-semibold rounded-xl border border-border text-foreground hover:bg-primary hover:text-primary-foreground hover:border-primary transition-all duration-200 flex items-center justify-center gap-1.5"
+            className="flex-1 py-2.5 text-xs font-normal rounded-xl border border-border text-foreground hover:bg-primary hover:text-primary-foreground hover:border-primary transition-all duration-200 flex items-center justify-center gap-1.5"
           >
             <Phone className="w-3 h-3" /> Contact Sales
           </button>
