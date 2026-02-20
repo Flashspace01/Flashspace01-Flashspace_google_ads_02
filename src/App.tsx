@@ -7,6 +7,7 @@ import Index from "./pages/Index";
 import BusinessSetup from "./pages/BusinessSetup";
 import OnDemand from "./pages/OnDemand";
 import GetWorkspaces from "./pages/GetWorkspaces";
+import WorkspaceDetail from "./pages/WorkspaceDetail";
 import NotFound from "./pages/NotFound";
 import CustomerPortal from "./pages/portals/CustomerPortal";
 import SpacePartnerPortal from "./pages/portals/SpacePartnerPortal";
@@ -72,6 +73,7 @@ const App = () => (
           <Route path="/business-setup" element={<BusinessSetup />} />
           <Route path="/on-demand" element={<OnDemand />} />
           <Route path="/get-workspaces" element={<GetWorkspaces />} />
+          <Route path="/workspace/:id" element={<WorkspaceDetail />} />
           
           {/* Customer Portal Routes */}
           <Route path="/customer-portal" element={<CustomerPortal />} />

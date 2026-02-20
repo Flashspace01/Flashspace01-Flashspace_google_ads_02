@@ -1,5 +1,5 @@
 import { useState } from "react";
-// useState is used in GetWorkspaces component
+import { useNavigate } from "react-router-dom";
 import { Navbar } from "@/components/layout/Navbar";
 import { Input } from "@/components/ui/input";
 import {
@@ -196,10 +196,12 @@ type ViewMode = "list" | "grid";
 
 const WorkspaceCard = ({ ws, view }: { ws: typeof workspaces[0]; view: ViewMode }) => {
   const [liked, setLiked] = useState(false);
+  const navigate = useNavigate();
+  const handleNavigate = () => navigate(`/workspace/${ws.id}`);
 
   if (view === "list") {
     return (
-      <div className="flex gap-4 cursor-pointer group py-4 border-b border-border/50 hover:bg-muted/20 transition-colors">
+      <div onClick={handleNavigate} className="flex gap-4 cursor-pointer group py-4 border-b border-border/50 hover:bg-muted/20 transition-colors">
         {/* Image */}
         <div className="relative w-40 h-28 flex-shrink-0 rounded-[14px] overflow-hidden">
           <img src={ws.image} alt={ws.name} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
@@ -259,7 +261,7 @@ const WorkspaceCard = ({ ws, view }: { ws: typeof workspaces[0]; view: ViewMode 
 
   // Grid view — matches reference image exactly
   return (
-    <div className="cursor-pointer group">
+    <div onClick={handleNavigate} className="cursor-pointer group">
       {/* ── Image Section ── */}
       <div className="relative h-52 overflow-hidden rounded-[14px]">
         <img
