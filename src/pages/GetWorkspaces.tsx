@@ -223,7 +223,7 @@ const WorkspaceCard = ({ ws, view }: { ws: typeof workspaces[0]; view: ViewMode 
           </span>
         </div>
 
-        {/* Content — all stacked vertically */}
+        {/* Content — main info */}
         <div className="flex-1 min-w-0 flex flex-col gap-2">
           {/* Name + Rating */}
           <div className="flex items-start justify-between gap-2">
@@ -247,15 +247,25 @@ const WorkspaceCard = ({ ws, view }: { ws: typeof workspaces[0]; view: ViewMode 
             ))}
           </div>
 
-          {/* Divider */}
-          <div className="h-px bg-border/50 mt-1" />
+          {/* Get Best Price */}
+          <div className="mt-auto pt-2">
+            <button
+              onClick={(e) => { e.stopPropagation(); handleNavigate(); }}
+              className="py-2 px-4 text-xs font-normal rounded-xl bg-foreground text-secondary hover:bg-primary hover:text-primary-foreground transition-all duration-200 whitespace-nowrap"
+            >
+              Get Best Price
+            </button>
+          </div>
+        </div>
 
+        {/* Right column — pricing + contact */}
+        <div className="flex-shrink-0 flex flex-col justify-between items-end gap-3 min-w-[140px]">
           {/* Pricing */}
-          <div className="space-y-1">
+          <div className="space-y-1 text-right">
             {ws.plans.slice(0, 2).map(plan => (
-              <div key={plan.label} className="flex items-center gap-3">
-                <span className="text-[11px] text-muted-foreground w-24 flex-shrink-0">{plan.label}</span>
+              <div key={plan.label}>
                 <span className="text-xs font-bold text-foreground">{plan.price}</span>
+                <p className="text-[10px] text-muted-foreground">{plan.label}</p>
               </div>
             ))}
             {ws.negotiable && (
@@ -263,21 +273,13 @@ const WorkspaceCard = ({ ws, view }: { ws: typeof workspaces[0]; view: ViewMode 
             )}
           </div>
 
-          {/* CTAs — always on their own row */}
-          <div className="flex gap-2 mt-1">
-            <button
-              onClick={(e) => { e.stopPropagation(); handleNavigate(); }}
-              className="py-2 px-4 text-xs font-normal rounded-xl bg-foreground text-secondary hover:bg-primary hover:text-primary-foreground transition-all duration-200 whitespace-nowrap"
-            >
-              Get Best Price
-            </button>
-            <button
-              onClick={(e) => { e.stopPropagation(); handleNavigate(); }}
-              className="py-2 px-3 text-xs font-normal rounded-xl border border-border text-foreground hover:bg-primary hover:text-primary-foreground hover:border-primary transition-all duration-200 flex items-center gap-1 whitespace-nowrap"
-            >
-              <Phone className="w-3 h-3" /> Contact Sales
-            </button>
-          </div>
+          {/* Contact Sales */}
+          <button
+            onClick={(e) => { e.stopPropagation(); handleNavigate(); }}
+            className="py-2 px-3 text-xs font-normal rounded-xl border border-border text-foreground hover:bg-primary hover:text-primary-foreground hover:border-primary transition-all duration-200 flex items-center gap-1 whitespace-nowrap"
+          >
+            <Phone className="w-3 h-3" /> Contact Sales
+          </button>
         </div>
       </div>
     );
