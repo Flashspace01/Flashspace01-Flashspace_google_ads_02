@@ -436,29 +436,35 @@ const GetWorkspaces = () => {
                   Discover premium workspaces tailored to your business needs.
                 </p>
 
-                {/* Search + Filter Panel */}
-                <div className="bg-card rounded-xl border border-border/60 shadow-sm mb-6 flex flex-col sm:flex-row items-stretch sm:items-center sm:h-[60px] overflow-hidden">
+                {/* Search Bar */}
+                <div className="bg-card rounded-xl border border-border/60 shadow-sm mb-6 flex items-center h-[56px] overflow-hidden px-4 gap-3">
 
-                  {/* City Field */}
-                  <div className="flex-[2] flex flex-col justify-center pl-4 pr-3 py-3 sm:py-0 min-w-0">
-                    <span className="text-[9px] font-bold text-muted-foreground uppercase tracking-widest mb-0.5">City</span>
+                  {/* Left label */}
+                  <div className="flex items-center gap-2 flex-shrink-0">
+                    <Search className="w-4 h-4 text-muted-foreground" />
+                    <span className="text-[10px] font-bold text-muted-foreground uppercase tracking-widest whitespace-nowrap">Search City</span>
+                  </div>
+
+                  {/* City Input with search button inside */}
+                  <div className="flex-[2] flex items-center border border-border/50 rounded-[10px] h-9 overflow-hidden min-w-0 bg-background">
                     <Input
                       value={searchCity}
                       onChange={(e) => setSearchCity(e.target.value)}
-                      className="border border-border/50 shadow-none rounded-[10px] h-7 text-sm font-medium text-foreground focus-visible:ring-1 focus-visible:ring-primary/40 bg-background placeholder:text-muted-foreground/50 pl-3"
+                      className="border-0 shadow-none h-full text-sm text-foreground focus-visible:ring-0 bg-transparent px-3 placeholder:text-muted-foreground/50 min-w-0"
                       placeholder="Enter city..."
                     />
+                    <button className="flex-shrink-0 w-9 h-full flex items-center justify-center bg-[hsl(38,92%,50%)] hover:bg-[hsl(38,92%,45%)] transition-colors rounded-none rounded-r-[9px]">
+                      <Search className="w-4 h-4 text-white" />
+                    </button>
                   </div>
 
                   {/* Vertical Divider */}
-                  <div className="hidden sm:block w-px self-stretch my-3 bg-border/60" />
-                  <div className="block sm:hidden h-px mx-4 bg-border/60" />
+                  <div className="w-px self-stretch my-3 bg-border/60 flex-shrink-0" />
 
-                  {/* Space Type Field */}
-                  <div className="flex-1 flex flex-col justify-center px-4 py-3 sm:py-0 min-w-0">
-                    <span className="text-[9px] font-bold text-muted-foreground uppercase tracking-widest mb-0.5">Space Type</span>
+                  {/* Space Type Dropdown */}
+                  <div className="flex-shrink-0 min-w-[140px]">
                     <Select value={workspaceType} onValueChange={setWorkspaceType}>
-                      <SelectTrigger className="border border-border/50 shadow-none rounded-[10px] h-7 text-sm font-medium text-foreground focus:ring-1 focus:ring-primary/40 focus-visible:ring-1 focus-visible:ring-primary/40 bg-background pl-3 [&>svg]:ml-auto">
+                      <SelectTrigger className="border border-border/50 shadow-none rounded-[10px] h-9 text-sm text-foreground focus:ring-1 focus:ring-primary/40 focus-visible:ring-1 focus-visible:ring-primary/40 bg-background pl-3 [&>svg]:ml-auto">
                         <SelectValue />
                       </SelectTrigger>
                       <SelectContent className="z-50 bg-card">
@@ -469,13 +475,6 @@ const GetWorkspaces = () => {
                         <SelectItem value="day-pass">Day Pass</SelectItem>
                       </SelectContent>
                     </Select>
-                  </div>
-
-                  {/* Search Button — icon only */}
-                  <div className="px-2.5 py-2.5 sm:py-0">
-                    <button className="w-full sm:w-auto flex items-center justify-center px-3.5 py-2 sm:h-[40px] bg-secondary text-secondary-foreground rounded-lg text-sm font-medium hover:bg-secondary/80 transition-colors duration-200">
-                      <Search className="w-4 h-4" />
-                    </button>
                   </div>
                 </div>
 
