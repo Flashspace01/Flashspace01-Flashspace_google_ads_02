@@ -599,7 +599,7 @@ const WorkspaceDetail = () => {
               </p>
 
               {/* Contact Sales */}
-              <button className="w-full mt-3 py-3 rounded-[10px] border border-border text-foreground text-sm font-medium flex items-center justify-center gap-2 hover:bg-muted transition-colors">
+              <button className="w-full mt-3 py-3 rounded-[10px] border border-border text-foreground text-sm font-medium flex items-center justify-center gap-2 hover:bg-primary hover:text-primary-foreground hover:border-primary transition-colors">
                 <Phone className="w-4 h-4" /> Contact Sales
               </button>
             </div>
