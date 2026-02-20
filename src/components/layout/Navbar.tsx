@@ -132,7 +132,7 @@ export const Navbar = () => {
 
       {/* Sidebar Sheet */}
       <Sheet open={sidebarOpen} onOpenChange={setSidebarOpen}>
-        <SheetContent side="left" className="w-[300px] p-0 flex flex-col bg-background border-r border-border">
+        <SheetContent side="left" className="w-[300px] p-0 flex flex-col bg-background border-r border-border [&>button]:hidden">
           {/* Header */}
           <div className="flex items-center justify-between px-5 pt-6 pb-4">
             <img src={flashspaceLogo} alt="FlashSpace" className="h-10 w-auto" />
