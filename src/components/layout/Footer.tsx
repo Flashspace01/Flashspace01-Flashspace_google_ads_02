@@ -42,10 +42,10 @@ export const Footer = () => {
             workspace strategy
           </h2>
           <div className="flex flex-wrap gap-3">
-            <Button size="lg" className="bg-primary hover:bg-primary/90 text-primary-foreground font-medium rounded-xl h-12 px-7">
+            <Button size="lg" className="bg-primary hover:bg-primary/90 text-primary-foreground font-normal rounded-xl h-12 px-7">
               Sign up
             </Button>
-            <Button size="lg" variant="outline" className="border-background/20 bg-background text-foreground hover:bg-background/90 font-medium rounded-xl h-12 px-7">
+            <Button size="lg" variant="outline" className="border-background/20 bg-background text-foreground hover:bg-background/90 font-normal rounded-xl h-12 px-7">
               Request a demo
             </Button>
           </div>

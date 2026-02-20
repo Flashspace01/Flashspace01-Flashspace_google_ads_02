@@ -51,7 +51,7 @@ export const WorkspaceFeature = () => {
                   Our workspaces equip teams with powerful AI tools, actionable insights, 
                   and seamless workflows—so they can focus on what matters.
                 </p>
-                <Button size="lg" className="bg-card text-foreground hover:bg-card/90 shadow-md font-medium">
+                <Button size="lg" className="bg-card text-foreground hover:bg-card/90 shadow-md font-normal">
                   Explore workspaces
                   <ArrowUpRight className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
                 </Button>
