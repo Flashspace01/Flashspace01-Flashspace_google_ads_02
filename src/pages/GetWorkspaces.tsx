@@ -444,7 +444,7 @@ const GetWorkspaces = () => {
                     {/* Search icon + label */}
                     <div className="flex items-center gap-2 flex-shrink-0">
                       <Search className="w-4 h-4 text-muted-foreground/70" strokeWidth={1.5} />
-                      <span className="text-[10px] font-medium text-muted-foreground uppercase tracking-[0.12em] whitespace-nowrap">Search City</span>
+                      <span className="text-[12px] font-medium text-muted-foreground uppercase tracking-[0.12em] whitespace-nowrap">Search City</span>
                     </div>
 
                     {/* City Input + Yellow Button */}
