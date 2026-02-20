@@ -16,8 +16,8 @@ import {
   List,
   LayoutGrid,
   ChevronRight,
-  Heart,
-  Plus,
+  Bookmark,
+  ShoppingCart,
   Phone,
   Flame,
 } from "lucide-react";
@@ -313,13 +313,13 @@ const WorkspaceCard = ({ ws, view }: { ws: typeof workspaces[0]; view: ViewMode 
             onClick={(e) => { e.stopPropagation(); setLiked(!liked); }}
             className="w-8 h-8 rounded-full bg-white/95 backdrop-blur-sm flex items-center justify-center shadow-sm hover:bg-white hover:scale-110 transition-all duration-200"
           >
-            <Heart className={`w-3.5 h-3.5 ${liked ? "fill-secondary text-secondary" : "text-foreground/60"}`} />
+            <Bookmark className={`w-3.5 h-3.5 ${liked ? "fill-secondary text-secondary" : "text-foreground/60"}`} />
           </button>
           <button
             onClick={(e) => e.stopPropagation()}
             className="w-8 h-8 rounded-full bg-white/95 backdrop-blur-sm flex items-center justify-center shadow-sm hover:bg-white hover:scale-110 transition-all duration-200"
           >
-            <Plus className="w-3.5 h-3.5 text-foreground/60" />
+            <ShoppingCart className="w-3.5 h-3.5 text-foreground/60" />
           </button>
         </div>
 
