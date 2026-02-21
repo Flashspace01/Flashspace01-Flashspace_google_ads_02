@@ -485,61 +485,64 @@ const GetWorkspaces = () => {
             Search City
           </div>
 
-          {/* City input row */}
-          <div className="relative">
-            <div className="flex items-center bg-white border border-[#E5E7EB] rounded-[12px] h-10 overflow-hidden">
-              <Input
-                value={searchCity}
-                onChange={(e) => {
-                  setSearchCity(e.target.value);
-                  setShowCitySuggestions(true);
-                }}
-                onFocus={() => setShowCitySuggestions(true)}
-                className="border-0 shadow-none h-full text-sm font-medium text-foreground focus-visible:ring-0 bg-transparent px-3 placeholder:text-muted-foreground/40 min-w-0 flex-1"
-                placeholder="Enter city..."
-              />
-              <button
-                onClick={() => { setActiveCity(searchCity); setShowCitySuggestions(false); }}
-                className="flex-shrink-0 w-10 h-10 flex items-center justify-center bg-primary hover:bg-primary/90 hover:-translate-y-px transition-all duration-150 rounded-[11px] m-0">
-                <Search className="w-4 h-4 text-primary-foreground" strokeWidth={2} />
-              </button>
+          {/* City input + Space Type in one row */}
+          <div className="flex flex-col sm:flex-row gap-3">
+            {/* City input */}
+            <div className="relative flex-1">
+              <div className="flex items-center bg-white border border-[#E5E7EB] rounded-[12px] h-10 overflow-hidden">
+                <Input
+                  value={searchCity}
+                  onChange={(e) => {
+                    setSearchCity(e.target.value);
+                    setShowCitySuggestions(true);
+                  }}
+                  onFocus={() => setShowCitySuggestions(true)}
+                  className="border-0 shadow-none h-full text-sm font-medium text-foreground focus-visible:ring-0 bg-transparent px-3 placeholder:text-muted-foreground/40 min-w-0 flex-1"
+                  placeholder="Enter city..."
+                />
+                <button
+                  onClick={() => { setActiveCity(searchCity); setShowCitySuggestions(false); }}
+                  className="flex-shrink-0 w-10 h-10 flex items-center justify-center bg-primary hover:bg-primary/90 hover:-translate-y-px transition-all duration-150 rounded-[11px] m-0">
+                  <Search className="w-4 h-4 text-primary-foreground" strokeWidth={2} />
+                </button>
+              </div>
+
+              {/* City suggestions dropdown */}
+              {showCitySuggestions && searchCity.length > 0 && (() => {
+                const allCities = ["Delhi", "Mumbai", "Bangalore", "Hyderabad", "Chennai", "Pune", "Kolkata", "Ahmedabad", "Noida", "Gurgaon", "Jaipur", "Lucknow", "Chandigarh", "Indore", "Kochi"];
+                const filtered = allCities.filter(c => c.toLowerCase().includes(searchCity.toLowerCase()));
+                if (filtered.length === 0) return null;
+                return (
+                  <div className="absolute left-0 right-0 top-full mt-1 bg-card border border-border rounded-xl shadow-lg z-50 max-h-48 overflow-y-auto">
+                    {filtered.map(city => (
+                      <button
+                        key={city}
+                        onClick={() => { setSearchCity(city); setActiveCity(city); setShowCitySuggestions(false); }}
+                        className="w-full text-left px-4 py-2.5 text-sm text-foreground hover:bg-muted/60 transition-colors first:rounded-t-xl last:rounded-b-xl"
+                      >
+                        {city}
+                      </button>
+                    ))}
+                  </div>
+                );
+              })()}
             </div>
 
-            {/* City suggestions dropdown */}
-            {showCitySuggestions && searchCity.length > 0 && (() => {
-              const allCities = ["Delhi", "Mumbai", "Bangalore", "Hyderabad", "Chennai", "Pune", "Kolkata", "Ahmedabad", "Noida", "Gurgaon", "Jaipur", "Lucknow", "Chandigarh", "Indore", "Kochi"];
-              const filtered = allCities.filter(c => c.toLowerCase().includes(searchCity.toLowerCase()));
-              if (filtered.length === 0) return null;
-              return (
-                <div className="absolute left-0 right-0 top-full mt-1 bg-card border border-border rounded-xl shadow-lg z-50 max-h-48 overflow-y-auto">
-                  {filtered.map(city => (
-                    <button
-                      key={city}
-                      onClick={() => { setSearchCity(city); setActiveCity(city); setShowCitySuggestions(false); }}
-                      className="w-full text-left px-4 py-2.5 text-sm text-foreground hover:bg-muted/60 transition-colors first:rounded-t-xl last:rounded-b-xl"
-                    >
-                      {city}
-                    </button>
-                  ))}
-                </div>
-              );
-            })()}
-          </div>
-
-          {/* Space Type Dropdown */}
-          <div className="w-full">
-            <Select value={workspaceType} onValueChange={setWorkspaceType}>
-              <SelectTrigger className="border border-[#E5E7EB] shadow-none rounded-[12px] h-10 text-sm font-medium text-foreground focus:ring-1 focus:ring-primary/30 focus-visible:ring-1 focus-visible:ring-primary/30 bg-white px-4 [&>svg]:ml-auto w-full">
-                <SelectValue />
-              </SelectTrigger>
-              <SelectContent className="z-50 bg-card">
-                <SelectItem value="virtual-office">Virtual Office</SelectItem>
-                <SelectItem value="coworking">Coworking Space</SelectItem>
-                <SelectItem value="private-office">Private Office</SelectItem>
-                <SelectItem value="meeting-room">Meeting Room</SelectItem>
-                <SelectItem value="day-pass">Day Pass</SelectItem>
-              </SelectContent>
-            </Select>
+            {/* Space Type Dropdown */}
+            <div className="sm:w-[200px]">
+              <Select value={workspaceType} onValueChange={setWorkspaceType}>
+                <SelectTrigger className="border border-[#E5E7EB] shadow-none rounded-[12px] h-10 text-sm font-medium text-foreground focus:ring-1 focus:ring-primary/30 focus-visible:ring-1 focus-visible:ring-primary/30 bg-white px-4 [&>svg]:ml-auto w-full">
+                  <SelectValue />
+                </SelectTrigger>
+                <SelectContent className="z-50 bg-card">
+                  <SelectItem value="virtual-office">Virtual Office</SelectItem>
+                  <SelectItem value="coworking">Coworking Space</SelectItem>
+                  <SelectItem value="private-office">Private Office</SelectItem>
+                  <SelectItem value="meeting-room">Meeting Room</SelectItem>
+                  <SelectItem value="day-pass">Day Pass</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
           </div>
         </div>
 
