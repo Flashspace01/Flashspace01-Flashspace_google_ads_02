@@ -33,6 +33,12 @@ import odDedicated from "@/assets/od-dedicated-desks.jpg";
 import odMeeting from "@/assets/od-meeting-rooms.jpg";
 import workspaceCoworking from "@/assets/workspace-coworking.jpg";
 import workspaceMeeting from "@/assets/workspace-meeting.jpg";
+import spaceSector18 from "@/assets/space-sector18.png";
+import spaceLajpat from "@/assets/space-lajpat.png";
+import spaceNehru from "@/assets/space-nehru.png";
+import spaceOkhla from "@/assets/space-okhla.png";
+import spaceMahipalpur from "@/assets/space-mahipalpur.avif";
+import spaceKarolbagh from "@/assets/space-karolbagh.png";
 
 const workspaces = [
   {
@@ -85,7 +91,7 @@ const workspaces = [
       { label: "Basic Plan", price: "₹750/month" },
       { label: "GST Plan", price: "₹950/month" },
     ],
-    image: spaceHSR,
+    image: spaceSector18,
     popular: false,
     available: true,
     negotiable: false,
@@ -122,7 +128,7 @@ const workspaces = [
       { label: "Basic Plan", price: "₹600/month" },
       { label: "GST Plan", price: "₹800/month" },
     ],
-    image: odHotDesks,
+    image: spaceLajpat,
     popular: false,
     available: true,
     negotiable: false,
@@ -140,7 +146,7 @@ const workspaces = [
       { label: "Virtual Plan", price: "₹499/month" },
       { label: "GST Plan", price: "₹699/month" },
     ],
-    image: odDedicated,
+    image: spaceNehru,
     popular: false,
     available: true,
     negotiable: true,
@@ -159,7 +165,7 @@ const workspaces = [
       { label: "Mailing Plan", price: "₹720/month" },
       { label: "Business Reg", price: "₹1,100/month" },
     ],
-    image: odMeeting,
+    image: spaceOkhla,
     popular: true,
     available: true,
     negotiable: true,
@@ -176,7 +182,7 @@ const workspaces = [
     plans: [
       { label: "Basic Plan", price: "₹550/month" },
     ],
-    image: workspaceCoworking,
+    image: spaceMahipalpur,
     popular: false,
     available: true,
     negotiable: false,
@@ -194,7 +200,7 @@ const workspaces = [
       { label: "GST Plan", price: "₹880/month" },
       { label: "Mailing Plan", price: "₹680/month" },
     ],
-    image: workspaceMeeting,
+    image: spaceKarolbagh,
     popular: false,
     available: true,
     negotiable: false,

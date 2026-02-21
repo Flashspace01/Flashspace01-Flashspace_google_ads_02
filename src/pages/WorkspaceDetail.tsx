@@ -36,6 +36,12 @@ import workspaceMeeting from "@/assets/workspace-meeting.jpg";
 import coworkingAerial from "@/assets/coworking-aerial.jpg";
 import meetingIllustrated from "@/assets/meeting-illustrated.jpg";
 import officeIllustrated from "@/assets/office-illustrated.jpg";
+import spaceSector18 from "@/assets/space-sector18.png";
+import spaceLajpat from "@/assets/space-lajpat.png";
+import spaceNehru from "@/assets/space-nehru.png";
+import spaceOkhla from "@/assets/space-okhla.png";
+import spaceMahipalpur from "@/assets/space-mahipalpur.avif";
+import spaceKarolbagh from "@/assets/space-karolbagh.png";
 
 // Mirror the workspaces data from GetWorkspaces
 export const workspacesData = [
@@ -151,7 +157,7 @@ export const workspacesData = [
         features: ["Virtual Address", "GST Registration"],
       },
     ],
-    images: [spaceHSR, workspaceCoworking, coworkingAerial, odMeeting],
+    images: [spaceSector18, greenPark2, greenPark3, greenPark4],
     popular: false,
     available: true,
     negotiable: false,
@@ -235,7 +241,7 @@ export const workspacesData = [
         features: ["Virtual Address", "GST Registration"],
       },
     ],
-    images: [odHotDesks, workspaceCoworking, spaceHSR, officeIllustrated],
+    images: [spaceLajpat, greenPark2, greenPark3, greenPark4],
     popular: false,
     available: true,
     negotiable: false,
@@ -274,7 +280,7 @@ export const workspacesData = [
         features: ["Virtual Address", "GST Registration", "Mail Handling"],
       },
     ],
-    images: [odDedicated, spaceChennai, workspaceMeeting, coworkingAerial],
+    images: [spaceNehru, greenPark2, greenPark3, greenPark4],
     popular: false,
     available: true,
     negotiable: true,
@@ -319,7 +325,7 @@ export const workspacesData = [
         features: ["Business Registration", "Lounge Access", "Meeting Rooms"],
       },
     ],
-    images: [odMeeting, spaceHSR, coworkingAerial, meetingIllustrated],
+    images: [spaceOkhla, greenPark2, greenPark3, greenPark4],
     popular: true,
     available: true,
     negotiable: true,
@@ -352,7 +358,7 @@ export const workspacesData = [
         features: ["Open Desk", "WiFi Access", "Parking"],
       },
     ],
-    images: [workspaceCoworking, odHotDesks, spaceChennai, officeIllustrated],
+    images: [spaceMahipalpur, greenPark2, greenPark3, greenPark4],
     popular: false,
     available: true,
     negotiable: false,
@@ -391,7 +397,7 @@ export const workspacesData = [
         features: ["Mail Handling", "Courier Receipt"],
       },
     ],
-    images: [workspaceMeeting, spaceDelhi, odDedicated, coworkingAerial],
+    images: [spaceKarolbagh, greenPark2, greenPark3, greenPark4],
     popular: false,
     available: true,
     negotiable: false,
