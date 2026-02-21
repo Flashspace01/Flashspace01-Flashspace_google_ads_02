@@ -46,6 +46,7 @@ const workspaces = [
     id: 1,
     name: "Stirring Minds",
     location: "Turkman Gate",
+    sublocation: "Near Connaught Place",
     address: "Kundan Mansion, 2-A/3, Asaf Ali Rd, Turkman Gate, Delhi",
     rating: 4.9,
     reviews: 245,
@@ -259,7 +260,10 @@ const WorkspaceCard = ({ ws, view }: { ws: typeof workspaces[0]; view: ViewMode 
         <div className="flex-1 min-w-0 flex flex-col gap-2">
           {/* Name + Rating + Actions */}
           <div className="flex items-start justify-between gap-2">
-            <h3 className="font-semibold text-[15px] text-foreground leading-snug tracking-[1px]">{ws.location}</h3>
+            <div>
+              <h3 className="font-semibold text-[15px] text-foreground leading-snug tracking-[1px]">{ws.location}</h3>
+              {ws.sublocation && <p className="text-xs text-muted-foreground mt-0.5">{ws.sublocation}</p>}
+            </div>
             <div className="flex items-center gap-2 flex-shrink-0">
               <button
                 onClick={(e) => { e.stopPropagation(); setLiked(!liked); }}
@@ -384,7 +388,10 @@ const WorkspaceCard = ({ ws, view }: { ws: typeof workspaces[0]; view: ViewMode 
       <div className="p-4 flex flex-col flex-1">
         {/* Name + Rating */}
         <div className="flex items-start justify-between gap-2">
-          <h3 className="font-semibold text-[15px] text-foreground leading-snug tracking-[1px]">{ws.location}</h3>
+          <div>
+            <h3 className="font-semibold text-[15px] text-foreground leading-snug tracking-[1px]">{ws.location}</h3>
+            {ws.sublocation && <p className="text-xs text-muted-foreground mt-0.5">{ws.sublocation}</p>}
+          </div>
           <div className="flex items-center gap-1 flex-shrink-0 bg-muted/60 rounded-full px-2 py-0.5 mt-0.5">
             <Star className="w-3 h-3 fill-gold text-gold" />
             <span className="text-xs font-semibold text-foreground">{ws.rating}</span>
