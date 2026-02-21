@@ -408,6 +408,7 @@ const GetWorkspaces = () => {
   const [activeCity, setActiveCity] = useState("Delhi");
   const [workspaceType, setWorkspaceType] = useState("virtual-office");
   const [viewMode, setViewMode] = useState<ViewMode>("grid");
+  const [showMap, setShowMap] = useState(false);
 
   const filteredWorkspaces = workspaces.filter((ws) =>
     ws.address.toLowerCase().includes(activeCity.toLowerCase())
@@ -421,133 +422,137 @@ const GetWorkspaces = () => {
     "day-pass": "Day Pass",
   };
 
+  const listingContent = (
+    <div className="h-full overflow-y-auto bg-[hsla(0,0%,97%,1)] dark:bg-background">
+      <div className="px-4 sm:px-6 lg:px-8 py-4 sm:py-6">
+
+        {/* Back link - mobile */}
+        <button onClick={() => window.history.back()} className="flex items-center gap-1 text-sm text-muted-foreground mb-3 lg:hidden">
+          <ChevronRight className="w-3.5 h-3.5 rotate-180" /> Back
+        </button>
+
+        {/* Breadcrumb */}
+        <nav className="flex items-center gap-1.5 text-xs text-muted-foreground mb-4">
+          <a href="/" className="hover:text-foreground transition-colors">Home</a>
+          <ChevronRight className="w-3 h-3" />
+          <span className="hover:text-foreground transition-colors cursor-pointer">{typeLabel[workspaceType]}</span>
+          <ChevronRight className="w-3 h-3" />
+          <span className="text-foreground font-medium">{activeCity}</span>
+        </nav>
+
+        {/* Page Title */}
+        <h1 className="text-xl sm:text-2xl lg:text-[28px] font-bold text-foreground tracking-tight mb-1.5">
+          {typeLabel[workspaceType]} in {activeCity}
+        </h1>
+        <p className="text-sm text-muted-foreground mb-5 sm:mb-6">
+          Discover premium workspaces tailored to your business needs.
+        </p>
+
+        {/* Search Bar */}
+        <div className="mb-5 sm:mb-6 flex flex-col gap-3 bg-[#F5F6F7] border border-[#E5E7EB] rounded-[20px] p-4 sm:p-5">
+
+          {/* City search row */}
+          <div className="flex items-center gap-3 flex-1 min-w-0">
+            <span className="text-[12px] font-medium text-muted-foreground uppercase tracking-[0.12em] whitespace-nowrap flex-shrink-0 leading-tight text-center">Search<br />City</span>
+            <div className="flex items-center flex-1 min-w-0 bg-white border border-[#E5E7EB] rounded-[12px] h-10 overflow-hidden">
+              <Input
+                value={searchCity}
+                onChange={(e) => setSearchCity(e.target.value)}
+                className="border-0 shadow-none h-full text-sm font-medium text-foreground focus-visible:ring-0 bg-transparent px-3 placeholder:text-muted-foreground/40 min-w-0 flex-1"
+                placeholder="Enter city..."
+              />
+              <button
+                onClick={() => setActiveCity(searchCity)}
+                className="flex-shrink-0 w-10 h-10 flex items-center justify-center bg-primary hover:bg-primary/90 hover:-translate-y-px transition-all duration-150 rounded-[11px] m-0">
+                <Search className="w-4 h-4 text-primary-foreground" strokeWidth={2} />
+              </button>
+            </div>
+          </div>
+
+          {/* Space Type Dropdown */}
+          <div className="w-full sm:w-auto sm:min-w-[160px]">
+            <Select value={workspaceType} onValueChange={setWorkspaceType}>
+              <SelectTrigger className="border border-[#E5E7EB] shadow-none rounded-[12px] h-10 text-sm font-medium text-foreground focus:ring-1 focus:ring-primary/30 focus-visible:ring-1 focus-visible:ring-primary/30 bg-white px-4 [&>svg]:ml-auto w-full">
+                <SelectValue />
+              </SelectTrigger>
+              <SelectContent className="z-50 bg-card">
+                <SelectItem value="virtual-office">Virtual Office</SelectItem>
+                <SelectItem value="coworking">Coworking Space</SelectItem>
+                <SelectItem value="private-office">Private Office</SelectItem>
+                <SelectItem value="meeting-room">Meeting Room</SelectItem>
+                <SelectItem value="day-pass">Day Pass</SelectItem>
+              </SelectContent>
+            </Select>
+          </div>
+        </div>
+
+        {/* Results count + view toggle */}
+        <div className="flex items-center justify-between mb-4 sm:mb-5">
+           <p className="text-sm text-muted-foreground">
+            Showing <span className="font-semibold text-foreground">{filteredWorkspaces.length} result(s)</span>{" "}
+            for {typeLabel[workspaceType].toLowerCase()} in <span className="font-medium text-foreground">{activeCity}</span>
+          </p>
+          <div className="flex items-center gap-0.5 bg-muted/60 rounded-lg p-0.5">
+            <button
+              onClick={() => setViewMode("list")}
+              className={`flex items-center gap-1 px-2 sm:px-3 py-1.5 rounded-md text-xs font-medium transition-all duration-200 ${
+                viewMode === "list"
+                  ? "bg-card text-foreground shadow-sm"
+                  : "text-muted-foreground hover:text-foreground"
+              }`}
+            >
+              <List className="w-3.5 h-3.5" />
+            </button>
+            <button
+              onClick={() => setViewMode("grid")}
+              className={`flex items-center gap-1 px-2 sm:px-3 py-1.5 rounded-md text-xs font-medium transition-all duration-200 ${
+                viewMode === "grid"
+                  ? "bg-card text-foreground shadow-sm"
+                  : "text-muted-foreground hover:text-foreground"
+              }`}
+            >
+              <LayoutGrid className="w-3.5 h-3.5" />
+            </button>
+          </div>
+        </div>
+
+        {/* Workspace Cards */}
+        <div className={
+          viewMode === "grid"
+            ? "grid grid-cols-1 min-[500px]:grid-cols-2 gap-4 pb-8"
+            : "flex flex-col gap-3 pb-8"
+        }>
+          {filteredWorkspaces.length > 0 ? (
+            filteredWorkspaces.map((ws) => (
+              <WorkspaceCard key={ws.id} ws={ws} view={viewMode} />
+            ))
+          ) : (
+            <div className="col-span-2 py-16 text-center text-muted-foreground">
+              <p className="text-base font-medium">No spaces found in "{activeCity}"</p>
+              <p className="text-sm mt-1">Try searching a different city.</p>
+            </div>
+          )}
+        </div>
+      </div>
+    </div>
+  );
+
   return (
     <div className="min-h-screen bg-background">
       <Navbar />
 
-      <div className="h-[calc(100vh-4rem)] lg:h-[calc(100vh-5rem)] mt-16 lg:mt-20">
+      {/* Desktop: resizable split layout */}
+      <div className="hidden lg:block h-[calc(100vh-5rem)] mt-20">
         <ResizablePanelGroup direction="horizontal" className="h-full w-full">
-          {/* ── Left Panel ── */}
           <ResizablePanel defaultSize={52} minSize={35} maxSize={70}>
-            <div className="h-full overflow-y-auto bg-[hsla(0,0%,97%,1)] dark:bg-background">
-              <div className="px-6 lg:px-8 py-6">
-
-                {/* Breadcrumb */}
-                <nav className="flex items-center gap-1.5 text-xs text-muted-foreground mb-4">
-                  <a href="/" className="hover:text-foreground transition-colors">Home</a>
-                  <ChevronRight className="w-3 h-3" />
-                  <span className="hover:text-foreground transition-colors cursor-pointer">{typeLabel[workspaceType]}</span>
-                  <ChevronRight className="w-3 h-3" />
-                  <span className="text-foreground font-medium">{activeCity}</span>
-                </nav>
-
-                {/* Page Title */}
-                <h1 className="text-2xl lg:text-[28px] font-bold text-foreground tracking-tight mb-1.5">
-                  {typeLabel[workspaceType]} in {activeCity}
-                </h1>
-                <p className="text-sm text-muted-foreground mb-6">
-                  Discover premium workspaces tailored to your business needs.
-                </p>
-
-                {/* Search Bar */}
-                <div className="mb-6 flex flex-col sm:flex-row items-stretch sm:items-center gap-3 bg-[#F5F6F7] border border-[#E5E7EB] rounded-[20px] p-4 sm:p-5">
-
-                  {/* Left: Icon + Label + City Input + Search Button */}
-                  <div className="flex items-center gap-3 flex-1 min-w-0">
-                    {/* Label only */}
-                    <span className="text-[12px] font-medium text-muted-foreground uppercase tracking-[0.12em] whitespace-nowrap flex-shrink-0 leading-tight text-center">Search<br />City</span>
-
-                    {/* City Input + Yellow Button */}
-                    <div className="flex items-center flex-1 min-w-0 bg-white border border-[#E5E7EB] rounded-[12px] h-10 overflow-hidden">
-                      <Input
-                        value={searchCity}
-                        onChange={(e) => setSearchCity(e.target.value)}
-                        className="border-0 shadow-none h-full text-sm font-medium text-foreground focus-visible:ring-0 bg-transparent px-3 placeholder:text-muted-foreground/40 min-w-0 flex-1"
-                        placeholder="Enter city..."
-                      />
-                      <button
-                        onClick={() => setActiveCity(searchCity)}
-                        className="flex-shrink-0 w-10 h-10 flex items-center justify-center bg-primary hover:bg-primary/90 hover:-translate-y-px transition-all duration-150 rounded-[11px] m-0">
-                        <Search className="w-4 h-4 text-primary-foreground" strokeWidth={2} />
-                      </button>
-                    </div>
-                  </div>
-
-                  {/* Space Type Dropdown */}
-                  <div className="flex-shrink-0 w-full sm:w-auto sm:min-w-[160px]">
-                    <Select value={workspaceType} onValueChange={setWorkspaceType}>
-                      <SelectTrigger className="border border-[#E5E7EB] shadow-none rounded-[12px] h-10 text-sm font-medium text-foreground focus:ring-1 focus:ring-primary/30 focus-visible:ring-1 focus-visible:ring-primary/30 bg-white px-4 [&>svg]:ml-auto w-full">
-                        <SelectValue />
-                      </SelectTrigger>
-                      <SelectContent className="z-50 bg-card">
-                        <SelectItem value="virtual-office">Virtual Office</SelectItem>
-                        <SelectItem value="coworking">Coworking Space</SelectItem>
-                        <SelectItem value="private-office">Private Office</SelectItem>
-                        <SelectItem value="meeting-room">Meeting Room</SelectItem>
-                        <SelectItem value="day-pass">Day Pass</SelectItem>
-                      </SelectContent>
-                    </Select>
-                  </div>
-                </div>
-
-                {/* Results count + view toggle */}
-                <div className="flex items-center justify-between mb-5">
-                   <p className="text-sm text-muted-foreground">
-                    <span className="font-semibold text-foreground">{filteredWorkspaces.length} spaces</span>{" "}
-                    found in <span className="font-medium text-foreground">{activeCity}</span>
-                  </p>
-                  <div className="flex items-center gap-0.5 bg-muted/60 rounded-lg p-0.5">
-                    <button
-                      onClick={() => setViewMode("list")}
-                      className={`flex items-center gap-1.5 px-3 py-1.5 rounded-md text-xs font-medium transition-all duration-200 ${
-                        viewMode === "list"
-                          ? "bg-card text-foreground shadow-sm"
-                          : "text-muted-foreground hover:text-foreground"
-                      }`}
-                    >
-                      <List className="w-3.5 h-3.5" /> List
-                    </button>
-                    <button
-                      onClick={() => setViewMode("grid")}
-                      className={`flex items-center gap-1.5 px-3 py-1.5 rounded-md text-xs font-medium transition-all duration-200 ${
-                        viewMode === "grid"
-                          ? "bg-card text-foreground shadow-sm"
-                          : "text-muted-foreground hover:text-foreground"
-                      }`}
-                    >
-                      <LayoutGrid className="w-3.5 h-3.5" /> Grid
-                    </button>
-                  </div>
-                </div>
-
-                {/* Workspace Cards */}
-                <div className={
-                  viewMode === "grid"
-                    ? "grid grid-cols-1 min-[500px]:grid-cols-2 gap-4 pb-8"
-                    : "flex flex-col gap-3 pb-8"
-                }>
-                  {filteredWorkspaces.length > 0 ? (
-                    filteredWorkspaces.map((ws) => (
-                      <WorkspaceCard key={ws.id} ws={ws} view={viewMode} />
-                    ))
-                  ) : (
-                    <div className="col-span-2 py-16 text-center text-muted-foreground">
-                      <p className="text-base font-medium">No spaces found in "{activeCity}"</p>
-                      <p className="text-sm mt-1">Try searching a different city.</p>
-                    </div>
-                  )}
-                </div>
-              </div>
-            </div>
+            {listingContent}
           </ResizablePanel>
 
-          {/* ── Resizable Handle ── */}
           <ResizableHandle
             withHandle
             className="w-1 bg-border/60 hover:bg-primary/30 transition-colors duration-200 data-[resize-handle-active]:bg-primary/50"
           />
 
-          {/* ── Right Panel: Map ── */}
           <ResizablePanel defaultSize={48} minSize={30} maxSize={65}>
             <div className="relative h-full bg-[hsla(0,0%,97%,1)] dark:bg-background p-4">
               <div className="h-full rounded-2xl overflow-hidden shadow-soft-lg border border-border/40">
@@ -558,7 +563,6 @@ const GetWorkspaces = () => {
                   allowFullScreen
                 />
               </div>
-              {/* Map overlay controls */}
               <div className="absolute top-8 right-8 flex flex-col gap-1 z-10">
                 <button className="w-8 h-8 bg-white rounded-lg shadow-md flex items-center justify-center text-foreground hover:bg-muted transition-colors border border-border/50 font-bold text-lg leading-none">+</button>
                 <button className="w-8 h-8 bg-white rounded-lg shadow-md flex items-center justify-center text-foreground hover:bg-muted transition-colors border border-border/50 font-bold text-lg leading-none">−</button>
@@ -566,6 +570,38 @@ const GetWorkspaces = () => {
             </div>
           </ResizablePanel>
         </ResizablePanelGroup>
+      </div>
+
+      {/* Mobile: full-width listings + expandable map */}
+      <div className="lg:hidden mt-16 min-h-[calc(100vh-4rem)] relative">
+        {listingContent}
+
+        {/* Expand Map floating button */}
+        <button
+          onClick={() => setShowMap(!showMap)}
+          className="fixed bottom-4 right-4 z-40 flex items-center gap-1.5 px-4 py-2.5 rounded-full bg-card border border-border shadow-soft-lg text-xs font-medium text-foreground hover:bg-muted transition-all"
+        >
+          <MapPin className="w-3.5 h-3.5" />
+          {showMap ? "Hide Map" : "Expand Map"}
+        </button>
+
+        {/* Map overlay */}
+        {showMap && (
+          <div className="fixed inset-0 z-30 mt-16 bg-background">
+            <button
+              onClick={() => setShowMap(false)}
+              className="absolute top-3 left-3 z-40 flex items-center gap-1 px-3 py-2 rounded-full bg-card border border-border shadow-md text-xs font-medium text-foreground"
+            >
+              <ChevronRight className="w-3.5 h-3.5 rotate-180" /> Back to list
+            </button>
+            <iframe
+              title="Workspace Map"
+              className="w-full h-full border-0"
+              src="https://www.openstreetmap.org/export/embed.html?bbox=77.05%2C28.50%2C77.40%2C28.72&layer=mapnik&marker=28.644%2C77.231"
+              allowFullScreen
+            />
+          </div>
+        )}
       </div>
     </div>
   );
