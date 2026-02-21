@@ -16,6 +16,7 @@ import {
   List,
   LayoutGrid,
   ChevronRight,
+  ChevronLeft,
   Bookmark,
   ShoppingCart,
   Phone,
@@ -55,6 +56,7 @@ const workspaces = [
       { label: "Business Reg", price: "₹1,200/month" },
     ],
     image: turkmanGate1,
+    images: [turkmanGate1, greenPark1, connaughtPlace1, spaceSector18],
     popular: true,
     available: true,
     negotiable: true,
@@ -74,6 +76,7 @@ const workspaces = [
       { label: "Business Reg", price: "₹1,275/month" },
     ],
     image: greenPark1,
+    images: [greenPark1, turkmanGate1, spaceLajpat, spaceNehru],
     popular: true,
     available: true,
     negotiable: true,
@@ -92,6 +95,7 @@ const workspaces = [
       { label: "GST Plan", price: "₹950/month" },
     ],
     image: spaceSector18,
+    images: [spaceSector18, spaceOkhla, spaceMahipalpur, spaceKarolbagh],
     popular: false,
     available: true,
     negotiable: false,
@@ -111,6 +115,7 @@ const workspaces = [
       { label: "Business Reg", price: "₹1,500/month" },
     ],
     image: connaughtPlace1,
+    images: [connaughtPlace1, turkmanGate1, greenPark1, spaceLajpat],
     popular: true,
     available: false,
     negotiable: true,
@@ -129,6 +134,7 @@ const workspaces = [
       { label: "GST Plan", price: "₹800/month" },
     ],
     image: spaceLajpat,
+    images: [spaceLajpat, spaceNehru, spaceOkhla, spaceSector18],
     popular: false,
     available: true,
     negotiable: false,
@@ -147,6 +153,7 @@ const workspaces = [
       { label: "GST Plan", price: "₹699/month" },
     ],
     image: spaceNehru,
+    images: [spaceNehru, spaceMahipalpur, spaceKarolbagh, connaughtPlace1],
     popular: false,
     available: true,
     negotiable: true,
@@ -166,6 +173,7 @@ const workspaces = [
       { label: "Business Reg", price: "₹1,100/month" },
     ],
     image: spaceOkhla,
+    images: [spaceOkhla, spaceMahipalpur, greenPark1, turkmanGate1],
     popular: true,
     available: true,
     negotiable: true,
@@ -183,6 +191,7 @@ const workspaces = [
       { label: "Basic Plan", price: "₹550/month" },
     ],
     image: spaceMahipalpur,
+    images: [spaceMahipalpur, spaceKarolbagh, spaceSector18, spaceLajpat],
     popular: false,
     available: true,
     negotiable: false,
@@ -201,6 +210,7 @@ const workspaces = [
       { label: "Mailing Plan", price: "₹680/month" },
     ],
     image: spaceKarolbagh,
+    images: [spaceKarolbagh, connaughtPlace1, spaceOkhla, spaceNehru],
     popular: false,
     available: true,
     negotiable: false,
@@ -214,8 +224,12 @@ type ViewMode = "list" | "grid";
 
 const WorkspaceCard = ({ ws, view }: { ws: typeof workspaces[0]; view: ViewMode }) => {
   const [liked, setLiked] = useState(false);
+  const [imgIndex, setImgIndex] = useState(0);
   const navigate = useNavigate();
   const handleNavigate = () => navigate(`/workspace/${ws.id}`);
+  const images = ws.images || [ws.image];
+  const prevImg = (e: React.MouseEvent) => { e.stopPropagation(); setImgIndex((i) => (i - 1 + images.length) % images.length); };
+  const nextImg = (e: React.MouseEvent) => { e.stopPropagation(); setImgIndex((i) => (i + 1) % images.length); };
 
   if (view === "list") {
     return (
@@ -226,7 +240,7 @@ const WorkspaceCard = ({ ws, view }: { ws: typeof workspaces[0]; view: ViewMode 
         {/* Image — fixed size, never shrinks */}
         <div className="relative w-36 h-auto min-h-[120px] flex-shrink-0 rounded-xl overflow-hidden self-stretch">
           <img
-            src={ws.image}
+            src={images[imgIndex]}
             alt={ws.name}
             className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
           />
@@ -305,7 +319,7 @@ const WorkspaceCard = ({ ws, view }: { ws: typeof workspaces[0]; view: ViewMode 
       {/* Image Section */}
       <div className="relative h-52 overflow-hidden">
         <img
-          src={ws.image}
+          src={images[imgIndex]}
           alt={ws.name}
           className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
         />
@@ -334,16 +348,21 @@ const WorkspaceCard = ({ ws, view }: { ws: typeof workspaces[0]; view: ViewMode 
           </button>
         </div>
 
-        {/* Availability + dots */}
+        {/* Availability + image nav arrows */}
         <div className="absolute bottom-3 left-3 right-3 flex items-end justify-between">
           <span className={`text-[10px] font-normal px-3 py-1 rounded-full backdrop-blur-sm text-white shadow-sm ${ws.available ? "bg-black/50" : "bg-black/60"}`}>
             {ws.available ? "Available Now" : "Fully Booked"}
           </span>
-          <div className="flex items-center gap-1 mr-1">
-            {[0, 1, 2, 3].map((i) => (
-              <span key={i} className={`w-1.5 h-1.5 rounded-full transition-colors ${i === 0 ? "bg-white" : "bg-white/35"}`} />
-            ))}
-          </div>
+          {images.length > 1 && (
+            <div className="flex items-center gap-1.5">
+              <button onClick={prevImg} className="w-6 h-6 rounded-full bg-white/90 backdrop-blur-sm flex items-center justify-center shadow-sm hover:bg-white transition-all">
+                <ChevronLeft className="w-3.5 h-3.5 text-foreground/70" />
+              </button>
+              <button onClick={nextImg} className="w-6 h-6 rounded-full bg-white/90 backdrop-blur-sm flex items-center justify-center shadow-sm hover:bg-white transition-all">
+                <ChevronRight className="w-3.5 h-3.5 text-foreground/70" />
+              </button>
+            </div>
+          )}
         </div>
       </div>
 
