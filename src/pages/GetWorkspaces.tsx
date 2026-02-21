@@ -258,9 +258,6 @@ const WorkspaceCard = ({ ws, view }: { ws: typeof workspaces[0]; view: ViewMode 
                 <span className="text-xs font-bold text-foreground">{plan.price}</span>
               </div>
             ))}
-            {ws.negotiable && (
-              <p className="text-[10px] text-muted-foreground italic">Price negotiable</p>
-            )}
           </div>
 
           {/* CTAs — always on their own row */}
@@ -371,10 +368,6 @@ const WorkspaceCard = ({ ws, view }: { ws: typeof workspaces[0]; view: ViewMode 
           ))}
         </div>
 
-        {/* Price negotiable */}
-        {ws.negotiable && (
-          <p className="text-[11px] text-muted-foreground italic mt-2">Price negotiable</p>
-        )}
 
         {/* CTA Buttons — always at bottom */}
         <div className="flex gap-2 mt-4">
