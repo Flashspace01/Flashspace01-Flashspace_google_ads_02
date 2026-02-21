@@ -35,24 +35,15 @@ const workspaces = [
   {
     id: 1,
     name: "Stirring Minds",
+    location: "Turkman Gate, Delhi",
     address: "Kundan Mansion, 2-A/3, Asaf Ali Rd, Turkman Gate, Delhi",
-    rating: 4.9,
-    reviews: 245,
-    tags: ["High-Speed WiFi", "Meeting Rooms"],
-    plans: [
-      { label: "GST Plan", price: "₹900/month" },
-      { label: "Mailing Plan", price: "₹650/month" },
-      { label: "Business Reg", price: "₹1,200/month" },
-    ],
-    image: spaceDelhi,
-    popular: true,
-    available: true,
     negotiable: true,
     lat: 28.644, lng: 77.231,
   },
   {
     id: 2,
     name: "Getset Spaces",
+    location: "Green Park, South Delhi",
     address: "3rd Floor, LMR House, S-16, Block C, Green Park, South Delhi",
     rating: 4.6,
     reviews: 167,
@@ -71,6 +62,7 @@ const workspaces = [
   {
     id: 3,
     name: "WBB Office",
+    location: "Sector 18, Noida",
     address: "Plot 12, Sector 18, Noida, Uttar Pradesh",
     rating: 4.4,
     reviews: 98,
@@ -88,6 +80,7 @@ const workspaces = [
   {
     id: 4,
     name: "CP Alt F",
+    location: "Connaught Place, Central Delhi",
     address: "Connaught Place, Central Delhi, Delhi — 110001",
     rating: 4.8,
     reviews: 312,
@@ -106,6 +99,7 @@ const workspaces = [
   {
     id: 5,
     name: "Mytime Cowork",
+    location: "Lajpat Nagar IV, New Delhi",
     address: "Lajpat Nagar IV, New Delhi, Delhi — 110024",
     rating: 4.3,
     reviews: 54,
@@ -123,6 +117,7 @@ const workspaces = [
   {
     id: 6,
     name: "Virtualexcel Hub",
+    location: "Nehru Place, South Delhi",
     address: "Nehru Place, South Delhi, Delhi — 110019",
     rating: 4.5,
     reviews: 88,
@@ -140,6 +135,7 @@ const workspaces = [
   {
     id: 7,
     name: "Okhla Alt F",
+    location: "Okhla Phase III, New Delhi",
     address: "Okhla Phase III, New Delhi, Delhi — 110020",
     rating: 4.7,
     reviews: 130,
@@ -158,6 +154,7 @@ const workspaces = [
   {
     id: 8,
     name: "Rangpuri Coworks",
+    location: "Mahipalpur, South Delhi",
     address: "Rangpuri, Mahipalpur, South Delhi — 110037",
     rating: 4.1,
     reviews: 40,
@@ -174,6 +171,7 @@ const workspaces = [
   {
     id: 9,
     name: "Summit Offices",
+    location: "Karol Bagh, Central Delhi",
     address: "Karol Bagh, Central Delhi, Delhi — 110005",
     rating: 4.6,
     reviews: 75,
@@ -227,7 +225,7 @@ const WorkspaceCard = ({ ws, view }: { ws: typeof workspaces[0]; view: ViewMode 
         <div className="flex-1 min-w-0 flex flex-col gap-2">
           {/* Name + Rating */}
           <div className="flex items-start justify-between gap-2">
-            <h3 className="font-semibold text-[15px] text-foreground leading-snug">{ws.name}</h3>
+            <h3 className="font-semibold text-[15px] text-foreground leading-snug">{ws.location}</h3>
             <div className="flex items-center gap-1 flex-shrink-0 bg-muted/60 rounded-full px-2 py-0.5">
               <Star className="w-3 h-3 fill-gold text-gold" />
               <span className="text-xs font-semibold text-foreground">{ws.rating}</span>
@@ -235,8 +233,6 @@ const WorkspaceCard = ({ ws, view }: { ws: typeof workspaces[0]; view: ViewMode 
             </div>
           </div>
 
-          {/* Address */}
-          <p className="text-xs text-muted-foreground line-clamp-1">{ws.address}</p>
 
           {/* Tags */}
           <div className="flex flex-wrap gap-1.5">
@@ -335,7 +331,7 @@ const WorkspaceCard = ({ ws, view }: { ws: typeof workspaces[0]; view: ViewMode 
       <div className="p-4 flex flex-col flex-1">
         {/* Name + Rating */}
         <div className="flex items-start justify-between gap-2">
-          <h3 className="font-semibold text-[15px] text-foreground leading-snug">{ws.name}</h3>
+          <h3 className="font-semibold text-[15px] text-foreground leading-snug">{ws.location}</h3>
           <div className="flex items-center gap-1 flex-shrink-0 bg-muted/60 rounded-full px-2 py-0.5 mt-0.5">
             <Star className="w-3 h-3 fill-gold text-gold" />
             <span className="text-xs font-semibold text-foreground">{ws.rating}</span>
@@ -343,8 +339,6 @@ const WorkspaceCard = ({ ws, view }: { ws: typeof workspaces[0]; view: ViewMode 
           </div>
         </div>
 
-        {/* Address */}
-        <p className="text-xs text-muted-foreground mt-1.5 line-clamp-1">{ws.address}</p>
 
         {/* Tags */}
         <div className="flex flex-wrap gap-1.5 mt-3">
