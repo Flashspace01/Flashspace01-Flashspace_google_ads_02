@@ -427,11 +427,6 @@ const GetWorkspaces = () => {
     <div className="h-full overflow-y-auto bg-[hsla(0,0%,97%,1)] dark:bg-background">
       <div className="px-4 sm:px-6 lg:px-8 py-4 sm:py-6">
 
-        {/* Back link - mobile */}
-        <button onClick={() => window.history.back()} className="flex items-center gap-1 text-sm text-muted-foreground mb-3 lg:hidden">
-          <ChevronRight className="w-3.5 h-3.5 rotate-180" /> Back
-        </button>
-
         {/* Breadcrumb */}
         <nav className="flex items-center gap-1.5 text-xs text-muted-foreground mb-4">
           <a href="/" className="hover:text-foreground transition-colors">Home</a>
