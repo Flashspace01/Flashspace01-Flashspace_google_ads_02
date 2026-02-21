@@ -25,6 +25,7 @@ import greenPark1 from "@/assets/green-park-1.png";
 import greenPark2 from "@/assets/green-park-2.avif";
 import greenPark3 from "@/assets/green-park-3.avif";
 import greenPark4 from "@/assets/green-park-4.avif";
+import connaughtPlace1 from "@/assets/connaught-place-1.png";
 import spaceHSR from "@/assets/space-hsr-bangalore.jpg";
 import spaceChennai from "@/assets/space-anna-nagar-chennai.jpg";
 import odHotDesks from "@/assets/od-hot-desks.jpg";
@@ -195,7 +196,7 @@ export const workspacesData = [
         features: ["Business Registration", "Lounge Access", "Meeting Rooms"],
       },
     ],
-    images: [spaceChennai, spaceDelhi, meetingIllustrated, coworkingAerial],
+    images: [connaughtPlace1, greenPark2, greenPark3, greenPark4],
     popular: true,
     available: false,
     negotiable: true,
