@@ -35,7 +35,7 @@ const workspaces = [
   {
     id: 1,
     name: "Stirring Minds",
-    location: "Turkman Gate, Delhi",
+    location: "Turkman Gate",
     address: "Kundan Mansion, 2-A/3, Asaf Ali Rd, Turkman Gate, Delhi",
     rating: 4.9,
     reviews: 245,
@@ -54,7 +54,7 @@ const workspaces = [
   {
     id: 2,
     name: "Getset Spaces",
-    location: "Green Park, South Delhi",
+    location: "Green Park",
     address: "3rd Floor, LMR House, S-16, Block C, Green Park, South Delhi",
     rating: 4.6,
     reviews: 167,
@@ -73,7 +73,7 @@ const workspaces = [
   {
     id: 3,
     name: "WBB Office",
-    location: "Sector 18, Noida",
+    location: "Sector 18",
     address: "Plot 12, Sector 18, Noida, Uttar Pradesh",
     rating: 4.4,
     reviews: 98,
@@ -91,7 +91,7 @@ const workspaces = [
   {
     id: 4,
     name: "CP Alt F",
-    location: "Connaught Place, Central Delhi",
+    location: "Connaught Place",
     address: "Connaught Place, Central Delhi, Delhi — 110001",
     rating: 4.8,
     reviews: 312,
@@ -110,7 +110,7 @@ const workspaces = [
   {
     id: 5,
     name: "Mytime Cowork",
-    location: "Lajpat Nagar IV, New Delhi",
+    location: "Lajpat Nagar",
     address: "Lajpat Nagar IV, New Delhi, Delhi — 110024",
     rating: 4.3,
     reviews: 54,
@@ -128,7 +128,7 @@ const workspaces = [
   {
     id: 6,
     name: "Virtualexcel Hub",
-    location: "Nehru Place, South Delhi",
+    location: "Nehru Place",
     address: "Nehru Place, South Delhi, Delhi — 110019",
     rating: 4.5,
     reviews: 88,
@@ -146,7 +146,7 @@ const workspaces = [
   {
     id: 7,
     name: "Okhla Alt F",
-    location: "Okhla Phase III, New Delhi",
+    location: "Okhla Phase",
     address: "Okhla Phase III, New Delhi, Delhi — 110020",
     rating: 4.7,
     reviews: 130,
@@ -165,7 +165,7 @@ const workspaces = [
   {
     id: 8,
     name: "Rangpuri Coworks",
-    location: "Mahipalpur, South Delhi",
+    location: "Mahipalpur Area",
     address: "Rangpuri, Mahipalpur, South Delhi — 110037",
     rating: 4.1,
     reviews: 40,
@@ -182,7 +182,7 @@ const workspaces = [
   {
     id: 9,
     name: "Summit Offices",
-    location: "Karol Bagh, Central Delhi",
+    location: "Karol Bagh",
     address: "Karol Bagh, Central Delhi, Delhi — 110005",
     rating: 4.6,
     reviews: 75,
