@@ -259,7 +259,7 @@ const WorkspaceCard = ({ ws, view }: { ws: typeof workspaces[0]; view: ViewMode 
         <div className="flex-1 min-w-0 flex flex-col gap-2">
           {/* Name + Rating */}
           <div className="flex items-start justify-between gap-2">
-            <h3 className="font-semibold text-[15px] text-foreground leading-snug">{ws.location}</h3>
+            <h3 className="font-semibold text-[15px] text-foreground leading-snug tracking-[1px]">{ws.location}</h3>
             <div className="flex items-center gap-1 flex-shrink-0 bg-muted/60 rounded-full px-2 py-0.5">
               <Star className="w-3 h-3 fill-gold text-gold" />
               <span className="text-xs font-semibold text-foreground">{ws.rating}</span>
@@ -370,7 +370,7 @@ const WorkspaceCard = ({ ws, view }: { ws: typeof workspaces[0]; view: ViewMode 
       <div className="p-4 flex flex-col flex-1">
         {/* Name + Rating */}
         <div className="flex items-start justify-between gap-2">
-          <h3 className="font-semibold text-[15px] text-foreground leading-snug">{ws.location}</h3>
+          <h3 className="font-semibold text-[15px] text-foreground leading-snug tracking-[1px]">{ws.location}</h3>
           <div className="flex items-center gap-1 flex-shrink-0 bg-muted/60 rounded-full px-2 py-0.5 mt-0.5">
             <Star className="w-3 h-3 fill-gold text-gold" />
             <span className="text-xs font-semibold text-foreground">{ws.rating}</span>
