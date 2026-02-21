@@ -24,6 +24,7 @@ import {
 import spaceDelhi from "@/assets/space-connaught-delhi.jpg";
 import turkmanGate1 from "@/assets/turkman-gate-1.png";
 import spaceMumbai from "@/assets/space-bkc-mumbai.jpg";
+import greenPark1 from "@/assets/green-park-1.png";
 import spaceHSR from "@/assets/space-hsr-bangalore.jpg";
 import spaceChennai from "@/assets/space-anna-nagar-chennai.jpg";
 import odHotDesks from "@/assets/od-hot-desks.jpg";
@@ -65,7 +66,7 @@ const workspaces = [
       { label: "Mailing Plan", price: "₹867/month" },
       { label: "Business Reg", price: "₹1,275/month" },
     ],
-    image: spaceMumbai,
+    image: greenPark1,
     popular: true,
     available: true,
     negotiable: true,
