@@ -35,8 +35,10 @@ const navLinks = [
 
 const sidebarMenuItems = [
   { label: "Start Chatting", href: "#", icon: MessageCircle },
+  { label: "Business Setup", href: "/business-setup", icon: FileText },
   { label: "Get Workspaces", href: "/get-workspaces", icon: LayoutGrid },
   { label: "Your Bookings", href: "#", icon: CalendarDays },
+  { label: "Flash Tribe", href: "#", icon: Users },
   { label: "Updates", href: "#", icon: Bell },
   { label: "Settings", href: "#", icon: Settings },
 ];
