@@ -35,10 +35,8 @@ const navLinks = [
 
 const sidebarMenuItems = [
   { label: "Start Chatting", href: "#", icon: MessageCircle },
-  { label: "Business Setup", href: "/business-setup", icon: FileText },
   { label: "Get Workspaces", href: "/get-workspaces", icon: LayoutGrid },
   { label: "Your Bookings", href: "#", icon: CalendarDays },
-  { label: "Flash Tribe", href: "#", icon: Users },
   { label: "Updates", href: "#", icon: Bell },
   { label: "Settings", href: "#", icon: Settings },
 ];
@@ -195,7 +193,7 @@ export const Navbar = () => {
 
             {sidebarMenuItems.map((item, index) => {
               const Icon = item.icon;
-              const showDivider = [1, 4].includes(index);
+              const showDivider = [1, 3].includes(index);
               const isExternal = item.href.startsWith("#");
               return (
                 <div key={item.label}>
