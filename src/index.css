@@ -296,3 +296,24 @@
 .animate-marquee {
   animation: marquee 25s linear infinite;
 }
+
+/* Leaflet popup overrides */
+.workspace-popup .leaflet-popup-content-wrapper {
+  padding: 0;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 8px 30px -4px rgba(0,0,0,0.15);
+  border: 1px solid hsl(var(--border));
+}
+.workspace-popup .leaflet-popup-content {
+  margin: 0;
+  width: auto !important;
+}
+.workspace-popup .leaflet-popup-tip {
+  background: white;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+}
+.custom-marker {
+  background: transparent !important;
+  border: none !important;
+}

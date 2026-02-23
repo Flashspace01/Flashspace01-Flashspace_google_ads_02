@@ -22,6 +22,7 @@ import {
   Phone,
   Flame,
 } from "lucide-react";
+import { WorkspaceMap } from "@/components/WorkspaceMap";
 import spaceDelhi from "@/assets/space-connaught-delhi.jpg";
 import turkmanGate1 from "@/assets/turkman-gate-1.png";
 import spaceMumbai from "@/assets/space-bkc-mumbai.jpg";
@@ -616,16 +617,7 @@ const GetWorkspaces = () => {
           <ResizablePanel defaultSize={48} minSize={30} maxSize={65}>
             <div className="relative h-full bg-[hsla(0,0%,97%,1)] dark:bg-background p-4">
               <div className="h-full rounded-2xl overflow-hidden shadow-soft-lg border border-border/40">
-                <iframe
-                  title="Workspace Map"
-                  className="w-full h-full border-0"
-                  src="https://www.openstreetmap.org/export/embed.html?bbox=77.05%2C28.50%2C77.40%2C28.72&layer=mapnik&marker=28.644%2C77.231"
-                  allowFullScreen
-                />
-              </div>
-              <div className="absolute top-8 right-8 flex flex-col gap-1 z-10">
-                <button className="w-8 h-8 bg-white rounded-lg shadow-md flex items-center justify-center text-foreground hover:bg-muted transition-colors border border-border/50 font-bold text-lg leading-none">+</button>
-                <button className="w-8 h-8 bg-white rounded-lg shadow-md flex items-center justify-center text-foreground hover:bg-muted transition-colors border border-border/50 font-bold text-lg leading-none">−</button>
+                <WorkspaceMap workspaces={filteredWorkspaces} />
               </div>
             </div>
           </ResizablePanel>
@@ -654,12 +646,7 @@ const GetWorkspaces = () => {
             >
               <ChevronRight className="w-3.5 h-3.5 rotate-180" /> Back to list
             </button>
-            <iframe
-              title="Workspace Map"
-              className="w-full h-full border-0"
-              src="https://www.openstreetmap.org/export/embed.html?bbox=77.05%2C28.50%2C77.40%2C28.72&layer=mapnik&marker=28.644%2C77.231"
-              allowFullScreen
-            />
+            <WorkspaceMap workspaces={filteredWorkspaces} />
           </div>
         )}
       </div>
