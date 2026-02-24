@@ -643,14 +643,14 @@ const GetWorkspaces = () => {
           </div>
         </div>
 
-        {/* Floating map button — fixed on screen when map is collapsed */}
+        {/* Floating map button — top-right, stays visible when map is collapsed */}
         {mapCollapsed && (
           <button
             onClick={() => setMapCollapsed(false)}
-            className="fixed bottom-8 right-8 z-30 w-12 h-12 rounded-full bg-foreground text-background shadow-xl flex items-center justify-center hover:scale-105 transition-transform duration-200 cursor-pointer"
+            className="absolute top-4 right-4 z-30 w-10 h-10 rounded-full border border-border bg-card shadow-md flex items-center justify-center text-muted-foreground hover:text-foreground hover:border-foreground/30 transition-all duration-200 cursor-pointer"
             aria-label="Show map"
           >
-            <Map className="w-5 h-5" />
+            <Map className="w-4.5 h-4.5" />
           </button>
         )}
       </div>
