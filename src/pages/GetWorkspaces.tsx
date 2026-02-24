@@ -632,14 +632,17 @@ const GetWorkspaces = () => {
         {/* Floating Divider Toggle Icon */}
         <button
           onClick={() => setMapCollapsed(!mapCollapsed)}
-          className="hidden lg:flex absolute right-0 top-1/2 -translate-y-1/2 z-50 w-10 h-10 rounded-full bg-card border border-border/60 shadow-md items-center justify-center hover:shadow-lg hover:border-primary/40 transition-all duration-200 group cursor-pointer"
-          style={{ right: mapCollapsed ? '0px' : 'calc(45% - 20px)', transition: 'right 300ms ease-in-out' }}
+          className="hidden lg:flex absolute top-1/2 -translate-y-1/2 z-50 w-11 h-11 rounded-full bg-card border border-border shadow-lg items-center justify-center hover:shadow-xl hover:border-primary/40 transition-all duration-300 group cursor-pointer"
+          style={{ 
+            right: mapCollapsed ? '4px' : 'calc(45% - 22px)', 
+            transition: 'right 300ms ease-in-out' 
+          }}
           aria-label={mapCollapsed ? "Show map" : "Hide map"}
         >
           {mapCollapsed ? (
-            <ChevronLeft className="w-4 h-4 text-muted-foreground group-hover:text-primary transition-colors" />
+            <ChevronLeft className="w-5 h-5 text-muted-foreground group-hover:text-primary transition-colors" />
           ) : (
-            <ChevronRight className="w-4 h-4 text-muted-foreground group-hover:text-primary transition-colors" />
+            <ChevronRight className="w-5 h-5 text-muted-foreground group-hover:text-primary transition-colors" />
           )}
         </button>
 
