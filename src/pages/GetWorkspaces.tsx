@@ -598,18 +598,35 @@ const GetWorkspaces = () => {
                 Showing <span className="font-semibold text-foreground">{filteredWorkspaces.length} result(s)</span>{" "}
                 for {typeLabel[workspaceType].toLowerCase()} in <span className="font-medium text-foreground">{activeCity}</span>
               </p>
-              <div className="flex items-center gap-0.5 bg-muted/60 rounded-lg p-0.5">
+              <div className="flex items-center gap-2">
+                <div className="flex items-center gap-0.5 bg-muted/60 rounded-lg p-0.5">
+                  <button
+                    onClick={() => setViewMode("list")}
+                    className={`flex items-center justify-center w-9 h-9 rounded-md transition-all duration-200 ${
+                    viewMode === "list" ? "bg-card text-foreground shadow-sm" : "text-muted-foreground hover:text-foreground"}`}>
+                    <List className="w-4 h-4" />
+                  </button>
+                  <button
+                    onClick={() => setViewMode("grid")}
+                    className={`flex items-center justify-center w-9 h-9 rounded-md transition-all duration-200 ${
+                    viewMode === "grid" ? "bg-card text-foreground shadow-sm" : "text-muted-foreground hover:text-foreground"}`}>
+                    <LayoutGrid className="w-4 h-4" />
+                  </button>
+                </div>
                 <button
-                  onClick={() => setViewMode("list")}
-                  className={`flex items-center justify-center w-9 h-9 rounded-md transition-all duration-200 ${
-                  viewMode === "list" ? "bg-card text-foreground shadow-sm" : "text-muted-foreground hover:text-foreground"}`}>
-                  <List className="w-4 h-4" />
-                </button>
-                <button
-                  onClick={() => setViewMode("grid")}
-                  className={`flex items-center justify-center w-9 h-9 rounded-md transition-all duration-200 ${
-                  viewMode === "grid" ? "bg-card text-foreground shadow-sm" : "text-muted-foreground hover:text-foreground"}`}>
-                  <LayoutGrid className="w-4 h-4" />
+                  onClick={() => setMapCollapsed(!mapCollapsed)}
+                  className={`hidden lg:flex items-center justify-center w-9 h-9 rounded-lg border transition-all duration-200 cursor-pointer ${
+                    mapCollapsed 
+                      ? "bg-muted/60 border-border/60 text-muted-foreground hover:text-foreground hover:border-primary/40" 
+                      : "bg-primary/10 border-primary/30 text-primary hover:bg-primary/15"
+                  }`}
+                  aria-label={mapCollapsed ? "Show map" : "Hide map"}
+                >
+                  {mapCollapsed ? (
+                    <ChevronLeft className="w-4 h-4" />
+                  ) : (
+                    <ChevronRight className="w-4 h-4" />
+                  )}
                 </button>
               </div>
             </div>
@@ -629,22 +646,6 @@ const GetWorkspaces = () => {
           </div>
         </div>
 
-        {/* Floating Divider Toggle Icon */}
-        <button
-          onClick={() => setMapCollapsed(!mapCollapsed)}
-          className="hidden lg:flex absolute top-1/2 -translate-y-1/2 z-50 w-11 h-11 rounded-full bg-card border border-border shadow-lg items-center justify-center hover:shadow-xl hover:border-primary/40 transition-all duration-300 group cursor-pointer"
-          style={{ 
-            right: mapCollapsed ? '4px' : 'calc(45% - 22px)', 
-            transition: 'right 300ms ease-in-out' 
-          }}
-          aria-label={mapCollapsed ? "Show map" : "Hide map"}
-        >
-          {mapCollapsed ? (
-            <ChevronLeft className="w-5 h-5 text-muted-foreground group-hover:text-primary transition-colors" />
-          ) : (
-            <ChevronRight className="w-5 h-5 text-muted-foreground group-hover:text-primary transition-colors" />
-          )}
-        </button>
 
         {/* Right: Map */}
         <div className={`relative transition-all duration-300 ease-in-out ${mapCollapsed ? 'w-0 overflow-hidden opacity-0' : 'w-[45%] opacity-100'}`}>
