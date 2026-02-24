@@ -454,12 +454,10 @@ const GetWorkspaces = () => {
   );
 
   const typeLabel: Record<string, string> = {
-    "virtual-office": "Virtual Office",
-    "coworking": "Coworking Space",
-    "private-office": "Private Office",
-    "meeting-room": "Meeting Room",
-    "day-pass": "Day Pass"
-  };
+     "virtual-office": "Virtual Office",
+     "coworking": "Coworking Space",
+     "on-demand": "On Demand"
+   };
 
   return (
     <div className="min-h-screen bg-background flex flex-col">
@@ -492,9 +490,7 @@ const GetWorkspaces = () => {
                 <SelectContent>
                   <SelectItem value="virtual-office">Virtual Office</SelectItem>
                   <SelectItem value="coworking">Coworking Space</SelectItem>
-                  <SelectItem value="private-office">Private Office</SelectItem>
-                  <SelectItem value="meeting-room">Meeting Room</SelectItem>
-                  <SelectItem value="day-pass">Day Pass</SelectItem>
+                  <SelectItem value="on-demand">On Demand</SelectItem>
                 </SelectContent>
               </Select>
             </div>
