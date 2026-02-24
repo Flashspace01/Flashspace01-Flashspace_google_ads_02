@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { WorkspaceMap } from "@/components/WorkspaceMap";
 import { useParams, useNavigate } from "react-router-dom";
 import { Navbar } from "@/components/layout/Navbar";
 import {
@@ -438,7 +439,13 @@ const WorkspaceDetail = () => {
     );
   }
 
-  const mapSrc = `https://www.openstreetmap.org/export/embed.html?bbox=${ws.lng - 0.02}%2C${ws.lat - 0.015}%2C${ws.lng + 0.02}%2C${ws.lat + 0.015}&layer=mapnik&marker=${ws.lat}%2C${ws.lng}`;
+  const singleWorkspace = [{
+    ...ws,
+    location: ws.name,
+    address: ws.fullAddress,
+    plans: ws.plans.map(p => ({ label: p.label, price: p.yearPrice })),
+    image: ws.images[0],
+  }];
 
   return (
     <div className="min-h-screen bg-background">
@@ -544,11 +551,10 @@ const WorkspaceDetail = () => {
             <section>
               <h2 className="text-xl font-bold text-foreground mb-4">Where you'll be</h2>
               <div className="rounded-[12px] overflow-hidden border border-border/50 h-72">
-                <iframe
-                  title="Location Map"
-                  className="w-full h-full border-0"
-                  src={mapSrc}
-                  allowFullScreen
+                <WorkspaceMap
+                  workspaces={singleWorkspace}
+                  center={[ws.lat, ws.lng]}
+                  zoom={14}
                 />
               </div>
               <p className="text-sm text-muted-foreground mt-2">{ws.fullAddress}</p>
