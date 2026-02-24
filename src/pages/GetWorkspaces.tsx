@@ -643,11 +643,11 @@ const GetWorkspaces = () => {
           </div>
         </div>
 
-        {/* Floating map button — fixed top-right, stays on screen during scroll */}
+        {/* Floating map button — fixed top-right, below filter bar */}
         {mapCollapsed && (
           <button
             onClick={() => setMapCollapsed(false)}
-            className="fixed top-28 right-8 z-30 w-10 h-10 rounded-full border border-border bg-card shadow-md flex items-center justify-center text-muted-foreground hover:text-foreground hover:border-foreground/30 transition-all duration-200 cursor-pointer"
+            className="fixed top-52 right-8 z-30 w-10 h-10 rounded-full border border-border bg-card shadow-md flex items-center justify-center text-muted-foreground hover:text-foreground hover:border-foreground/30 transition-all duration-200 cursor-pointer"
             aria-label="Show map"
           >
             <Map className="w-4.5 h-4.5" />
