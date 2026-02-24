@@ -20,10 +20,7 @@ import {
   Bookmark,
   ShoppingCart,
   Phone,
-  Flame,
-  PanelLeftClose,
-  PanelLeftOpen,
-  Map } from
+  Flame } from
 "lucide-react";
 import { WorkspaceMap } from "@/components/WorkspaceMap";
 import spaceDelhi from "@/assets/space-connaught-delhi.jpg";
@@ -586,20 +583,6 @@ const GetWorkspaces = () => {
               </Select>
             </div>
 
-            {/* Divider before map toggle */}
-            <div className="hidden sm:block w-px h-8 bg-border/60 flex-shrink-0" />
-
-            {/* Map Toggle Button */}
-            <button
-              onClick={() => setMapCollapsed(!mapCollapsed)}
-              className={`hidden lg:flex items-center gap-1.5 h-10 px-3.5 rounded-xl border text-sm font-medium transition-all duration-200 flex-shrink-0 ${
-                mapCollapsed
-                  ? "bg-card border-border/60 text-muted-foreground hover:border-primary/40 hover:text-foreground hover:shadow-sm"
-                  : "bg-primary/10 border-primary/30 text-primary hover:bg-primary/15"
-              }`}>
-              <Map className="w-4 h-4" />
-              <span className="whitespace-nowrap">{mapCollapsed ? "Show Map" : "Hide Map"}</span>
-            </button>
           </div>
         </div>
       </div>
@@ -644,6 +627,21 @@ const GetWorkspaces = () => {
               }
             </div>
           </div>
+        </div>
+
+        {/* Divider Toggle Icon */}
+        <div className={`relative flex-shrink-0 transition-all duration-300 ease-in-out ${mapCollapsed ? 'w-0' : 'w-0'}`}>
+          <button
+            onClick={() => setMapCollapsed(!mapCollapsed)}
+            className="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 z-50 w-10 h-10 rounded-full bg-card border border-border/60 shadow-md flex items-center justify-center hover:shadow-lg hover:border-primary/40 transition-all duration-200 group"
+            aria-label={mapCollapsed ? "Show map" : "Hide map"}
+          >
+            {mapCollapsed ? (
+              <ChevronLeft className="w-4 h-4 text-muted-foreground group-hover:text-primary transition-colors" />
+            ) : (
+              <ChevronRight className="w-4 h-4 text-muted-foreground group-hover:text-primary transition-colors" />
+            )}
+          </button>
         </div>
 
         {/* Right: Map */}
