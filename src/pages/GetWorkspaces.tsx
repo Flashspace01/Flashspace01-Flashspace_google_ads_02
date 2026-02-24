@@ -454,10 +454,10 @@ const GetWorkspaces = () => {
   );
 
   const typeLabel: Record<string, string> = {
-     "virtual-office": "Virtual Office",
-     "coworking": "Coworking Space",
-     "on-demand": "On Demand"
-   };
+    "virtual-office": "Virtual Office",
+    "coworking": "Coworking Space",
+    "on-demand": "On Demand"
+  };
 
   return (
     <div className="min-h-screen bg-background flex flex-col">
@@ -481,10 +481,10 @@ const GetWorkspaces = () => {
             <div className="sm:w-[180px]">
               <Select value={workspaceType} onValueChange={setWorkspaceType}>
                 <SelectTrigger className={`border shadow-none rounded-xl h-10 text-sm font-medium px-4 [&>svg]:ml-auto w-full transition-all duration-200 ${
-                  workspaceType !== "virtual-office"
-                    ? "bg-primary/10 border-primary/40 text-primary ring-1 ring-primary/20"
-                    : "border-border/60 text-foreground bg-card hover:border-primary/40 hover:shadow-sm focus:ring-1 focus:ring-primary/30"
-                }`}>
+                workspaceType !== "virtual-office" ?
+                "bg-primary/10 border-primary/40 text-primary ring-1 ring-primary/20" :
+                "border-border/60 text-foreground bg-card hover:border-primary/40 hover:shadow-sm focus:ring-1 focus:ring-primary/30"}`
+                }>
                   <SelectValue placeholder="Product" />
                 </SelectTrigger>
                 <SelectContent>
@@ -509,7 +509,7 @@ const GetWorkspaces = () => {
                   placeholder="City..." />
                 <button
                   onClick={() => {setActiveCity(searchCity);setShowCitySuggestions(false);}}
-                  className="flex-shrink-0 w-8 h-8 flex items-center justify-center bg-[hsl(48,95%,60%)] hover:bg-[hsl(48,95%,50%)] active:scale-95 transition-all rounded-[10px] mr-1">
+                  className="flex-shrink-0 w-8 h-8 flex items-center justify-center active:scale-95 transition-all rounded-[10px] mr-1 bg-primary-foreground">
                   <Search className="w-3.5 h-3.5 text-foreground" strokeWidth={2} />
                 </button>
               </div>
@@ -545,10 +545,10 @@ const GetWorkspaces = () => {
             <div className="sm:w-[160px]">
               <Select value={pricingFilter} onValueChange={setPricingFilter}>
                 <SelectTrigger className={`border shadow-none rounded-xl h-10 text-sm font-medium px-4 [&>svg]:ml-auto w-full transition-all duration-200 ${
-                  pricingFilter !== "all"
-                    ? "bg-primary/10 border-primary/40 text-primary ring-1 ring-primary/20"
-                    : "border-border/60 text-foreground bg-card hover:border-primary/40 hover:shadow-sm focus:ring-1 focus:ring-primary/30"
-                }`}>
+                pricingFilter !== "all" ?
+                "bg-primary/10 border-primary/40 text-primary ring-1 ring-primary/20" :
+                "border-border/60 text-foreground bg-card hover:border-primary/40 hover:shadow-sm focus:ring-1 focus:ring-primary/30"}`
+                }>
                   <SelectValue placeholder="Pricing" />
                 </SelectTrigger>
                 <SelectContent>
@@ -564,10 +564,10 @@ const GetWorkspaces = () => {
             <div className="sm:w-[150px]">
               <Select value={sortBy} onValueChange={setSortBy}>
                 <SelectTrigger className={`border shadow-none rounded-xl h-10 text-sm font-medium px-4 [&>svg]:ml-auto w-full transition-all duration-200 ${
-                  sortBy !== "popular"
-                    ? "bg-primary/10 border-primary/40 text-primary ring-1 ring-primary/20"
-                    : "border-border/60 text-foreground bg-card hover:border-primary/40 hover:shadow-sm focus:ring-1 focus:ring-primary/30"
-                }`}>
+                sortBy !== "popular" ?
+                "bg-primary/10 border-primary/40 text-primary ring-1 ring-primary/20" :
+                "border-border/60 text-foreground bg-card hover:border-primary/40 hover:shadow-sm focus:ring-1 focus:ring-primary/30"}`
+                }>
                   <SelectValue placeholder="Sort by" />
                 </SelectTrigger>
                 <SelectContent>
@@ -612,17 +612,17 @@ const GetWorkspaces = () => {
                 <button
                   onClick={() => setMapCollapsed(!mapCollapsed)}
                   className={`hidden lg:flex items-center justify-center w-9 h-9 rounded-lg border transition-all duration-200 cursor-pointer ${
-                    mapCollapsed 
-                      ? "bg-muted/60 border-border/60 text-muted-foreground hover:text-foreground hover:border-primary/40" 
-                      : "bg-primary/10 border-primary/30 text-primary hover:bg-primary/15"
-                  }`}
-                  aria-label={mapCollapsed ? "Show map" : "Hide map"}
-                >
-                  {mapCollapsed ? (
-                    <ChevronLeft className="w-4 h-4" />
-                  ) : (
-                    <ChevronRight className="w-4 h-4" />
-                  )}
+                  mapCollapsed ?
+                  "bg-muted/60 border-border/60 text-muted-foreground hover:text-foreground hover:border-primary/40" :
+                  "bg-primary/10 border-primary/30 text-primary hover:bg-primary/15"}`
+                  }
+                  aria-label={mapCollapsed ? "Show map" : "Hide map"}>
+
+                  {mapCollapsed ?
+                  <ChevronLeft className="w-4 h-4" /> :
+
+                  <ChevronRight className="w-4 h-4" />
+                  }
                 </button>
               </div>
             </div>
