@@ -315,7 +315,7 @@ const WorkspaceCard = ({ ws, view }: {ws: typeof workspaces[0];view: ViewMode;})
             </button>
             <button
               onClick={(e) => {e.stopPropagation();handleNavigate();}}
-              className="py-2 px-3 text-xs font-normal rounded-xl border border-border text-foreground hover:bg-primary hover:text-primary-foreground hover:border-primary transition-all duration-200 flex items-center gap-1 whitespace-nowrap">
+              className="py-2 px-3 text-xs font-medium rounded-xl border border-border text-foreground hover:bg-muted transition-all duration-200 flex items-center gap-1 whitespace-nowrap">
 
               <Phone className="w-3 h-3" /> Contact Sales
             </button>
@@ -427,7 +427,7 @@ const WorkspaceCard = ({ ws, view }: {ws: typeof workspaces[0];view: ViewMode;})
           </button>
           <button
             onClick={(e) => {e.stopPropagation();handleNavigate();}}
-            className="flex-1 py-2.5 text-xs font-normal rounded-xl border border-border text-foreground hover:bg-primary hover:text-primary-foreground hover:border-primary transition-all duration-200 flex items-center justify-center gap-1.5">
+            className="flex-1 py-2.5 text-xs font-medium rounded-xl border border-border text-foreground hover:bg-muted transition-all duration-200 flex items-center justify-center gap-1.5">
 
             <Phone className="w-3 h-3" /> Contact Sales
           </button>
