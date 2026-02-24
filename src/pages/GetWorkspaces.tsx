@@ -588,16 +588,6 @@ const GetWorkspaces = () => {
       <div className="hidden lg:flex flex-1 h-[calc(100vh-13rem)] relative">
         {/* Left: Listings */}
         <div className={`overflow-y-auto bg-muted/20 transition-all duration-300 ease-in-out relative ${mapCollapsed ? 'w-full' : 'w-[55%] border-r border-border/40'}`}>
-          {/* Floating map icon — scrolls with cards, right edge */}
-          {mapCollapsed && (
-            <button
-              onClick={() => setMapCollapsed(false)}
-              className="sticky top-4 float-right mr-4 mt-4 z-20 w-10 h-10 rounded-full border border-border bg-card shadow-lg flex items-center justify-center text-muted-foreground hover:text-foreground hover:border-foreground/30 transition-all duration-200 cursor-pointer"
-              aria-label="Show map"
-            >
-              <Map className="w-4.5 h-4.5" />
-            </button>
-          )}
           <div className="px-6 py-4">
             {/* Results text + view toggle */}
             <div className="flex items-center justify-between mb-4">
@@ -652,6 +642,17 @@ const GetWorkspaces = () => {
             <WorkspaceMap workspaces={filteredWorkspaces} />
           </div>
         </div>
+
+        {/* Floating map button — fixed on screen when map is collapsed */}
+        {mapCollapsed && (
+          <button
+            onClick={() => setMapCollapsed(false)}
+            className="fixed bottom-8 right-8 z-30 w-12 h-12 rounded-full bg-foreground text-background shadow-xl flex items-center justify-center hover:scale-105 transition-transform duration-200 cursor-pointer"
+            aria-label="Show map"
+          >
+            <Map className="w-5 h-5" />
+          </button>
+        )}
       </div>
 
       {/* Mobile: full-width listings + expandable map */}
