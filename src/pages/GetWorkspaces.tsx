@@ -595,6 +595,15 @@ const GetWorkspaces = () => {
                 for {typeLabel[workspaceType].toLowerCase()} in <span className="font-medium text-foreground">{activeCity}</span>
               </p>
               <div className="flex items-center gap-2">
+                {mapCollapsed && (
+                  <button
+                    onClick={() => setMapCollapsed(false)}
+                    className="flex items-center gap-1.5 px-3 h-9 rounded-lg text-sm font-medium border border-border bg-card text-foreground hover:border-foreground/30 shadow-sm transition-all duration-200 cursor-pointer"
+                  >
+                    <MapPin className="w-3.5 h-3.5" />
+                    Show Map
+                  </button>
+                )}
                 <div className="flex items-center gap-0.5 bg-muted/60 rounded-lg p-0.5">
                   <button
                     onClick={() => setViewMode("list")}
@@ -627,19 +636,17 @@ const GetWorkspaces = () => {
           </div>
         </div>
 
-        {/* Map toggle — fixed at top of split line */}
-        <button
-          onClick={() => setMapCollapsed(!mapCollapsed)}
-          className="absolute top-4 z-20 w-9 h-9 rounded-full border border-border bg-card shadow-md flex items-center justify-center text-muted-foreground hover:text-foreground hover:border-foreground/30 transition-all duration-200 cursor-pointer"
-          style={{ left: mapCollapsed ? 'calc(100% - 18px)' : 'calc(55% - 18px)' }}
-          aria-label={mapCollapsed ? "Show map" : "Hide map"}
-        >
-          {mapCollapsed ? <ChevronLeft className="w-4 h-4" /> : <ChevronRight className="w-4 h-4" />}
-        </button>
-
         {/* Right: Map */}
-        <div className={`transition-all duration-300 ease-in-out ${mapCollapsed ? 'w-0 overflow-hidden opacity-0' : 'w-[45%] opacity-100'}`}>
+        <div className={`transition-all duration-300 ease-in-out relative ${mapCollapsed ? 'w-0 overflow-hidden opacity-0' : 'w-[45%] opacity-100'}`}>
           <div className="sticky top-20 h-[calc(100vh-5rem)] rounded-xl overflow-hidden border border-border/30">
+            {/* Map toggle — fixed on the map */}
+            <button
+              onClick={() => setMapCollapsed(!mapCollapsed)}
+              className="absolute top-4 left-4 z-20 w-9 h-9 rounded-full border border-border bg-card shadow-md flex items-center justify-center text-muted-foreground hover:text-foreground hover:border-foreground/30 transition-all duration-200 cursor-pointer"
+              aria-label="Hide map"
+            >
+              <ChevronRight className="w-4 h-4" />
+            </button>
             <WorkspaceMap workspaces={filteredWorkspaces} />
           </div>
         </div>
