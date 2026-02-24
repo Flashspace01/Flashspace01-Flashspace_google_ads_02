@@ -612,7 +612,7 @@ const WorkspaceDetail = () => {
               </div>
 
               {/* Book Now */}
-              <button className="w-full py-3.5 rounded-[10px] bg-primary text-primary-foreground font-bold text-base hover:bg-primary/90 transition-colors">
+              <button className="w-full py-3.5 rounded-[10px] bg-primary text-primary-foreground font-medium text-base hover:bg-primary/85 active:bg-primary/75 transition-colors">
                 Book Now
               </button>
               <p className="text-center text-[12px] text-muted-foreground mt-2">
@@ -620,7 +620,7 @@ const WorkspaceDetail = () => {
               </p>
 
               {/* Contact Sales */}
-              <button className="w-full mt-3 py-3 rounded-[10px] border border-border text-foreground text-sm font-medium flex items-center justify-center gap-2 hover:bg-primary hover:text-primary-foreground hover:border-primary transition-colors">
+              <button className="w-full mt-3 py-3 rounded-[10px] border border-border text-foreground text-sm font-medium flex items-center justify-center gap-2 hover:bg-muted/60 hover:border-border active:bg-muted transition-colors">
                 <Phone className="w-4 h-4" /> Contact Sales
               </button>
             </div>
