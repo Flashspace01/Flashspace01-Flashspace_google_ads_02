@@ -588,7 +588,7 @@ const GetWorkspaces = () => {
       </div>
 
       {/* Desktop: split view — listings left, map right */}
-      <div className="hidden lg:flex flex-1 h-[calc(100vh-13rem)]">
+      <div className="hidden lg:flex flex-1 h-[calc(100vh-13rem)] relative">
         {/* Left: Listings */}
         <div className={`overflow-y-auto bg-muted/20 transition-all duration-300 ease-in-out ${mapCollapsed ? 'w-full' : 'w-[55%] border-r border-border/40'}`}>
           <div className="px-6 py-4">
@@ -629,20 +629,19 @@ const GetWorkspaces = () => {
           </div>
         </div>
 
-        {/* Divider Toggle Icon */}
-        <div className={`relative flex-shrink-0 transition-all duration-300 ease-in-out ${mapCollapsed ? 'w-0' : 'w-0'}`}>
-          <button
-            onClick={() => setMapCollapsed(!mapCollapsed)}
-            className="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 z-50 w-10 h-10 rounded-full bg-card border border-border/60 shadow-md flex items-center justify-center hover:shadow-lg hover:border-primary/40 transition-all duration-200 group"
-            aria-label={mapCollapsed ? "Show map" : "Hide map"}
-          >
-            {mapCollapsed ? (
-              <ChevronLeft className="w-4 h-4 text-muted-foreground group-hover:text-primary transition-colors" />
-            ) : (
-              <ChevronRight className="w-4 h-4 text-muted-foreground group-hover:text-primary transition-colors" />
-            )}
-          </button>
-        </div>
+        {/* Floating Divider Toggle Icon */}
+        <button
+          onClick={() => setMapCollapsed(!mapCollapsed)}
+          className="hidden lg:flex absolute right-0 top-1/2 -translate-y-1/2 z-50 w-10 h-10 rounded-full bg-card border border-border/60 shadow-md items-center justify-center hover:shadow-lg hover:border-primary/40 transition-all duration-200 group cursor-pointer"
+          style={{ right: mapCollapsed ? '0px' : 'calc(45% - 20px)', transition: 'right 300ms ease-in-out' }}
+          aria-label={mapCollapsed ? "Show map" : "Hide map"}
+        >
+          {mapCollapsed ? (
+            <ChevronLeft className="w-4 h-4 text-muted-foreground group-hover:text-primary transition-colors" />
+          ) : (
+            <ChevronRight className="w-4 h-4 text-muted-foreground group-hover:text-primary transition-colors" />
+          )}
+        </button>
 
         {/* Right: Map */}
         <div className={`relative transition-all duration-300 ease-in-out ${mapCollapsed ? 'w-0 overflow-hidden opacity-0' : 'w-[45%] opacity-100'}`}>
