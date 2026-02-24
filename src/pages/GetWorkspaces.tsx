@@ -20,7 +20,8 @@ import {
   Bookmark,
   ShoppingCart,
   Phone,
-  Flame } from
+  Flame,
+  Map } from
 "lucide-react";
 import { WorkspaceMap } from "@/components/WorkspaceMap";
 import spaceDelhi from "@/assets/space-connaught-delhi.jpg";
@@ -586,7 +587,17 @@ const GetWorkspaces = () => {
       {/* Desktop: split view — listings left, map right */}
       <div className="hidden lg:flex flex-1 h-[calc(100vh-13rem)] relative">
         {/* Left: Listings */}
-        <div className={`overflow-y-auto bg-muted/20 transition-all duration-300 ease-in-out ${mapCollapsed ? 'w-full' : 'w-[55%] border-r border-border/40'}`}>
+        <div className={`overflow-y-auto bg-muted/20 transition-all duration-300 ease-in-out relative ${mapCollapsed ? 'w-full' : 'w-[55%] border-r border-border/40'}`}>
+          {/* Floating map icon — scrolls with cards, right edge */}
+          {mapCollapsed && (
+            <button
+              onClick={() => setMapCollapsed(false)}
+              className="sticky top-4 float-right mr-4 mt-4 z-20 w-10 h-10 rounded-full border border-border bg-card shadow-lg flex items-center justify-center text-muted-foreground hover:text-foreground hover:border-foreground/30 transition-all duration-200 cursor-pointer"
+              aria-label="Show map"
+            >
+              <Map className="w-4.5 h-4.5" />
+            </button>
+          )}
           <div className="px-6 py-4">
             {/* Results text + view toggle */}
             <div className="flex items-center justify-between mb-4">
@@ -595,15 +606,6 @@ const GetWorkspaces = () => {
                 for {typeLabel[workspaceType].toLowerCase()} in <span className="font-medium text-foreground">{activeCity}</span>
               </p>
               <div className="flex items-center gap-2">
-                {mapCollapsed && (
-                  <button
-                    onClick={() => setMapCollapsed(false)}
-                    className="flex items-center gap-1.5 px-3 h-9 rounded-lg text-sm font-medium border border-border bg-card text-foreground hover:border-foreground/30 shadow-sm transition-all duration-200 cursor-pointer"
-                  >
-                    <MapPin className="w-3.5 h-3.5" />
-                    Show Map
-                  </button>
-                )}
                 <div className="flex items-center gap-0.5 bg-muted/60 rounded-lg p-0.5">
                   <button
                     onClick={() => setViewMode("list")}
