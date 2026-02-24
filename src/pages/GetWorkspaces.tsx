@@ -482,8 +482,8 @@ const GetWorkspaces = () => {
               <Select value={workspaceType} onValueChange={setWorkspaceType}>
                 <SelectTrigger className={`border shadow-none rounded-xl h-10 text-sm font-medium px-4 [&>svg]:ml-auto w-full transition-all duration-200 ${
                 workspaceType !== "virtual-office" ?
-                "bg-primary/10 border-primary/40 text-primary ring-1 ring-primary/20" :
-                "border-border/60 text-foreground bg-card hover:border-primary/40 hover:shadow-sm focus:ring-1 focus:ring-primary/30"}`
+                "bg-muted/50 border-border text-foreground" :
+                "border-border/60 text-foreground bg-card hover:border-border hover:shadow-sm"}`
                 }>
                   <SelectValue placeholder="Product" />
                 </SelectTrigger>
@@ -546,8 +546,8 @@ const GetWorkspaces = () => {
               <Select value={pricingFilter} onValueChange={setPricingFilter}>
                 <SelectTrigger className={`border shadow-none rounded-xl h-10 text-sm font-medium px-4 [&>svg]:ml-auto w-full transition-all duration-200 ${
                 pricingFilter !== "all" ?
-                "bg-primary/10 border-primary/40 text-primary ring-1 ring-primary/20" :
-                "border-border/60 text-foreground bg-card hover:border-primary/40 hover:shadow-sm focus:ring-1 focus:ring-primary/30"}`
+                "bg-muted/50 border-border text-foreground" :
+                "border-border/60 text-foreground bg-card hover:border-border hover:shadow-sm"}`
                 }>
                   <SelectValue placeholder="Pricing" />
                 </SelectTrigger>
@@ -565,8 +565,8 @@ const GetWorkspaces = () => {
               <Select value={sortBy} onValueChange={setSortBy}>
                 <SelectTrigger className={`border shadow-none rounded-xl h-10 text-sm font-medium px-4 [&>svg]:ml-auto w-full transition-all duration-200 ${
                 sortBy !== "popular" ?
-                "bg-primary/10 border-primary/40 text-primary ring-1 ring-primary/20" :
-                "border-border/60 text-foreground bg-card hover:border-primary/40 hover:shadow-sm focus:ring-1 focus:ring-primary/30"}`
+                "bg-muted/50 border-border text-foreground" :
+                "border-border/60 text-foreground bg-card hover:border-border hover:shadow-sm"}`
                 }>
                   <SelectValue placeholder="Sort by" />
                 </SelectTrigger>
