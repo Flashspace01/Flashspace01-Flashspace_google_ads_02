@@ -309,7 +309,7 @@ const WorkspaceCard = ({ ws, view }: {ws: typeof workspaces[0];view: ViewMode;})
           <div className="flex gap-2 mt-1">
             <button
               onClick={(e) => {e.stopPropagation();handleNavigate();}}
-              className="py-2 px-4 text-xs font-normal rounded-xl bg-foreground text-secondary hover:bg-primary hover:text-primary-foreground transition-all duration-200 whitespace-nowrap">
+              className="py-2 px-4 text-xs font-medium rounded-xl bg-primary text-primary-foreground hover:bg-primary/90 transition-all duration-200 whitespace-nowrap">
 
               Get Best Price
             </button>
@@ -421,7 +421,7 @@ const WorkspaceCard = ({ ws, view }: {ws: typeof workspaces[0];view: ViewMode;})
         <div className="flex gap-2 mt-4">
           <button
             onClick={(e) => {e.stopPropagation();handleNavigate();}}
-            className="flex-1 py-2.5 text-xs font-normal rounded-xl bg-foreground text-secondary hover:bg-primary hover:text-primary-foreground transition-all duration-200">
+            className="flex-1 py-2.5 text-xs font-medium rounded-xl bg-primary text-primary-foreground hover:bg-primary/90 transition-all duration-200">
 
             Get Best Price
           </button>
