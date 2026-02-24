@@ -1,13 +1,11 @@
-import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { ArrowLeft, User, Shield, Globe, Palette, CreditCard, LogOut, ChevronRight, Camera } from "lucide-react";
+import { ArrowLeft, Shield, CreditCard, LogOut, ChevronRight, Bell, Smartphone, Mail, Globe, HelpCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Switch } from "@/components/ui/switch";
 import { Separator } from "@/components/ui/separator";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 
 const Settings = () => {
@@ -29,57 +27,32 @@ const Settings = () => {
       </div>
 
       <div className="max-w-4xl mx-auto px-4 sm:px-6 py-6 pb-20 space-y-8">
-        {/* Profile Section */}
+        {/* Notifications */}
         <Card className="border-border/60">
           <CardHeader>
-            <CardTitle className="text-lg">Personal Information</CardTitle>
-            <CardDescription>Update your profile details and contact info.</CardDescription>
+            <CardTitle className="text-lg flex items-center gap-2">
+              <Bell className="w-5 h-5 text-muted-foreground" /> Notifications
+            </CardTitle>
+            <CardDescription>Choose what updates you want to receive.</CardDescription>
           </CardHeader>
-          <CardContent className="space-y-6">
-            <div className="flex items-center gap-5">
-              <div className="relative">
-                <Avatar className="w-20 h-20">
-                  <AvatarImage src="" />
-                  <AvatarFallback className="bg-primary/10 text-primary text-xl font-semibold">JD</AvatarFallback>
-                </Avatar>
-                <button className="absolute bottom-0 right-0 p-1.5 bg-primary text-primary-foreground rounded-full shadow-md hover:bg-primary/90 transition-colors">
-                  <Camera className="w-3.5 h-3.5" />
-                </button>
+          <CardContent className="space-y-5">
+            {[
+              { label: "Email Notifications", desc: "Receive booking confirmations and updates via email", icon: <Mail className="w-4 h-4 text-muted-foreground" />, defaultChecked: true },
+              { label: "Push Notifications", desc: "Get instant alerts on your device", icon: <Smartphone className="w-4 h-4 text-muted-foreground" />, defaultChecked: true },
+              { label: "Promotional Offers", desc: "Receive deals and discounts on workspaces", icon: <Bell className="w-4 h-4 text-muted-foreground" />, defaultChecked: false },
+              { label: "Booking Reminders", desc: "Get reminded before your upcoming bookings", icon: <Bell className="w-4 h-4 text-muted-foreground" />, defaultChecked: true },
+            ].map((item) => (
+              <div key={item.label} className="flex items-center justify-between">
+                <div className="flex items-center gap-3">
+                  {item.icon}
+                  <div>
+                    <p className="font-medium text-sm text-foreground">{item.label}</p>
+                    <p className="text-xs text-muted-foreground">{item.desc}</p>
+                  </div>
+                </div>
+                <Switch defaultChecked={item.defaultChecked} />
               </div>
-              <div>
-                <p className="font-medium text-foreground">John Doe</p>
-                <p className="text-sm text-muted-foreground">john.doe@example.com</p>
-              </div>
-            </div>
-
-            <Separator />
-
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <div className="space-y-2">
-                <Label>First Name</Label>
-                <Input defaultValue="John" className="rounded-xl" />
-              </div>
-              <div className="space-y-2">
-                <Label>Last Name</Label>
-                <Input defaultValue="Doe" className="rounded-xl" />
-              </div>
-              <div className="space-y-2">
-                <Label>Email</Label>
-                <Input type="email" defaultValue="john.doe@example.com" className="rounded-xl" />
-              </div>
-              <div className="space-y-2">
-                <Label>Phone</Label>
-                <Input type="tel" defaultValue="+91 98765 43210" className="rounded-xl" />
-              </div>
-              <div className="space-y-2 sm:col-span-2">
-                <Label>Company</Label>
-                <Input defaultValue="Acme Corp" className="rounded-xl" />
-              </div>
-            </div>
-
-            <div className="flex justify-end">
-              <Button className="rounded-xl">Save Changes</Button>
-            </div>
+            ))}
           </CardContent>
         </Card>
 
@@ -105,7 +78,9 @@ const Settings = () => {
         {/* Privacy & Security */}
         <Card className="border-border/60">
           <CardHeader>
-            <CardTitle className="text-lg">Privacy & Security</CardTitle>
+            <CardTitle className="text-lg flex items-center gap-2">
+              <Shield className="w-5 h-5 text-muted-foreground" /> Privacy & Security
+            </CardTitle>
             <CardDescription>Manage your account security and data preferences.</CardDescription>
           </CardHeader>
           <CardContent className="space-y-5">
@@ -130,8 +105,9 @@ const Settings = () => {
             <Separator />
 
             {[
-              { label: "Two-Factor Authentication", desc: "Add an extra layer of security", defaultChecked: false },
-              { label: "Profile Visibility", desc: "Allow others to see your profile", defaultChecked: true },
+              { label: "Two-Factor Authentication", desc: "Add an extra layer of security to your account", defaultChecked: false },
+              { label: "Login Alerts", desc: "Get notified when someone logs into your account", defaultChecked: true },
+              { label: "Session Management", desc: "Automatically log out after 30 days of inactivity", defaultChecked: true },
               { label: "Data Sharing", desc: "Share anonymised usage data to improve services", defaultChecked: false },
             ].map((item) => (
               <div key={item.label} className="flex items-center justify-between">
@@ -145,22 +121,12 @@ const Settings = () => {
           </CardContent>
         </Card>
 
-        <Card className="border-destructive/30">
-          <CardContent className="pt-6">
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="font-medium text-destructive">Delete Account</p>
-                <p className="text-xs text-muted-foreground">Permanently delete your account and all data.</p>
-              </div>
-              <Button variant="destructive" size="sm" className="rounded-xl">Delete</Button>
-            </div>
-          </CardContent>
-        </Card>
-
-        {/* Preferences */}
+        {/* App Preferences */}
         <Card className="border-border/60">
           <CardHeader>
-            <CardTitle className="text-lg">App Preferences</CardTitle>
+            <CardTitle className="text-lg flex items-center gap-2">
+              <Globe className="w-5 h-5 text-muted-foreground" /> App Preferences
+            </CardTitle>
             <CardDescription>Customise your workspace experience.</CardDescription>
           </CardHeader>
           <CardContent className="space-y-5">
@@ -233,6 +199,46 @@ const Settings = () => {
           </CardContent>
         </Card>
 
+        {/* Help & Support */}
+        <Card className="border-border/60">
+          <CardHeader>
+            <CardTitle className="text-lg flex items-center gap-2">
+              <HelpCircle className="w-5 h-5 text-muted-foreground" /> Help & Support
+            </CardTitle>
+            <CardDescription>Get help or reach out to our team.</CardDescription>
+          </CardHeader>
+          <CardContent className="space-y-3">
+            {[
+              { label: "Help Centre", desc: "Browse FAQs and guides" },
+              { label: "Contact Support", desc: "Reach our team via chat or email" },
+              { label: "Terms of Service", desc: "Read our terms and conditions" },
+              { label: "Privacy Policy", desc: "Understand how we use your data" },
+            ].map((item) => (
+              <button key={item.label} className="flex items-center justify-between w-full p-3 rounded-xl hover:bg-muted/60 transition-colors group">
+                <div className="text-left">
+                  <p className="font-medium text-sm text-foreground">{item.label}</p>
+                  <p className="text-xs text-muted-foreground">{item.desc}</p>
+                </div>
+                <ChevronRight className="w-4 h-4 text-muted-foreground group-hover:translate-x-0.5 transition-transform" />
+              </button>
+            ))}
+          </CardContent>
+        </Card>
+
+        {/* Delete Account */}
+        <Card className="border-destructive/30">
+          <CardContent className="pt-6">
+            <div className="flex items-center justify-between">
+              <div>
+                <p className="font-medium text-destructive">Delete Account</p>
+                <p className="text-xs text-muted-foreground">Permanently delete your account and all data.</p>
+              </div>
+              <Button variant="destructive" size="sm" className="rounded-xl">Delete</Button>
+            </div>
+          </CardContent>
+        </Card>
+
+        {/* Sign Out */}
         <Card className="border-border/60">
           <CardContent className="pt-6">
             <button className="flex items-center justify-between w-full group">
