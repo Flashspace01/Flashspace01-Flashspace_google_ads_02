@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { toast } from "@/hooks/use-toast";
 import { useNavigate } from "react-router-dom";
 import { Navbar } from "@/components/layout/Navbar";
 import { Input } from "@/components/ui/input";
@@ -226,9 +227,22 @@ type ViewMode = "list" | "grid";
 
 const WorkspaceCard = ({ ws, view }: {ws: typeof workspaces[0];view: ViewMode;}) => {
   const [liked, setLiked] = useState(false);
+  const [carted, setCarted] = useState(false);
   const [imgIndex, setImgIndex] = useState(0);
   const navigate = useNavigate();
   const handleNavigate = () => navigate(`/workspace/${ws.id}`);
+  const handleSave = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    const next = !liked;
+    setLiked(next);
+    toast({ title: next ? "Saved to your wishlist" : "Removed from wishlist", description: next ? `${ws.name} has been saved.` : `${ws.name} has been removed.` });
+  };
+  const handleCart = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    const next = !carted;
+    setCarted(next);
+    toast({ title: next ? "Added to cart" : "Removed from cart", description: next ? `${ws.name} has been added to your cart.` : `${ws.name} has been removed from your cart.` });
+  };
   const images = ws.images || [ws.image];
   const prevImg = (e: React.MouseEvent) => {e.stopPropagation();setImgIndex((i) => (i - 1 + images.length) % images.length);};
   const nextImg = (e: React.MouseEvent) => {e.stopPropagation();setImgIndex((i) => (i + 1) % images.length);};
@@ -264,16 +278,16 @@ const WorkspaceCard = ({ ws, view }: {ws: typeof workspaces[0];view: ViewMode;})
             <h3 className="font-semibold text-[15px] text-foreground leading-snug tracking-[1px]">{ws.location}</h3>
             <div className="flex items-center gap-2 flex-shrink-0">
               <button
-                onClick={(e) => {e.stopPropagation();setLiked(!liked);}}
+                onClick={handleSave}
                 className="w-7 h-7 rounded-full bg-muted/60 flex items-center justify-center hover:bg-muted transition-all duration-200">
 
-                <Bookmark className={`w-3.5 h-3.5 ${liked ? "fill-primary text-primary" : "text-foreground/60"}`} />
+                <Bookmark className={`w-3.5 h-3.5 transition-all duration-200 ${liked ? "fill-primary text-primary scale-110" : "text-foreground/60"}`} />
               </button>
               <button
-                onClick={(e) => e.stopPropagation()}
+                onClick={handleCart}
                 className="w-7 h-7 rounded-full bg-muted/60 flex items-center justify-center hover:bg-muted transition-all duration-200">
 
-                <ShoppingCart className="w-3.5 h-3.5 text-foreground/60" />
+                <ShoppingCart className={`w-3.5 h-3.5 transition-all duration-200 ${carted ? "fill-primary text-primary scale-110" : "text-foreground/60"}`} />
               </button>
               <div className="flex items-center gap-1 bg-muted/60 rounded-full px-2 py-0.5">
                 <Star className="w-3 h-3 fill-gold text-gold" />
@@ -351,16 +365,16 @@ const WorkspaceCard = ({ ws, view }: {ws: typeof workspaces[0];view: ViewMode;})
         {/* Action buttons */}
         <div className="absolute top-3 right-3 flex items-center gap-1.5">
           <button
-            onClick={(e) => {e.stopPropagation();setLiked(!liked);}}
+            onClick={handleSave}
             className="w-8 h-8 rounded-full bg-white/95 backdrop-blur-sm flex items-center justify-center shadow-sm hover:bg-white hover:scale-110 transition-all duration-200">
 
-            <Bookmark className={`w-3.5 h-3.5 ${liked ? "fill-primary text-primary" : "text-foreground/60"}`} />
+            <Bookmark className={`w-3.5 h-3.5 transition-all duration-200 ${liked ? "fill-primary text-primary scale-110" : "text-foreground/60"}`} />
           </button>
           <button
-            onClick={(e) => e.stopPropagation()}
+            onClick={handleCart}
             className="w-8 h-8 rounded-full bg-white/95 backdrop-blur-sm flex items-center justify-center shadow-sm hover:bg-white hover:scale-110 transition-all duration-200">
 
-            <ShoppingCart className="w-3.5 h-3.5 text-foreground/60" />
+            <ShoppingCart className={`w-3.5 h-3.5 transition-all duration-200 ${carted ? "fill-primary text-primary scale-110" : "text-foreground/60"}`} />
           </button>
         </div>
 
