@@ -509,7 +509,7 @@ const GetWorkspaces = () => {
                   placeholder="City..." />
                 <button
                   onClick={() => {setActiveCity(searchCity);setShowCitySuggestions(false);}}
-                  className="flex-shrink-0 w-8 h-8 flex items-center justify-center active:scale-95 transition-all rounded-[10px] mr-1 bg-primary-foreground">
+                  className="flex-shrink-0 w-8 h-8 flex items-center justify-center active:scale-95 transition-all rounded-[10px] mr-1 bg-muted/60 hover:bg-muted">
                   <Search className="w-3.5 h-3.5 text-foreground" strokeWidth={2} />
                 </button>
               </div>
