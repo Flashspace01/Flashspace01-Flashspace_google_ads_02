@@ -9,6 +9,7 @@ import OnDemand from "./pages/OnDemand";
 import GetWorkspaces from "./pages/GetWorkspaces";
 import WorkspaceDetail from "./pages/WorkspaceDetail";
 import NotFound from "./pages/NotFound";
+import Settings from "./pages/Settings";
 import CustomerPortal from "./pages/portals/CustomerPortal";
 import SpacePartnerPortal from "./pages/portals/SpacePartnerPortal";
 import AdminPortal from "./pages/portals/AdminPortal";
@@ -125,6 +126,7 @@ const App = () => (
           <Route path="/affiliate-portal/leaderboard" element={<AffiliateLeaderboard />} />
           <Route path="/affiliate-portal/support" element={<AffiliateSupport />} />
           
+          <Route path="/settings" element={<Settings />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>

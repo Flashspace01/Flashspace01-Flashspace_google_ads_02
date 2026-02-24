@@ -38,7 +38,7 @@ const sidebarMenuItems = [
   { label: "Get Workspaces", href: "/get-workspaces", icon: LayoutGrid },
   { label: "Your Bookings", href: "#", icon: CalendarDays },
   { label: "Updates", href: "#", icon: Bell },
-  { label: "Settings", href: "#", icon: Settings },
+  { label: "Settings", href: "/settings", icon: Settings },
 ];
 
 export const Navbar = () => {
