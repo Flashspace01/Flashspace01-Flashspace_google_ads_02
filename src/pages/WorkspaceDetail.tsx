@@ -606,7 +606,7 @@ const WorkspaceDetail = () => {
               </div>
 
               {/* Book Now */}
-              <button className="w-full py-3.5 rounded-[10px] bg-secondary text-secondary-foreground font-bold text-base hover:bg-secondary/80 transition-colors">
+              <button className="w-full py-3.5 rounded-[10px] bg-[hsl(50,80%,90%)] text-foreground font-bold text-base hover:bg-[hsl(50,80%,85%)] transition-colors border border-[hsl(50,60%,80%)]">
                 Book Now
               </button>
               <p className="text-center text-[12px] text-muted-foreground mt-2">
