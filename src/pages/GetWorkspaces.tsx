@@ -481,7 +481,7 @@ const GetWorkspaces = () => {
           </nav>
 
           {/* Filter bar */}
-          <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2.5 bg-muted/40 border border-border/60 rounded-2xl p-2.5 sm:p-3 relative z-[60]">
+          <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2.5 bg-muted/40 border border-border/60 rounded-2xl p-2.5 sm:p-3 relative z-[40]">
             {/* Product */}
             <div className="sm:w-[180px]">
               <Select value={workspaceType} onValueChange={setWorkspaceType}>
