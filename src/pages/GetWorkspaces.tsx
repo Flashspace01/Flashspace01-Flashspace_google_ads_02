@@ -484,10 +484,10 @@ const GetWorkspaces = () => {
             {/* Product */}
             <div className="sm:w-[180px]">
               <Select value={workspaceType} onValueChange={setWorkspaceType}>
-                <SelectTrigger className="border border-border/60 shadow-none rounded-xl h-10 text-sm font-medium text-foreground focus:ring-1 focus:ring-primary/30 bg-card px-4 [&>svg]:ml-auto w-full">
+                <SelectTrigger className="border border-border/60 shadow-none rounded-xl h-10 text-sm font-medium text-foreground focus:ring-1 focus:ring-primary/30 hover:bg-accent hover:text-accent-foreground bg-card px-4 [&>svg]:ml-auto w-full">
                   <SelectValue placeholder="Product" />
                 </SelectTrigger>
-                <SelectContent className="z-50 bg-card">
+                <SelectContent className="z-[100] bg-card">
                   <SelectItem value="virtual-office">Virtual Office</SelectItem>
                   <SelectItem value="coworking">Coworking Space</SelectItem>
                   <SelectItem value="private-office">Private Office</SelectItem>
@@ -549,10 +549,10 @@ const GetWorkspaces = () => {
             {/* Pricing */}
             <div className="sm:w-[170px]">
               <Select value={pricingFilter} onValueChange={setPricingFilter}>
-                <SelectTrigger className="border border-border/60 shadow-none rounded-xl h-10 text-sm font-medium text-foreground focus:ring-1 focus:ring-primary/30 bg-card px-4 [&>svg]:ml-auto w-full">
+                <SelectTrigger className="border border-border/60 shadow-none rounded-xl h-10 text-sm font-medium text-foreground focus:ring-1 focus:ring-primary/30 hover:bg-accent hover:text-accent-foreground bg-card px-4 [&>svg]:ml-auto w-full">
                   <SelectValue placeholder="Pricing" />
                 </SelectTrigger>
-                <SelectContent className="z-50 bg-card">
+                <SelectContent className="z-[100] bg-card">
                   <SelectItem value="all">All Pricing</SelectItem>
                   <SelectItem value="low">Under ₹500/mo</SelectItem>
                   <SelectItem value="mid">₹500 – ₹1,000/mo</SelectItem>
@@ -564,10 +564,10 @@ const GetWorkspaces = () => {
             {/* Sort by */}
             <div className="sm:w-[170px]">
               <Select value={sortBy} onValueChange={setSortBy}>
-                <SelectTrigger className="border border-border/60 shadow-none rounded-xl h-10 text-sm font-medium text-foreground focus:ring-1 focus:ring-primary/30 bg-card px-4 [&>svg]:ml-auto w-full">
+                <SelectTrigger className="border border-border/60 shadow-none rounded-xl h-10 text-sm font-medium text-foreground focus:ring-1 focus:ring-primary/30 hover:bg-accent hover:text-accent-foreground bg-card px-4 [&>svg]:ml-auto w-full">
                   <SelectValue placeholder="Sort by" />
                 </SelectTrigger>
-                <SelectContent className="z-50 bg-card">
+                <SelectContent className="z-[100] bg-card">
                   <SelectItem value="popular">Sort by</SelectItem>
                   <SelectItem value="rating">Highest Rated</SelectItem>
                   <SelectItem value="price-low">Price: Low to High</SelectItem>
@@ -626,9 +626,9 @@ const GetWorkspaces = () => {
         <div className="relative flex-shrink-0 w-0">
           <button
             onClick={() => setMapCollapsed(!mapCollapsed)}
-            className="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 z-10 w-8 h-8 rounded-full bg-card border border-border shadow-sm flex items-center justify-center hover:bg-muted transition-all"
-            title={mapCollapsed ? "Expand map" : "Collapse map"}>
-            {mapCollapsed ? <PanelRightOpen className="w-4 h-4 text-foreground/70" /> : <PanelRightClose className="w-4 h-4 text-foreground/70" />}
+            className="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 z-20 w-9 h-9 rounded-full bg-card border border-border shadow-md flex items-center justify-center hover:bg-accent hover:text-accent-foreground transition-all"
+            title={mapCollapsed ? "Show map" : "Hide map"}>
+            {mapCollapsed ? <MapPin className="w-4 h-4" /> : <MapPin className="w-4 h-4" />}
           </button>
         </div>
 
