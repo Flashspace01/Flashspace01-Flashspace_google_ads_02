@@ -460,41 +460,28 @@ const GetWorkspaces = () => {
     "day-pass": "Day Pass",
   };
 
-  const listingContent = (
-    <div className="h-full overflow-y-auto bg-[hsla(0,0%,97%,1)] dark:bg-background">
-      <div className="px-4 sm:px-6 lg:px-8 py-4 sm:py-6">
+  return (
+    <div className="min-h-screen bg-background flex flex-col">
+      <Navbar />
 
-        {/* Breadcrumb */}
-        <nav className="flex items-center gap-1.5 text-xs text-muted-foreground mb-4">
-          <a href="/" className="hover:text-foreground transition-colors">Home</a>
-          <ChevronRight className="w-3 h-3" />
-          <span className="hover:text-foreground transition-colors cursor-pointer">{typeLabel[workspaceType]}</span>
-          <ChevronRight className="w-3 h-3" />
-          <span className="text-foreground font-medium">{activeCity}</span>
-        </nav>
+      {/* Full-width top section: Breadcrumb + Filters */}
+      <div className="mt-20 bg-background border-b border-border/60">
+        <div className="px-4 sm:px-6 lg:px-8 py-4">
+          {/* Breadcrumb */}
+          <nav className="flex items-center gap-1.5 text-xs text-muted-foreground mb-4">
+            <a href="/" className="hover:text-foreground transition-colors">Home</a>
+            <ChevronRight className="w-3 h-3" />
+            <span className="hover:text-foreground transition-colors cursor-pointer">{typeLabel[workspaceType]}</span>
+            <ChevronRight className="w-3 h-3" />
+            <span className="text-foreground font-medium">{activeCity}</span>
+          </nav>
 
-        {/* Page Title */}
-        <h1 className="text-xl sm:text-2xl lg:text-[28px] font-bold text-foreground tracking-tight mb-1.5">
-          {typeLabel[workspaceType]} in {activeCity}
-        </h1>
-        <p className="text-sm text-muted-foreground mb-5 sm:mb-6">
-          Discover premium workspaces tailored to your business needs.
-        </p>
-
-        {/* Search Bar */}
-        <div className="mb-5 sm:mb-6 flex flex-col gap-3 bg-[#F5F6F7] border border-[#E5E7EB] rounded-[20px] p-4 sm:p-5">
-
-          {/* Label row */}
-          <div className="text-[12px] font-medium text-muted-foreground uppercase tracking-[0.12em]">
-            Search City
-          </div>
-
-          {/* Row 1: Product + City */}
-          <div className="flex flex-col sm:flex-row gap-3">
-            {/* Product / Space Type */}
-            <div className="sm:w-[200px]">
+          {/* Filter bar */}
+          <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 bg-muted/40 border border-border/60 rounded-2xl p-3 sm:p-4">
+            {/* Product */}
+            <div className="sm:w-[180px]">
               <Select value={workspaceType} onValueChange={setWorkspaceType}>
-                <SelectTrigger className="border border-[#E5E7EB] shadow-none rounded-[12px] h-10 text-sm font-medium text-foreground focus:ring-1 focus:ring-primary/30 focus-visible:ring-1 focus-visible:ring-primary/30 bg-white px-4 [&>svg]:ml-auto w-full">
+                <SelectTrigger className="border border-border/60 shadow-none rounded-xl h-10 text-sm font-medium text-foreground focus:ring-1 focus:ring-primary/30 bg-card px-4 [&>svg]:ml-auto w-full">
                   <SelectValue placeholder="Product" />
                 </SelectTrigger>
                 <SelectContent className="z-50 bg-card">
@@ -507,27 +494,25 @@ const GetWorkspaces = () => {
               </Select>
             </div>
 
-            {/* City input */}
-            <div className="relative flex-1">
-              <div className="flex items-center bg-white border border-[#E5E7EB] rounded-[12px] h-10 overflow-hidden">
+            {/* Divider */}
+            <div className="hidden sm:block w-px h-8 bg-border/60" />
+
+            {/* City */}
+            <div className="relative sm:w-[160px]">
+              <div className="flex items-center bg-card border border-border/60 rounded-xl h-10 overflow-hidden">
                 <Input
                   value={searchCity}
-                  onChange={(e) => {
-                    setSearchCity(e.target.value);
-                    setShowCitySuggestions(true);
-                  }}
+                  onChange={(e) => { setSearchCity(e.target.value); setShowCitySuggestions(true); }}
                   onFocus={() => setShowCitySuggestions(true)}
                   className="border-0 shadow-none h-full text-sm font-medium text-foreground focus-visible:ring-0 bg-transparent px-3 placeholder:text-muted-foreground/40 min-w-0 flex-1"
-                  placeholder="Enter city..."
+                  placeholder="City..."
                 />
                 <button
                   onClick={() => { setActiveCity(searchCity); setShowCitySuggestions(false); }}
-                  className="flex-shrink-0 w-10 h-10 flex items-center justify-center bg-primary hover:bg-primary/90 hover:-translate-y-px transition-all duration-150 rounded-[11px] m-0">
-                  <Search className="w-4 h-4 text-primary-foreground" strokeWidth={2} />
+                  className="flex-shrink-0 w-9 h-9 flex items-center justify-center bg-primary hover:bg-primary/90 transition-all rounded-[10px] m-0.5">
+                  <Search className="w-3.5 h-3.5 text-primary-foreground" strokeWidth={2} />
                 </button>
               </div>
-
-              {/* City suggestions dropdown */}
               {showCitySuggestions && searchCity.length > 0 && (() => {
                 const allCities = ["Delhi", "Mumbai", "Bangalore", "Hyderabad", "Chennai", "Pune", "Kolkata", "Ahmedabad", "Noida", "Gurgaon", "Jaipur", "Lucknow", "Chandigarh", "Indore", "Kochi"];
                 const filtered = allCities.filter(c => c.toLowerCase().includes(searchCity.toLowerCase()));
@@ -535,11 +520,8 @@ const GetWorkspaces = () => {
                 return (
                   <div className="absolute left-0 right-0 top-full mt-1 bg-card border border-border rounded-xl shadow-lg z-50 max-h-48 overflow-y-auto">
                     {filtered.map(city => (
-                      <button
-                        key={city}
-                        onClick={() => { setSearchCity(city); setActiveCity(city); setShowCitySuggestions(false); }}
-                        className="w-full text-left px-4 py-2.5 text-sm text-foreground hover:bg-muted/60 transition-colors first:rounded-t-xl last:rounded-b-xl"
-                      >
+                      <button key={city} onClick={() => { setSearchCity(city); setActiveCity(city); setShowCitySuggestions(false); }}
+                        className="w-full text-left px-4 py-2.5 text-sm text-foreground hover:bg-muted/60 transition-colors first:rounded-t-xl last:rounded-b-xl">
                         {city}
                       </button>
                     ))}
@@ -547,13 +529,10 @@ const GetWorkspaces = () => {
                 );
               })()}
             </div>
-          </div>
 
-          {/* Row 2: Search Location + Pricing + Sort by */}
-          <div className="flex flex-col sm:flex-row gap-3">
             {/* Search Location */}
-            <div className="relative flex-1">
-              <div className="flex items-center bg-white border border-[#E5E7EB] rounded-[12px] h-10 overflow-hidden">
+            <div className="relative flex-1 min-w-[140px]">
+              <div className="flex items-center bg-card border border-border/60 rounded-xl h-10 overflow-hidden">
                 <MapPin className="w-4 h-4 text-muted-foreground ml-3 flex-shrink-0" />
                 <Input
                   value={searchLocation}
@@ -565,9 +544,9 @@ const GetWorkspaces = () => {
             </div>
 
             {/* Pricing */}
-            <div className="sm:w-[180px]">
+            <div className="sm:w-[170px]">
               <Select value={pricingFilter} onValueChange={setPricingFilter}>
-                <SelectTrigger className="border border-[#E5E7EB] shadow-none rounded-[12px] h-10 text-sm font-medium text-foreground focus:ring-1 focus:ring-primary/30 focus-visible:ring-1 focus-visible:ring-primary/30 bg-white px-4 [&>svg]:ml-auto w-full">
+                <SelectTrigger className="border border-border/60 shadow-none rounded-xl h-10 text-sm font-medium text-foreground focus:ring-1 focus:ring-primary/30 bg-card px-4 [&>svg]:ml-auto w-full">
                   <SelectValue placeholder="Pricing" />
                 </SelectTrigger>
                 <SelectContent className="z-50 bg-card">
@@ -580,9 +559,9 @@ const GetWorkspaces = () => {
             </div>
 
             {/* Sort by */}
-            <div className="sm:w-[180px]">
+            <div className="sm:w-[170px]">
               <Select value={sortBy} onValueChange={setSortBy}>
-                <SelectTrigger className="border border-[#E5E7EB] shadow-none rounded-[12px] h-10 text-sm font-medium text-foreground focus:ring-1 focus:ring-primary/30 focus-visible:ring-1 focus-visible:ring-primary/30 bg-white px-4 [&>svg]:ml-auto w-full">
+                <SelectTrigger className="border border-border/60 shadow-none rounded-xl h-10 text-sm font-medium text-foreground focus:ring-1 focus:ring-primary/30 bg-card px-4 [&>svg]:ml-auto w-full">
                   <SelectValue placeholder="Sort by" />
                 </SelectTrigger>
                 <SelectContent className="z-50 bg-card">
@@ -593,89 +572,86 @@ const GetWorkspaces = () => {
                 </SelectContent>
               </Select>
             </div>
-          </div>
-        </div>
 
-        {/* Results count + view toggle */}
-        <div className="flex items-center justify-between mb-4 sm:mb-5">
-           <p className="text-sm text-muted-foreground">
-            Showing <span className="font-semibold text-foreground">{filteredWorkspaces.length} result(s)</span>{" "}
-            for {typeLabel[workspaceType].toLowerCase()} in <span className="font-medium text-foreground">{activeCity}</span>
-          </p>
-          <div className="flex items-center gap-0.5 bg-muted/60 rounded-lg p-0.5">
-            <button
-              onClick={() => setViewMode("list")}
-              className={`flex items-center gap-1 px-2 sm:px-3 py-1.5 rounded-md text-xs font-medium transition-all duration-200 ${
-                viewMode === "list"
-                  ? "bg-card text-foreground shadow-sm"
-                  : "text-muted-foreground hover:text-foreground"
-              }`}
-            >
-              <List className="w-3.5 h-3.5" />
-            </button>
-            <button
-              onClick={() => setViewMode("grid")}
-              className={`flex items-center gap-1 px-2 sm:px-3 py-1.5 rounded-md text-xs font-medium transition-all duration-200 ${
-                viewMode === "grid"
-                  ? "bg-card text-foreground shadow-sm"
-                  : "text-muted-foreground hover:text-foreground"
-              }`}
-            >
-              <LayoutGrid className="w-3.5 h-3.5" />
-            </button>
-          </div>
-        </div>
-
-        {/* Workspace Cards */}
-        <div className={
-          viewMode === "grid"
-            ? "grid grid-cols-1 min-[500px]:grid-cols-2 gap-4 pb-8"
-            : "flex flex-col gap-3 pb-8"
-        }>
-          {filteredWorkspaces.length > 0 ? (
-            filteredWorkspaces.map((ws) => (
-              <WorkspaceCard key={ws.id} ws={ws} view={viewMode} />
-            ))
-          ) : (
-            <div className="col-span-2 py-16 text-center text-muted-foreground">
-              <p className="text-base font-medium">No spaces found in "{activeCity}"</p>
-              <p className="text-sm mt-1">Try searching a different city.</p>
+            {/* View toggle icons */}
+            <div className="flex items-center gap-0.5 bg-muted/60 rounded-lg p-0.5">
+              <button
+                onClick={() => setViewMode("list")}
+                className={`flex items-center justify-center w-9 h-9 rounded-md transition-all duration-200 ${
+                  viewMode === "list" ? "bg-card text-foreground shadow-sm" : "text-muted-foreground hover:text-foreground"
+                }`}
+              >
+                <List className="w-4 h-4" />
+              </button>
+              <button
+                onClick={() => setViewMode("grid")}
+                className={`flex items-center justify-center w-9 h-9 rounded-md transition-all duration-200 ${
+                  viewMode === "grid" ? "bg-card text-foreground shadow-sm" : "text-muted-foreground hover:text-foreground"
+                }`}
+              >
+                <LayoutGrid className="w-4 h-4" />
+              </button>
             </div>
-          )}
+          </div>
         </div>
       </div>
-    </div>
-  );
 
-  return (
-    <div className="min-h-screen bg-background">
-      <Navbar />
-
-      {/* Desktop: resizable split layout */}
-      <div className="hidden lg:block h-[calc(100vh-5rem)] mt-20">
-        <ResizablePanelGroup direction="horizontal" className="h-full w-full">
-          <ResizablePanel defaultSize={52} minSize={35} maxSize={70}>
-            {listingContent}
-          </ResizablePanel>
-
-          <ResizableHandle
-            withHandle
-            className="w-1 bg-border/60 hover:bg-primary/30 transition-colors duration-200 data-[resize-handle-active]:bg-primary/50"
-          />
-
-          <ResizablePanel defaultSize={48} minSize={30} maxSize={65}>
-            <div className="relative h-full bg-[hsla(0,0%,97%,1)] dark:bg-background p-4">
-              <div className="h-full rounded-2xl overflow-hidden shadow-soft-lg border border-border/40">
-                <WorkspaceMap workspaces={filteredWorkspaces} />
-              </div>
+      {/* Desktop: split view — listings left, map right */}
+      <div className="hidden lg:flex flex-1 h-[calc(100vh-13rem)]">
+        {/* Left: Listings */}
+        <div className="w-1/2 overflow-y-auto bg-muted/20 border-r border-border/40">
+          <div className="px-6 py-4">
+            <p className="text-sm text-muted-foreground mb-4">
+              Showing <span className="font-semibold text-foreground">{filteredWorkspaces.length} result(s)</span>{" "}
+              for {typeLabel[workspaceType].toLowerCase()} in <span className="font-medium text-foreground">{activeCity}</span>
+            </p>
+            <div className={
+              viewMode === "grid"
+                ? "grid grid-cols-1 min-[900px]:grid-cols-2 gap-4 pb-8"
+                : "flex flex-col gap-3 pb-8"
+            }>
+              {filteredWorkspaces.length > 0 ? (
+                filteredWorkspaces.map((ws) => <WorkspaceCard key={ws.id} ws={ws} view={viewMode} />)
+              ) : (
+                <div className="col-span-2 py-16 text-center text-muted-foreground">
+                  <p className="text-base font-medium">No spaces found in "{activeCity}"</p>
+                  <p className="text-sm mt-1">Try searching a different city.</p>
+                </div>
+              )}
             </div>
-          </ResizablePanel>
-        </ResizablePanelGroup>
+          </div>
+        </div>
+
+        {/* Right: Map */}
+        <div className="w-1/2 relative">
+          <div className="absolute inset-0">
+            <WorkspaceMap workspaces={filteredWorkspaces} />
+          </div>
+        </div>
       </div>
 
       {/* Mobile: full-width listings + expandable map */}
-      <div className="lg:hidden mt-16 min-h-[calc(100vh-4rem)] relative">
-        {listingContent}
+      <div className="lg:hidden flex-1 relative">
+        <div className="px-4 py-4">
+          <p className="text-sm text-muted-foreground mb-4">
+            Showing <span className="font-semibold text-foreground">{filteredWorkspaces.length} result(s)</span>{" "}
+            for {typeLabel[workspaceType].toLowerCase()} in <span className="font-medium text-foreground">{activeCity}</span>
+          </p>
+          <div className={
+            viewMode === "grid"
+              ? "grid grid-cols-1 min-[500px]:grid-cols-2 gap-4 pb-8"
+              : "flex flex-col gap-3 pb-8"
+          }>
+            {filteredWorkspaces.length > 0 ? (
+              filteredWorkspaces.map((ws) => <WorkspaceCard key={ws.id} ws={ws} view={viewMode} />)
+            ) : (
+              <div className="col-span-2 py-16 text-center text-muted-foreground">
+                <p className="text-base font-medium">No spaces found in "{activeCity}"</p>
+                <p className="text-sm mt-1">Try searching a different city.</p>
+              </div>
+            )}
+          </div>
+        </div>
 
         {/* Expand Map floating button */}
         <button
@@ -686,7 +662,6 @@ const GetWorkspaces = () => {
           {showMap ? "Hide Map" : "Expand Map"}
         </button>
 
-        {/* Map overlay */}
         {showMap && (
           <div className="fixed inset-0 z-30 mt-16 bg-background">
             <button
