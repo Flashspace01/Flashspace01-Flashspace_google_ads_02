@@ -500,12 +500,12 @@ const GetWorkspaces = () => {
 
             {/* City */}
             <div className="relative sm:w-[160px]">
-              <div className="flex items-center bg-card border border-border/60 rounded-xl h-10 overflow-visible hover:border-primary/40 hover:shadow-sm transition-all duration-200">
+              <div className="flex items-center bg-card border border-border/60 rounded-xl h-10 overflow-visible transition-all duration-200">
                 <Input
                   value={searchCity}
                   onChange={(e) => {setSearchCity(e.target.value);setShowCitySuggestions(true);}}
                   onFocus={() => setShowCitySuggestions(true)}
-                  className="border-0 shadow-none h-full text-sm font-medium text-foreground focus-visible:ring-0 bg-transparent px-3 placeholder:text-muted-foreground/40 min-w-0 flex-1"
+                  className="border-0 shadow-none h-full text-sm font-medium text-foreground focus-visible:ring-0 focus-visible:ring-offset-0 focus:outline-none bg-transparent px-3 placeholder:text-muted-foreground/40 min-w-0 flex-1"
                   placeholder="City..." />
                 <button
                   onClick={() => {setActiveCity(searchCity);setShowCitySuggestions(false);}}
@@ -531,12 +531,12 @@ const GetWorkspaces = () => {
 
             {/* Search Location */}
             <div className="relative flex-1 min-w-[140px]">
-              <div className="flex items-center bg-card border border-border/60 rounded-xl h-10 overflow-hidden hover:border-primary/40 hover:shadow-sm transition-all duration-200">
+              <div className="flex items-center bg-card border border-border/60 rounded-xl h-10 overflow-hidden transition-all duration-200">
                 <MapPin className="w-4 h-4 text-muted-foreground ml-3 flex-shrink-0" />
                 <Input
                   value={searchLocation}
                   onChange={(e) => setSearchLocation(e.target.value)}
-                  className="border-0 shadow-none h-full text-sm font-medium text-foreground focus-visible:ring-0 bg-transparent px-3 placeholder:text-muted-foreground/40 min-w-0 flex-1"
+                  className="border-0 shadow-none h-full text-sm font-medium text-foreground focus-visible:ring-0 focus-visible:ring-offset-0 focus:outline-none bg-transparent px-3 placeholder:text-muted-foreground/40 min-w-0 flex-1"
                   placeholder="Search location..." />
               </div>
             </div>
