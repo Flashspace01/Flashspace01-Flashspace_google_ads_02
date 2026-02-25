@@ -77,11 +77,8 @@ const Careers = () => {
               transition={{ duration: 0.6 }}
               className="max-w-3xl mx-auto text-center"
             >
-              <span className="text-sm uppercase tracking-widest font-medium text-muted-foreground mb-4 block">
-                Careers
-              </span>
               <h1 className="text-4xl lg:text-6xl font-medium tracking-tight mb-6 leading-[1.1] text-foreground">
-                Build the future of workspaces
+                Come work on the future of workspaces
               </h1>
               <p className="text-lg lg:text-xl text-muted-foreground max-w-2xl mx-auto mb-8">
                 We're a small, ambitious team reimagining how India works.
