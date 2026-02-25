@@ -29,8 +29,10 @@ const navLinks = [
     ],
   },
   { label: "Workspaces", href: "#workspaces" },
-  { label: "Partner with Us", href: "#partner" },
-  
+  { label: "Partner with Us", href: "/partner" },
+  { label: "Careers", href: "/careers" },
+  { label: "Blog", href: "/blog" },
+
 ];
 
 const sidebarMenuItems = [
