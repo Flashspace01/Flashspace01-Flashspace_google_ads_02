@@ -76,7 +76,7 @@ const PartnerWithUs = () => {
       <Navbar />
       <main>
         {/* Hero */}
-        <section className="pt-28 pb-16 lg:pt-36 lg:pb-24">
+        <section className="pt-28 pb-8 lg:pt-36 lg:pb-12">
           <div className="container mx-auto px-4 lg:px-8">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -104,7 +104,7 @@ const PartnerWithUs = () => {
         </section>
 
         {/* Stats */}
-        <section className="py-12 border-b border-border bg-card">
+        <section className="py-12 border-b border-border">
           <div className="container mx-auto px-4 lg:px-8">
             <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
               {stats.map((stat, i) => (
