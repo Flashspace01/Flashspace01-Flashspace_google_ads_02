@@ -125,7 +125,7 @@ const PartnerWithUs = () => {
         </section>
 
         {/* Benefits */}
-        <section className="py-16 lg:py-24">
+        <section className="py-10 lg:py-14">
           <div className="container mx-auto px-4 lg:px-8">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -166,7 +166,7 @@ const PartnerWithUs = () => {
         </section>
 
         {/* How it works */}
-        <section className="py-16 lg:py-24">
+        <section className="py-10 lg:py-14">
           <div className="container mx-auto px-4 lg:px-8">
             <motion.h2
               initial={{ opacity: 0, y: 20 }}
@@ -203,7 +203,7 @@ const PartnerWithUs = () => {
         </section>
 
         {/* Partner Form */}
-        <section className="py-16 lg:py-24" id="partner-form">
+        <section className="py-10 lg:py-14" id="partner-form">
           <div className="container mx-auto px-4 lg:px-8">
             <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-start">
               <motion.div
