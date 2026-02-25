@@ -12,6 +12,7 @@ import NotFound from "./pages/NotFound";
 import Settings from "./pages/Settings";
 import PartnerWithUs from "./pages/PartnerWithUs";
 import Careers from "./pages/Careers";
+import PrivacyPolicy from "./pages/PrivacyPolicy";
 
 import CustomerPortal from "./pages/portals/CustomerPortal";
 import SpacePartnerPortal from "./pages/portals/SpacePartnerPortal";
@@ -131,6 +132,7 @@ const App = () => (
           
           <Route path="/partner" element={<PartnerWithUs />} />
           <Route path="/careers" element={<Careers />} />
+          <Route path="/privacy-policy" element={<PrivacyPolicy />} />
           
           <Route path="/settings" element={<Settings />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
