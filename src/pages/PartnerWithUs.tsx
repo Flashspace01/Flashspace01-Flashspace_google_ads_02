@@ -182,7 +182,7 @@ const PartnerWithUs = () => {
 
             <div className="relative">
               {/* Horizontal connector line */}
-              <div className="hidden lg:block absolute top-[4.5rem] left-[16.67%] right-[16.67%] z-0">
+              <div className="hidden lg:block absolute top-7 left-[16.67%] right-[16.67%] z-0">
                 <motion.div
                   initial={{ scaleX: 0 }}
                   whileInView={{ scaleX: 1 }}
@@ -204,27 +204,24 @@ const PartnerWithUs = () => {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ delay: i * 0.25, duration: 0.5 }}
-                    className="flex flex-col items-center text-center relative z-10 group"
+                    className="flex flex-col items-center text-center relative z-10"
                   >
-                    {/* Card */}
-                    <div className="bg-card border border-border rounded-2xl p-8 w-full hover:shadow-md hover:border-primary/20 transition-all duration-300">
-                      {/* Icon circle */}
-                      <motion.div
-                        initial={{ scale: 0 }}
-                        whileInView={{ scale: 1 }}
-                        viewport={{ once: true }}
-                        transition={{ delay: i * 0.25 + 0.2, type: "spring", stiffness: 200 }}
-                        className="w-14 h-14 rounded-2xl bg-primary/10 flex items-center justify-center mx-auto mb-6 group-hover:bg-primary/15 transition-colors duration-300"
-                      >
-                        <item.Icon className="w-6 h-6 text-primary" />
-                      </motion.div>
+                    {/* Icon circle */}
+                    <motion.div
+                      initial={{ scale: 0 }}
+                      whileInView={{ scale: 1 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: i * 0.25 + 0.2, type: "spring", stiffness: 200 }}
+                      className="w-14 h-14 rounded-full bg-muted flex items-center justify-center mx-auto mb-5"
+                    >
+                      <item.Icon className="w-6 h-6 text-primary" />
+                    </motion.div>
 
-                      <span className="text-xs font-semibold text-primary uppercase tracking-widest mb-1 block">
-                        Step {item.step}
-                      </span>
-                      <h3 className="text-xl font-bold text-foreground mb-3">{item.title}</h3>
-                      <p className="text-sm text-muted-foreground leading-relaxed max-w-xs mx-auto">{item.desc}</p>
-                    </div>
+                    <span className="text-xs font-semibold text-primary uppercase tracking-widest mb-1 block">
+                      Step {item.step}
+                    </span>
+                    <h3 className="text-xl font-bold text-foreground mb-2">{item.title}</h3>
+                    <p className="text-sm text-muted-foreground leading-relaxed max-w-xs mx-auto">{item.desc}</p>
                   </motion.div>
                 ))}
               </div>
