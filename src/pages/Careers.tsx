@@ -78,7 +78,7 @@ const Careers = () => {
               className="max-w-3xl mx-auto text-center"
             >
               <h1 className="text-4xl lg:text-6xl font-medium tracking-tight mb-6 leading-[1.1] text-foreground">
-                Come work on the future of workspaces
+                Shape Your Career at FlashSpace
               </h1>
               <p className="text-lg lg:text-xl text-muted-foreground max-w-2xl mx-auto mb-8">
                 We're a small, ambitious team reimagining how India works.
