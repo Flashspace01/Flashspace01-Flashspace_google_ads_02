@@ -51,7 +51,7 @@ const benefits = [
 
 const stats = [
   { value: "500+", label: "Partner Spaces" },
-  { value: "50+", label: "Cities" },
+  { value: "68+", label: "Cities" },
   { value: "95%", label: "Partner Retention" },
   { value: "3x", label: "Average Revenue Lift" },
 ];
@@ -166,7 +166,7 @@ const PartnerWithUs = () => {
         </section>
 
         {/* How it works */}
-        <section className="py-16 lg:py-24 bg-muted/30">
+        <section className="py-16 lg:py-24">
           <div className="container mx-auto px-4 lg:px-8">
             <motion.h2
               initial={{ opacity: 0, y: 20 }}
