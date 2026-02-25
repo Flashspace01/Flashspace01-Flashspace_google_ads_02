@@ -69,7 +69,7 @@ const Careers = () => {
       <Navbar />
       <main>
         {/* Hero */}
-        <section className="pt-28 pb-16 lg:pt-36 lg:pb-24">
+        <section className="pt-28 pb-10 lg:pt-36 lg:pb-14">
           <div className="container mx-auto px-4 lg:px-8">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -97,7 +97,7 @@ const Careers = () => {
         </section>
 
         {/* Culture */}
-        <section className="py-16 lg:py-24">
+        <section className="py-10 lg:py-14">
           <div className="container mx-auto px-4 lg:px-8">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -138,7 +138,7 @@ const Careers = () => {
         </section>
 
         {/* Open Roles */}
-        <section className="py-16 lg:py-24 bg-muted/30">
+        <section className="py-10 lg:py-14 bg-muted/30">
           <div className="container mx-auto px-4 lg:px-8">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -190,7 +190,7 @@ const Careers = () => {
         </section>
 
         {/* CTA */}
-        <section className="py-16 lg:py-24">
+        <section className="py-10 lg:py-14">
           <div className="container mx-auto px-4 lg:px-8 text-center">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
