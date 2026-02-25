@@ -187,7 +187,7 @@ const PartnerWithUs = () => {
                   initial={{ scaleX: 0 }}
                   whileInView={{ scaleX: 1 }}
                   viewport={{ once: true, margin: "-50px" }}
-                  transition={{ delay: 0.9, duration: 0.8, ease: "easeInOut" }}
+                  transition={{ delay: 0.6, duration: 0.5, ease: "easeInOut" }}
                   className="h-px bg-border origin-left"
                 />
               </div>
@@ -196,7 +196,7 @@ const PartnerWithUs = () => {
                   initial={{ scaleX: 0 }}
                   whileInView={{ scaleX: 1 }}
                   viewport={{ once: true, margin: "-50px" }}
-                  transition={{ delay: 2.3, duration: 0.8, ease: "easeInOut" }}
+                  transition={{ delay: 1.5, duration: 0.5, ease: "easeInOut" }}
                   className="h-px bg-border origin-left"
                 />
               </div>
@@ -208,7 +208,7 @@ const PartnerWithUs = () => {
                   { step: "03", title: "Earn", desc: "Start receiving bookings and grow your revenue.", Icon: Coins },
                 ].map((item, i) => {
                   // Sequential delays: step1 at 0s, step2 after line1 at ~2.2s, step3 after line2 at ~4s
-                  const stepDelay = i === 0 ? 0 : i === 1 ? 1.7 : 3.1;
+                  const stepDelay = i === 0 ? 0 : i === 1 ? 1.1 : 2.0;
                   return (
                     <motion.div
                       key={item.step}
