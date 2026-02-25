@@ -75,18 +75,26 @@ const Careers = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
-              className="max-w-3xl"
+              className="max-w-3xl mx-auto text-center"
             >
               <span className="text-sm uppercase tracking-widest font-medium opacity-80 mb-4 block">
                 Careers
               </span>
-              <h1 className="text-4xl lg:text-6xl font-bold tracking-tight mb-6 leading-[1.1]">
+              <h1 className="text-4xl lg:text-6xl font-medium tracking-tight mb-6 leading-[1.1]">
                 Build the future of workspaces
               </h1>
-              <p className="text-lg lg:text-xl opacity-80 max-w-2xl">
+              <p className="text-lg lg:text-xl opacity-80 max-w-2xl mx-auto mb-8">
                 We're a small, ambitious team reimagining how India works.
                 If you love solving hard problems and shipping fast, you'll fit right in.
               </p>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <Button size="lg" variant="white" className="font-medium">
+                  View Open Roles <ArrowRight className="w-4 h-4 ml-2" />
+                </Button>
+                <Button size="lg" variant="whiteOutline" className="font-medium">
+                  Our Culture
+                </Button>
+              </div>
             </motion.div>
           </div>
         </section>
