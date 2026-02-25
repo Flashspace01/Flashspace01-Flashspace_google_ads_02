@@ -10,13 +10,13 @@ const footerLinks = {
   ],
   resources: [
     { label: "Documentation", href: "#" },
-    { label: "Help Center", href: "#" },
+    { label: "Help Center", href: "/help-center" },
     { label: "Blog", href: "#" },
   ],
   company: [
     { label: "Pricing", href: "#" },
     { label: "About Us", href: "#" },
-    { label: "Careers", href: "#" },
+    { label: "Careers", href: "/careers" },
     { label: "Contact Us", href: "#" },
     { label: "Privacy Policy", href: "/privacy-policy" },
     { label: "Terms of Service", href: "#" },
