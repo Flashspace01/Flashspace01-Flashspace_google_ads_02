@@ -76,7 +76,7 @@ const PartnerWithUs = () => {
       <Navbar />
       <main>
         {/* Hero */}
-        <section className="pt-28 pb-16 lg:pt-36 lg:pb-24 bg-primary text-primary-foreground">
+        <section className="pt-28 pb-16 lg:pt-36 lg:pb-24">
           <div className="container mx-auto px-4 lg:px-8">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -84,21 +84,21 @@ const PartnerWithUs = () => {
               transition={{ duration: 0.6 }}
               className="max-w-3xl mx-auto text-center"
             >
-              <span className="text-sm uppercase tracking-widest font-medium opacity-80 mb-4 block">
+              <span className="text-sm uppercase tracking-widest font-medium text-muted-foreground mb-4 block">
                 Partner Program
               </span>
-              <h1 className="text-4xl lg:text-6xl font-medium tracking-tight mb-6 leading-[1.1]">
+              <h1 className="text-4xl lg:text-6xl font-medium tracking-tight mb-6 leading-[1.1] text-foreground">
                 Grow your workspace business with FlashSpace
               </h1>
-              <p className="text-lg lg:text-xl opacity-80 max-w-2xl mx-auto mb-8">
+              <p className="text-lg lg:text-xl text-muted-foreground max-w-2xl mx-auto mb-8">
                 Join India's fastest-growing workspace network. List your space, reach more clients,
                 and let our AI-powered platform handle the rest.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Button size="lg" variant="white" className="font-medium">
+                <Button size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90 font-normal px-8 h-12 rounded-xl shadow-lg hover:shadow-xl transition-all">
                   List Your Space <ArrowRight className="w-4 h-4 ml-2" />
                 </Button>
-                <Button size="lg" variant="whiteOutline" className="font-medium">
+                <Button size="lg" variant="outline" className="font-semibold px-8 h-12 rounded-xl border-foreground/20 text-foreground hover:bg-foreground/5 hover:border-foreground/30 bg-transparent">
                   Talk to Our Team
                 </Button>
               </div>
