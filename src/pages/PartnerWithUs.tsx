@@ -84,11 +84,8 @@ const PartnerWithUs = () => {
               transition={{ duration: 0.6 }}
               className="max-w-3xl mx-auto text-center"
             >
-              <span className="text-sm uppercase tracking-widest font-medium text-muted-foreground mb-4 block">
-                Partner Program
-              </span>
               <h1 className="text-4xl lg:text-6xl font-medium tracking-tight mb-6 leading-[1.1] text-foreground">
-                Grow your workspace business with FlashSpace
+                Partner with us and grow your workspace business
               </h1>
               <p className="text-lg lg:text-xl text-muted-foreground max-w-2xl mx-auto mb-8">
                 Join India's fastest-growing workspace network. List your space, reach more clients,
