@@ -671,11 +671,7 @@ const GetWorkspaces = () => {
 
       {/* Mobile: full-width listings + expandable map */}
       <div className="lg:hidden flex-1 relative">
-        <div className="px-4 py-4">
-          <p className="text-sm text-muted-foreground mb-4">
-            Showing <span className="font-semibold text-foreground">{filteredWorkspaces.length} result(s)</span>{" "}
-            for {typeLabel[workspaceType].toLowerCase()} in <span className="font-medium text-foreground">{activeCity}</span>
-          </p>
+        <div className="px-4 py-3">
           <div className={
           viewMode === "grid" ?
           "grid grid-cols-1 min-[500px]:grid-cols-2 gap-4 pb-8" :
