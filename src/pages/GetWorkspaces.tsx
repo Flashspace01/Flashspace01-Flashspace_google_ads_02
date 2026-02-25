@@ -399,9 +399,9 @@ const WorkspaceCard = ({ ws, view }: {ws: typeof workspaces[0];view: ViewMode;})
       {/* Card Body */}
       <div className="p-4 flex flex-col flex-1">
         {/* Name + Rating */}
-        <div className="flex items-start justify-between gap-2">
-          <h3 className="font-semibold text-[15px] text-foreground leading-snug tracking-[1px]">{ws.location}</h3>
-          <div className="flex items-center gap-1 flex-shrink-0 bg-muted/60 rounded-full px-2 py-0.5 mt-0.5">
+        <div className="flex items-center justify-between gap-2">
+          <h3 className="font-semibold text-[15px] text-foreground leading-snug tracking-[1px] truncate">{ws.location}</h3>
+          <div className="flex items-center gap-1 flex-shrink-0 bg-muted/60 rounded-full px-2 py-0.5">
             <Star className="w-3 h-3 fill-gold text-gold" />
             <span className="text-xs font-semibold text-foreground">{ws.rating}</span>
             <span className="text-[11px] text-muted-foreground">({ws.reviews})</span>
@@ -410,7 +410,7 @@ const WorkspaceCard = ({ ws, view }: {ws: typeof workspaces[0];view: ViewMode;})
 
 
         {/* Tags */}
-        <div className="flex flex-wrap gap-1.5 mt-3">
+        <div className="flex flex-wrap gap-1.5 mt-2 min-h-[26px]">
           {ws.tags.map((tag) =>
           <span key={tag} className="text-[11px] px-2.5 py-0.5 rounded-full border border-border/70 text-muted-foreground bg-muted/40 hover:bg-muted/80 transition-colors">
               {tag}
@@ -419,7 +419,7 @@ const WorkspaceCard = ({ ws, view }: {ws: typeof workspaces[0];view: ViewMode;})
         </div>
 
         {/* Divider */}
-        <div className="h-px bg-border/60 mt-3 mb-3" />
+        <div className="h-px bg-border/60 mt-2 mb-2" />
 
         {/* Plan rows — grows to push CTA down */}
         <div className="space-y-2 flex-1">
