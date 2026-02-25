@@ -177,56 +177,51 @@ const PartnerWithUs = () => {
               How it works
             </motion.h2>
 
-            <div className="relative max-w-3xl mx-auto">
-              {/* Vertical line */}
-              <motion.div
-                initial={{ scaleY: 0 }}
-                whileInView={{ scaleY: 1 }}
-                viewport={{ once: true, margin: "-100px" }}
-                transition={{ duration: 1, ease: "easeInOut" }}
-                className="absolute left-6 lg:left-1/2 top-0 bottom-0 w-px bg-border origin-top lg:-translate-x-px"
-              />
-
-              {[
-                { step: "01", title: "Apply", desc: "Fill out the form below with your workspace details.", icon: "📝" },
-                { step: "02", title: "Onboard", desc: "Our team verifies and lists your space within 48 hours.", icon: "✅" },
-                { step: "03", title: "Earn", desc: "Start receiving bookings and grow your revenue.", icon: "💰" },
-              ].map((item, i) => (
+            <div className="relative">
+              {/* Horizontal line */}
+              <div className="hidden lg:block absolute top-6 left-[16.67%] right-[16.67%] z-0">
                 <motion.div
-                  key={item.step}
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
+                  initial={{ scaleX: 0 }}
+                  whileInView={{ scaleX: 1 }}
                   viewport={{ once: true, margin: "-50px" }}
-                  transition={{ delay: i * 0.25, duration: 0.5 }}
-                  className={`relative flex items-start gap-6 mb-16 last:mb-0 ${
-                    i % 2 === 0 ? "lg:flex-row" : "lg:flex-row-reverse"
-                  }`}
-                >
-                  {/* Circle node */}
-                  <div className="absolute left-6 lg:left-1/2 -translate-x-1/2 z-10">
+                  transition={{ duration: 1, ease: "easeInOut" }}
+                  className="h-px bg-border origin-left"
+                />
+              </div>
+
+              <div className="grid lg:grid-cols-3 gap-10">
+                {[
+                  { step: "01", title: "Apply", desc: "Fill out the form below with your workspace details.", icon: "📝" },
+                  { step: "02", title: "Onboard", desc: "Our team verifies and lists your space within 48 hours.", icon: "✅" },
+                  { step: "03", title: "Earn", desc: "Start receiving bookings and grow your revenue.", icon: "💰" },
+                ].map((item, i) => (
+                  <motion.div
+                    key={item.step}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: i * 0.3, duration: 0.5 }}
+                    className="flex flex-col items-center text-center relative z-10"
+                  >
+                    {/* Circle node */}
                     <motion.div
                       initial={{ scale: 0 }}
                       whileInView={{ scale: 1 }}
                       viewport={{ once: true }}
-                      transition={{ delay: i * 0.25 + 0.2, type: "spring", stiffness: 200 }}
-                      className="w-12 h-12 rounded-full bg-primary flex items-center justify-center text-primary-foreground text-lg shadow-lg"
+                      transition={{ delay: i * 0.3 + 0.2, type: "spring", stiffness: 200 }}
+                      className="w-12 h-12 rounded-full bg-primary flex items-center justify-center text-primary-foreground text-lg shadow-lg mb-5"
                     >
                       {item.icon}
                     </motion.div>
-                  </div>
 
-                  {/* Content card */}
-                  <div className={`ml-16 lg:ml-0 lg:w-[calc(50%-3rem)] ${
-                    i % 2 === 0 ? "lg:mr-auto lg:pr-8 lg:text-right" : "lg:ml-auto lg:pl-8 lg:text-left"
-                  }`}>
-                    <span className="text-xs font-semibold text-primary uppercase tracking-widest mb-1 block">
+                    <span className="text-xs font-semibold text-primary uppercase tracking-widest mb-1">
                       Step {item.step}
                     </span>
                     <h3 className="text-xl font-bold text-foreground mb-2">{item.title}</h3>
-                    <p className="text-sm text-muted-foreground leading-relaxed">{item.desc}</p>
-                  </div>
-                </motion.div>
-              ))}
+                    <p className="text-sm text-muted-foreground leading-relaxed max-w-xs">{item.desc}</p>
+                  </motion.div>
+                ))}
+              </div>
             </div>
           </div>
         </section>
