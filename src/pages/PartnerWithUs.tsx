@@ -14,6 +14,9 @@ import {
   Shield,
   CheckCircle2,
   ArrowRight,
+  FileText,
+  BadgeCheck,
+  Coins,
 } from "lucide-react";
 
 const benefits = [
@@ -178,47 +181,50 @@ const PartnerWithUs = () => {
             </motion.h2>
 
             <div className="relative">
-              {/* Horizontal line */}
-              <div className="hidden lg:block absolute top-6 left-[16.67%] right-[16.67%] z-0">
+              {/* Horizontal connector line */}
+              <div className="hidden lg:block absolute top-[4.5rem] left-[16.67%] right-[16.67%] z-0">
                 <motion.div
                   initial={{ scaleX: 0 }}
                   whileInView={{ scaleX: 1 }}
                   viewport={{ once: true, margin: "-50px" }}
-                  transition={{ duration: 1, ease: "easeInOut" }}
+                  transition={{ duration: 1.2, ease: "easeInOut" }}
                   className="h-px bg-border origin-left"
                 />
               </div>
 
-              <div className="grid lg:grid-cols-3 gap-10">
+              <div className="grid lg:grid-cols-3 gap-8">
                 {[
-                  { step: "01", title: "Apply", desc: "Fill out the form below with your workspace details.", icon: "📝" },
-                  { step: "02", title: "Onboard", desc: "Our team verifies and lists your space within 48 hours.", icon: "✅" },
-                  { step: "03", title: "Earn", desc: "Start receiving bookings and grow your revenue.", icon: "💰" },
+                  { step: "01", title: "Apply", desc: "Fill out the form below with your workspace details.", Icon: FileText },
+                  { step: "02", title: "Onboard", desc: "Our team verifies and lists your space within 48 hours.", Icon: BadgeCheck },
+                  { step: "03", title: "Earn", desc: "Start receiving bookings and grow your revenue.", Icon: Coins },
                 ].map((item, i) => (
                   <motion.div
                     key={item.step}
-                    initial={{ opacity: 0, y: 20 }}
+                    initial={{ opacity: 0, y: 25 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    transition={{ delay: i * 0.3, duration: 0.5 }}
-                    className="flex flex-col items-center text-center relative z-10"
+                    transition={{ delay: i * 0.25, duration: 0.5 }}
+                    className="flex flex-col items-center text-center relative z-10 group"
                   >
-                    {/* Circle node */}
-                    <motion.div
-                      initial={{ scale: 0 }}
-                      whileInView={{ scale: 1 }}
-                      viewport={{ once: true }}
-                      transition={{ delay: i * 0.3 + 0.2, type: "spring", stiffness: 200 }}
-                      className="w-12 h-12 rounded-full bg-primary flex items-center justify-center text-primary-foreground text-lg shadow-lg mb-5"
-                    >
-                      {item.icon}
-                    </motion.div>
+                    {/* Card */}
+                    <div className="bg-card border border-border rounded-2xl p-8 w-full hover:shadow-md hover:border-primary/20 transition-all duration-300">
+                      {/* Icon circle */}
+                      <motion.div
+                        initial={{ scale: 0 }}
+                        whileInView={{ scale: 1 }}
+                        viewport={{ once: true }}
+                        transition={{ delay: i * 0.25 + 0.2, type: "spring", stiffness: 200 }}
+                        className="w-14 h-14 rounded-2xl bg-primary/10 flex items-center justify-center mx-auto mb-6 group-hover:bg-primary/15 transition-colors duration-300"
+                      >
+                        <item.Icon className="w-6 h-6 text-primary" />
+                      </motion.div>
 
-                    <span className="text-xs font-semibold text-primary uppercase tracking-widest mb-1">
-                      Step {item.step}
-                    </span>
-                    <h3 className="text-xl font-bold text-foreground mb-2">{item.title}</h3>
-                    <p className="text-sm text-muted-foreground leading-relaxed max-w-xs">{item.desc}</p>
+                      <span className="text-xs font-semibold text-primary uppercase tracking-widest mb-1 block">
+                        Step {item.step}
+                      </span>
+                      <h3 className="text-xl font-bold text-foreground mb-3">{item.title}</h3>
+                      <p className="text-sm text-muted-foreground leading-relaxed max-w-xs mx-auto">{item.desc}</p>
+                    </div>
                   </motion.div>
                 ))}
               </div>
