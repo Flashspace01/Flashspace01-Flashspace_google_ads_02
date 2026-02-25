@@ -181,13 +181,22 @@ const PartnerWithUs = () => {
             </motion.h2>
 
             <div className="relative">
-              {/* Horizontal connector line */}
-              <div className="hidden lg:block absolute top-7 left-[16.67%] right-[16.67%] z-0">
+              {/* Connector lines between steps */}
+              <div className="hidden lg:block absolute top-7 left-[16.67%] right-[50%] z-0">
                 <motion.div
                   initial={{ scaleX: 0 }}
                   whileInView={{ scaleX: 1 }}
                   viewport={{ once: true, margin: "-50px" }}
-                  transition={{ duration: 1.2, ease: "easeInOut" }}
+                  transition={{ delay: 1.2, duration: 1, ease: "easeInOut" }}
+                  className="h-px bg-border origin-left"
+                />
+              </div>
+              <div className="hidden lg:block absolute top-7 left-[50%] right-[16.67%] z-0">
+                <motion.div
+                  initial={{ scaleX: 0 }}
+                  whileInView={{ scaleX: 1 }}
+                  viewport={{ once: true, margin: "-50px" }}
+                  transition={{ delay: 3.0, duration: 1, ease: "easeInOut" }}
                   className="h-px bg-border origin-left"
                 />
               </div>
@@ -197,33 +206,37 @@ const PartnerWithUs = () => {
                   { step: "01", title: "Apply", desc: "Fill out the form below with your workspace details.", Icon: FileText },
                   { step: "02", title: "Onboard", desc: "Our team verifies and lists your space within 48 hours.", Icon: BadgeCheck },
                   { step: "03", title: "Earn", desc: "Start receiving bookings and grow your revenue.", Icon: Coins },
-                ].map((item, i) => (
-                  <motion.div
-                    key={item.step}
-                    initial={{ opacity: 0, y: 25 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: i * 0.25, duration: 0.5 }}
-                    className="flex flex-col items-center text-center relative z-10"
-                  >
-                    {/* Icon circle */}
+                ].map((item, i) => {
+                  // Sequential delays: step1 at 0s, step2 after line1 at ~2.2s, step3 after line2 at ~4s
+                  const stepDelay = i === 0 ? 0 : i === 1 ? 2.2 : 4.0;
+                  return (
                     <motion.div
-                      initial={{ scale: 0 }}
-                      whileInView={{ scale: 1 }}
+                      key={item.step}
+                      initial={{ opacity: 0, y: 20 }}
+                      whileInView={{ opacity: 1, y: 0 }}
                       viewport={{ once: true }}
-                      transition={{ delay: i * 0.25 + 0.2, type: "spring", stiffness: 200 }}
-                      className="w-14 h-14 rounded-full bg-muted flex items-center justify-center mx-auto mb-5"
+                      transition={{ delay: stepDelay, duration: 0.8, ease: "easeOut" }}
+                      className="flex flex-col items-center text-center relative z-10"
                     >
-                      <item.Icon className="w-6 h-6 text-primary" />
-                    </motion.div>
+                      {/* Icon circle */}
+                      <motion.div
+                        initial={{ scale: 0 }}
+                        whileInView={{ scale: 1 }}
+                        viewport={{ once: true }}
+                        transition={{ delay: stepDelay + 0.2, type: "spring", stiffness: 150, damping: 15 }}
+                        className="w-14 h-14 rounded-full bg-muted flex items-center justify-center mx-auto mb-5"
+                      >
+                        <item.Icon className="w-6 h-6 text-primary" />
+                      </motion.div>
 
-                    <span className="text-xs font-semibold text-primary uppercase tracking-widest mb-1 block">
-                      Step {item.step}
-                    </span>
-                    <h3 className="text-xl font-bold text-foreground mb-2">{item.title}</h3>
-                    <p className="text-sm text-muted-foreground leading-relaxed max-w-xs mx-auto">{item.desc}</p>
-                  </motion.div>
-                ))}
+                      <span className="text-xs font-semibold text-primary uppercase tracking-widest mb-1 block">
+                        Step {item.step}
+                      </span>
+                      <h3 className="text-xl font-bold text-foreground mb-2">{item.title}</h3>
+                      <p className="text-sm text-muted-foreground leading-relaxed max-w-xs mx-auto">{item.desc}</p>
+                    </motion.div>
+                  );
+                })}
               </div>
             </div>
           </div>
