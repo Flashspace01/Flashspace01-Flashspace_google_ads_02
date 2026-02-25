@@ -91,41 +91,43 @@ const trendingArticles = [
     title: "How to book a meeting room in 3 steps",
     summary: "A quick guide to reserving meeting rooms at any FlashSpace location.",
     updated: "Feb 20, 2026",
+    image: "https://images.unsplash.com/photo-1497366216548-37526070297c?w=400&h=250&fit=crop",
+    readTime: "3 min read",
   },
   {
     title: "Setting up your virtual office address",
     summary: "Everything you need to activate your registered business address.",
     updated: "Feb 18, 2026",
+    image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=400&h=250&fit=crop",
+    readTime: "5 min read",
   },
   {
     title: "Understanding GST invoices and billing",
     summary: "How to download, verify, and manage your GST-compliant invoices.",
     updated: "Feb 15, 2026",
+    image: "https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=400&h=250&fit=crop",
+    readTime: "4 min read",
   },
   {
     title: "Mail forwarding: Setup and tracking",
     summary: "Configure mail forwarding rules and track deliveries in real time.",
     updated: "Feb 12, 2026",
+    image: "https://images.unsplash.com/photo-1526628953301-3e589a6a8b74?w=400&h=250&fit=crop",
+    readTime: "3 min read",
   },
   {
     title: "KYC verification requirements",
     summary: "Documents required for identity and business verification.",
     updated: "Feb 10, 2026",
+    image: "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=400&h=250&fit=crop",
+    readTime: "4 min read",
   },
   {
     title: "How to cancel or reschedule a booking",
     summary: "Step-by-step guide to modifying your workspace reservations.",
     updated: "Feb 8, 2026",
-  },
-  {
-    title: "Adding team members to your account",
-    summary: "Invite colleagues and manage roles within your FlashSpace account.",
-    updated: "Feb 5, 2026",
-  },
-  {
-    title: "Refund policy and processing times",
-    summary: "Understand our refund eligibility criteria and expected timelines.",
-    updated: "Feb 3, 2026",
+    image: "https://images.unsplash.com/photo-1506784983877-45594efa4cbe?w=400&h=250&fit=crop",
+    readTime: "2 min read",
   },
 ];
 
@@ -307,7 +309,7 @@ const HelpCenter = () => {
               </p>
             </motion.div>
 
-            <div className="grid md:grid-cols-2 gap-4">
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
               {trendingArticles.map((article, i) => (
                 <motion.a
                   key={article.title}
@@ -316,20 +318,28 @@ const HelpCenter = () => {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: i * 0.04 }}
-                  className="flex items-start justify-between gap-4 p-5 rounded-xl border border-border bg-card hover:shadow-md transition-shadow group"
+                  className="rounded-xl border border-border bg-card hover:shadow-lg transition-shadow group overflow-hidden flex flex-col"
                 >
-                  <div className="min-w-0">
-                    <h3 className="text-sm font-semibold text-foreground mb-1 group-hover:text-primary transition-colors">
+                  <div className="aspect-[16/9] overflow-hidden">
+                    <img
+                      src={article.image}
+                      alt={article.title}
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                      loading="lazy"
+                    />
+                  </div>
+                  <div className="p-5 flex flex-col flex-1">
+                    <h3 className="text-base font-semibold text-foreground mb-2 group-hover:text-primary transition-colors leading-snug">
                       {article.title}
                     </h3>
-                    <p className="text-sm text-muted-foreground leading-relaxed line-clamp-2">
+                    <p className="text-sm text-muted-foreground leading-relaxed line-clamp-2 mb-4 flex-1">
                       {article.summary}
                     </p>
-                    <span className="text-xs text-muted-foreground/60 mt-2 inline-block">
-                      Updated {article.updated}
-                    </span>
+                    <div className="flex items-center justify-between text-xs text-muted-foreground/60">
+                      <span>{article.updated}</span>
+                      <span>{article.readTime}</span>
+                    </div>
                   </div>
-                  <ArrowRight className="w-4 h-4 text-muted-foreground group-hover:text-primary group-hover:translate-x-0.5 transition-all shrink-0 mt-1" />
                 </motion.a>
               ))}
             </div>
@@ -345,16 +355,16 @@ const HelpCenter = () => {
               viewport={{ once: true }}
               className="mb-10"
             >
-              <h2 className="text-2xl lg:text-3xl font-semibold text-foreground tracking-tight mb-2">
+              <h2 className="text-2xl lg:text-3xl font-semibold text-foreground tracking-tight mb-2 text-center">
                 Frequently asked questions
               </h2>
-              <p className="text-muted-foreground">
+              <p className="text-muted-foreground text-center">
                 Quick answers to common questions.
               </p>
             </motion.div>
 
             {/* Group tabs */}
-            <div className="flex flex-wrap gap-2 mb-6">
+            <div className="flex flex-wrap gap-2 mb-6 justify-center">
               {faqGroups.map((group) => (
                 <button
                   key={group.label}
@@ -373,7 +383,7 @@ const HelpCenter = () => {
             {faqGroups
               .filter((g) => g.label === activeGroup)
               .map((group) => (
-                <div key={group.label} className="max-w-3xl">
+                <div key={group.label} className="max-w-3xl mx-auto">
                   <Accordion type="single" collapsible className="w-full">
                     {group.faqs.map((faq, idx) => (
                       <AccordionItem
@@ -441,7 +451,7 @@ const HelpCenter = () => {
                   </div>
                   <h3 className="text-sm font-semibold text-foreground mb-1">Live Chat</h3>
                   <p className="text-xs text-muted-foreground mb-3">Avg. response: 2 min</p>
-                  <Button size="sm" className="w-full">Start Chat</Button>
+                  <Button size="sm" variant="outline" className="w-full">Start Chat</Button>
                 </div>
 
                 <div className="p-5 rounded-xl border border-border bg-card text-center">
