@@ -15,6 +15,9 @@ import {
   CheckCircle2,
   ArrowRight,
 } from "lucide-react";
+import coworkingImg from "@/assets/workspace-coworking.jpg";
+import meetingImg from "@/assets/workspace-meeting.jpg";
+import officeImg from "@/assets/workspace-managed.jpg";
 
 const benefits = [
   {
@@ -214,10 +217,24 @@ const PartnerWithUs = () => {
                 <h2 className="text-3xl lg:text-4xl font-bold text-foreground tracking-tight mb-4">
                   List your space today
                 </h2>
-                <p className="text-muted-foreground text-lg mb-8">
+                <p className="text-muted-foreground text-lg mb-6">
                   Fill in your details and our partnership team will get in touch within 24 hours.
                 </p>
-                <div className="space-y-4">
+
+                {/* Image mosaic */}
+                <div className="grid grid-cols-2 gap-3 mb-8">
+                  <div className="rounded-xl overflow-hidden aspect-[4/3]">
+                    <img src={coworkingImg} alt="Modern coworking space" className="w-full h-full object-cover" />
+                  </div>
+                  <div className="rounded-xl overflow-hidden aspect-[4/3]">
+                    <img src={meetingImg} alt="Meeting room" className="w-full h-full object-cover" />
+                  </div>
+                  <div className="col-span-2 rounded-xl overflow-hidden aspect-[21/9]">
+                    <img src={officeImg} alt="Private office space" className="w-full h-full object-cover" />
+                  </div>
+                </div>
+
+                <div className="space-y-3">
                   {[
                     "Zero listing fees — we only earn when you do",
                     "Full control over pricing and availability",
