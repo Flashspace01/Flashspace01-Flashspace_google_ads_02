@@ -610,16 +610,16 @@ const GetWorkspaces = () => {
                 for {typeLabel[workspaceType].toLowerCase()} in <span className="font-medium text-foreground">{activeCity}</span>
               </p>
               <div className="flex items-center gap-2">
-                <div className="flex items-center gap-0.5 bg-muted/60 rounded-lg p-0.5">
+                <div className="flex items-center gap-0.5 bg-muted/60 rounded-full p-0.5">
                   <button
                     onClick={() => setViewMode("list")}
-                    className={`flex items-center justify-center w-9 h-9 rounded-md transition-all duration-200 ${
+                    className={`flex items-center justify-center w-9 h-9 rounded-full transition-all duration-200 ${
                     viewMode === "list" ? "bg-card text-foreground shadow-sm" : "text-muted-foreground hover:text-foreground"}`}>
                     <List className="w-4 h-4" />
                   </button>
                   <button
                     onClick={() => setViewMode("grid")}
-                    className={`flex items-center justify-center w-9 h-9 rounded-md transition-all duration-200 ${
+                    className={`flex items-center justify-center w-9 h-9 rounded-full transition-all duration-200 ${
                     viewMode === "grid" ? "bg-card text-foreground shadow-sm" : "text-muted-foreground hover:text-foreground"}`}>
                     <LayoutGrid className="w-4 h-4" />
                   </button>
