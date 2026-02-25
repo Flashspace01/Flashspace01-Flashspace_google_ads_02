@@ -165,36 +165,65 @@ const PartnerWithUs = () => {
           </div>
         </section>
 
-        {/* How it works */}
-        <section className="py-10 lg:py-14">
+        {/* How it works — Timeline */}
+        <section className="py-16 lg:py-24">
           <div className="container mx-auto px-4 lg:px-8">
             <motion.h2
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="text-3xl lg:text-4xl font-bold text-foreground tracking-tight mb-12"
+              className="text-3xl lg:text-4xl font-bold text-foreground tracking-tight mb-16 text-center"
             >
               How it works
             </motion.h2>
 
-            <div className="grid md:grid-cols-3 gap-8">
+            <div className="relative max-w-3xl mx-auto">
+              {/* Vertical line */}
+              <motion.div
+                initial={{ scaleY: 0 }}
+                whileInView={{ scaleY: 1 }}
+                viewport={{ once: true, margin: "-100px" }}
+                transition={{ duration: 1, ease: "easeInOut" }}
+                className="absolute left-6 lg:left-1/2 top-0 bottom-0 w-px bg-border origin-top lg:-translate-x-px"
+              />
+
               {[
-                { step: "01", title: "Apply", desc: "Fill out the form below with your workspace details." },
-                { step: "02", title: "Onboard", desc: "Our team verifies and lists your space within 48 hours." },
-                { step: "03", title: "Earn", desc: "Start receiving bookings and grow your revenue." },
+                { step: "01", title: "Apply", desc: "Fill out the form below with your workspace details.", icon: "📝" },
+                { step: "02", title: "Onboard", desc: "Our team verifies and lists your space within 48 hours.", icon: "✅" },
+                { step: "03", title: "Earn", desc: "Start receiving bookings and grow your revenue.", icon: "💰" },
               ].map((item, i) => (
                 <motion.div
                   key={item.step}
-                  initial={{ opacity: 0, y: 15 }}
+                  initial={{ opacity: 0, y: 30 }}
                   whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: i * 0.15 }}
-                  className="flex gap-4"
+                  viewport={{ once: true, margin: "-50px" }}
+                  transition={{ delay: i * 0.25, duration: 0.5 }}
+                  className={`relative flex items-start gap-6 mb-16 last:mb-0 ${
+                    i % 2 === 0 ? "lg:flex-row" : "lg:flex-row-reverse"
+                  }`}
                 >
-                  <span className="text-4xl font-bold text-primary/20">{item.step}</span>
-                  <div>
-                    <h3 className="text-lg font-semibold text-foreground mb-1">{item.title}</h3>
-                    <p className="text-sm text-muted-foreground">{item.desc}</p>
+                  {/* Circle node */}
+                  <div className="absolute left-6 lg:left-1/2 -translate-x-1/2 z-10">
+                    <motion.div
+                      initial={{ scale: 0 }}
+                      whileInView={{ scale: 1 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: i * 0.25 + 0.2, type: "spring", stiffness: 200 }}
+                      className="w-12 h-12 rounded-full bg-primary flex items-center justify-center text-primary-foreground text-lg shadow-lg"
+                    >
+                      {item.icon}
+                    </motion.div>
+                  </div>
+
+                  {/* Content card */}
+                  <div className={`ml-16 lg:ml-0 lg:w-[calc(50%-3rem)] ${
+                    i % 2 === 0 ? "lg:mr-auto lg:pr-8 lg:text-right" : "lg:ml-auto lg:pl-8 lg:text-left"
+                  }`}>
+                    <span className="text-xs font-semibold text-primary uppercase tracking-widest mb-1 block">
+                      Step {item.step}
+                    </span>
+                    <h3 className="text-xl font-bold text-foreground mb-2">{item.title}</h3>
+                    <p className="text-sm text-muted-foreground leading-relaxed">{item.desc}</p>
                   </div>
                 </motion.div>
               ))}
