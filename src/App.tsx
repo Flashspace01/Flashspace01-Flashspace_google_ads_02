@@ -12,7 +12,7 @@ import NotFound from "./pages/NotFound";
 import Settings from "./pages/Settings";
 import PartnerWithUs from "./pages/PartnerWithUs";
 import Careers from "./pages/Careers";
-import Blog from "./pages/Blog";
+
 import CustomerPortal from "./pages/portals/CustomerPortal";
 import SpacePartnerPortal from "./pages/portals/SpacePartnerPortal";
 import AdminPortal from "./pages/portals/AdminPortal";
@@ -131,7 +131,7 @@ const App = () => (
           
           <Route path="/partner" element={<PartnerWithUs />} />
           <Route path="/careers" element={<Careers />} />
-          <Route path="/blog" element={<Blog />} />
+          
           <Route path="/settings" element={<Settings />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
