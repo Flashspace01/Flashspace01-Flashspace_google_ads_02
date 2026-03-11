@@ -197,7 +197,7 @@ const PartnerWithUs = () => {
                           </button>
                         </div>
                         {/* Bottom accent strip */}
-                        <div className="absolute bottom-0 left-0 right-0 h-1.5 rounded-full" style={{ backgroundColor: '#FEF83C' }} />
+                        <div className="absolute bottom-0 left-0 right-0 h-1.5 rounded-full" style={{ backgroundColor: '#fef8c3' }} />
                       </div>
                     </div>
                   );
