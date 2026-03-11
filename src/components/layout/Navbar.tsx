@@ -44,10 +44,10 @@ export const Navbar = () => {
           <div className="flex items-center gap-2">
             <button
               onClick={toggleSidebar}
-              className="p-2 text-foreground rounded-lg hover:bg-primary/5 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+              className="p-2 text-foreground/50 rounded-lg hover:bg-primary/5 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring flex items-center justify-center"
               aria-label="Toggle sidebar"
             >
-              <PanelLeft className="w-6 h-6" />
+              <PanelLeft className="w-[22px] h-[22px]" />
             </button>
             <a href="/" className="flex items-center">
               <img src={flashspaceLogo} alt="FlashSpace" className="h-12 lg:h-[60px] w-auto" />
