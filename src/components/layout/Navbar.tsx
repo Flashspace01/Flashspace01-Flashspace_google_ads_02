@@ -28,7 +28,7 @@ const navLinks = [
 export const Navbar = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  const { toggleSidebar, sidebarOpen } = useSidebar();
+  const { toggleSidebar } = useSidebar();
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
 
   return (
@@ -107,18 +107,6 @@ export const Navbar = () => {
           </div>
         </nav>
       </div>
-      {/* Accent line visible only when sidebar is open */}
-      <AnimatePresence>
-        {sidebarOpen && (
-          <motion.div
-            initial={{ scaleX: 0 }}
-            animate={{ scaleX: 1 }}
-            exit={{ scaleX: 0 }}
-            transition={{ duration: 0.3, ease: "easeInOut" }}
-            className="h-[2.5px] w-full bg-gradient-to-r from-primary via-primary/70 to-primary/30 origin-left"
-          />
-        )}
-      </AnimatePresence>
     </motion.header>
   );
 };
