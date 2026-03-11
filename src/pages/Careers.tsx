@@ -65,8 +65,7 @@ const openRoles = [
 
 const Careers = () => {
   return (
-    <div className="min-h-screen bg-background">
-      <Navbar />
+    <AppLayout>
       <main>
         {/* Hero */}
         <section className="pt-28 pb-24 lg:pt-40 lg:pb-32 min-h-[85vh] flex items-center">

@@ -475,8 +475,7 @@ const GetWorkspaces = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background flex flex-col">
-      <Navbar />
+    <AppLayout>
 
       {/* Full-width top section: Breadcrumb + Filters */}
       <div className="mt-20 bg-background border-b border-border/60">

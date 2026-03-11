@@ -184,8 +184,7 @@ const HelpCenter = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background">
-      <Navbar />
+    <AppLayout>
       <main>
         {/* Hero — Search Primary */}
         <section className="pt-32 pb-16 lg:pt-44 lg:pb-24 bg-muted/30">

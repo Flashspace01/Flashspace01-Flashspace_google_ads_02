@@ -452,8 +452,7 @@ const WorkspaceDetail = () => {
   }];
 
   return (
-    <div className="min-h-screen bg-background">
-      <Navbar />
+    <AppLayout>
 
       <div className="max-w-7xl mx-auto px-5 lg:px-10 pt-28 pb-16">
         {/* ── Header ── */}

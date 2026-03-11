@@ -75,8 +75,7 @@ const PartnerWithUs = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background">
-      <Navbar />
+    <AppLayout>
       <main>
         {/* Hero */}
         <section className="min-h-[100svh] flex items-center justify-center">

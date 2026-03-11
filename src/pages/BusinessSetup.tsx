@@ -46,8 +46,7 @@ const BusinessSetup = () => {
   );
 
   return (
-    <div className="min-h-screen">
-      <Navbar />
+    <AppLayout>
       <main>
         {/* Hero Section */}
         <section className="relative overflow-hidden" style={{ background: 'hsla(0, 0%, 97%, 0.9)', paddingTop: '170px', paddingBottom: '60px' }}>
