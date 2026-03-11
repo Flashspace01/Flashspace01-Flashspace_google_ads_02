@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import {
-  Menu,
+  PanelLeft,
   ChevronDown,
 } from "lucide-react";
 import { useLocation } from "react-router-dom";
@@ -47,7 +47,7 @@ export const Navbar = () => {
               className="p-2 text-foreground rounded-lg hover:bg-primary/5 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
               aria-label="Toggle sidebar"
             >
-              <Menu className="w-6 h-6" />
+              <PanelLeft className="w-6 h-6" />
             </button>
             <a href="/" className="flex items-center">
               <img src={flashspaceLogo} alt="FlashSpace" className="h-12 lg:h-[60px] w-auto" />
