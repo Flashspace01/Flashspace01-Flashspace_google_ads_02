@@ -151,7 +151,7 @@ export const Navbar = () => {
                     <div>
                       <button
                         onClick={() => setSidebarDropdown(sidebarDropdown === link.label ? null : link.label)}
-                        className="w-full flex items-center justify-between px-3 py-3 rounded-lg text-[15px] font-medium text-foreground/80 hover:text-foreground hover:bg-muted transition-colors"
+                        className="w-full flex items-center justify-between px-3 py-2.5 rounded-lg text-[13px] font-medium text-foreground/80 hover:text-foreground hover:bg-muted transition-colors"
                       >
                         {link.label}
                         <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${sidebarDropdown === link.label ? "rotate-180" : ""}`} />
@@ -170,7 +170,7 @@ export const Navbar = () => {
                                 key={item.label}
                                 href={item.href}
                                 onClick={() => setSidebarOpen(false)}
-                                className="block px-3 py-2.5 text-sm text-muted-foreground hover:text-foreground hover:bg-muted rounded-lg transition-colors"
+                                className="block px-3 py-2 text-[13px] text-muted-foreground hover:text-foreground hover:bg-muted rounded-lg transition-colors"
                               >
                                 {item.label}
                               </a>
@@ -183,7 +183,7 @@ export const Navbar = () => {
                     <a
                       href={link.href}
                       onClick={() => setSidebarOpen(false)}
-                      className="flex items-center px-3 py-3 rounded-lg text-[15px] font-medium text-foreground/80 hover:text-foreground hover:bg-muted transition-colors"
+                      className="flex items-center px-3 py-2.5 rounded-lg text-[13px] font-medium text-foreground/80 hover:text-foreground hover:bg-muted transition-colors"
                     >
                       {link.label}
                     </a>
@@ -193,69 +193,30 @@ export const Navbar = () => {
               <div className="my-3 mx-3 border-t border-border/30" />
             </div>
 
-            {/* Main Navigation Group */}
-            <div className="mb-2">
-              <span className="px-3 mb-2 block text-[11px] font-semibold uppercase tracking-wider text-muted-foreground/60">
-                Main
-              </span>
-              <div className="space-y-1">
-                {sidebarMenuItems.slice(0, 3).map((item) => {
-                  const Icon = item.icon;
-                  const isExternal = item.href.startsWith("#");
-                  const active = !isExternal && location.pathname === item.href;
-                  return (
-                    <button
-                      key={item.label}
-                      onClick={() => {
-                        setSidebarOpen(false);
-                        if (!isExternal) navigate(item.href);
-                      }}
-                      className={`w-full flex items-center gap-3 px-3 py-3 rounded-lg text-[15px] font-medium transition-all duration-150 text-left relative ${
-                        active
-                          ? "bg-primary/10 text-primary before:absolute before:left-0 before:top-1/2 before:-translate-y-1/2 before:w-[3px] before:h-5 before:rounded-full before:bg-primary"
-                          : "text-foreground/70 hover:text-foreground hover:bg-muted"
-                      }`}
-                    >
-                      <Icon className={`w-[22px] h-[22px] flex-shrink-0 transition-colors ${active ? "text-primary" : "text-muted-foreground group-hover:text-primary"}`} strokeWidth={1.8} />
-                      {item.label}
-                    </button>
-                  );
-                })}
-              </div>
-            </div>
-
-            {/* Divider */}
-            <div className="my-4 mx-3 border-t border-border/30" />
-
-            {/* Secondary Navigation Group */}
-            <div>
-              <span className="px-3 mb-2 block text-[11px] font-semibold uppercase tracking-wider text-muted-foreground/60">
-                More
-              </span>
-              <div className="space-y-1">
-                {sidebarMenuItems.slice(3).map((item) => {
-                  const Icon = item.icon;
-                  const isExternal = item.href.startsWith("#");
-                  const active = !isExternal && location.pathname === item.href;
-                  return (
-                    <button
-                      key={item.label}
-                      onClick={() => {
-                        setSidebarOpen(false);
-                        if (!isExternal) navigate(item.href);
-                      }}
-                      className={`w-full flex items-center gap-3 px-3 py-3 rounded-lg text-[15px] font-medium transition-all duration-150 text-left relative ${
-                        active
-                          ? "bg-primary/10 text-primary before:absolute before:left-0 before:top-1/2 before:-translate-y-1/2 before:w-[3px] before:h-5 before:rounded-full before:bg-primary"
-                          : "text-foreground/70 hover:text-foreground hover:bg-muted"
-                      }`}
-                    >
-                      <Icon className={`w-[22px] h-[22px] flex-shrink-0 transition-colors ${active ? "text-primary" : "text-muted-foreground"}`} strokeWidth={1.8} />
-                      {item.label}
-                    </button>
-                  );
-                })}
-              </div>
+            {/* Flat menu list */}
+            <div className="space-y-0.5">
+              {sidebarMenuItems.map((item) => {
+                const Icon = item.icon;
+                const isExternal = item.href.startsWith("#");
+                const active = !isExternal && location.pathname === item.href;
+                return (
+                  <button
+                    key={item.label}
+                    onClick={() => {
+                      setSidebarOpen(false);
+                      if (!isExternal) navigate(item.href);
+                    }}
+                    className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-[13px] font-medium transition-all duration-150 text-left relative ${
+                      active
+                        ? "bg-primary/10 text-primary before:absolute before:left-0 before:top-1/2 before:-translate-y-1/2 before:w-[3px] before:h-5 before:rounded-full before:bg-primary"
+                        : "text-foreground/70 hover:text-foreground hover:bg-muted"
+                    }`}
+                  >
+                    <Icon className={`w-5 h-5 flex-shrink-0 transition-colors ${active ? "text-primary" : "text-muted-foreground"}`} strokeWidth={1.8} />
+                    {item.label}
+                  </button>
+                );
+              })}
             </div>
           </nav>
 
