@@ -80,12 +80,10 @@ export const AppSidebar = () => {
         {/* Bottom CTA */}
         <div className="px-3 pb-4 pt-2 border-t border-border/30">
           <Button
-            variant="default"
-            className="w-full rounded-xl font-medium text-[13px] py-5 gap-2"
-            onClick={() => { setSidebarOpen(false); navigate('/'); }}
+            variant="outline"
+            className="w-full rounded-xl text-primary font-medium text-[13px] py-5 border-border"
           >
-            Explore Platform
-            <ArrowRight className="w-4 h-4" />
+            Get Consultation
           </Button>
         </div>
       </aside>
