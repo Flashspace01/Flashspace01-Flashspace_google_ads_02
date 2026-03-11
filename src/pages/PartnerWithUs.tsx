@@ -196,8 +196,8 @@ const PartnerWithUs = () => {
                             <Plus className="w-5 h-5 text-foreground" />
                           </button>
                         </div>
-                        {/* Bottom accent line */}
-                        <div className="absolute bottom-0 left-0 right-0 h-1 bg-primary/80 scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-500" />
+                        {/* Bottom accent strip */}
+                        <div className="absolute bottom-0 left-0 right-0 h-1.5 rounded-full" style={{ backgroundColor: '#FEF83C' }} />
                       </div>
                     </div>
                   );
