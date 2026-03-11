@@ -15,7 +15,7 @@ export const useSidebar = () => {
 };
 
 export const SidebarProvider = ({ children }: { children: ReactNode }) => {
-  const [sidebarOpen, setSidebarOpen] = useState(() => window.innerWidth >= 1024);
+  const [sidebarOpen, setSidebarOpen] = useState(false);
   const toggleSidebar = () => setSidebarOpen((p) => !p);
 
   return (
