@@ -1,7 +1,7 @@
 import { useState, useCallback } from "react";
 import { WorkspaceMap } from "@/components/WorkspaceMap";
 import { useParams, useNavigate } from "react-router-dom";
-import { Navbar } from "@/components/layout/Navbar";
+import { AppLayout } from "@/components/layout/AppLayout";
 import {
   Star,
   MapPin,
