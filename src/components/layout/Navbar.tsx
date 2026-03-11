@@ -8,13 +8,13 @@ import {
   X,
   ChevronDown,
   MessageCircle,
-  FileText,
   LayoutGrid,
   CalendarDays,
-  Users,
   Bell,
   Settings,
+  ArrowRight,
 } from "lucide-react";
+import { useLocation } from "react-router-dom";
 import flashspaceLogo from "@/assets/flashspace-logo.png";
 
 const navLinks = [
