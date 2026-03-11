@@ -28,7 +28,7 @@ const navLinks = [
 export const Navbar = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  const { toggleSidebar } = useSidebar();
+  const { toggleSidebar, sidebarOpen } = useSidebar();
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
 
   return (
