@@ -41,16 +41,16 @@ export const Navbar = () => {
       <div className="mx-auto px-2 lg:px-4">
         <nav className="flex items-center justify-between h-16 lg:h-20">
           {/* Hamburger + Logo group */}
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-3">
             <button
               onClick={toggleSidebar}
-              className="p-2 text-foreground/50 rounded-lg hover:bg-primary/5 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring flex items-center justify-center"
+              className="flex items-center justify-center w-9 h-9 text-foreground/50 rounded-lg hover:bg-primary/5 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
               aria-label="Toggle sidebar"
             >
               <PanelLeft className="w-[22px] h-[22px]" />
             </button>
-            <a href="/" className="flex items-center">
-              <img src={flashspaceLogo} alt="FlashSpace" className="h-12 lg:h-[60px] w-auto" />
+            <a href="/" className="flex items-center leading-none">
+              <img src={flashspaceLogo} alt="FlashSpace" className="h-10 lg:h-12 w-auto block" />
             </a>
           </div>
 
