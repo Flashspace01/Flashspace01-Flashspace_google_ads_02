@@ -39,7 +39,7 @@ export const Navbar = () => {
       className="fixed top-0 left-0 right-0 z-[60] glass-card shadow-none"
     >
       <div className="mx-auto px-2 lg:px-4">
-        <nav className={`flex items-center justify-between h-16 lg:h-20 rounded-b-xl transition-colors duration-200 ${sidebarOpen ? 'border-b border-border/20' : 'border-b border-transparent'}`}>
+        <nav className={`flex items-center justify-between h-16 lg:h-20 rounded-b-xl transition-colors duration-200 ${sidebarOpen ? 'border-b' : 'border-b border-transparent'}`} style={sidebarOpen ? { borderBottomColor: '#E9E9E2' } : undefined}>
           {/* Hamburger + Logo group */}
           <div className="flex items-center gap-3">
             <button
