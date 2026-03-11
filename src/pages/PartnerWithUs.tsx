@@ -88,7 +88,7 @@ const PartnerWithUs = () => {
               className="max-w-3xl mx-auto text-center"
             >
               <h1 className="text-4xl lg:text-6xl font-medium tracking-tight mb-6 leading-[1.1] text-foreground">
-                Partner with us and grow your workspace business
+                Partner with us and grow your business
               </h1>
               <p className="text-lg lg:text-xl text-muted-foreground max-w-2xl mx-auto mb-8">
                 Join India's fastest-growing workspace network. List your space, reach more clients,
