@@ -19,7 +19,8 @@ import {
   FileText,
   BadgeCheck,
   Coins,
-Plus,
+  Plus,
+} from "lucide-react";
 import useEmblaCarousel from "embla-carousel-react";
 
 const benefits = [
