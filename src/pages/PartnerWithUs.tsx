@@ -79,7 +79,7 @@ const PartnerWithUs = () => {
       <Navbar />
       <main>
         {/* Hero */}
-        <section className="pt-28 pb-8 lg:pt-36 lg:pb-12">
+        <section className="pt-36 pb-8 lg:pt-48 lg:pb-12 min-h-[100svh] flex items-center">
           <div className="container mx-auto px-4 lg:px-8">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -88,7 +88,7 @@ const PartnerWithUs = () => {
               className="max-w-3xl mx-auto text-center"
             >
               <h1 className="text-4xl lg:text-6xl font-medium tracking-tight mb-6 leading-[1.1] text-foreground">
-                Partner with us and grow your workspace business
+                Partner with us and grow your business
               </h1>
               <p className="text-lg lg:text-xl text-muted-foreground max-w-2xl mx-auto mb-8">
                 Join India's fastest-growing workspace network. List your space, reach more clients,
