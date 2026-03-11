@@ -28,7 +28,7 @@ const navLinks = [
 export const Navbar = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  const { toggleSidebar } = useSidebar();
+  const { toggleSidebar, sidebarOpen } = useSidebar();
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
 
   return (
@@ -36,7 +36,7 @@ export const Navbar = () => {
       initial={{ y: -20, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.5 }}
-      className="fixed top-0 left-0 right-0 z-50 glass-card border-b border-border/40 shadow-none"
+      className={`fixed top-0 left-0 right-0 z-50 glass-card shadow-none transition-colors duration-200 ${sidebarOpen ? 'border-b border-border/30' : 'border-b border-transparent'}`}
     >
       <div className="mx-auto px-2 lg:px-4">
         <nav className="flex items-center justify-between h-16 lg:h-20">
