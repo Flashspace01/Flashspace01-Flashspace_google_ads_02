@@ -274,8 +274,9 @@ export const Navbar = () => {
               <ArrowRight className="w-4 h-4" />
             </Button>
           </div>
-        </SheetContent>
-      </Sheet>
+          </motion.aside>
+        )}
+      </AnimatePresence>
     </>
   );
 };
