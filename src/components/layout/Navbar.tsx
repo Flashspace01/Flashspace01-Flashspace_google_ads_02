@@ -8,13 +8,13 @@ import {
   X,
   ChevronDown,
   MessageCircle,
-  FileText,
   LayoutGrid,
   CalendarDays,
-  Users,
   Bell,
   Settings,
+  ArrowRight,
 } from "lucide-react";
+import { useLocation } from "react-router-dom";
 import flashspaceLogo from "@/assets/flashspace-logo.png";
 
 const navLinks = [
@@ -44,6 +44,7 @@ const sidebarMenuItems = [
 
 export const Navbar = () => {
   const navigate = useNavigate();
+  const location = useLocation();
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
   const [sidebarDropdown, setSidebarDropdown] = useState<string | null>(null);
@@ -129,28 +130,28 @@ export const Navbar = () => {
 
       {/* Sidebar Sheet */}
       <Sheet open={sidebarOpen} onOpenChange={setSidebarOpen}>
-        <SheetContent side="left" className="w-[300px] p-0 flex flex-col bg-background border-r border-border [&>button]:hidden">
-          {/* Header */}
-          <div className="flex items-center justify-between px-5 pt-6 pb-4">
+        <SheetContent side="left" className="w-[310px] p-0 flex flex-col bg-background border-r border-border [&>button]:hidden">
+          {/* Top Section — Logo + Close */}
+          <div className="flex items-center justify-between px-5 pt-6 pb-5 border-b border-border/50">
             <img src={flashspaceLogo} alt="FlashSpace" className="h-10 w-auto" />
             <SheetClose asChild>
-              <button className="p-1.5 rounded-lg hover:bg-muted transition-colors text-foreground/70 hover:text-foreground">
+              <button className="p-2 rounded-lg hover:bg-muted transition-colors text-muted-foreground hover:text-foreground">
                 <X className="w-5 h-5" />
               </button>
             </SheetClose>
           </div>
 
-          {/* Nav Items */}
-          <nav className="flex-1 px-3 py-2 overflow-y-auto">
-            {/* Nav links with dropdowns — mobile only */}
-            <div className="mb-2 lg:hidden">
+          {/* Scrollable Nav */}
+          <nav className="flex-1 px-4 pt-5 pb-4 overflow-y-auto">
+            {/* Mobile-only nav links */}
+            <div className="mb-4 lg:hidden">
               {navLinks.map((link) => (
                 <div key={link.label}>
                   {link.dropdown ? (
                     <div>
                       <button
                         onClick={() => setSidebarDropdown(sidebarDropdown === link.label ? null : link.label)}
-                        className="w-full flex items-center justify-between px-3 py-3 rounded-xl text-[15px] font-medium text-foreground/80 hover:text-foreground hover:bg-primary/5 transition-colors"
+                        className="w-full flex items-center justify-between px-3 py-3 rounded-lg text-[15px] font-medium text-foreground/80 hover:text-foreground hover:bg-muted transition-colors"
                       >
                         {link.label}
                         <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${sidebarDropdown === link.label ? "rotate-180" : ""}`} />
@@ -169,7 +170,7 @@ export const Navbar = () => {
                                 key={item.label}
                                 href={item.href}
                                 onClick={() => setSidebarOpen(false)}
-                                className="block px-3 py-2.5 text-sm font-normal text-foreground/70 hover:text-foreground hover:bg-primary/5 rounded-lg transition-colors"
+                                className="block px-3 py-2.5 text-sm text-muted-foreground hover:text-foreground hover:bg-muted rounded-lg transition-colors"
                               >
                                 {item.label}
                               </a>
@@ -182,42 +183,87 @@ export const Navbar = () => {
                     <a
                       href={link.href}
                       onClick={() => setSidebarOpen(false)}
-                      className="flex items-center px-3 py-3 rounded-xl text-[15px] font-medium text-foreground/80 hover:text-foreground hover:bg-primary/5 transition-colors"
+                      className="flex items-center px-3 py-3 rounded-lg text-[15px] font-medium text-foreground/80 hover:text-foreground hover:bg-muted transition-colors"
                     >
                       {link.label}
                     </a>
                   )}
                 </div>
               ))}
-              <hr className="my-2 border-border" />
+              <div className="my-3 mx-3 border-t border-border/30" />
             </div>
 
-            {sidebarMenuItems.map((item, index) => {
-              const Icon = item.icon;
-              const showDivider = [1, 3].includes(index);
-              const isExternal = item.href.startsWith("#");
-              return (
-                <div key={item.label}>
-                  {showDivider && <hr className="my-2 border-border" />}
-                  <button
-                    onClick={() => {
-                      setSidebarOpen(false);
-                      if (!isExternal) navigate(item.href);
-                    }}
-                    className="w-full flex items-center gap-3 px-3 py-3 rounded-xl text-[15px] font-medium text-foreground/80 hover:text-foreground hover:bg-primary/5 transition-colors text-left"
-                  >
-                    <Icon className="w-5 h-5 text-foreground/60 flex-shrink-0" />
-                    {item.label}
-                  </button>
-                </div>
-              );
-            })}
+            {/* Main Navigation Group */}
+            <div className="mb-2">
+              <span className="px-3 mb-2 block text-[11px] font-semibold uppercase tracking-wider text-muted-foreground/60">
+                Main
+              </span>
+              <div className="space-y-1">
+                {sidebarMenuItems.slice(0, 3).map((item) => {
+                  const Icon = item.icon;
+                  const isExternal = item.href.startsWith("#");
+                  const active = !isExternal && location.pathname === item.href;
+                  return (
+                    <button
+                      key={item.label}
+                      onClick={() => {
+                        setSidebarOpen(false);
+                        if (!isExternal) navigate(item.href);
+                      }}
+                      className={`w-full flex items-center gap-3 px-3 py-3 rounded-lg text-[15px] font-medium transition-all duration-150 text-left relative ${
+                        active
+                          ? "bg-primary/10 text-primary before:absolute before:left-0 before:top-1/2 before:-translate-y-1/2 before:w-[3px] before:h-5 before:rounded-full before:bg-primary"
+                          : "text-foreground/70 hover:text-foreground hover:bg-muted"
+                      }`}
+                    >
+                      <Icon className={`w-[22px] h-[22px] flex-shrink-0 transition-colors ${active ? "text-primary" : "text-muted-foreground group-hover:text-primary"}`} strokeWidth={1.8} />
+                      {item.label}
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
+
+            {/* Divider */}
+            <div className="my-4 mx-3 border-t border-border/30" />
+
+            {/* Secondary Navigation Group */}
+            <div>
+              <span className="px-3 mb-2 block text-[11px] font-semibold uppercase tracking-wider text-muted-foreground/60">
+                More
+              </span>
+              <div className="space-y-1">
+                {sidebarMenuItems.slice(3).map((item) => {
+                  const Icon = item.icon;
+                  const isExternal = item.href.startsWith("#");
+                  const active = !isExternal && location.pathname === item.href;
+                  return (
+                    <button
+                      key={item.label}
+                      onClick={() => {
+                        setSidebarOpen(false);
+                        if (!isExternal) navigate(item.href);
+                      }}
+                      className={`w-full flex items-center gap-3 px-3 py-3 rounded-lg text-[15px] font-medium transition-all duration-150 text-left relative ${
+                        active
+                          ? "bg-primary/10 text-primary before:absolute before:left-0 before:top-1/2 before:-translate-y-1/2 before:w-[3px] before:h-5 before:rounded-full before:bg-primary"
+                          : "text-foreground/70 hover:text-foreground hover:bg-muted"
+                      }`}
+                    >
+                      <Icon className={`w-[22px] h-[22px] flex-shrink-0 transition-colors ${active ? "text-primary" : "text-muted-foreground"}`} strokeWidth={1.8} />
+                      {item.label}
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
           </nav>
 
-          {/* CTA */}
-          <div className="px-4 pb-6">
-            <Button className="w-full rounded-xl bg-secondary hover:bg-secondary/90 text-secondary-foreground font-normal text-base py-6">
+          {/* Bottom CTA */}
+          <div className="px-5 pb-6 pt-2 border-t border-border/30">
+            <Button className="w-full rounded-xl bg-secondary hover:bg-secondary/80 text-secondary-foreground font-medium text-[15px] py-6 shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all duration-200 gap-2">
               Get Consultation
+              <ArrowRight className="w-4 h-4" />
             </Button>
           </div>
         </SheetContent>
