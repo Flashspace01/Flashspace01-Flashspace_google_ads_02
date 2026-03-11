@@ -19,6 +19,7 @@ import {
   FileText,
   BadgeCheck,
   Coins,
+  Plus,
 } from "lucide-react";
 import useEmblaCarousel from "embla-carousel-react";
 
@@ -172,25 +173,31 @@ const PartnerWithUs = () => {
             </motion.div>
 
             <div className="overflow-hidden" ref={emblaRef}>
-              <div className="flex -ml-5">
+              <div className="flex">
                 {[...benefits, ...benefits].map((b, i) => {
-                  const Icon = b.icon;
+                  const num = String((i % benefits.length) + 1).padStart(2, "0");
                   return (
                     <div
                       key={`${b.title}-${i}`}
-                      className="min-w-0 shrink-0 grow-0 basis-full md:basis-1/2 lg:basis-1/3 pl-5"
+                      className="min-w-0 shrink-0 grow-0 basis-full md:basis-1/2 lg:basis-1/3"
                     >
-                      <div className="group p-7 rounded-2xl border border-border bg-card hover:border-primary/40 hover:shadow-lg hover:-translate-y-1 transition-all duration-300 h-full cursor-pointer">
-                        <div className="w-12 h-12 rounded-xl bg-secondary group-hover:bg-primary/10 flex items-center justify-center mb-5 transition-colors duration-300">
-                          <Icon className="w-6 h-6 text-primary" />
+                      <div className="group border-r border-t border-b border-border first:border-l h-full flex flex-col justify-between p-8 lg:p-10 relative overflow-hidden transition-all duration-300">
+                        {/* Number */}
+                        <div>
+                          <span className="text-sm text-muted-foreground mb-4 block">{num}</span>
+                          <h3 className="text-xl lg:text-2xl font-bold text-foreground mb-4">
+                            {b.title}
+                          </h3>
+                          <p className="text-sm text-muted-foreground leading-relaxed">{b.description}</p>
                         </div>
-                        <h3 className="text-lg font-semibold text-foreground mb-2 group-hover:text-primary transition-colors">
-                          {b.title}
-                        </h3>
-                        <p className="text-sm text-muted-foreground leading-relaxed">{b.description}</p>
-                        <div className="mt-5 flex items-center gap-1.5 text-primary text-sm font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                          Learn more <ArrowRight className="w-3.5 h-3.5" />
+                        {/* Plus button */}
+                        <div className="mt-8">
+                          <button className="w-12 h-12 rounded-lg border border-border hover:border-foreground/30 flex items-center justify-center transition-colors">
+                            <Plus className="w-5 h-5 text-foreground" />
+                          </button>
                         </div>
+                        {/* Bottom accent line */}
+                        <div className="absolute bottom-0 left-0 right-0 h-1 bg-primary/80 scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-500" />
                       </div>
                     </div>
                   );
