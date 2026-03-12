@@ -100,57 +100,91 @@ const AnimatedCounter = ({ target, prefix = "", suffix = "" }: { target: number;
   );
 };
 
+const infographicBars = [
+  { icon: BarChart3, value: "142", label: "Bookings", sublabel: "Monthly average across partners", height: "55%" },
+  { icon: Building2, value: "12%", label: "Listing Growth", sublabel: "Month-over-month increase", height: "40%" },
+  { icon: TrendingUp, value: "32%", label: "Revenue Uplift", sublabel: "Average partner growth rate", height: "65%" },
+  { icon: CheckCircle2, value: "19%", label: "Conversion", sublabel: "Enquiry to booking rate", height: "50%" },
+  { icon: Globe, value: "96%", label: "Occupancy", sublabel: "Peak hour utilization", height: "80%" },
+  { icon: Headphones, value: "48hrs", label: "Avg. Onboard", sublabel: "From signup to live listing", height: "90%" },
+];
+
 const RevenueVisual = () => {
-  const maxVal = Math.max(...revenueData.map((d) => d.value));
-
   return (
-    <div className="w-full bg-card rounded-2xl border border-border p-6 lg:p-8 space-y-6">
-      <div className="flex items-center justify-between">
-        <div>
-          <p className="text-sm text-muted-foreground mb-1">Monthly Revenue</p>
-          <p className="text-3xl lg:text-4xl font-bold text-foreground">
-            <AnimatedCounter target={500000} prefix="₹" />
-          </p>
-        </div>
-        <div className="flex items-center gap-1.5 bg-primary/10 text-primary px-3 py-1.5 rounded-full text-sm font-medium">
-          <TrendingUp className="w-4 h-4" />
-          +34%
-        </div>
-      </div>
+    <div className="w-full">
+      <div className="flex items-end gap-3 lg:gap-4 justify-center" style={{ height: 340 }}>
+        {infographicBars.map((bar, i) => {
+          const Icon = bar.icon;
+          return (
+            <motion.div
+              key={bar.label}
+              className="flex flex-col items-center gap-3 flex-1"
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: i * 0.1, duration: 0.5, ease: "easeOut" }}
+            >
+              {/* Floating badge */}
+              <motion.div
+                initial={{ opacity: 0, scale: 0.8 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.3 + i * 0.1, duration: 0.4 }}
+                className="bg-card border border-border rounded-lg px-2.5 py-1.5 shadow-sm text-center min-w-[60px]"
+              >
+                <div className="flex items-center justify-center mb-0.5">
+                  <Icon className="w-3.5 h-3.5 text-primary" />
+                </div>
+                <p className="text-sm font-bold text-primary leading-none">{bar.value}</p>
+                <p className="text-[8px] text-muted-foreground mt-0.5 leading-tight">{bar.label}</p>
+              </motion.div>
 
-      <div className="flex items-end gap-1.5 h-32">
-        {revenueData.map((d, i) => (
-          <motion.div
-            key={d.month}
-            className="flex-1 flex flex-col items-center gap-1"
-            initial={{ scaleY: 0 }}
-            whileInView={{ scaleY: 1 }}
-            viewport={{ once: true }}
-            transition={{ delay: i * 0.05, duration: 0.4, ease: "easeOut" }}
-            style={{ originY: 1 }}
-          >
-            <div
-              className="w-full rounded-t-sm bg-primary/80 hover:bg-primary transition-colors cursor-default"
-              style={{ height: `${(d.value / maxVal) * 100}%` }}
-            />
-            <span className="text-[9px] text-muted-foreground">{d.month}</span>
-          </motion.div>
-        ))}
-      </div>
-
-      <div className="grid grid-cols-3 gap-3 pt-2 border-t border-border">
-        <div className="text-center">
-          <p className="text-lg font-bold text-foreground"><AnimatedCounter target={142} /></p>
-          <p className="text-xs text-muted-foreground">Bookings</p>
-        </div>
-        <div className="text-center">
-          <p className="text-lg font-bold text-foreground"><AnimatedCounter target={96} suffix="%" /></p>
-          <p className="text-xs text-muted-foreground">Occupancy</p>
-        </div>
-        <div className="text-center">
-          <p className="text-lg font-bold text-foreground"><AnimatedCounter target={48} suffix="hrs" /></p>
-          <p className="text-xs text-muted-foreground">Avg. Onboard</p>
-        </div>
+              {/* 3D Bar */}
+              <div className="relative w-full" style={{ height: bar.height }}>
+                {/* Front face */}
+                <motion.div
+                  initial={{ scaleY: 0 }}
+                  whileInView={{ scaleY: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: 0.15 + i * 0.1, duration: 0.6, ease: "easeOut" }}
+                  className="absolute inset-0 rounded-t-md"
+                  style={{
+                    originY: 1,
+                    background: `hsl(142 20% ${26 + i * 6}%)`,
+                  }}
+                />
+                {/* Right 3D edge */}
+                <motion.div
+                  initial={{ scaleY: 0 }}
+                  whileInView={{ scaleY: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: 0.15 + i * 0.1, duration: 0.6, ease: "easeOut" }}
+                  className="absolute top-0 bottom-0 -right-1.5 w-1.5 rounded-tr-sm"
+                  style={{
+                    originY: 1,
+                    background: `hsl(142 20% ${20 + i * 6}%)`,
+                  }}
+                />
+                {/* Top 3D face */}
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  whileInView={{ opacity: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: 0.5 + i * 0.1, duration: 0.3 }}
+                  className="absolute -top-1.5 left-0 right-0 h-1.5 rounded-t-sm"
+                  style={{
+                    background: `hsl(142 20% ${32 + i * 6}%)`,
+                    transform: "skewX(-20deg) translateX(3px)",
+                  }}
+                />
+                {/* Sublabel on bar */}
+                <div className="absolute bottom-2 left-0 right-0 px-1">
+                  <p className="text-[7px] text-white/70 text-center leading-tight hidden lg:block">{bar.sublabel}</p>
+                </div>
+              </div>
+            </motion.div>
+          );
+        })}
       </div>
     </div>
   );
@@ -326,7 +360,7 @@ const PartnerWithUs = () => {
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
               >
-                <h2 className="text-3xl lg:text-4xl font-bold text-foreground tracking-tight mb-6 leading-[1.15]">
+                <h2 className="text-3xl lg:text-4xl font-bold text-primary tracking-tight mb-6 leading-[1.15]">
                   What could uncapped workspace revenue look like?
                 </h2>
                 <div className="space-y-4">
