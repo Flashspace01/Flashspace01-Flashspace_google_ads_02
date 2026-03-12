@@ -111,8 +111,8 @@ const infographicBars = [
 
 const RevenueVisual = () => {
   return (
-    <div className="w-full relative" style={{ height: 520 }}>
-      <div className="absolute inset-0 flex items-end gap-4 lg:gap-5 justify-center">
+    <div className="w-full relative" style={{ height: 420 }}>
+      <div className="absolute inset-0 flex items-end gap-5 lg:gap-6 justify-center">
         {infographicBars.map((bar, i) => {
           const Icon = bar.icon;
 
