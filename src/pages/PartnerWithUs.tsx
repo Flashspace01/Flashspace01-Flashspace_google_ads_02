@@ -448,21 +448,24 @@ const PartnerWithUs = () => {
         </section>
 
         {/* Partner Form */}
-        <section className="py-10 lg:py-14" id="partner-form">
-          <div className="container mx-auto px-4 lg:px-8">
+        <section className="py-16 lg:py-20" id="partner-form">
+          <div className="container mx-auto px-4 lg:px-8 max-w-6xl">
             <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-start">
+              {/* Left Column — Copy & Stats */}
               <motion.div
                 initial={{ opacity: 0, x: -20 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
               >
-                <h2 className="text-3xl lg:text-4xl font-bold text-foreground tracking-tight mb-4">
+                <h2 className="text-3xl lg:text-5xl font-bold text-foreground tracking-tight mb-4 leading-[1.1]">
                   List your space today
                 </h2>
-                <p className="text-muted-foreground text-lg mb-6">
+                <p className="text-foreground/70 text-lg mb-8 leading-relaxed">
                   Fill in your details and our partnership team will get in touch within 24 hours.
                 </p>
-                <div className="space-y-4 mb-8">
+
+                {/* Checklist */}
+                <div className="space-y-5 mb-10">
                   {[
                     "Zero listing fees — we only earn when you do",
                     "Full control over pricing and availability",
@@ -470,49 +473,55 @@ const PartnerWithUs = () => {
                     "Marketing support and premium placement",
                   ].map((point) => (
                     <div key={point} className="flex items-start gap-3">
-                      <CheckCircle2 className="w-5 h-5 text-primary mt-0.5 shrink-0" />
-                      <span className="text-foreground text-sm">{point}</span>
+                      <CheckCircle2 className="w-5 h-5 text-secondary mt-0.5 shrink-0" />
+                      <span className="text-foreground/80 text-[15px] leading-relaxed">{point}</span>
                     </div>
                   ))}
                 </div>
 
-                {/* Partner stats */}
-                <div className="grid grid-cols-2 gap-4 mb-8">
+                {/* Stats Grid — borderless tinted cards */}
+                <div className="grid grid-cols-2 gap-3">
                   {[
                     { value: "48hrs", label: "Average Onboarding" },
                     { value: "95%", label: "Partner Retention" },
                     { value: "3x", label: "Revenue Uplift" },
                     { value: "24/7", label: "Support Available" },
                   ].map((s) => (
-                    <div key={s.label} className="bg-secondary/50 rounded-xl p-4 text-center">
-                      <div className="text-xl font-bold text-primary">{s.value}</div>
-                      <div className="text-xs text-muted-foreground mt-0.5">{s.label}</div>
+                    <div key={s.label} className="bg-secondary/40 rounded-xl p-5">
+                      <div className="text-2xl lg:text-3xl font-bold text-primary leading-none">{s.value}</div>
+                      <div className="text-[11px] text-muted-foreground mt-2 uppercase tracking-widest font-medium">{s.label}</div>
                     </div>
                   ))}
                 </div>
-
               </motion.div>
 
+              {/* Right Column — Form Card */}
               <motion.form
                 onSubmit={handleSubmit}
                 initial={{ opacity: 0, x: 20 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
-                className="bg-card border border-border rounded-2xl p-6 lg:p-8 space-y-5"
+                className="bg-card border border-border/60 rounded-2xl p-7 lg:p-9 space-y-5 shadow-xl"
               >
+                <div>
+                  <h3 className="text-xl font-bold text-foreground mb-1">Get started</h3>
+                  <p className="text-sm text-muted-foreground">We'll reach out within 24 hours.</p>
+                </div>
+
                 <div className="grid sm:grid-cols-2 gap-4">
                   <div>
-                    <label className="text-sm font-medium text-foreground mb-1.5 block">Your Name</label>
+                    <label className="text-xs font-semibold text-foreground/70 uppercase tracking-wider mb-2 block">Your Name</label>
                     <Input
                       value={formData.name}
                       onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                       placeholder="John Doe"
                       required
                       maxLength={100}
+                      className="bg-card border-border focus-visible:ring-primary/40"
                     />
                   </div>
                   <div>
-                    <label className="text-sm font-medium text-foreground mb-1.5 block">Email</label>
+                    <label className="text-xs font-semibold text-foreground/70 uppercase tracking-wider mb-2 block">Email</label>
                     <Input
                       type="email"
                       value={formData.email}
@@ -520,12 +529,13 @@ const PartnerWithUs = () => {
                       placeholder="john@workspace.com"
                       required
                       maxLength={255}
+                      className="bg-card border-border focus-visible:ring-primary/40"
                     />
                   </div>
                 </div>
                 <div className="grid sm:grid-cols-2 gap-4">
                   <div>
-                    <label className="text-sm font-medium text-foreground mb-1.5 block">Phone</label>
+                    <label className="text-xs font-semibold text-foreground/70 uppercase tracking-wider mb-2 block">Phone</label>
                     <Input
                       type="tel"
                       value={formData.phone}
@@ -533,40 +543,44 @@ const PartnerWithUs = () => {
                       placeholder="+91 98765 43210"
                       required
                       maxLength={15}
+                      className="bg-card border-border focus-visible:ring-primary/40"
                     />
                   </div>
                   <div>
-                    <label className="text-sm font-medium text-foreground mb-1.5 block">Space Name</label>
+                    <label className="text-xs font-semibold text-foreground/70 uppercase tracking-wider mb-2 block">Space Name</label>
                     <Input
                       value={formData.spaceName}
                       onChange={(e) => setFormData({ ...formData, spaceName: e.target.value })}
                       placeholder="Your Workspace Name"
                       required
                       maxLength={100}
+                      className="bg-card border-border focus-visible:ring-primary/40"
                     />
                   </div>
                 </div>
                 <div>
-                  <label className="text-sm font-medium text-foreground mb-1.5 block">City</label>
+                  <label className="text-xs font-semibold text-foreground/70 uppercase tracking-wider mb-2 block">City</label>
                   <Input
                     value={formData.city}
                     onChange={(e) => setFormData({ ...formData, city: e.target.value })}
                     placeholder="e.g. Delhi, Mumbai, Bangalore"
                     required
                     maxLength={50}
+                    className="bg-card border-border focus-visible:ring-primary/40"
                   />
                 </div>
                 <div>
-                  <label className="text-sm font-medium text-foreground mb-1.5 block">Message (optional)</label>
+                  <label className="text-xs font-semibold text-foreground/70 uppercase tracking-wider mb-2 block">Message (optional)</label>
                   <Textarea
                     value={formData.message}
                     onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                     placeholder="Tell us about your space..."
                     rows={4}
                     maxLength={1000}
+                    className="bg-card border-border focus-visible:ring-primary/40"
                   />
                 </div>
-                <Button type="submit" className="w-full" size="lg">
+                <Button type="submit" className="w-full hover:-translate-y-0.5 transition-all duration-200" size="lg">
                   Submit Application <ArrowRight className="w-4 h-4 ml-2" />
                 </Button>
               </motion.form>
