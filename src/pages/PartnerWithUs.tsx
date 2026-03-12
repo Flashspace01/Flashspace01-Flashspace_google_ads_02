@@ -111,49 +111,45 @@ const infographicBars = [
 
 const RevenueVisual = () => {
   return (
-    <div className="w-full relative" style={{ height: 420 }}>
+    <div className="w-full relative" style={{ height: 520 }}>
       <div className="absolute inset-0 flex items-end gap-4 lg:gap-5 justify-center">
         {infographicBars.map((bar, i) => {
           const Icon = bar.icon;
 
           return (
             <div key={bar.label} className="flex-1 flex flex-col items-center relative h-full justify-end">
-              {/* Icon circle floating above */}
+              {/* Entire column: icon + badge + bar animate together */}
               <motion.div
-                initial={{ opacity: 0, y: 10 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.5 + i * 0.08, duration: 0.4 }}
-                className="w-9 h-9 rounded-full bg-card border border-border shadow-sm flex items-center justify-center mb-1.5 z-10"
-              >
-                <Icon className="w-4 h-4 text-primary" />
-              </motion.div>
-
-              {/* Value badge */}
-              <motion.div
-                initial={{ opacity: 0, scale: 0.8 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.6 + i * 0.08, duration: 0.35 }}
-                className="relative bg-card border border-border rounded-lg px-3 py-2 shadow-sm text-center mb-2 z-10"
-              >
-                <p className="text-base font-bold text-primary leading-none">{bar.value}</p>
-                <p className="text-[8px] text-muted-foreground mt-0.5 uppercase tracking-wider leading-tight">{bar.label}</p>
-                <div className="absolute -bottom-1.5 left-1/2 -translate-x-1/2 w-3 h-3 bg-card border-r border-b border-border rotate-45" />
-              </motion.div>
-
-              {/* Vertical bar */}
-              <motion.div
-                initial={{ scaleY: 0 }}
-                whileInView={{ scaleY: 1 }}
+                initial={{ scaleY: 0, opacity: 0 }}
+                whileInView={{ scaleY: 1, opacity: 1 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1, duration: 0.7, ease: "easeOut" }}
-                className="relative w-full rounded-t-md"
-                style={{ height: `${bar.pct}%`, originY: 1, background: bar.color }}
+                className="flex flex-col items-center w-full origin-bottom"
+                style={{ height: `${bar.pct}%` }}
               >
-                {/* Sublabel text on bar */}
-                <div className="absolute bottom-3 left-0 right-0 px-1.5 z-10">
-                  <p className="text-[7px] text-white/80 text-center leading-tight hidden lg:block">{bar.sublabel}</p>
+                {/* Icon circle - colored to match bar */}
+                <div
+                  className="w-9 h-9 rounded-full flex items-center justify-center mb-1.5 z-10 shrink-0"
+                  style={{ background: bar.color }}
+                >
+                  <Icon className="w-4 h-4 text-white/90" />
+                </div>
+
+                {/* Value badge */}
+                <div className="relative bg-card border border-border rounded-lg px-3 py-2 shadow-sm text-center mb-2 z-10 shrink-0">
+                  <p className="text-base font-bold text-primary leading-none">{bar.value}</p>
+                  <p className="text-[8px] text-muted-foreground mt-0.5 uppercase tracking-wider leading-tight">{bar.label}</p>
+                  <div className="absolute -bottom-1.5 left-1/2 -translate-x-1/2 w-3 h-3 bg-card border-r border-b border-border rotate-45" />
+                </div>
+
+                {/* Vertical bar - fills remaining space */}
+                <div
+                  className="relative w-full rounded-t-md flex-1 min-h-0"
+                  style={{ background: bar.color }}
+                >
+                  <div className="absolute bottom-3 left-0 right-0 px-1.5 z-10">
+                    <p className="text-[7px] text-white/80 text-center leading-tight hidden lg:block">{bar.sublabel}</p>
+                  </div>
                 </div>
               </motion.div>
             </div>
