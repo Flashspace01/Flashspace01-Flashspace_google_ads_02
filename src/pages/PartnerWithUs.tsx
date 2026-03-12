@@ -345,20 +345,29 @@ const PartnerWithUs = () => {
                 { step: "02", title: "Onboard", desc: "Our dedicated team verifies your space, creates a professional listing with photos & amenities, and gets you live within 48 hours." },
                 { step: "03", title: "Earn", desc: "Start receiving qualified bookings from our network of verified professionals and enterprises. Watch your revenue grow month after month." },
               ].map((item, i) => {
-                const stepDelay = i * 0.2;
+                // Each step: number appears → line grows → dot appears → card fades in
+                // Step 0: 0s, Step 1: 1.2s, Step 2: 2.4s
+                const baseDelay = i * 1.2;
+                const numberDelay = baseDelay;
+                const lineDelay = baseDelay + 0.3;
+                const dotDelay = baseDelay + 0.6;
+                const cardDelay = baseDelay + 0.8;
+
                 return (
-                  <motion.div
+                  <div
                     key={item.step}
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: stepDelay, duration: 0.6 }}
                     className="flex flex-col items-center text-center"
                   >
                     {/* Large number */}
-                    <span className="text-7xl lg:text-9xl font-bold text-muted-foreground/20 leading-none mb-4 select-none">
+                    <motion.span
+                      initial={{ opacity: 0, scale: 0.5 }}
+                      whileInView={{ opacity: 1, scale: 1 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: numberDelay, duration: 0.5, ease: "easeOut" }}
+                      className="text-7xl lg:text-9xl font-bold text-muted-foreground/20 leading-none mb-4 select-none block"
+                    >
                       {item.step}
-                    </span>
+                    </motion.span>
 
                     {/* Dot with line */}
                     <div className="relative w-full flex items-center justify-center mb-8">
@@ -368,7 +377,7 @@ const PartnerWithUs = () => {
                           initial={{ scaleX: 0 }}
                           whileInView={{ scaleX: 1 }}
                           viewport={{ once: true }}
-                          transition={{ delay: 0.4 + i * 0.2, duration: 0.5 }}
+                          transition={{ delay: lineDelay, duration: 0.6, ease: "easeInOut" }}
                           className="absolute right-1/2 left-0 top-1/2 -translate-y-1/2 h-px bg-border origin-right"
                         />
                       )}
@@ -378,7 +387,7 @@ const PartnerWithUs = () => {
                           initial={{ scaleX: 0 }}
                           whileInView={{ scaleX: 1 }}
                           viewport={{ once: true }}
-                          transition={{ delay: 0.4 + i * 0.2, duration: 0.5 }}
+                          transition={{ delay: lineDelay, duration: 0.6, ease: "easeInOut" }}
                           className="absolute left-1/2 right-0 top-1/2 -translate-y-1/2 h-px bg-border origin-left"
                         />
                       )}
@@ -387,14 +396,21 @@ const PartnerWithUs = () => {
                         initial={{ scale: 0 }}
                         whileInView={{ scale: 1 }}
                         viewport={{ once: true }}
-                        transition={{ delay: 0.4 + i * 0.2, type: "spring", stiffness: 200, damping: 15 }}
+                        transition={{ delay: dotDelay, type: "spring", stiffness: 200, damping: 15 }}
                         className="w-3 h-3 rounded-full bg-primary relative z-10"
                       />
                     </div>
 
-                    <h3 className="text-xl font-bold text-foreground mb-2">{item.title}</h3>
-                    <p className="text-sm text-muted-foreground leading-relaxed max-w-xs mx-auto">{item.desc}</p>
-                  </motion.div>
+                    <motion.div
+                      initial={{ opacity: 0, y: 15 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: cardDelay, duration: 0.5 }}
+                    >
+                      <h3 className="text-xl font-bold text-foreground mb-2">{item.title}</h3>
+                      <p className="text-sm text-muted-foreground leading-relaxed max-w-xs mx-auto">{item.desc}</p>
+                    </motion.div>
+                  </div>
                 );
               })}
             </div>
