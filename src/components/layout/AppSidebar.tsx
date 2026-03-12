@@ -46,10 +46,10 @@ export const AppSidebar = () => {
             navigate(item.href);
           }
         }}
-        className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-[13px] font-normal transition-all duration-150 text-left relative ${
+        className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-[13px] font-medium antialiased transition-all duration-150 text-left relative ${
           active
-            ? "bg-primary/10 text-primary before:absolute before:left-0 before:top-1/2 before:-translate-y-1/2 before:w-[3px] before:h-5 before:rounded-full before:bg-primary"
-            : "text-foreground/80 hover:text-foreground hover:bg-muted"
+            ? "bg-primary/10 text-primary before:absolute before:left-0 before:top-0 before:bottom-0 before:w-[3px] before:rounded-full before:bg-primary"
+            : "text-foreground/80 hover:text-foreground hover:bg-muted/60"
         }`}
       >
         <Icon
