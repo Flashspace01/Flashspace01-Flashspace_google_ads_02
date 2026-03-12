@@ -20,6 +20,9 @@ import {
   BadgeCheck,
   Coins,
   Plus,
+  PenLine,
+  Rocket,
+  LineChart,
 } from "lucide-react";
 import useEmblaCarousel from "embla-carousel-react";
 
