@@ -43,7 +43,7 @@ export const AppSidebar = () => {
         }}
         className={`w-full flex items-center gap-4 px-4 py-3 rounded-lg text-[13px] font-medium antialiased transition-all duration-150 text-left relative ${
           active
-            ? "bg-background text-primary before:absolute before:left-0 before:top-1 before:bottom-1 before:w-[4px] before:rounded-full before:bg-primary"
+            ? "bg-background text-primary shadow-sm before:absolute before:left-0 before:top-1 before:bottom-1 before:w-[3px] before:rounded-full before:bg-primary"
             : "text-foreground/70 hover:text-foreground hover:bg-muted/60"
         }`}
       >
@@ -70,7 +70,7 @@ export const AppSidebar = () => {
 
       {/* Sidebar panel */}
       <aside
-        className={`fixed top-16 lg:top-20 left-0 bottom-0 z-50 w-64 bg-[#F9FAFB] border-r border-border/40 flex flex-col transition-transform duration-250 ease-in-out antialiased ${
+        className={`fixed top-16 lg:top-20 left-0 bottom-0 z-50 w-64 bg-[#F8FAFC] border-r border-border/40 flex flex-col transition-transform duration-250 ease-in-out antialiased ${
           sidebarOpen ? "translate-x-0" : "-translate-x-full"
         }`}
       >
