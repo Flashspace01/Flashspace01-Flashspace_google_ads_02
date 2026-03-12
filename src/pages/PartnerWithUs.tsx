@@ -312,28 +312,29 @@ const PartnerWithUs = () => {
         </section>
 
         {/* Referral Earnings Section */}
-        <section className="pt-0 pb-0 bg-secondary">
-          <div className="container mx-auto px-4 lg:px-8">
-            <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+        <section className="py-20 lg:py-24" style={{ background: 'linear-gradient(180deg, #FFFDF0 0%, #ffffff 100%)' }}>
+          <div className="container mx-auto px-6 md:px-12 lg:px-20">
+            <div className="flex flex-col lg:flex-row gap-10 lg:gap-16 items-end">
               <motion.div
                 initial={{ opacity: 0, x: -20 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
+                className="lg:w-5/12 pb-4"
               >
                 <h2 className="text-3xl lg:text-4xl font-medium text-foreground tracking-tight mb-6 leading-[1.15]">
                   What could uncapped workspace revenue look like?
                 </h2>
-                <div className="space-y-4">
+                <div className="space-y-5">
                   <div className="flex items-start gap-3">
-                    <CheckCircle2 className="w-5 h-5 text-primary mt-0.5 shrink-0" />
+                    <CheckCircle2 className="w-5 h-5 mt-0.5 shrink-0" style={{ color: 'hsl(142 25% 22%)' }} />
                     <span className="text-foreground">Top-performing partners earn ₹5,00,000+ per month through FlashSpace bookings.</span>
                   </div>
                   <div className="flex items-start gap-3">
-                    <CheckCircle2 className="w-5 h-5 text-primary mt-0.5 shrink-0" />
+                    <CheckCircle2 className="w-5 h-5 mt-0.5 shrink-0" style={{ color: 'hsl(142 25% 22%)' }} />
                     <span className="text-foreground">Earn commissions on every desk, meeting room, or office booked through your space.</span>
                   </div>
                   <div className="flex items-start gap-3">
-                    <CheckCircle2 className="w-5 h-5 text-primary mt-0.5 shrink-0" />
+                    <CheckCircle2 className="w-5 h-5 mt-0.5 shrink-0" style={{ color: 'hsl(142 25% 22%)' }} />
                     <span className="text-foreground">No hidden fees. No lock-ins. Just transparent revenue sharing with monthly payouts.</span>
                   </div>
                 </div>
@@ -343,7 +344,7 @@ const PartnerWithUs = () => {
                 initial={{ opacity: 0, x: 20 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
-                className="flex items-center justify-center"
+                className="lg:w-7/12"
               >
                 <RevenueVisual />
               </motion.div>
