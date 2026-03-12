@@ -101,23 +101,20 @@ const AnimatedCounter = ({ target, prefix = "", suffix = "" }: { target: number;
 };
 
 const infographicBars = [
-  { icon: BarChart3, value: "142", label: "Bookings", sublabel: "Monthly average across partners", pct: 45 },
-  { icon: Building2, value: "12%", label: "Listing Growth", sublabel: "Month-over-month increase", pct: 35 },
-  { icon: TrendingUp, value: "32%", label: "Revenue Uplift", sublabel: "Average partner growth rate", pct: 60 },
-  { icon: CheckCircle2, value: "19%", label: "Conversion", sublabel: "Enquiry to booking rate", pct: 50 },
-  { icon: Globe, value: "96%", label: "Occupancy", sublabel: "Peak hour utilization", pct: 80 },
-  { icon: Headphones, value: "48hrs", label: "Avg. Onboard", sublabel: "From signup to live listing", pct: 90 },
+  { icon: BarChart3, value: "142", label: "Bookings", sublabel: "Monthly average across partners", pct: 50, color: "hsl(142 25% 22%)" },
+  { icon: Building2, value: "12%", label: "Listing Growth", sublabel: "Month-over-month increase", pct: 40, color: "hsl(148 22% 30%)" },
+  { icon: TrendingUp, value: "32%", label: "Revenue Uplift", sublabel: "Average partner growth rate", pct: 70, color: "hsl(152 20% 26%)" },
+  { icon: CheckCircle2, value: "19%", label: "Conversion", sublabel: "Enquiry to booking rate", pct: 55, color: "hsl(138 18% 35%)" },
+  { icon: Globe, value: "96%", label: "Occupancy", sublabel: "Peak hour utilization", pct: 85, color: "hsl(145 22% 40%)" },
+  { icon: Headphones, value: "48hrs", label: "Avg. Onboard", sublabel: "From signup to live listing", pct: 95, color: "hsl(140 20% 45%)" },
 ];
 
 const RevenueVisual = () => {
   return (
-    <div className="w-full relative" style={{ height: 380 }}>
-      {/* Perspective container */}
-      <div className="absolute inset-0 flex items-end gap-5 lg:gap-6 justify-center" style={{ perspective: "600px" }}>
+    <div className="w-full relative" style={{ height: 420 }}>
+      <div className="absolute inset-0 flex items-end gap-4 lg:gap-5 justify-center">
         {infographicBars.map((bar, i) => {
           const Icon = bar.icon;
-          const barHeight = `${bar.pct}%`;
-          const shade = 26 + i * 5;
 
           return (
             <div key={bar.label} className="flex-1 flex flex-col items-center relative h-full justify-end">
@@ -127,12 +124,12 @@ const RevenueVisual = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.5 + i * 0.08, duration: 0.4 }}
-                className="w-8 h-8 rounded-full bg-card border border-border shadow-sm flex items-center justify-center mb-1.5 z-10"
+                className="w-9 h-9 rounded-full bg-card border border-border shadow-sm flex items-center justify-center mb-1.5 z-10"
               >
                 <Icon className="w-4 h-4 text-primary" />
               </motion.div>
 
-              {/* Value badge - speech bubble style */}
+              {/* Value badge */}
               <motion.div
                 initial={{ opacity: 0, scale: 0.8 }}
                 whileInView={{ opacity: 1, scale: 1 }}
@@ -142,41 +139,22 @@ const RevenueVisual = () => {
               >
                 <p className="text-base font-bold text-primary leading-none">{bar.value}</p>
                 <p className="text-[8px] text-muted-foreground mt-0.5 uppercase tracking-wider leading-tight">{bar.label}</p>
-                {/* Triangle pointer */}
                 <div className="absolute -bottom-1.5 left-1/2 -translate-x-1/2 w-3 h-3 bg-card border-r border-b border-border rotate-45" />
               </motion.div>
 
-              {/* The vertical stripe/line - flat 3D style like reference */}
+              {/* Vertical bar */}
               <motion.div
                 initial={{ scaleY: 0 }}
                 whileInView={{ scaleY: 1 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1, duration: 0.7, ease: "easeOut" }}
-                className="relative w-full rounded-t-sm overflow-visible"
-                style={{ height: barHeight, originY: 1 }}
+                className="relative w-full rounded-t-md"
+                style={{ height: `${bar.pct}%`, originY: 1, background: bar.color }}
               >
-                {/* Main bar face */}
-                <div
-                  className="absolute inset-0 rounded-t-sm"
-                  style={{ background: `hsl(142 20% ${shade}%)` }}
-                />
-                {/* Lighter left highlight strip */}
-                <div
-                  className="absolute top-0 bottom-0 left-0 w-[30%] rounded-tl-sm"
-                  style={{ background: `hsl(142 20% ${shade + 8}% / 0.4)` }}
-                />
                 {/* Sublabel text on bar */}
                 <div className="absolute bottom-3 left-0 right-0 px-1.5 z-10">
                   <p className="text-[7px] text-white/80 text-center leading-tight hidden lg:block">{bar.sublabel}</p>
                 </div>
-
-                {/* Bottom trail/shadow extending down (like the reference extending lines at bottom) */}
-                <div
-                  className="absolute -bottom-6 left-[15%] right-[15%] h-6"
-                  style={{
-                    background: `linear-gradient(to bottom, hsl(142 20% ${shade}% / 0.3), transparent)`,
-                  }}
-                />
               </motion.div>
             </div>
           );
