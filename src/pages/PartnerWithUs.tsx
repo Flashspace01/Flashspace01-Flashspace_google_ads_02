@@ -224,7 +224,8 @@ const PartnerWithUs = () => {
         </section>
 
         {/* Referral Earnings Section */}
-        <section className="py-10 lg:py-14">
+        {/* Referral Earnings Section */}
+        <section className="py-10 lg:py-14 bg-secondary">
           <div className="container mx-auto px-4 lg:px-8">
             <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
               <motion.div
@@ -257,13 +258,7 @@ const PartnerWithUs = () => {
                 viewport={{ once: true }}
                 className="flex items-center justify-center"
               >
-                <div className="bg-accent rounded-2xl p-8 lg:p-12 w-full flex items-center justify-center">
-                  <img
-                    src={referralIllustration}
-                    alt="Partner earning commissions"
-                    className="w-full max-w-sm object-contain"
-                  />
-                </div>
+                <RevenueVisual />
               </motion.div>
             </div>
           </div>
