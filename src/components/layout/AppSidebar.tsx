@@ -60,10 +60,10 @@ export const AppSidebar = () => {
 
   return (
     <>
-      {/* Mobile backdrop */}
+      {/* Content overlay */}
       {sidebarOpen && (
         <div
-          className="fixed inset-0 z-40 bg-foreground/30 backdrop-blur-[2px] lg:hidden"
+          className="fixed inset-0 z-40 bg-foreground/20 backdrop-blur-[1px] transition-opacity duration-250"
           onClick={() => setSidebarOpen(false)}
         />
       )}
