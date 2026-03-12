@@ -457,7 +457,7 @@ const PartnerWithUs = () => {
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
               >
-                <h2 className="text-3xl lg:text-5xl font-bold text-foreground tracking-tight mb-4 leading-[1.1]">
+                <h2 className="text-3xl lg:text-4xl font-bold text-foreground tracking-tight mb-4 leading-[1.1]">
                   List your space today
                 </h2>
                 <p className="text-foreground/70 text-lg mb-8 leading-relaxed">
