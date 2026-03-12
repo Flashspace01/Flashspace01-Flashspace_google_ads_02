@@ -331,7 +331,7 @@ const PartnerWithUs = () => {
               viewport={{ once: true }}
               className="text-center mb-16"
             >
-              <h2 className="text-3xl lg:text-4xl font-medium text-foreground tracking-tight mb-3">
+              <h2 className="text-3xl lg:text-4xl font-bold text-foreground tracking-tight mb-3">
                 How it works
               </h2>
               <p className="text-muted-foreground text-lg">
