@@ -339,7 +339,7 @@ const PartnerWithUs = () => {
               </p>
             </motion.div>
 
-            <div className="grid grid-cols-3 gap-4">
+            <div className="grid grid-cols-1 gap-10 md:grid-cols-3 md:gap-0">
               {[
                 { step: "01", title: "Apply", desc: "Share your workspace details through our simple application form. Our team reviews every submission personally to ensure a great fit." },
                 { step: "02", title: "Onboard", desc: "Our dedicated team verifies your space, creates a professional listing with photos & amenities, and gets you live within 48 hours." },
@@ -356,7 +356,7 @@ const PartnerWithUs = () => {
                 return (
                   <div
                     key={item.step}
-                    className="flex flex-col items-center text-center"
+                    className="flex flex-col items-center px-2 text-center lg:px-4"
                   >
                     {/* Large number */}
                     <motion.span
@@ -378,7 +378,7 @@ const PartnerWithUs = () => {
                           whileInView={{ scaleX: 1 }}
                           viewport={{ once: true }}
                           transition={{ delay: lineDelay, duration: 0.6, ease: "easeInOut" }}
-                          className="absolute right-1/2 left-0 top-1/2 -translate-y-1/2 h-px bg-border origin-right"
+                          className="hidden md:block absolute right-1/2 left-0 top-1/2 -translate-y-1/2 h-px bg-border origin-right"
                         />
                       )}
                       {/* Line extending right */}
@@ -388,7 +388,7 @@ const PartnerWithUs = () => {
                           whileInView={{ scaleX: 1 }}
                           viewport={{ once: true }}
                           transition={{ delay: lineDelay, duration: 0.6, ease: "easeInOut" }}
-                          className="absolute left-1/2 right-0 top-1/2 -translate-y-1/2 h-px bg-border origin-left"
+                          className="hidden md:block absolute left-1/2 right-0 top-1/2 -translate-y-1/2 h-px bg-border origin-left"
                         />
                       )}
                       {/* Dot */}
