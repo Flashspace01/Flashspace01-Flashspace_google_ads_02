@@ -1,4 +1,5 @@
 import { useState, useEffect, useCallback } from "react";
+import referralIllustration from "@/assets/partner-referral-illustration.png";
 import { motion } from "framer-motion";
 import { AppLayout } from "@/components/layout/AppLayout";
 import { Footer } from "@/components/layout/Footer";
