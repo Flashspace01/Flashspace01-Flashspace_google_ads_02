@@ -340,9 +340,6 @@ const PartnerWithUs = () => {
             </motion.div>
 
             <div className="relative grid grid-cols-1 gap-10 md:grid-cols-3 md:gap-0">
-              {/* Single continuous progress line across all steps */}
-              <div className="hidden md:block absolute left-[16.67%] right-[16.67%] top-[calc(theme(fontSize.9xl)*1.15+1rem+0.375rem)] h-px bg-border z-0" style={{ top: 'calc(9rem + 1rem + 0.375rem)' }} />
-
               {[
                 { step: "01", title: "Apply", desc: "Share your workspace details through our simple application form. Our team reviews every submission personally to ensure a great fit." },
                 { step: "02", title: "Onboard", desc: "Our dedicated team verifies your space, creates a professional listing with photos & amenities, and gets you live within 48 hours." },
@@ -369,8 +366,22 @@ const PartnerWithUs = () => {
                       {item.step}
                     </motion.span>
 
-                    {/* Dot */}
-                    <div className="relative flex items-center justify-center mb-8">
+                    {/* Dot with single continuous line */}
+                    <div className="relative w-full flex items-center justify-center mb-8">
+                      {/* Continuous line segment — spans full width of each column */}
+                      {/* First column: right half only */}
+                      {i === 0 && (
+                        <div className="hidden md:block absolute left-1/2 right-0 top-1/2 -translate-y-1/2 h-px bg-border" />
+                      )}
+                      {/* Middle column: full width */}
+                      {i === 1 && (
+                        <div className="hidden md:block absolute left-0 right-0 top-1/2 -translate-y-1/2 h-px bg-border" />
+                      )}
+                      {/* Last column: left half only */}
+                      {i === 2 && (
+                        <div className="hidden md:block absolute left-0 right-1/2 top-1/2 -translate-y-1/2 h-px bg-border" />
+                      )}
+                      {/* Dot */}
                       <motion.div
                         initial={{ scale: 0 }}
                         whileInView={{ scale: 1 }}
