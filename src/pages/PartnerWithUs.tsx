@@ -240,77 +240,64 @@ const PartnerWithUs = () => {
               </p>
             </motion.div>
 
-            <div className="relative">
-              {/* Large step numbers row */}
-              <div className="grid grid-cols-3 gap-4 mb-0">
-                {[
-                  { step: "01", title: "Apply", desc: "Fill out the form below with your workspace details." },
-                  { step: "02", title: "Onboard", desc: "Our team verifies and lists your space within 48 hours." },
-                  { step: "03", title: "Earn", desc: "Start receiving bookings and grow your revenue." },
-                ].map((item, i) => {
-                  const stepDelay = i * 0.2;
-                  return (
-                    <motion.div
-                      key={item.step}
-                      initial={{ opacity: 0, y: 20 }}
-                      whileInView={{ opacity: 1, y: 0 }}
-                      viewport={{ once: true }}
-                      transition={{ delay: stepDelay, duration: 0.6 }}
-                      className="flex flex-col items-center text-center"
-                    >
-                      {/* Large number */}
-                      <span className="text-7xl lg:text-9xl font-bold text-muted-foreground/20 leading-none mb-4 select-none">
-                        {item.step}
-                      </span>
-                    </motion.div>
-                  );
-                })}
-              </div>
-
-              {/* Horizontal line with dots */}
-              <div className="relative flex items-center justify-between mx-auto max-w-3xl mb-8">
-                {/* Line */}
-                <motion.div
-                  initial={{ scaleX: 0 }}
-                  whileInView={{ scaleX: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.8, ease: "easeInOut" }}
-                  className="absolute left-0 right-0 top-1/2 -translate-y-1/2 h-px bg-border origin-left"
-                />
-                {/* Dots */}
-                {[0, 1, 2].map((i) => (
+            <div className="grid grid-cols-3 gap-4">
+              {[
+                { step: "01", title: "Apply", desc: "Share your workspace details through our simple application form. Our team reviews every submission personally to ensure a great fit." },
+                { step: "02", title: "Onboard", desc: "Our dedicated team verifies your space, creates a professional listing with photos & amenities, and gets you live within 48 hours." },
+                { step: "03", title: "Earn", desc: "Start receiving qualified bookings from our network of verified professionals and enterprises. Watch your revenue grow month after month." },
+              ].map((item, i) => {
+                const stepDelay = i * 0.2;
+                return (
                   <motion.div
-                    key={i}
-                    initial={{ scale: 0 }}
-                    whileInView={{ scale: 1 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: 0.4 + i * 0.2, type: "spring", stiffness: 200, damping: 15 }}
-                    className="w-3 h-3 rounded-full bg-primary relative z-10"
-                    style={{ marginLeft: i === 0 ? '0' : 'auto', marginRight: i === 2 ? '0' : undefined }}
-                  />
-                ))}
-              </div>
-
-              {/* Titles and descriptions row */}
-              <div className="grid grid-cols-3 gap-4">
-                {[
-                  { title: "Apply", desc: "Fill out the form below with your workspace details." },
-                  { title: "Onboard", desc: "Our team verifies and lists your space within 48 hours." },
-                  { title: "Earn", desc: "Start receiving bookings and grow your revenue." },
-                ].map((item, i) => (
-                  <motion.div
-                    key={item.title}
-                    initial={{ opacity: 0, y: 10 }}
+                    key={item.step}
+                    initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    transition={{ delay: 0.6 + i * 0.15, duration: 0.5 }}
+                    transition={{ delay: stepDelay, duration: 0.6 }}
                     className="flex flex-col items-center text-center"
                   >
+                    {/* Large number */}
+                    <span className="text-7xl lg:text-9xl font-bold text-muted-foreground/20 leading-none mb-4 select-none">
+                      {item.step}
+                    </span>
+
+                    {/* Dot with line */}
+                    <div className="relative w-full flex items-center justify-center mb-8">
+                      {/* Line extending left */}
+                      {i > 0 && (
+                        <motion.div
+                          initial={{ scaleX: 0 }}
+                          whileInView={{ scaleX: 1 }}
+                          viewport={{ once: true }}
+                          transition={{ delay: 0.4 + i * 0.2, duration: 0.5 }}
+                          className="absolute right-1/2 left-0 top-1/2 -translate-y-1/2 h-px bg-border origin-right"
+                        />
+                      )}
+                      {/* Line extending right */}
+                      {i < 2 && (
+                        <motion.div
+                          initial={{ scaleX: 0 }}
+                          whileInView={{ scaleX: 1 }}
+                          viewport={{ once: true }}
+                          transition={{ delay: 0.4 + i * 0.2, duration: 0.5 }}
+                          className="absolute left-1/2 right-0 top-1/2 -translate-y-1/2 h-px bg-border origin-left"
+                        />
+                      )}
+                      {/* Dot */}
+                      <motion.div
+                        initial={{ scale: 0 }}
+                        whileInView={{ scale: 1 }}
+                        viewport={{ once: true }}
+                        transition={{ delay: 0.4 + i * 0.2, type: "spring", stiffness: 200, damping: 15 }}
+                        className="w-3 h-3 rounded-full bg-primary relative z-10"
+                      />
+                    </div>
+
                     <h3 className="text-xl font-bold text-foreground mb-2">{item.title}</h3>
                     <p className="text-sm text-muted-foreground leading-relaxed max-w-xs mx-auto">{item.desc}</p>
                   </motion.div>
-                ))}
-              </div>
+                );
+              })}
             </div>
           </div>
         </section>
