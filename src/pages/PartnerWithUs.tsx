@@ -372,16 +372,17 @@ const PartnerWithUs = () => {
               </p>
             </motion.div>
 
-            <div className="relative grid grid-cols-1 gap-10 md:grid-cols-3 md:gap-0">
+            <div className="relative grid grid-cols-1 gap-10 md:grid-cols-3 md:gap-8">
               {[
-                { step: "01", title: "Apply", desc: "Share your workspace details through our simple application form. Our team reviews every submission personally to ensure a great fit." },
-                { step: "02", title: "Onboard", desc: "Our dedicated team verifies your space, creates a professional listing with photos & amenities, and gets you live within 48 hours." },
-                { step: "03", title: "Earn", desc: "Start receiving qualified bookings from our network of verified professionals and enterprises. Watch your revenue grow month after month." },
+                { step: "01", title: "Apply", icon: PenLine, desc: "Share your workspace details through our simple application form. Our team reviews every submission personally to ensure a great fit." },
+                { step: "02", title: "Onboard", icon: Rocket, desc: "Our dedicated team verifies your space, creates a professional listing with photos & amenities, and gets you live within 48 hours." },
+                { step: "03", title: "Earn", icon: LineChart, desc: "Start receiving qualified bookings from our network of verified professionals and enterprises. Watch your revenue grow month after month." },
               ].map((item, i) => {
                 const baseDelay = i * 1.2;
                 const numberDelay = baseDelay;
                 const dotDelay = baseDelay + 0.6;
                 const cardDelay = baseDelay + 0.8;
+                const StepIcon = item.icon;
 
                 return (
                   <div
@@ -422,8 +423,12 @@ const PartnerWithUs = () => {
                       whileInView={{ opacity: 1, y: 0 }}
                       viewport={{ once: true }}
                       transition={{ delay: cardDelay, duration: 0.5 }}
+                      className="bg-background/70 backdrop-blur-sm border border-border/40 rounded-2xl p-6 lg:p-8 shadow-sm w-full"
                     >
-                      <h3 className="text-xl font-bold text-foreground mb-2">{item.title}</h3>
+                      <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-4">
+                        <StepIcon className="w-5 h-5 text-primary" />
+                      </div>
+                      <h3 className="text-xl font-semibold text-foreground mb-2">{item.title}</h3>
                       <p className="text-sm text-muted-foreground leading-relaxed max-w-xs mx-auto">{item.desc}</p>
                     </motion.div>
                   </div>
