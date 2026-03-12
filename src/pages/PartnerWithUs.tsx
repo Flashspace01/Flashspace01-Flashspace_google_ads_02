@@ -246,7 +246,7 @@ const PartnerWithUs = () => {
               className="flex items-end justify-between mb-12"
             >
               <div>
-                <h2 className="text-3xl lg:text-4xl font-bold text-foreground tracking-tight mb-3">
+                <h2 className="text-3xl lg:text-4xl font-medium text-foreground tracking-tight mb-3">
                   Why partner with us?
                 </h2>
                 <p className="text-muted-foreground text-lg max-w-2xl">
@@ -331,7 +331,7 @@ const PartnerWithUs = () => {
               viewport={{ once: true }}
               className="text-center mb-16"
             >
-              <h2 className="text-3xl lg:text-4xl font-bold text-foreground tracking-tight mb-3">
+              <h2 className="text-3xl lg:text-4xl font-medium text-foreground tracking-tight mb-3">
                 How it works
               </h2>
               <p className="text-muted-foreground text-lg">
@@ -416,7 +416,7 @@ const PartnerWithUs = () => {
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
               >
-                <h2 className="text-3xl lg:text-4xl font-bold text-foreground tracking-tight mb-6 leading-[1.15]">
+                <h2 className="text-3xl lg:text-4xl font-medium text-foreground tracking-tight mb-6 leading-[1.15]">
                   What could uncapped workspace revenue look like?
                 </h2>
                 <div className="space-y-4">
@@ -457,7 +457,7 @@ const PartnerWithUs = () => {
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
               >
-                <h2 className="text-3xl lg:text-4xl font-bold text-foreground tracking-tight mb-4 leading-[1.1]">
+                <h2 className="text-3xl lg:text-4xl font-medium text-foreground tracking-tight mb-4 leading-[1.1]">
                   List your space today
                 </h2>
                 <p className="text-foreground/70 text-lg mb-8 leading-relaxed">
