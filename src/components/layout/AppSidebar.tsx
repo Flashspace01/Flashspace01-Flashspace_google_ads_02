@@ -70,7 +70,7 @@ export const AppSidebar = () => {
 
       {/* Sidebar panel */}
       <aside
-        className={`fixed top-16 lg:top-20 left-0 bottom-0 z-50 w-64 bg-[#F9FAFB] border-r border-border/40 flex flex-col transition-transform duration-250 ease-in-out antialiased ${
+        className={`fixed top-16 lg:top-20 left-0 bottom-0 z-50 w-64 bg-[#F8FAFC] border-r border-border/40 flex flex-col transition-transform duration-250 ease-in-out antialiased ${
           sidebarOpen ? "translate-x-0" : "-translate-x-full"
         }`}
       >
