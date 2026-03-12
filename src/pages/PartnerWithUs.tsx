@@ -188,7 +188,7 @@ const PartnerWithUs = () => {
     <AppLayout>
       <main>
         {/* Hero */}
-        <section className="min-h-[100svh] flex items-center justify-center">
+        <section className="min-h-[calc(100svh-5rem)] flex items-center justify-center">
           <div className="container mx-auto px-4 lg:px-8">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
