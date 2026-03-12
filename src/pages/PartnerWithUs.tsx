@@ -416,7 +416,7 @@ const PartnerWithUs = () => {
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
               >
-                <h2 className="text-3xl lg:text-4xl font-bold text-primary tracking-tight mb-6 leading-[1.15]">
+                <h2 className="text-3xl lg:text-4xl font-bold text-foreground tracking-tight mb-6 leading-[1.15]">
                   What could uncapped workspace revenue look like?
                 </h2>
                 <div className="space-y-4">
