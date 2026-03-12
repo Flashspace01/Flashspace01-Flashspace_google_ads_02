@@ -173,7 +173,7 @@ const PartnerWithUs = () => {
             </motion.div>
 
             <div className="overflow-hidden" ref={emblaRef}>
-              <div className="flex">
+              <div className="flex -ml-4">
                 {[...benefits, ...benefits].map((b, i) => {
                   const num = String((i % benefits.length) + 1).padStart(2, "0");
                   return (
