@@ -339,17 +339,17 @@ const PartnerWithUs = () => {
               </p>
             </motion.div>
 
-            <div className="grid grid-cols-1 gap-10 md:grid-cols-3 md:gap-0">
+            <div className="relative grid grid-cols-1 gap-10 md:grid-cols-3 md:gap-0">
+              {/* Single continuous progress line across all steps */}
+              <div className="hidden md:block absolute left-[16.67%] right-[16.67%] top-[calc(theme(fontSize.9xl)*1.15+1rem+0.375rem)] h-px bg-border z-0" style={{ top: 'calc(9rem + 1rem + 0.375rem)' }} />
+
               {[
                 { step: "01", title: "Apply", desc: "Share your workspace details through our simple application form. Our team reviews every submission personally to ensure a great fit." },
                 { step: "02", title: "Onboard", desc: "Our dedicated team verifies your space, creates a professional listing with photos & amenities, and gets you live within 48 hours." },
                 { step: "03", title: "Earn", desc: "Start receiving qualified bookings from our network of verified professionals and enterprises. Watch your revenue grow month after month." },
               ].map((item, i) => {
-                // Each step: number appears → line grows → dot appears → card fades in
-                // Step 0: 0s, Step 1: 1.2s, Step 2: 2.4s
                 const baseDelay = i * 1.2;
                 const numberDelay = baseDelay;
-                const lineDelay = baseDelay + 0.3;
                 const dotDelay = baseDelay + 0.6;
                 const cardDelay = baseDelay + 0.8;
 
@@ -369,29 +369,8 @@ const PartnerWithUs = () => {
                       {item.step}
                     </motion.span>
 
-                    {/* Dot with line */}
-                    <div className="relative w-full flex items-center justify-center mb-8">
-                      {/* Line extending left */}
-                      {i > 0 && (
-                        <motion.div
-                          initial={{ scaleX: 0 }}
-                          whileInView={{ scaleX: 1 }}
-                          viewport={{ once: true }}
-                          transition={{ delay: lineDelay, duration: 0.6, ease: "easeInOut" }}
-                          className="hidden md:block absolute right-1/2 left-0 top-1/2 -translate-y-1/2 h-px bg-border origin-right"
-                        />
-                      )}
-                      {/* Line extending right */}
-                      {i < 2 && (
-                        <motion.div
-                          initial={{ scaleX: 0 }}
-                          whileInView={{ scaleX: 1 }}
-                          viewport={{ once: true }}
-                          transition={{ delay: lineDelay, duration: 0.6, ease: "easeInOut" }}
-                          className="hidden md:block absolute left-1/2 right-0 top-1/2 -translate-y-1/2 h-px bg-border origin-left"
-                        />
-                      )}
-                      {/* Dot */}
+                    {/* Dot */}
+                    <div className="relative flex items-center justify-center mb-8">
                       <motion.div
                         initial={{ scale: 0 }}
                         whileInView={{ scale: 1 }}
