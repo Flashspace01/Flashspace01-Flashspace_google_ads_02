@@ -111,8 +111,8 @@ const infographicBars = [
 
 const RevenueVisual = () => {
   return (
-    <div className="w-full relative" style={{ height: 520 }}>
-      <div className="absolute inset-0 flex items-end gap-4 lg:gap-5 justify-center">
+    <div className="w-full relative" style={{ height: 420 }}>
+      <div className="absolute inset-0 flex items-end gap-5 lg:gap-6 justify-center">
         {infographicBars.map((bar, i) => {
           const Icon = bar.icon;
 
@@ -312,13 +312,14 @@ const PartnerWithUs = () => {
         </section>
 
         {/* Referral Earnings Section */}
-        <section className="pt-0 pb-0 bg-secondary">
-          <div className="container mx-auto px-4 lg:px-8">
-            <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+        <section className="py-16 lg:py-20 bg-secondary">
+          <div className="container mx-auto px-8 lg:px-16">
+            <div className="flex flex-col lg:flex-row items-end gap-8 lg:gap-12">
               <motion.div
                 initial={{ opacity: 0, x: -20 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
+                className="lg:w-5/12 mb-12 lg:mb-16"
               >
                 <h2 className="text-3xl lg:text-4xl font-medium text-foreground tracking-tight mb-6 leading-[1.15]">
                   What could uncapped workspace revenue look like?
@@ -343,7 +344,7 @@ const PartnerWithUs = () => {
                 initial={{ opacity: 0, x: 20 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
-                className="flex items-center justify-center"
+                className="lg:w-7/12 flex items-end justify-center"
               >
                 <RevenueVisual />
               </motion.div>
