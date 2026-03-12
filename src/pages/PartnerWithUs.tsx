@@ -223,6 +223,52 @@ const PartnerWithUs = () => {
           </div>
         </section>
 
+        {/* Referral Earnings Section */}
+        <section className="py-10 lg:py-14">
+          <div className="container mx-auto px-4 lg:px-8">
+            <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+              <motion.div
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+              >
+                <h2 className="text-3xl lg:text-4xl font-bold text-foreground tracking-tight mb-6 leading-[1.15]">
+                  How does unlimited referrals with uncapped commissions sound?
+                </h2>
+                <div className="space-y-4">
+                  <div className="flex items-start gap-3">
+                    <CheckCircle2 className="w-5 h-5 text-primary mt-0.5 shrink-0" />
+                    <span className="text-foreground">Top-performing partners earn ₹5,00,000+ per month via successful referrals and workspace bookings</span>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <CheckCircle2 className="w-5 h-5 text-primary mt-0.5 shrink-0" />
+                    <span className="text-foreground">Earn uncapped commissions on every booking that comes through your space</span>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <CheckCircle2 className="w-5 h-5 text-primary mt-0.5 shrink-0" />
+                    <span className="text-foreground">No hidden fees — transparent revenue sharing with monthly payouts</span>
+                  </div>
+                </div>
+              </motion.div>
+
+              <motion.div
+                initial={{ opacity: 0, x: 20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                className="flex items-center justify-center"
+              >
+                <div className="bg-accent rounded-2xl p-8 lg:p-12 w-full flex items-center justify-center">
+                  <img
+                    src={referralIllustration}
+                    alt="Partner earning commissions"
+                    className="w-full max-w-sm object-contain"
+                  />
+                </div>
+              </motion.div>
+            </div>
+          </div>
+        </section>
+
         {/* How it works — Timeline */}
         <section className="py-16 lg:py-24">
           <div className="container mx-auto px-4 lg:px-8">
