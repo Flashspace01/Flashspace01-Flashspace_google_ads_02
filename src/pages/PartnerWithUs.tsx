@@ -390,7 +390,7 @@ const PartnerWithUs = () => {
                       whileInView={{ opacity: 1, scale: 1 }}
                       viewport={{ once: true }}
                       transition={{ delay: numberDelay, duration: 0.5, ease: "easeOut" }}
-                      className="text-7xl lg:text-9xl font-bold text-secondary leading-none mb-4 select-none block"
+                      className="text-7xl lg:text-9xl font-bold text-secondary/40 leading-none mb-4 select-none block"
                     >
                       {item.step}
                     </motion.span>
