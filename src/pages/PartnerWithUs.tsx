@@ -452,68 +452,27 @@ const PartnerWithUs = () => {
               </p>
             </motion.div>
 
-            <div className="relative grid grid-cols-1 gap-10 md:grid-cols-3 md:gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               {[
-                { step: "01", title: "Apply", icon: PenLine, desc: "Share your workspace details through our simple application form. Our team reviews every submission personally to ensure a great fit." },
-                { step: "02", title: "Onboard", icon: Rocket, desc: "Our dedicated team verifies your space, creates a professional listing with photos & amenities, and gets you live within 48 hours." },
-                { step: "03", title: "Earn", icon: LineChart, desc: "Start receiving qualified bookings from our network of verified professionals and enterprises. Watch your revenue grow month after month." },
-              ].map((item, i) => {
-                const baseDelay = i * 1.2;
-                const numberDelay = baseDelay;
-                const dotDelay = baseDelay + 0.6;
-                const cardDelay = baseDelay + 0.8;
-                const StepIcon = item.icon;
-
-                return (
-                  <div
-                    key={item.step}
-                    className="flex flex-col items-center px-2 text-center lg:px-4"
-                  >
-                    <motion.span
-                      initial={{ opacity: 0, scale: 0.5 }}
-                      whileInView={{ opacity: 1, scale: 1 }}
-                      viewport={{ once: true }}
-                      transition={{ delay: numberDelay, duration: 0.5, ease: "easeOut" }}
-                      className="text-7xl lg:text-9xl font-bold text-muted-foreground/20 leading-none mb-4 select-none block"
-                    >
-                      {item.step}
-                    </motion.span>
-
-                    <div className="relative w-full flex items-center justify-center mb-8">
-                      {i === 0 && (
-                        <div className="hidden md:block absolute left-1/2 right-0 top-1/2 -translate-y-1/2 h-px bg-border" />
-                      )}
-                      {i === 1 && (
-                        <div className="hidden md:block absolute left-0 right-0 top-1/2 -translate-y-1/2 h-px bg-border" />
-                      )}
-                      {i === 2 && (
-                        <div className="hidden md:block absolute left-0 right-1/2 top-1/2 -translate-y-1/2 h-px bg-border" />
-                      )}
-                      <motion.div
-                        initial={{ scale: 0 }}
-                        whileInView={{ scale: 1 }}
-                        viewport={{ once: true }}
-                        transition={{ delay: dotDelay, type: "spring", stiffness: 200, damping: 15 }}
-                        className="w-3 h-3 rounded-full bg-primary relative z-10"
-                      />
-                    </div>
-
-                    <motion.div
-                      initial={{ opacity: 0, y: 15 }}
-                      whileInView={{ opacity: 1, y: 0 }}
-                      viewport={{ once: true }}
-                      transition={{ delay: cardDelay, duration: 0.5 }}
-                      className="bg-background/70 backdrop-blur-sm border border-border/40 rounded-2xl p-6 lg:p-8 shadow-sm w-full"
-                    >
-                      <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-4">
-                        <StepIcon className="w-5 h-5 text-primary" />
-                      </div>
-                      <h3 className="text-xl font-semibold text-foreground mb-2">{item.title}</h3>
-                      <p className="text-sm text-muted-foreground leading-relaxed max-w-xs mx-auto">{item.desc}</p>
-                    </motion.div>
-                  </div>
-                );
-              })}
+                { step: "01", title: "Apply", desc: "Share your workspace details through our simple application form. Our team reviews every submission personally to ensure a great fit." },
+                { step: "02", title: "Onboard", desc: "Our dedicated team verifies your space, creates a professional listing with photos & amenities, and gets you live within 48 hours." },
+                { step: "03", title: "Earn", desc: "Start receiving qualified bookings from our network of verified professionals and enterprises. Watch your revenue grow month after month." },
+              ].map((item, i) => (
+                <motion.div
+                  key={item.step}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: i * 0.15, duration: 0.5 }}
+                  className="bg-card border border-border/50 rounded-2xl p-8 lg:p-10 text-center"
+                >
+                  <span className="text-7xl lg:text-8xl font-bold text-muted-foreground/15 leading-none block mb-6 select-none">
+                    {item.step}
+                  </span>
+                  <h3 className="text-xl font-semibold text-foreground mb-3">{item.title}</h3>
+                  <p className="text-sm text-muted-foreground leading-relaxed">{item.desc}</p>
+                </motion.div>
+              ))}
             </div>
           </div>
         </section>
