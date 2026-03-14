@@ -63,7 +63,6 @@ const stats = [
   { value: "3x", label: "Average Revenue Lift" },
 ];
 
-];
 
 const AnimatedCounter = ({ target, prefix = "", suffix = "" }: { target: number; prefix?: string; suffix?: string }) => {
   const count = useMotionValue(0);
