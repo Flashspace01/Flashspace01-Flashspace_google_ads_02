@@ -263,12 +263,9 @@ const PartnerWithUs = () => {
                     className="border border-border rounded-xl p-6 relative overflow-hidden"
                   >
                     <span className="text-sm text-muted-foreground mb-3 block">{num}</span>
-                    <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center mb-3">
-                      <b.icon className="w-5 h-5 text-primary" />
-                    </div>
                     <h3 className="text-lg font-bold text-foreground mb-2">{b.title}</h3>
                     <p className="text-sm text-muted-foreground leading-relaxed">{b.description}</p>
-                    <div className="absolute bottom-0 left-0 right-0 h-1 bg-primary/20" />
+                    <div className="absolute bottom-0 left-0 right-0 h-1 bg-secondary/30" />
                   </motion.div>
                 );
               })}
