@@ -169,13 +169,7 @@ const PartnerWithUs = () => {
     message: "",
   });
 
-  const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true, align: "start", slidesToScroll: 1 });
-
-  useEffect(() => {
-    if (!emblaApi) return;
-    const interval = setInterval(() => emblaApi.scrollNext(), 5000);
-    return () => clearInterval(interval);
-  }, [emblaApi]);
+  const [activeBenefit, setActiveBenefit] = useState(0);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
