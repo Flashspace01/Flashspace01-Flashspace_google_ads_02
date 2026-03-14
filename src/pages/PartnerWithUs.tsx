@@ -18,7 +18,6 @@ import {
   BadgeCheck,
   Coins,
   PenLine,
-  PenLine,
   Rocket,
   LineChart,
 } from "lucide-react";
