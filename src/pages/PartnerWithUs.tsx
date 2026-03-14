@@ -289,8 +289,8 @@ const PartnerWithUs = () => {
                   >
                     <div className="p-6 lg:p-8 h-full flex flex-col justify-between">
                       <div>
-                        <span className="text-sm text-muted-foreground mb-3 block">{num}</span>
-                        <h3 className={`font-bold text-foreground mb-2 transition-all ${
+                        <span className="text-sm text-primary mb-3 block">{num}</span>
+                        <h3 className={`font-bold text-primary mb-2 transition-all ${
                           isActive ? "text-xl" : "text-base"
                         }`}>
                           {b.title}
