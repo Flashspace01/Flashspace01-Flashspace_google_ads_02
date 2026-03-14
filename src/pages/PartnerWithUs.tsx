@@ -63,20 +63,6 @@ const stats = [
   { value: "3x", label: "Average Revenue Lift" },
 ];
 
-const revenueData = [
-  { month: "Jan", value: 45 },
-  { month: "Feb", value: 52 },
-  { month: "Mar", value: 61 },
-  { month: "Apr", value: 58 },
-  { month: "May", value: 72 },
-  { month: "Jun", value: 85 },
-  { month: "Jul", value: 78 },
-  { month: "Aug", value: 92 },
-  { month: "Sep", value: 88 },
-  { month: "Oct", value: 95 },
-  { month: "Nov", value: 100 },
-  { month: "Dec", value: 110 },
-];
 
 const AnimatedCounter = ({ target, prefix = "", suffix = "" }: { target: number; prefix?: string; suffix?: string }) => {
   const count = useMotionValue(0);
@@ -100,62 +86,94 @@ const AnimatedCounter = ({ target, prefix = "", suffix = "" }: { target: number;
   );
 };
 
-const infographicBars = [
-  { icon: BarChart3, value: "142", label: "Bookings", sublabel: "Monthly average across partners", pct: 50, color: "hsl(142 25% 22%)" },
-  { icon: Building2, value: "12%", label: "Listing Growth", sublabel: "Month-over-month increase", pct: 40, color: "hsl(148 22% 30%)" },
-  { icon: TrendingUp, value: "32%", label: "Revenue Uplift", sublabel: "Average partner growth rate", pct: 70, color: "hsl(152 20% 26%)" },
-  { icon: CheckCircle2, value: "19%", label: "Conversion", sublabel: "Enquiry to booking rate", pct: 55, color: "hsl(138 18% 35%)" },
-  { icon: Globe, value: "96%", label: "Occupancy", sublabel: "Peak hour utilization", pct: 85, color: "hsl(145 22% 40%)" },
-  { icon: Headphones, value: "48hrs", label: "Avg. Onboard", sublabel: "From signup to live listing", pct: 95, color: "hsl(140 20% 45%)" },
+const revenueData = [
+  { month: "Jan", value: 45 },
+  { month: "Feb", value: 52 },
+  { month: "Mar", value: 61 },
+  { month: "Apr", value: 58 },
+  { month: "May", value: 72 },
+  { month: "Jun", value: 85 },
+  { month: "Jul", value: 78 },
+  { month: "Aug", value: 92 },
+  { month: "Sep", value: 88 },
+  { month: "Oct", value: 95 },
+  { month: "Nov", value: 100 },
+  { month: "Dec", value: 110 },
 ];
 
 const RevenueVisual = () => {
+  const maxVal = Math.max(...revenueData.map(d => d.value));
+
   return (
-    <div className="w-full relative" style={{ height: 420 }}>
-      <div className="absolute inset-0 flex items-end gap-5 lg:gap-6 justify-center">
-        {infographicBars.map((bar, i) => {
-          const Icon = bar.icon;
+    <div className="w-full bg-card border border-border rounded-2xl p-6 shadow-lg">
+      {/* Dashboard header */}
+      <div className="flex items-center justify-between mb-6">
+        <div>
+          <p className="text-xs text-muted-foreground uppercase tracking-wider font-medium">Partner Revenue</p>
+          <p className="text-2xl font-bold text-foreground mt-1">₹5,24,000</p>
+        </div>
+        <div className="flex gap-4 text-xs">
+          <div className="text-center">
+            <p className="text-muted-foreground">Occupancy</p>
+            <p className="text-foreground font-bold text-lg">96%</p>
+          </div>
+          <div className="text-center">
+            <p className="text-muted-foreground">Bookings</p>
+            <p className="text-foreground font-bold text-lg">142</p>
+          </div>
+          <div className="text-center">
+            <p className="text-muted-foreground">Growth</p>
+            <p className="text-primary font-bold text-lg">+32%</p>
+          </div>
+        </div>
+      </div>
 
-          return (
-            <div key={bar.label} className="flex-1 flex flex-col items-center relative h-full justify-end">
-              <motion.div
-                initial={{ scaleY: 0, opacity: 0 }}
-                whileInView={{ scaleY: 1, opacity: 1 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.1, duration: 0.7, ease: "easeOut" }}
-                className="flex flex-col items-center w-full origin-bottom"
-                style={{ height: `${bar.pct}%` }}
-              >
-                <div
-                  className="w-9 h-9 rounded-full flex items-center justify-center mb-1.5 z-10 shrink-0"
-                  style={{ background: bar.color }}
-                >
-                  <Icon className="w-4 h-4 text-white/90" />
-                </div>
+      {/* Chart area */}
+      <div className="relative h-48 flex items-end gap-1.5">
+        {revenueData.map((d, i) => (
+          <motion.div
+            key={d.month}
+            initial={{ scaleY: 0 }}
+            whileInView={{ scaleY: 1 }}
+            viewport={{ once: true }}
+            transition={{ delay: i * 0.05, duration: 0.5, ease: "easeOut" }}
+            className="flex-1 flex flex-col items-center origin-bottom"
+          >
+            <div
+              className="w-full rounded-t-md bg-primary/80 hover:bg-primary transition-colors"
+              style={{ height: `${(d.value / maxVal) * 100}%` }}
+            />
+          </motion.div>
+        ))}
+      </div>
 
-                <div className="relative bg-card border border-border rounded-lg px-3 py-2 shadow-sm text-center mb-2 z-10 shrink-0">
-                  <p className="text-base font-bold text-primary leading-none">{bar.value}</p>
-                  <p className="text-[8px] text-muted-foreground mt-0.5 uppercase tracking-wider leading-tight">{bar.label}</p>
-                  <div className="absolute -bottom-1.5 left-1/2 -translate-x-1/2 w-3 h-3 bg-card border-r border-b border-border rotate-45" />
-                </div>
+      {/* X-axis labels */}
+      <div className="flex gap-1.5 mt-2">
+        {revenueData.map((d) => (
+          <div key={d.month} className="flex-1 text-center">
+            <span className="text-[9px] text-muted-foreground">{d.month}</span>
+          </div>
+        ))}
+      </div>
 
-                <div
-                  className="relative w-full rounded-t-md flex-1 min-h-0"
-                  style={{ background: bar.color }}
-                >
-                  <div className="absolute bottom-3 left-0 right-0 px-1.5 z-10">
-                    <p className="text-[7px] text-white/80 text-center leading-tight hidden lg:block">{bar.sublabel}</p>
-                  </div>
-                </div>
-              </motion.div>
-            </div>
-          );
-        })}
+      {/* Bottom stats row */}
+      <div className="grid grid-cols-3 gap-3 mt-5 pt-5 border-t border-border">
+        <div className="bg-muted/40 rounded-lg p-3">
+          <p className="text-[10px] text-muted-foreground uppercase tracking-wider">Conversion</p>
+          <p className="text-foreground font-bold text-sm mt-1">19%</p>
+        </div>
+        <div className="bg-muted/40 rounded-lg p-3">
+          <p className="text-[10px] text-muted-foreground uppercase tracking-wider">Avg. Onboard</p>
+          <p className="text-foreground font-bold text-sm mt-1">48hrs</p>
+        </div>
+        <div className="bg-muted/40 rounded-lg p-3">
+          <p className="text-[10px] text-muted-foreground uppercase tracking-wider">Listing Growth</p>
+          <p className="text-foreground font-bold text-sm mt-1">+12%</p>
+        </div>
       </div>
     </div>
   );
 };
-
 const PartnerWithUs = () => {
   const [formData, setFormData] = useState({
     name: "",
