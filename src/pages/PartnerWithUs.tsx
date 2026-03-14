@@ -290,14 +290,9 @@ const PartnerWithUs = () => {
                     style={{ flex: isActive ? "0 0 40%" : "1 1 0%" }}
                     transition={{ layout: { duration: 0.4, ease: "easeInOut" } }}
                   >
-                    <div className={`p-6 lg:p-8 h-full flex flex-col justify-between`}>
+                    <div className="p-6 lg:p-8 h-full flex flex-col justify-between">
                       <div>
                         <span className="text-sm text-muted-foreground mb-3 block">{num}</span>
-                        <div className={`w-10 h-10 rounded-lg flex items-center justify-center mb-4 transition-colors ${
-                          isActive ? "bg-primary/15" : "bg-muted"
-                        }`}>
-                          <b.icon className={`w-5 h-5 transition-colors ${isActive ? "text-primary" : "text-muted-foreground"}`} />
-                        </div>
                         <h3 className={`font-bold text-foreground mb-2 transition-all ${
                           isActive ? "text-xl" : "text-base"
                         }`}>
@@ -328,7 +323,7 @@ const PartnerWithUs = () => {
                       )}
                     </div>
                     <div className={`absolute bottom-0 left-0 right-0 h-1 transition-colors ${
-                      isActive ? "bg-primary" : "bg-primary/10"
+                      isActive ? "bg-secondary" : "bg-secondary/30"
                     }`} />
                   </motion.div>
                 );
