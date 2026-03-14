@@ -240,76 +240,100 @@ const PartnerWithUs = () => {
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="flex items-end justify-between mb-12"
+              className="mb-12"
             >
-              <div>
-                <h2 className="text-3xl lg:text-4xl font-medium text-foreground tracking-tight mb-3">
-                  Why partner with us?
-                </h2>
-                <p className="text-muted-foreground text-lg max-w-2xl">
-                  Everything you need to grow your workspace — technology, reach, and support.
-                </p>
-              </div>
-              <div className="hidden md:flex items-center gap-2">
-                <button
-                  onClick={() => emblaApi?.scrollPrev()}
-                  className="w-10 h-10 rounded-full border border-border bg-card hover:bg-accent flex items-center justify-center transition-colors"
-                >
-                  <ChevronLeft className="w-5 h-5 text-foreground" />
-                </button>
-                <button
-                  onClick={() => emblaApi?.scrollNext()}
-                  className="w-10 h-10 rounded-full border border-border bg-card hover:bg-accent flex items-center justify-center transition-colors"
-                >
-                  <ChevronRight className="w-5 h-5 text-foreground" />
-                </button>
-              </div>
+              <h2 className="text-3xl lg:text-4xl font-medium text-foreground tracking-tight mb-3">
+                Why partner with us?
+              </h2>
+              <p className="text-muted-foreground text-lg max-w-2xl">
+                Everything you need to grow your workspace — technology, reach, and support.
+              </p>
             </motion.div>
 
-            <div className="overflow-hidden" ref={emblaRef}>
-              <div className="flex -ml-4">
-                {[...benefits, ...benefits].map((b, i) => {
-                  const num = String((i % benefits.length) + 1).padStart(2, "0");
-                  return (
-                    <div
-                      key={`${b.title}-${i}`}
-                      className="min-w-0 shrink-0 grow-0 basis-full md:basis-1/2 lg:basis-1/3 pl-4"
-                    >
-                      <div className="group border border-border rounded-xl h-full flex flex-col justify-between p-8 lg:p-10 relative overflow-hidden transition-all duration-300">
-                        <div>
-                          <span className="text-sm text-muted-foreground mb-4 block">{num}</span>
-                          <h3 className="text-xl lg:text-2xl font-bold text-foreground mb-4">
-                            {b.title}
-                          </h3>
-                          <p className="text-sm text-muted-foreground leading-relaxed">{b.description}</p>
-                        </div>
-                        <div className="mt-8">
-                          <button className="w-12 h-12 rounded-lg border border-border hover:border-foreground/30 flex items-center justify-center transition-colors">
-                            <Plus className="w-5 h-5 text-foreground" />
-                          </button>
-                        </div>
-                        <div className="absolute bottom-0 left-0 right-0 h-1.5 rounded-full" style={{ backgroundColor: '#fef8c3' }} />
-                      </div>
+            {/* Mobile: stacked cards */}
+            <div className="flex flex-col gap-4 lg:hidden">
+              {benefits.map((b, i) => {
+                const num = String(i + 1).padStart(2, "0");
+                return (
+                  <motion.div
+                    key={b.title}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: i * 0.05 }}
+                    className="border border-border rounded-xl p-6 relative overflow-hidden"
+                  >
+                    <span className="text-sm text-muted-foreground mb-3 block">{num}</span>
+                    <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center mb-3">
+                      <b.icon className="w-5 h-5 text-primary" />
                     </div>
-                  );
-                })}
-              </div>
+                    <h3 className="text-lg font-bold text-foreground mb-2">{b.title}</h3>
+                    <p className="text-sm text-muted-foreground leading-relaxed">{b.description}</p>
+                    <div className="absolute bottom-0 left-0 right-0 h-1 bg-primary/20" />
+                  </motion.div>
+                );
+              })}
             </div>
 
-            {/* Mobile nav */}
-            <div className="flex md:hidden items-center justify-center gap-3 mt-6">
-              <button
-                onClick={() => emblaApi?.scrollPrev()}
-                className="w-10 h-10 rounded-full border border-border bg-card hover:bg-accent flex items-center justify-center transition-colors"
-              >
-                <ChevronLeft className="w-5 h-5 text-foreground" />
-              </button>
-              <button
-                onClick={() => emblaApi?.scrollNext()}
-                className="w-10 h-10 rounded-full border border-border bg-card hover:bg-accent flex items-center justify-center transition-colors"
-              >
-                <ChevronRight className="w-5 h-5 text-foreground" />
-              </button>
+            {/* Desktop: accordion-style horizontal cards */}
+            <div className="hidden lg:flex gap-3 h-[340px]">
+              {benefits.map((b, i) => {
+                const num = String(i + 1).padStart(2, "0");
+                const isActive = activeBenefit === i;
+                return (
+                  <motion.div
+                    key={b.title}
+                    onClick={() => setActiveBenefit(i)}
+                    layout
+                    className={`relative border border-border rounded-xl overflow-hidden cursor-pointer transition-colors duration-300 flex flex-col justify-between ${
+                      isActive ? "bg-primary/5 border-primary/30" : "hover:bg-accent/50"
+                    }`}
+                    style={{ flex: isActive ? "0 0 40%" : "1 1 0%" }}
+                    transition={{ layout: { duration: 0.4, ease: "easeInOut" } }}
+                  >
+                    <div className={`p-6 lg:p-8 h-full flex flex-col justify-between`}>
+                      <div>
+                        <span className="text-sm text-muted-foreground mb-3 block">{num}</span>
+                        <div className={`w-10 h-10 rounded-lg flex items-center justify-center mb-4 transition-colors ${
+                          isActive ? "bg-primary/15" : "bg-muted"
+                        }`}>
+                          <b.icon className={`w-5 h-5 transition-colors ${isActive ? "text-primary" : "text-muted-foreground"}`} />
+                        </div>
+                        <h3 className={`font-bold text-foreground mb-2 transition-all ${
+                          isActive ? "text-xl" : "text-base"
+                        }`}>
+                          {b.title}
+                        </h3>
+                        {isActive && (
+                          <motion.p
+                            initial={{ opacity: 0, y: 8 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ delay: 0.15, duration: 0.3 }}
+                            className="text-sm text-muted-foreground leading-relaxed max-w-sm"
+                          >
+                            {b.description}
+                          </motion.p>
+                        )}
+                      </div>
+                      {isActive && (
+                        <motion.div
+                          initial={{ opacity: 0 }}
+                          animate={{ opacity: 1 }}
+                          transition={{ delay: 0.2 }}
+                          className="mt-6"
+                        >
+                          <button className="inline-flex items-center gap-2 text-primary font-medium text-sm hover:gap-3 transition-all">
+                            Learn More <ArrowRight className="w-4 h-4" />
+                          </button>
+                        </motion.div>
+                      )}
+                    </div>
+                    <div className={`absolute bottom-0 left-0 right-0 h-1 transition-colors ${
+                      isActive ? "bg-primary" : "bg-primary/10"
+                    }`} />
+                  </motion.div>
+                );
+              })}
             </div>
           </div>
         </section>
