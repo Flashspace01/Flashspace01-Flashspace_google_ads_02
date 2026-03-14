@@ -103,73 +103,120 @@ const revenueData = [
 
 const RevenueVisual = () => {
   const maxVal = Math.max(...revenueData.map(d => d.value));
+  const points = revenueData.map((d, i) => {
+    const x = (i / (revenueData.length - 1)) * 100;
+    const y = 100 - (d.value / maxVal) * 100;
+    return `${x},${y}`;
+  });
+  const linePath = `M ${points.join(" L ")}`;
+  const areaPath = `${linePath} L 100,100 L 0,100 Z`;
 
   return (
-    <div className="w-full bg-card border border-border rounded-2xl p-6 shadow-lg">
-      {/* Dashboard header */}
-      <div className="flex items-center justify-between mb-6">
-        <div>
-          <p className="text-xs text-muted-foreground uppercase tracking-wider font-medium">Partner Revenue</p>
-          <p className="text-2xl font-bold text-foreground mt-1">₹5,24,000</p>
-        </div>
-        <div className="flex gap-4 text-xs">
-          <div className="text-center">
-            <p className="text-muted-foreground">Occupancy</p>
-            <p className="text-foreground font-bold text-lg">96%</p>
+    <div className="w-full bg-card border border-border rounded-2xl shadow-lg overflow-hidden">
+      {/* Top bar */}
+      <div className="px-6 pt-6 pb-4 border-b border-border">
+        <div className="flex items-center justify-between">
+          <div>
+            <p className="text-[11px] text-muted-foreground uppercase tracking-widest font-medium">Monthly Revenue</p>
+            <div className="flex items-baseline gap-3 mt-1">
+              <p className="text-3xl font-bold text-foreground">₹5,24,000</p>
+              <span className="text-sm font-semibold text-primary">↑ 32%</span>
+            </div>
           </div>
-          <div className="text-center">
-            <p className="text-muted-foreground">Bookings</p>
-            <p className="text-foreground font-bold text-lg">142</p>
-          </div>
-          <div className="text-center">
-            <p className="text-muted-foreground">Growth</p>
-            <p className="text-primary font-bold text-lg">+32%</p>
+          <div className="flex gap-1">
+            {["6M", "1Y", "All"].map((tab, i) => (
+              <button
+                key={tab}
+                className={`px-3 py-1 rounded-md text-xs font-medium transition-colors ${
+                  i === 1 ? "bg-primary text-primary-foreground" : "text-muted-foreground hover:bg-muted"
+                }`}
+              >
+                {tab}
+              </button>
+            ))}
           </div>
         </div>
       </div>
 
-      {/* Chart area */}
-      <div className="relative h-48 flex items-end gap-1.5">
-        {revenueData.map((d, i) => (
-          <motion.div
-            key={d.month}
-            initial={{ scaleY: 0 }}
-            whileInView={{ scaleY: 1 }}
+      {/* SVG line chart */}
+      <div className="px-6 pt-4">
+        <svg viewBox="0 0 100 60" className="w-full h-40" preserveAspectRatio="none">
+          <defs>
+            <linearGradient id="areaGrad" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stopColor="hsl(var(--primary))" stopOpacity="0.15" />
+              <stop offset="100%" stopColor="hsl(var(--primary))" stopOpacity="0" />
+            </linearGradient>
+          </defs>
+          {/* Grid lines */}
+          {[0, 25, 50, 75, 100].map(y => (
+            <line key={y} x1="0" y1={y} x2="100" y2={y} stroke="hsl(var(--border))" strokeWidth="0.3" />
+          ))}
+          {/* Area fill */}
+          <motion.path
+            d={areaPath}
+            fill="url(#areaGrad)"
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
-            transition={{ delay: i * 0.05, duration: 0.5, ease: "easeOut" }}
-            className="flex-1 flex flex-col items-center origin-bottom"
-          >
-            <div
-              className="w-full rounded-t-md bg-primary/80 hover:bg-primary transition-colors"
-              style={{ height: `${(d.value / maxVal) * 100}%` }}
-            />
-          </motion.div>
-        ))}
+            transition={{ delay: 0.3, duration: 0.8 }}
+          />
+          {/* Line */}
+          <motion.path
+            d={linePath}
+            fill="none"
+            stroke="hsl(var(--primary))"
+            strokeWidth="1.5"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            vectorEffect="non-scaling-stroke"
+            initial={{ pathLength: 0 }}
+            whileInView={{ pathLength: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 1.2, ease: "easeOut" }}
+          />
+          {/* Dots */}
+          {revenueData.map((d, i) => {
+            const cx = (i / (revenueData.length - 1)) * 100;
+            const cy = 100 - (d.value / maxVal) * 100;
+            return (
+              <motion.circle
+                key={d.month}
+                cx={cx}
+                cy={cy}
+                r="1.5"
+                fill="hsl(var(--card))"
+                stroke="hsl(var(--primary))"
+                strokeWidth="0.8"
+                vectorEffect="non-scaling-stroke"
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.3 + i * 0.05 }}
+              />
+            );
+          })}
+        </svg>
+        {/* X-axis */}
+        <div className="flex justify-between mt-1 mb-4">
+          {revenueData.map(d => (
+            <span key={d.month} className="text-[9px] text-muted-foreground">{d.month}</span>
+          ))}
+        </div>
       </div>
 
-      {/* X-axis labels */}
-      <div className="flex gap-1.5 mt-2">
-        {revenueData.map((d) => (
-          <div key={d.month} className="flex-1 text-center">
-            <span className="text-[9px] text-muted-foreground">{d.month}</span>
+      {/* Bottom KPI row */}
+      <div className="grid grid-cols-4 border-t border-border">
+        {[
+          { label: "Bookings", value: "142" },
+          { label: "Occupancy", value: "96%" },
+          { label: "Conversion", value: "19%" },
+          { label: "Onboarding", value: "48hrs" },
+        ].map((kpi, i) => (
+          <div key={kpi.label} className={`px-4 py-4 text-center ${i < 3 ? "border-r border-border" : ""}`}>
+            <p className="text-lg font-bold text-foreground">{kpi.value}</p>
+            <p className="text-[10px] text-muted-foreground uppercase tracking-wider mt-0.5">{kpi.label}</p>
           </div>
         ))}
-      </div>
-
-      {/* Bottom stats row */}
-      <div className="grid grid-cols-3 gap-3 mt-5 pt-5 border-t border-border">
-        <div className="bg-muted/40 rounded-lg p-3">
-          <p className="text-[10px] text-muted-foreground uppercase tracking-wider">Conversion</p>
-          <p className="text-foreground font-bold text-sm mt-1">19%</p>
-        </div>
-        <div className="bg-muted/40 rounded-lg p-3">
-          <p className="text-[10px] text-muted-foreground uppercase tracking-wider">Avg. Onboard</p>
-          <p className="text-foreground font-bold text-sm mt-1">48hrs</p>
-        </div>
-        <div className="bg-muted/40 rounded-lg p-3">
-          <p className="text-[10px] text-muted-foreground uppercase tracking-wider">Listing Growth</p>
-          <p className="text-foreground font-bold text-sm mt-1">+12%</p>
-        </div>
       </div>
     </div>
   );
@@ -348,7 +395,7 @@ const PartnerWithUs = () => {
         </section>
 
         {/* Referral Earnings Section */}
-        <section className="bg-secondary">
+        <section className="bg-secondary py-16 lg:py-24">
           <div className="container mx-auto px-8 lg:px-16">
             <div className="flex flex-col lg:flex-row items-end gap-8 lg:gap-12">
               <motion.div
