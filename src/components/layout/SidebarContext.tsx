@@ -1,9 +1,15 @@
 import { createContext, useContext, useState, ReactNode } from "react";
 
+type SidebarState = "closed" | "expanded" | "collapsed";
+
 interface SidebarContextType {
+  sidebarState: SidebarState;
+  setSidebarState: (state: SidebarState) => void;
+  toggleSidebar: () => void;
+  closeSidebar: () => void;
+  // Compat
   sidebarOpen: boolean;
   setSidebarOpen: (open: boolean) => void;
-  toggleSidebar: () => void;
 }
 
 const SidebarContext = createContext<SidebarContextType | null>(null);
@@ -15,11 +21,33 @@ export const useSidebar = () => {
 };
 
 export const SidebarProvider = ({ children }: { children: ReactNode }) => {
-  const [sidebarOpen, setSidebarOpen] = useState(false);
-  const toggleSidebar = () => setSidebarOpen((p) => !p);
+  const [sidebarState, setSidebarState] = useState<SidebarState>("closed");
+
+  const toggleSidebar = () =>
+    setSidebarState((prev) => {
+      if (prev === "closed") return "expanded";
+      if (prev === "expanded") return "collapsed";
+      return "closed";
+    });
+
+  const closeSidebar = () => setSidebarState("closed");
+
+  // Compat layer
+  const sidebarOpen = sidebarState !== "closed";
+  const setSidebarOpen = (open: boolean) =>
+    setSidebarState(open ? "expanded" : "closed");
 
   return (
-    <SidebarContext.Provider value={{ sidebarOpen, setSidebarOpen, toggleSidebar }}>
+    <SidebarContext.Provider
+      value={{
+        sidebarState,
+        setSidebarState,
+        toggleSidebar,
+        closeSidebar,
+        sidebarOpen,
+        setSidebarOpen,
+      }}
+    >
       {children}
     </SidebarContext.Provider>
   );
