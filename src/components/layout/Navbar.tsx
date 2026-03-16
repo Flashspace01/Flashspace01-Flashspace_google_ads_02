@@ -134,7 +134,6 @@ export const Navbar = () => {
         scrolled ? "bg-background/95 backdrop-blur-md border-b border-border/30 shadow-sm" : "bg-transparent"
       }`}
     >
-    >
       <div className="container mx-auto px-4 lg:px-8">
         <nav className="flex items-center justify-between h-16 lg:h-20">
           {/* Logo */}
