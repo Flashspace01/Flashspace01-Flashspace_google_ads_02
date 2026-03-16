@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import {
@@ -117,13 +117,22 @@ const navLinks: NavLink[] = [
 export const Navbar = () => {
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => setScrolled(window.scrollY > 50);
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   return (
     <motion.header
       initial={{ y: -20, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.5 }}
-      className="fixed top-0 left-0 right-0 z-[60] bg-transparent"
+      className={`fixed top-0 left-0 right-0 z-[60] transition-all duration-300 ${
+        scrolled ? "bg-card shadow-md border-b border-border/30" : "bg-transparent"
+      }`}
     >
       <div className="container mx-auto px-4 lg:px-8">
         <nav className="flex items-center justify-between h-16 lg:h-20">
@@ -143,7 +152,11 @@ export const Navbar = () => {
               >
                 <a
                   href={link.href}
-                  className="flex items-center gap-1 px-4 py-2 text-[15px] font-medium text-white/80 hover:text-white transition-colors rounded-lg hover:bg-white/10"
+                  className={`flex items-center gap-1 px-4 py-2 text-[15px] font-medium transition-colors rounded-lg ${
+                    scrolled
+                      ? "text-foreground/80 hover:text-foreground hover:bg-primary/5"
+                      : "text-white/80 hover:text-white hover:bg-white/10"
+                  }`}
                 >
                   {link.label}
                   {(link.dropdown || link.megaMenu) && <ChevronDown className="w-4 h-4" />}
@@ -218,7 +231,9 @@ export const Navbar = () => {
             </Button>
             <button
               onClick={() => setMobileOpen(!mobileOpen)}
-              className="lg:hidden inline-flex items-center justify-center w-9 h-9 text-white rounded-lg hover:bg-white/10 transition-colors"
+              className={`lg:hidden inline-flex items-center justify-center w-9 h-9 rounded-lg transition-colors ${
+                scrolled ? "text-foreground hover:bg-primary/5" : "text-white hover:bg-white/10"
+              }`}
               aria-label="Toggle menu"
             >
               {mobileOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
