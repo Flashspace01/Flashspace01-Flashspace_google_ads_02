@@ -98,8 +98,7 @@ const StepsCarousel = () => {
             const Icon = step.icon;
             return (
               <motion.div
-                key={stepIndex}
-                layout
+                key={`${current}-${pos}`}
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{
                   opacity: isCenter ? 1 : 0.5,
