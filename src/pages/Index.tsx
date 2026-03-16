@@ -3,6 +3,7 @@ import { HeroWithSearch } from "@/components/sections/HeroWithSearch";
 import { BusinessSetupOverview } from "@/components/sections/BusinessSetupOverview";
 import { WhyChooseUs } from "@/components/sections/WhyChooseUs";
 import { SetupProcess } from "@/components/sections/SetupProcess";
+import { StatsByNumbers } from "@/components/sections/StatsByNumbers";
 import { CostCalculator } from "@/components/sections/CostCalculator";
 import { CTA } from "@/components/sections/CTA";
 import { Footer } from "@/components/layout/Footer";
@@ -14,6 +15,7 @@ const Index = () => {
         <HeroWithSearch />
         <BusinessSetupOverview />
         <SetupProcess />
+        <StatsByNumbers />
         <WhyChooseUs />
         <CostCalculator />
         <CTA />
