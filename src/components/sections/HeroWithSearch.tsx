@@ -53,10 +53,10 @@ export const HeroWithSearch = () => {
               variants={fadeUp}
               initial="hidden"
               animate="visible"
-              className="text-[34px] sm:text-[48px] lg:text-[62px] font-medium tracking-[-0.03em] text-white leading-[1.12] mb-6"
+              className="text-[28px] sm:text-[38px] lg:text-[48px] font-medium tracking-[-0.03em] text-white leading-[1.15] mb-6"
             >
-              Business Setup<br />
-              <span className="italic">Is Just The Beginning</span>
+              Launch & Scale Your<br />
+              <span className="italic">Business in the UAE</span>
             </motion.h1>
 
             <motion.div
