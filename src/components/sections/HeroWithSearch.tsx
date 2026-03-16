@@ -57,19 +57,22 @@ const steps = [
 ];
 
 const StepsCarousel = () => {
-  const [current, setCurrent] = useState(0);
+  const [page, setPage] = useState(0);
+  const totalPages = 2; // 6 steps, 3 per page
 
-  const next = useCallback(() => {
-    setCurrent((prev) => (prev + 1) % steps.length);
+  const nextPage = useCallback(() => {
+    setPage((prev) => (prev + 1) % totalPages);
   }, []);
 
   useEffect(() => {
-    const interval = setInterval(next, 4000);
+    const interval = setInterval(nextPage, 5000);
     return () => clearInterval(interval);
-  }, [next]);
+  }, [nextPage]);
+
+  const currentSteps = steps.slice(page * 3, page * 3 + 3);
 
   return (
-    <div className="relative z-10 w-full px-6 lg:px-12 pb-20 lg:pb-28">
+    <div className="relative z-10 w-full px-6 lg:px-12 py-20 lg:py-28 bg-background">
       <div className="container mx-auto">
         <motion.h2
           custom={0.5}
@@ -77,42 +80,47 @@ const StepsCarousel = () => {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
-          className="text-2xl sm:text-3xl lg:text-4xl font-medium text-white mb-10 tracking-[-0.02em] text-center"
+          className="text-2xl sm:text-3xl lg:text-4xl font-medium text-foreground mb-12 tracking-[-0.02em] text-center"
         >
-          From Vision to Reality —<br className="hidden sm:block" /> Here's How We Make It Happen
+          Your 6-Step Roadmap to Business in the UAE
         </motion.h2>
 
-        {/* Card */}
-        <div className="max-w-lg mx-auto mb-8">
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={current}
-              initial={{ opacity: 0, x: 40 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: -40 }}
-              transition={{ duration: 0.4, ease: "easeInOut" }}
-              className="rounded-2xl border border-white/15 bg-white/5 backdrop-blur-md p-8 text-center"
-            >
-              <div className="w-14 h-14 rounded-xl bg-secondary/20 flex items-center justify-center mx-auto mb-5">
-                {(() => {
-                  const Icon = steps[current].icon;
-                  return <Icon className="w-7 h-7 text-secondary" />;
-                })()}
-              </div>
-              <h3 className="text-white font-medium text-xl mb-3">{steps[current].title}</h3>
-              <p className="text-white/60 text-sm leading-relaxed">{steps[current].description}</p>
-            </motion.div>
-          </AnimatePresence>
-        </div>
+        {/* Cards — 3 at a time */}
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={page}
+            initial={{ opacity: 0, x: 60 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: -60 }}
+            transition={{ duration: 0.45, ease: "easeInOut" }}
+            className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10"
+          >
+            {currentSteps.map((step, i) => {
+              const Icon = step.icon;
+              return (
+                <div
+                  key={step.title}
+                  className="rounded-2xl border border-border bg-card shadow-sm p-8 text-center"
+                >
+                  <div className="w-14 h-14 rounded-xl bg-secondary/10 flex items-center justify-center mx-auto mb-5">
+                    <Icon className="w-7 h-7 text-secondary" />
+                  </div>
+                  <h3 className="text-foreground font-medium text-lg mb-3">{step.title}</h3>
+                  <p className="text-muted-foreground text-sm leading-relaxed">{step.description}</p>
+                </div>
+              );
+            })}
+          </motion.div>
+        </AnimatePresence>
 
-        {/* Progress dots — below card */}
+        {/* Progress dots — below cards */}
         <div className="flex items-center justify-center gap-2">
-          {steps.map((_, i) => (
+          {Array.from({ length: totalPages }).map((_, i) => (
             <button
               key={i}
-              onClick={() => setCurrent(i)}
+              onClick={() => setPage(i)}
               className={`h-1.5 rounded-full transition-all duration-500 ${
-                i === current ? "w-8 bg-secondary" : "w-1.5 bg-white/30 hover:bg-white/50"
+                i === page ? "w-8 bg-secondary" : "w-1.5 bg-muted-foreground/30 hover:bg-muted-foreground/50"
               }`}
             />
           ))}
