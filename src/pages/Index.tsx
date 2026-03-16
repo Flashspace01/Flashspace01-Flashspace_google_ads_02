@@ -15,6 +15,7 @@ const Index = () => {
         <BusinessSetupOverview />
         <WhyChooseUs />
         <SetupProcess />
+        <CostCalculator />
         <CTA />
       </main>
       <Footer />
