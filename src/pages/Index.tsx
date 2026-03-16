@@ -12,8 +12,8 @@ const Index = () => {
     <AppLayout>
       <main>
         <HeroWithSearch />
-        <SetupProcess />
         <BusinessSetupOverview />
+        <SetupProcess />
         <WhyChooseUs />
         <CostCalculator />
         <CTA />
