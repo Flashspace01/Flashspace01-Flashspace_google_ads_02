@@ -33,11 +33,11 @@ export const BusinessSetupOverview = () => {
             Choose the right setup for your business
           </h2>
           <p className="text-muted-foreground text-lg leading-relaxed">
-            Whether it's mainland, free zone, or offshore — we guide you through every step of UAE company formation.
+            We guide you through every step of UAE company formation.
           </p>
         </motion.div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 border border-dashed border-border/70 rounded-none">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3">
           {setupTypes.map((item, index) => (
             <motion.a
               key={item.title}
@@ -46,16 +46,19 @@ export const BusinessSetupOverview = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.08 }}
-              className={`relative flex flex-col justify-between p-8 lg:p-10 min-h-[320px] group hover:bg-muted/30 transition-colors duration-300 ${
-                index < setupTypes.length - 1 ? "border-r border-dashed border-border/70" : ""
-              } ${index < 2 ? "sm:border-b sm:border-dashed sm:border-border/70 lg:border-b-0" : ""}`}
+              className={`relative flex flex-col justify-between p-8 lg:p-10 min-h-[320px] group hover:bg-muted/30 transition-colors duration-300 border-t border-border/40 ${
+                index < setupTypes.length - 1 ? "lg:border-r border-border/40" : ""
+              } ${index === 0 ? "sm:border-r border-border/40" : ""}`}
             >
               <div>
+                <span className="text-muted-foreground text-sm mb-4 block">
+                  {String(index + 1).padStart(2, "0")}
+                </span>
                 <h3 className="text-xl font-semibold text-foreground mb-4">{item.title}</h3>
                 <p className="text-sm text-muted-foreground leading-relaxed">{item.description}</p>
               </div>
               <div className="mt-8">
-                <div className="w-12 h-12 rounded-full border border-dashed border-border/70 flex items-center justify-center group-hover:border-primary group-hover:text-primary transition-colors">
+                <div className="w-12 h-12 border border-border/40 flex items-center justify-center group-hover:border-primary group-hover:text-primary transition-colors">
                   <Plus className="w-5 h-5 text-muted-foreground group-hover:text-primary transition-colors" />
                 </div>
               </div>
