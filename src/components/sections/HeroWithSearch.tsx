@@ -85,7 +85,7 @@ const StepsCarousel = () => {
   };
 
   return (
-    <div className="relative z-10 w-full px-6 lg:px-12 pb-20 lg:pb-28">
+    <div className="relative z-10 w-full px-6 lg:px-12 pt-12 pb-20 lg:pb-28">
       <div className="container mx-auto">
         <motion.h2
           custom={0.5}
