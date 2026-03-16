@@ -1,28 +1,23 @@
 import { motion } from "framer-motion";
-import { Button } from "@/components/ui/button";
-import { ArrowRight, Landmark, Globe, Ship, Stamp } from "lucide-react";
+import { Plus } from "lucide-react";
 
 const setupTypes = [
   {
-    icon: Landmark,
     title: "Mainland Setup",
     description: "Establish your business in the UAE mainland with full market access and government-backed licensing.",
     href: "#",
   },
   {
-    icon: Globe,
     title: "Free Zone Setup",
     description: "100% foreign ownership, zero tax, and streamlined setup in any of the 40+ UAE free zones.",
     href: "#",
   },
   {
-    icon: Ship,
     title: "Offshore Setup",
     description: "Register an offshore company for asset protection, international trading, and holding structures.",
     href: "#",
   },
   {
-    icon: Stamp,
     title: "Visa Services",
     description: "Residence visas, investor visas, golden visas, and family sponsorship — handled end-to-end.",
     href: "#",
@@ -50,26 +45,31 @@ export const BusinessSetupOverview = () => {
           </p>
         </motion.div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 border border-dashed border-border/70 rounded-none">
           {setupTypes.map((item, index) => (
-            <motion.div
+            <motion.a
               key={item.title}
+              href={item.href}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.08 }}
-              className="bg-card rounded-2xl border border-border/50 p-7 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 group"
+              className={`relative flex flex-col justify-between p-8 lg:p-10 min-h-[320px] group hover:bg-muted/30 transition-colors duration-300 ${
+                index < setupTypes.length - 1 ? "border-r border-dashed border-border/70 sm:border-r lg:border-r" : ""
+              } ${index < 2 ? "sm:border-b sm:border-dashed sm:border-border/70 lg:border-b-0" : ""} ${
+                index === 1 ? "sm:border-r-0 lg:border-r lg:border-dashed lg:border-border/70" : ""
+              }`}
             >
-              <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center mb-5 group-hover:bg-primary/20 transition-colors">
-                <item.icon className="w-6 h-6 text-primary" />
+              <div>
+                <h3 className="text-xl font-semibold text-foreground mb-4">{item.title}</h3>
+                <p className="text-sm text-muted-foreground leading-relaxed">{item.description}</p>
               </div>
-              <h3 className="text-lg font-semibold text-foreground mb-2">{item.title}</h3>
-              <p className="text-sm text-muted-foreground leading-relaxed mb-5">{item.description}</p>
-              <Button variant="ghost" size="sm" className="text-primary hover:text-primary/80 px-0 group/btn">
-                Learn More
-                <ArrowRight className="w-4 h-4 ml-1 group-hover/btn:translate-x-1 transition-transform" />
-              </Button>
-            </motion.div>
+              <div className="mt-8">
+                <div className="w-12 h-12 rounded-full border border-dashed border-border/70 flex items-center justify-center group-hover:border-primary group-hover:text-primary transition-colors">
+                  <Plus className="w-5 h-5 text-muted-foreground group-hover:text-primary transition-colors" />
+                </div>
+              </div>
+            </motion.a>
           ))}
         </div>
       </div>
