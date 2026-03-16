@@ -1,4 +1,5 @@
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
+import { useState, useEffect, useCallback } from "react";
 import { Button } from "@/components/ui/button";
 import {
   MessageSquare,
@@ -23,13 +24,82 @@ const fadeUp = {
 const jurisdictions = ["Mainland", "Free Zone", "Offshore", "KSA", "Qatar"];
 
 const steps = [
-  { icon: PhoneCall, title: "Free Consultation", description: "Speak with our experts at no cost" },
-  { icon: Briefcase, title: "Business Setup Advisory", description: "Tailored guidance for your venture" },
-  { icon: Compass, title: "Right Jurisdiction Selection", description: "Mainland, Free Zone, or Offshore" },
-  { icon: FileText, title: "Trade License Application", description: "Swift processing & approvals" },
-  { icon: CreditCard, title: "Visa & Emirates ID", description: "Residency visa initiation" },
-  { icon: Landmark, title: "Corporate Bank Account", description: "Assisted bank account opening" },
+  { icon: PhoneCall, title: "Free Consultation", description: "Speak with our experts at no cost to understand your options" },
+  { icon: Briefcase, title: "Business Setup Advisory", description: "Tailored guidance for your venture based on your goals" },
+  { icon: Compass, title: "Right Jurisdiction Selection", description: "Choose between Mainland, Free Zone, or Offshore" },
+  { icon: FileText, title: "Trade License Application", description: "Swift processing & approvals handled end-to-end" },
+  { icon: CreditCard, title: "Visa & Emirates ID", description: "Residency visa and Emirates ID initiation" },
+  { icon: Landmark, title: "Corporate Bank Account", description: "Assisted corporate bank account opening" },
 ];
+
+const StepsCarousel = () => {
+  const [current, setCurrent] = useState(0);
+
+  const next = useCallback(() => {
+    setCurrent((prev) => (prev + 1) % steps.length);
+  }, []);
+
+  useEffect(() => {
+    const interval = setInterval(next, 3000);
+    return () => clearInterval(interval);
+  }, [next]);
+
+  return (
+    <div className="relative z-10 w-full px-6 lg:px-12 pb-20 lg:pb-28">
+      <div className="container mx-auto">
+        <motion.h2
+          custom={0.5}
+          variants={fadeUp}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          className="text-2xl sm:text-3xl lg:text-4xl font-medium text-white mb-10 tracking-[-0.02em] text-center"
+        >
+          Your Roadmap to Business<br className="hidden sm:block" /> in the UAE
+        </motion.h2>
+
+        {/* Progress dots */}
+        <div className="flex items-center justify-center gap-2 mb-8">
+          {steps.map((_, i) => (
+            <button
+              key={i}
+              onClick={() => setCurrent(i)}
+              className={`h-1.5 rounded-full transition-all duration-500 ${
+                i === current ? "w-8 bg-secondary" : "w-1.5 bg-white/30 hover:bg-white/50"
+              }`}
+            />
+          ))}
+        </div>
+
+        {/* Card */}
+        <div className="max-w-lg mx-auto">
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={current}
+              initial={{ opacity: 0, x: 40 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: -40 }}
+              transition={{ duration: 0.4, ease: "easeInOut" }}
+              className="rounded-2xl border border-white/15 bg-white/5 backdrop-blur-md p-8 text-center"
+            >
+              <div className="w-14 h-14 rounded-xl bg-secondary/20 flex items-center justify-center mx-auto mb-5">
+                {(() => {
+                  const Icon = steps[current].icon;
+                  return <Icon className="w-7 h-7 text-secondary" />;
+                })()}
+              </div>
+              <span className="text-white/40 text-xs font-medium uppercase tracking-widest mb-2 block">
+                Step {current + 1} of {steps.length}
+              </span>
+              <h3 className="text-white font-medium text-xl mb-2">{steps[current].title}</h3>
+              <p className="text-white/60 text-sm leading-relaxed">{steps[current].description}</p>
+            </motion.div>
+          </AnimatePresence>
+        </div>
+      </div>
+    </div>
+  );
+};
 
 export const HeroWithSearch = () => {
   return (
@@ -97,41 +167,8 @@ export const HeroWithSearch = () => {
         </div>
       </div>
 
-      {/* Steps section - still inside hero bg */}
-      <div className="relative z-10 w-full px-6 lg:px-12 pb-20 lg:pb-28">
-        <div className="container mx-auto">
-          <motion.h2
-            custom={0.5}
-            variants={fadeUp}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            className="text-2xl sm:text-3xl lg:text-4xl font-medium text-white mb-10 tracking-[-0.02em] text-center"
-          >
-            Your Roadmap to Business<br className="hidden sm:block" /> in the UAE
-          </motion.h2>
-
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-            {steps.map((step, i) => (
-              <motion.div
-                key={step.title}
-                custom={0.55 + i * 0.08}
-                variants={fadeUp}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true }}
-                className="group rounded-xl border border-white/15 bg-white/5 backdrop-blur-sm p-6 hover:bg-white/10 transition-all duration-300"
-              >
-                <div className="w-10 h-10 rounded-lg bg-secondary/20 flex items-center justify-center mb-4">
-                  <step.icon className="w-5 h-5 text-secondary" />
-                </div>
-                <h3 className="text-white font-medium text-base mb-1.5">{step.title}</h3>
-                <p className="text-white/60 text-sm leading-relaxed">{step.description}</p>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </div>
+      {/* Steps carousel */}
+      <StepsCarousel />
     </section>
   );
 };
