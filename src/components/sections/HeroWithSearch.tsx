@@ -15,7 +15,7 @@ const jurisdictions = ["Mainland", "Free Zone", "Offshore", "KSA", "Qatar"];
 
 export const HeroWithSearch = () => {
   return (
-    <section className="relative w-full overflow-hidden min-h-[calc(100svh-5rem)]">
+    <section className="relative w-full overflow-hidden min-h-[140svh]">
       {/* Background image */}
       <div className="absolute inset-0">
         <img
@@ -26,7 +26,7 @@ export const HeroWithSearch = () => {
         <div className="absolute inset-0 bg-gradient-to-b from-[hsl(320,70%,15%)]/60 via-transparent to-[hsl(320,70%,15%)]/40" />
       </div>
 
-      <div className="relative z-10 w-full flex flex-col items-center justify-center text-center px-6 min-h-[calc(100svh-5rem)]">
+      <div className="relative z-10 w-full flex flex-col items-center justify-center text-center px-6 min-h-[100svh] pt-20">
         <div className="max-w-[900px] w-full">
           <motion.h1
             custom={0.1}
