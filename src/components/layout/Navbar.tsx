@@ -55,7 +55,6 @@ interface NavLink {
 }
 
 const navLinks: NavLink[] = [
-  { label: "Home", href: "/" },
   {
     label: "Business Setup",
     href: "#business-setup",
