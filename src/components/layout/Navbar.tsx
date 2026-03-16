@@ -231,7 +231,9 @@ export const Navbar = () => {
             </Button>
             <button
               onClick={() => setMobileOpen(!mobileOpen)}
-              className="lg:hidden inline-flex items-center justify-center w-9 h-9 text-white rounded-lg hover:bg-white/10 transition-colors"
+              className={`lg:hidden inline-flex items-center justify-center w-9 h-9 rounded-lg transition-colors ${
+                scrolled ? "text-foreground hover:bg-primary/5" : "text-white hover:bg-white/10"
+              }`}
               aria-label="Toggle menu"
             >
               {mobileOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
