@@ -212,15 +212,13 @@ export const Navbar = () => {
 
           {/* Actions */}
           <div className="flex items-center gap-2 lg:gap-3">
-            <Button variant="ghost" size="sm" className="hidden sm:inline-flex text-foreground/80 hover:text-foreground text-sm px-3">
-              Sign in
-            </Button>
-            <Button variant="default" size="sm" className="bg-primary hover:bg-primary/90 shadow-sm text-sm px-3">
-              Get Started
+            <Button variant="whiteOutline" size="sm" className="hidden sm:inline-flex text-sm px-4">
+              <Calculator className="w-4 h-4" />
+              Cost Calculator
             </Button>
             <button
               onClick={() => setMobileOpen(!mobileOpen)}
-              className="lg:hidden inline-flex items-center justify-center w-9 h-9 text-foreground rounded-lg hover:bg-primary/5 transition-colors"
+              className="lg:hidden inline-flex items-center justify-center w-9 h-9 text-white rounded-lg hover:bg-white/10 transition-colors"
               aria-label="Toggle menu"
             >
               {mobileOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
