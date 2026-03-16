@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Globe } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 20 },
@@ -16,19 +16,6 @@ export const HeroWithSearch = () => {
     <section className="relative w-full overflow-hidden" style={{ backgroundColor: '#f8f7f4' }}>
       <div className="relative z-10 w-full flex flex-col items-center text-center px-6 py-24 sm:py-32 lg:py-40">
         <div className="max-w-[900px] w-full">
-          <motion.div
-            custom={0}
-            variants={fadeUp}
-            initial="hidden"
-            animate="visible"
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-card/80 border border-border/30 mb-8"
-          >
-            <Globe className="w-4 h-4 text-primary" />
-            <span className="text-foreground/80 text-sm font-medium">
-              UAE Business Setup & Corporate Services
-            </span>
-          </motion.div>
-
           <motion.h1
             custom={0.1}
             variants={fadeUp}
