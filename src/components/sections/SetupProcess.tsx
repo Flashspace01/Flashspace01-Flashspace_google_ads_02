@@ -17,6 +17,9 @@ export const SetupProcess = () => {
           viewport={{ once: true }}
           className="text-center max-w-3xl mx-auto mb-14"
         >
+          <span className="inline-block px-4 py-1.5 mb-4 text-xs font-medium tracking-wider uppercase rounded-full bg-primary/10 text-primary">
+            Built for entrepreneurs in the UAE
+          </span>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-medium text-foreground mb-5 tracking-tight">
             Your path to a UAE business
           </h2>
