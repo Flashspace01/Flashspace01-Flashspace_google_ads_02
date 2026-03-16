@@ -24,12 +24,36 @@ const fadeUp = {
 const jurisdictions = ["Mainland", "Free Zone", "Offshore", "KSA", "Qatar"];
 
 const steps = [
-  { icon: PhoneCall, title: "Free Consultation", description: "Speak with our experts at no cost to understand your options" },
-  { icon: Briefcase, title: "Business Setup Advisory", description: "Tailored guidance for your venture based on your goals" },
-  { icon: Compass, title: "Right Jurisdiction Selection", description: "Choose between Mainland, Free Zone, or Offshore" },
-  { icon: FileText, title: "Trade License Application", description: "Swift processing & approvals handled end-to-end" },
-  { icon: CreditCard, title: "Visa & Emirates ID", description: "Residency visa and Emirates ID initiation" },
-  { icon: Landmark, title: "Corporate Bank Account", description: "Assisted corporate bank account opening" },
+  {
+    icon: PhoneCall,
+    title: "Free Consultation",
+    description: "Connect with our seasoned business advisors for a no-obligation consultation. We'll assess your goals, industry requirements, and help you map out the most efficient path to launching in the UAE.",
+  },
+  {
+    icon: Briefcase,
+    title: "Business Setup Advisory",
+    description: "Receive a customised setup plan tailored to your business model, target market, and growth ambitions. Our advisors handle every detail so you can focus on what matters most — your business.",
+  },
+  {
+    icon: Compass,
+    title: "Right Jurisdiction Selection",
+    description: "Mainland, Free Zone, or Offshore — each jurisdiction offers distinct advantages. We'll guide you through ownership rules, tax implications, and operational flexibility to find your ideal fit.",
+  },
+  {
+    icon: FileText,
+    title: "Trade License Application",
+    description: "From selecting the right activity codes to submitting documentation, we manage the entire trade license process. Expect fast turnaround times and full compliance with UAE regulations.",
+  },
+  {
+    icon: CreditCard,
+    title: "Visa & Emirates ID",
+    description: "We initiate your residency visa and Emirates ID applications, coordinating medical tests, biometrics, and approvals so your team can live and work in the UAE without hassle.",
+  },
+  {
+    icon: Landmark,
+    title: "Corporate Bank Account",
+    description: "Opening a business bank account in the UAE can be complex. We liaise with leading banks, prepare your documentation, and ensure a smooth account opening process from start to finish.",
+  },
 ];
 
 const StepsCarousel = () => {
@@ -40,7 +64,7 @@ const StepsCarousel = () => {
   }, []);
 
   useEffect(() => {
-    const interval = setInterval(next, 3000);
+    const interval = setInterval(next, 4000);
     return () => clearInterval(interval);
   }, [next]);
 
@@ -55,24 +79,11 @@ const StepsCarousel = () => {
           viewport={{ once: true }}
           className="text-2xl sm:text-3xl lg:text-4xl font-medium text-white mb-10 tracking-[-0.02em] text-center"
         >
-          Your Roadmap to Business<br className="hidden sm:block" /> in the UAE
+          From Vision to Reality —<br className="hidden sm:block" /> Here's How We Make It Happen
         </motion.h2>
 
-        {/* Progress dots */}
-        <div className="flex items-center justify-center gap-2 mb-8">
-          {steps.map((_, i) => (
-            <button
-              key={i}
-              onClick={() => setCurrent(i)}
-              className={`h-1.5 rounded-full transition-all duration-500 ${
-                i === current ? "w-8 bg-secondary" : "w-1.5 bg-white/30 hover:bg-white/50"
-              }`}
-            />
-          ))}
-        </div>
-
         {/* Card */}
-        <div className="max-w-lg mx-auto">
+        <div className="max-w-lg mx-auto mb-8">
           <AnimatePresence mode="wait">
             <motion.div
               key={current}
@@ -88,13 +99,23 @@ const StepsCarousel = () => {
                   return <Icon className="w-7 h-7 text-secondary" />;
                 })()}
               </div>
-              <span className="text-white/40 text-xs font-medium uppercase tracking-widest mb-2 block">
-                Step {current + 1} of {steps.length}
-              </span>
-              <h3 className="text-white font-medium text-xl mb-2">{steps[current].title}</h3>
+              <h3 className="text-white font-medium text-xl mb-3">{steps[current].title}</h3>
               <p className="text-white/60 text-sm leading-relaxed">{steps[current].description}</p>
             </motion.div>
           </AnimatePresence>
+        </div>
+
+        {/* Progress dots — below card */}
+        <div className="flex items-center justify-center gap-2">
+          {steps.map((_, i) => (
+            <button
+              key={i}
+              onClick={() => setCurrent(i)}
+              className={`h-1.5 rounded-full transition-all duration-500 ${
+                i === current ? "w-8 bg-secondary" : "w-1.5 bg-white/30 hover:bg-white/50"
+              }`}
+            />
+          ))}
         </div>
       </div>
     </div>
