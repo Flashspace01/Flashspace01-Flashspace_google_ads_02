@@ -23,7 +23,7 @@ export const HeroWithSearch = () => {
           alt="Dubai skyline"
           className="w-full h-full object-cover"
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-[hsl(320,70%,15%)]/60 via-transparent to-[hsl(320,70%,15%)]/40" />
+        <div className="absolute inset-0 bg-gradient-to-b from-[hsl(142,20%,15%)]/60 via-transparent to-[hsl(142,20%,15%)]/40" />
       </div>
 
       <div className="relative z-10 w-full flex flex-col items-center justify-center text-center px-6 min-h-[100svh] pt-20">

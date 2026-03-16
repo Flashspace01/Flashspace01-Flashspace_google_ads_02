@@ -212,7 +212,7 @@ export const Navbar = () => {
 
           {/* Actions */}
           <div className="flex items-center gap-2 lg:gap-3">
-            <Button variant="whiteOutline" size="sm" className="hidden sm:inline-flex text-sm px-4">
+            <Button variant="default" size="sm" className="hidden sm:inline-flex text-sm px-4">
               <Calculator className="w-4 h-4" />
               Cost Calculator
             </Button>
