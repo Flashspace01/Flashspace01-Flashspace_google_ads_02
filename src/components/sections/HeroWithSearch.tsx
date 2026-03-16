@@ -68,6 +68,14 @@ const StepsCarousel = () => {
     return () => clearInterval(interval);
   }, [next]);
 
+  const getVisibleIndices = () => {
+    const prev = (current - 1 + steps.length) % steps.length;
+    const next = (current + 1) % steps.length;
+    return [prev, current, next];
+  };
+
+  const [prev, center, nextIdx] = getVisibleIndices();
+
   return (
     <div className="relative z-10 w-full px-6 lg:px-12 pb-20 lg:pb-28">
       <div className="container mx-auto">
@@ -79,33 +87,49 @@ const StepsCarousel = () => {
           viewport={{ once: true }}
           className="text-2xl sm:text-3xl lg:text-4xl font-medium text-white mb-10 tracking-[-0.02em] text-center"
         >
-          From Vision to Reality —<br className="hidden sm:block" /> Here's How We Make It Happen
+          From Vision to Reality — Here's How We Make It Happen
         </motion.h2>
 
-        {/* Card */}
-        <div className="max-w-lg mx-auto mb-8">
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={current}
-              initial={{ opacity: 0, x: 40 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: -40 }}
-              transition={{ duration: 0.4, ease: "easeInOut" }}
-              className="rounded-2xl border border-white/15 bg-white/5 backdrop-blur-md p-8 text-center"
-            >
-              <div className="w-14 h-14 rounded-xl bg-secondary/20 flex items-center justify-center mx-auto mb-5">
-                {(() => {
-                  const Icon = steps[current].icon;
-                  return <Icon className="w-7 h-7 text-secondary" />;
-                })()}
-              </div>
-              <h3 className="text-white font-medium text-xl mb-3">{steps[current].title}</h3>
-              <p className="text-white/60 text-sm leading-relaxed">{steps[current].description}</p>
-            </motion.div>
-          </AnimatePresence>
+        {/* 3-card carousel */}
+        <div className="flex items-center justify-center gap-4 mb-8 max-w-5xl mx-auto">
+          {[prev, center, nextIdx].map((stepIndex, pos) => {
+            const isCenter = pos === 1;
+            const step = steps[stepIndex];
+            const Icon = step.icon;
+            return (
+              <motion.div
+                key={stepIndex}
+                layout
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{
+                  opacity: isCenter ? 1 : 0.5,
+                  scale: isCenter ? 1 : 0.85,
+                }}
+                transition={{ duration: 0.5, ease: "easeInOut" }}
+                onClick={() => setCurrent(stepIndex)}
+                className={`rounded-2xl border border-white/15 backdrop-blur-md text-center cursor-pointer transition-all ${
+                  isCenter
+                    ? "bg-white/10 p-8 flex-[1.4] min-h-[240px]"
+                    : "bg-white/5 p-6 flex-[0.8] min-h-[200px] hidden sm:block"
+                }`}
+              >
+                <div className={`rounded-xl bg-secondary/20 flex items-center justify-center mx-auto mb-4 ${
+                  isCenter ? "w-14 h-14" : "w-10 h-10"
+                }`}>
+                  <Icon className={isCenter ? "w-7 h-7 text-secondary" : "w-5 h-5 text-secondary"} />
+                </div>
+                <h3 className={`text-white font-medium mb-3 ${isCenter ? "text-xl" : "text-base"}`}>
+                  {step.title}
+                </h3>
+                <p className={`text-white/60 leading-relaxed ${isCenter ? "text-sm" : "text-xs line-clamp-3"}`}>
+                  {step.description}
+                </p>
+              </motion.div>
+            );
+          })}
         </div>
 
-        {/* Progress dots — below card */}
+        {/* Progress dots */}
         <div className="flex items-center justify-center gap-2">
           {steps.map((_, i) => (
             <button
