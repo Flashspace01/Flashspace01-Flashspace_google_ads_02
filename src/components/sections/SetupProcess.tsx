@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import heroCoworking from "@/assets/hero-coworking.jpg";
 
 const steps = [
   { step: "01", title: "Choose Business Activity", desc: "Select your trade activity from 2,000+ options across all UAE jurisdictions." },
@@ -9,42 +10,71 @@ const steps = [
 
 export const SetupProcess = () => {
   return (
-    <section className="py-20 lg:py-28 bg-background">
+    <section className="bg-primary text-primary-foreground">
       <div className="container mx-auto px-4 lg:px-8">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="text-center max-w-3xl mx-auto mb-14"
-        >
-          <span className="inline-block px-4 py-1.5 mb-4 text-xs font-medium tracking-wider uppercase rounded-full bg-primary/10 text-primary">
-            Built for entrepreneurs in the UAE
-          </span>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-medium text-foreground mb-5 tracking-tight">
-            Your path to a UAE business
-          </h2>
-          <p className="text-muted-foreground text-lg leading-relaxed">
-            A simple, structured process from start to finish.
-          </p>
-        </motion.div>
-
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-5xl mx-auto">
-          {steps.map((item, i) => (
+        <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 py-20 lg:py-28">
+          {/* Left column */}
+          <div>
             <motion.div
-              key={item.step}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: i * 0.1 }}
-              className="bg-card border border-border/50 rounded-2xl p-8 text-center hover:shadow-lg transition-all duration-300"
             >
-              <span className="text-6xl lg:text-7xl font-bold text-muted-foreground/15 leading-none block mb-5">
-                {item.step}
+              <span className="inline-flex items-center gap-2 text-sm text-secondary/80 mb-8">
+                <span className="text-secondary">+</span> Our process
               </span>
-              <h3 className="text-lg font-semibold text-foreground mb-2">{item.title}</h3>
-              <p className="text-sm text-muted-foreground leading-relaxed">{item.desc}</p>
+
+              <h2 className="text-3xl sm:text-4xl lg:text-[44px] font-medium text-secondary leading-[1.15] mb-6 tracking-tight">
+                Your path to a<br />UAE business.
+              </h2>
+
+              <p className="text-secondary/60 text-base leading-relaxed max-w-md mb-12">
+                A simple, structured process from start to finish. Our commitment to reliability means our clients can count on us every step of the way.
+              </p>
             </motion.div>
-          ))}
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.2 }}
+              className="overflow-hidden rounded-xl"
+            >
+              <img
+                src={heroCoworking}
+                alt="Team collaboration"
+                className="w-full h-[280px] lg:h-[320px] object-cover"
+              />
+            </motion.div>
+          </div>
+
+          {/* Right column — numbered steps */}
+          <div className="flex flex-col justify-center">
+            {steps.map((item, i) => (
+              <motion.div
+                key={item.step}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.1 }}
+                className={`py-7 ${i < steps.length - 1 ? "border-b border-secondary/15" : ""}`}
+              >
+                <div className="flex items-start gap-6">
+                  <span className="text-secondary font-medium text-base shrink-0 pt-0.5">
+                    {item.step}
+                  </span>
+                  <div>
+                    <h3 className="text-lg font-medium text-secondary mb-2">
+                      {item.title}
+                    </h3>
+                    <p className="text-secondary/50 text-sm leading-relaxed">
+                      {item.desc}
+                    </p>
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </div>
         </div>
       </div>
     </section>
