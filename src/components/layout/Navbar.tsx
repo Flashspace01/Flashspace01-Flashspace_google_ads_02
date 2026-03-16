@@ -57,7 +57,6 @@ interface NavLink {
 const navLinks: NavLink[] = [
   {
     label: "Business Setup",
-    label: "Business Setup",
     href: "#business-setup",
     dropdown: [
       { label: "Free Zones Overview", href: "#", icon: Globe },
