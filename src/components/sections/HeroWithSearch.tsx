@@ -68,13 +68,21 @@ const StepsCarousel = () => {
     return () => clearInterval(interval);
   }, [next]);
 
-  const getVisibleIndices = () => {
-    const prev = (current - 1 + steps.length) % steps.length;
-    const next = (current + 1) % steps.length;
-    return [prev, current, next];
+  // Positions: -1 = left, 0 = center, 1 = right, others hidden
+  const getPosition = (index: number) => {
+    const diff = (index - current + steps.length) % steps.length;
+    if (diff === 0) return 0; // center
+    if (diff === 1) return 1; // right
+    if (diff === steps.length - 1) return -1; // left
+    return 2; // hidden
   };
 
-  const [prev, center, nextIdx] = getVisibleIndices();
+  const positionStyles: Record<number, { x: string; scale: number; opacity: number; zIndex: number }> = {
+    [-1]: { x: "-110%", scale: 0.82, opacity: 0.45, zIndex: 1 },
+    0: { x: "0%", scale: 1, opacity: 1, zIndex: 3 },
+    1: { x: "110%", scale: 0.82, opacity: 0.45, zIndex: 1 },
+    2: { x: "200%", scale: 0.7, opacity: 0, zIndex: 0 },
+  };
 
   return (
     <div className="relative z-10 w-full px-6 lg:px-12 pb-20 lg:pb-28">
@@ -90,27 +98,27 @@ const StepsCarousel = () => {
           From Vision to Reality — Here's How We Make It Happen
         </motion.h2>
 
-        {/* 3-card carousel */}
-        <div className="flex items-center justify-center gap-4 mb-8 max-w-5xl mx-auto">
-          {[prev, center, nextIdx].map((stepIndex, pos) => {
-            const isCenter = pos === 1;
-            const step = steps[stepIndex];
+        {/* Circular carousel */}
+        <div className="relative max-w-md mx-auto mb-8 h-[260px] sm:max-w-lg">
+          {steps.map((step, index) => {
+            const pos = getPosition(index);
+            const style = positionStyles[pos] || positionStyles[2];
             const Icon = step.icon;
+            const isCenter = pos === 0;
+
             return (
               <motion.div
-                key={`${current}-${pos}`}
-                initial={{ opacity: 0, scale: 0.9 }}
+                key={index}
                 animate={{
-                  opacity: isCenter ? 1 : 0.5,
-                  scale: isCenter ? 1 : 0.85,
+                  x: style.x,
+                  scale: style.scale,
+                  opacity: style.opacity,
+                  zIndex: style.zIndex,
                 }}
-                transition={{ duration: 0.5, ease: "easeInOut" }}
-                onClick={() => setCurrent(stepIndex)}
-                className={`rounded-2xl border border-white/15 backdrop-blur-md text-center cursor-pointer transition-all ${
-                  isCenter
-                    ? "bg-white/10 p-8 flex-[1.4] min-h-[240px]"
-                    : "bg-white/5 p-6 flex-[0.8] min-h-[200px] hidden sm:block"
-                }`}
+                transition={{ duration: 0.6, ease: [0.4, 0, 0.2, 1] }}
+                onClick={() => setCurrent(index)}
+                className="absolute inset-0 rounded-2xl border border-white/15 backdrop-blur-md text-center cursor-pointer bg-white/5 p-8"
+                style={{ zIndex: style.zIndex }}
               >
                 <div className={`rounded-xl bg-secondary/20 flex items-center justify-center mx-auto mb-4 ${
                   isCenter ? "w-14 h-14" : "w-10 h-10"
@@ -120,9 +128,11 @@ const StepsCarousel = () => {
                 <h3 className={`text-white font-medium mb-3 ${isCenter ? "text-xl" : "text-base"}`}>
                   {step.title}
                 </h3>
-                <p className={`text-white/60 leading-relaxed ${isCenter ? "text-sm" : "text-xs line-clamp-3"}`}>
-                  {step.description}
-                </p>
+                {isCenter && (
+                  <p className="text-white/60 text-sm leading-relaxed">
+                    {step.description}
+                  </p>
+                )}
               </motion.div>
             );
           })}
