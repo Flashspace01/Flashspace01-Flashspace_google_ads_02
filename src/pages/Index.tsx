@@ -1,16 +1,8 @@
 import { AppLayout } from "@/components/layout/AppLayout";
 import { HeroWithSearch } from "@/components/sections/HeroWithSearch";
-import { DashboardPreview } from "@/components/sections/DashboardPreview";
-import { ScrollNavLayout } from "@/components/sections/ScrollNavLayout";
-import { WorkspaceCategories } from "@/components/sections/WorkspaceCategories";
-import { WorkWhereYouThrive } from "@/components/sections/WorkWhereYouThrive";
-import { ProductShowcase } from "@/components/sections/ProductShowcase";
-
-import { FeatureCTA } from "@/components/sections/FeatureCTA";
-import { Stats } from "@/components/sections/Stats";
-
-import { BlogSection } from "@/components/sections/BlogSection";
-import { FounderTestimonial } from "@/components/sections/FounderTestimonial";
+import { ServicesOverview } from "@/components/sections/ServicesOverview";
+import { BusinessSetupIntro } from "@/components/sections/BusinessSetupIntro";
+import { TrustSection } from "@/components/sections/TrustSection";
 import { CTA } from "@/components/sections/CTA";
 import { Footer } from "@/components/layout/Footer";
 
@@ -19,17 +11,9 @@ const Index = () => {
     <AppLayout>
       <main>
         <HeroWithSearch />
-        <DashboardPreview />
-        <WorkspaceCategories />
-        <WorkWhereYouThrive />
-        <ScrollNavLayout />
-        <ProductShowcase />
-        
-        <FeatureCTA />
-        <Stats />
-        
-        <FounderTestimonial />
-        <BlogSection />
+        <ServicesOverview />
+        <BusinessSetupIntro />
+        <TrustSection />
         <CTA />
       </main>
       <Footer />

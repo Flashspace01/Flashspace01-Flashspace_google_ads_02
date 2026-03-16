@@ -2,31 +2,30 @@ import { Button } from "@/components/ui/button";
 import flashspaceLogo from "@/assets/flashspace-logo.png";
 
 const footerLinks = {
-  portals: [
-    { label: "Customer Portal", href: "/customer-portal" },
-    { label: "Space Partner Portal", href: "/space-partner-portal" },
-    { label: "Admin Portal", href: "/admin-portal" },
-    { label: "Channel Partner Portal", href: "/affiliate-portal" },
-  ],
-  resources: [
-    { label: "Documentation", href: "#" },
-    { label: "Help Center", href: "/help-center" },
-    { label: "Blog", href: "#" },
+  services: [
+    { label: "Coworking Spaces", href: "#" },
+    { label: "Virtual Offices", href: "#" },
+    { label: "Meeting Rooms", href: "#" },
+    { label: "On-Demand Workspaces", href: "#" },
+    { label: "Business Setup", href: "#" },
   ],
   company: [
-    { label: "Pricing", href: "#" },
     { label: "About Us", href: "#" },
-    { label: "Careers", href: "/careers" },
+    { label: "Careers", href: "#" },
     { label: "Contact Us", href: "#" },
-    { label: "Privacy Policy", href: "/privacy-policy" },
+    { label: "Privacy Policy", href: "#" },
     { label: "Terms of Service", href: "#" },
+  ],
+  resources: [
+    { label: "Blog", href: "#" },
+    { label: "Help Center", href: "#" },
+    { label: "Documentation", href: "#" },
   ],
   community: [
     { label: "LinkedIn", href: "#" },
     { label: "Twitter", href: "#" },
     { label: "Instagram", href: "#" },
     { label: "YouTube", href: "#" },
-    { label: "Newsletter", href: "#" },
   ],
 };
 
