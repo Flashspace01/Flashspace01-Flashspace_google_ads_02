@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Globe } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 20 },
