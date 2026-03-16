@@ -5,7 +5,6 @@ import { WhyChooseUs } from "@/components/sections/WhyChooseUs";
 import { SetupProcess } from "@/components/sections/SetupProcess";
 import { StatsByNumbers } from "@/components/sections/StatsByNumbers";
 import { CostCalculator } from "@/components/sections/CostCalculator";
-import { CTA } from "@/components/sections/CTA";
 import { Footer } from "@/components/layout/Footer";
 
 const Index = () => {
@@ -18,7 +17,6 @@ const Index = () => {
         <StatsByNumbers />
         <WhyChooseUs />
         <CostCalculator />
-        <CTA />
       </main>
       <Footer />
     </AppLayout>
