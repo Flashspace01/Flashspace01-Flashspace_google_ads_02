@@ -33,7 +33,7 @@ export const BusinessSetupOverview = () => {
             Choose the right setup for your business
           </h2>
           <p className="text-muted-foreground text-lg leading-relaxed">
-            Whether it's mainland, free zone, or offshore — we guide you through every step of UAE company formation.
+            We guide you through every step of UAE company formation.
           </p>
         </motion.div>
 
