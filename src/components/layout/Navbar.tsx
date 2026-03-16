@@ -55,8 +55,8 @@ interface NavLink {
 }
 
 const navLinks: NavLink[] = [
-  { label: "Home", href: "/" },
   {
+    label: "Business Setup",
     label: "Business Setup",
     href: "#business-setup",
     dropdown: [
