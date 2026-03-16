@@ -1,8 +1,9 @@
 import { AppLayout } from "@/components/layout/AppLayout";
 import { HeroWithSearch } from "@/components/sections/HeroWithSearch";
 import { BusinessSetupOverview } from "@/components/sections/BusinessSetupOverview";
-import { WhyChooseUs } from "@/components/sections/WhyChooseUs";
 import { SetupProcess } from "@/components/sections/SetupProcess";
+import { ClientVoices } from "@/components/sections/ClientVoices";
+import { FAQSection } from "@/components/sections/FAQSection";
 import { StatsByNumbers } from "@/components/sections/StatsByNumbers";
 import { CostCalculator } from "@/components/sections/CostCalculator";
 import { Footer } from "@/components/layout/Footer";
@@ -14,8 +15,9 @@ const Index = () => {
         <HeroWithSearch />
         <BusinessSetupOverview />
         <SetupProcess />
-        <WhyChooseUs />
         <CostCalculator />
+        <ClientVoices />
+        <FAQSection />
         <StatsByNumbers />
       </main>
       <Footer />
