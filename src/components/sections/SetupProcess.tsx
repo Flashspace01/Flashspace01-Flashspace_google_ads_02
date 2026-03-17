@@ -94,7 +94,7 @@ export const SetupProcess = () => {
                     <h3 className="text-lg font-medium text-secondary mb-2">
                       {item.title}
                     </h3>
-                    <p className="text-secondary/50 text-sm leading-relaxed mb-4">
+                    <p className="text-secondary/80 text-sm leading-relaxed mb-4">
                       {item.desc}
                     </p>
                     <ul className="space-y-1.5">
