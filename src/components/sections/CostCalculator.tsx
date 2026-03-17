@@ -260,7 +260,7 @@ const CostSummary = ({
         <button
           onClick={goNext}
           disabled={!canProceed}
-          className="w-full inline-flex items-center justify-center gap-2 bg-primary text-primary-foreground font-semibold h-12 rounded-xl text-sm tracking-wide hover:bg-primary/90 shadow-md hover:shadow-lg transition-all duration-300 hover:scale-[1.01] disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:scale-100"
+          className="w-full inline-flex items-center justify-center gap-2 bg-primary text-primary-foreground font-medium h-12 rounded-xl text-sm tracking-wide hover:bg-primary/90 shadow-md hover:shadow-lg transition-all duration-300 hover:scale-[1.01] disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:scale-100"
         >
           {step >= 5 ? "Get a Detailed Quote" : step === 4 ? "See Estimate" : "Next Step"}
           <ArrowRight className="w-4 h-4" />
@@ -622,7 +622,7 @@ export const CostCalculator = () => {
 
   return (
     <section className="py-20 lg:py-28 relative overflow-hidden bg-secondary">
-      <div className="max-w-[1200px] mx-auto px-6 lg:px-12 relative z-10">
+      <div className="max-w-[1200px] mx-auto px-6 sm:px-10 lg:px-16 relative z-10">
 
         {/* Section Header */}
         <motion.div
@@ -630,7 +630,7 @@ export const CostCalculator = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 0.1 }}
-          className="mb-10"
+          className="mb-12 text-center"
         >
           <h2 className="text-3xl sm:text-4xl lg:text-[42px] font-bold text-foreground tracking-tight leading-[1.15]">
             Calculate Your Business{" "}
@@ -648,52 +648,63 @@ export const CostCalculator = () => {
         >
           {/* LEFT PANEL — Steps + Content */}
           <div className="flex-1 min-w-0 lg:basis-1/2">
-            {/* Progress Steps — Horizontal */}
-            {/* Progress Steps */}
-            <div className="mb-8">
-              {/* Step labels */}
-              <div className="flex items-center justify-between mb-3">
-                {progressSteps.map((s, i) => {
-                  const isActive = i === step;
-                  const isDone = i < step;
-                  return (
-                    <button
-                      key={s.label}
-                      onClick={() => {
-                        if (i < step) { setDirection(-1); setStep(i); }
-                      }}
-                      className={`text-xs font-semibold tracking-wide transition-colors duration-300 ${
-                        i <= step ? "cursor-pointer" : "cursor-default"
-                      } ${
-                        isActive ? "text-primary" : isDone ? "text-foreground/70" : "text-muted-foreground/50"
-                      }`}
-                    >
-                      {s.label}
-                    </button>
-                  );
-                })}
-              </div>
-              {/* Progress track */}
-              <div className="relative h-2 rounded-full bg-foreground/10 overflow-hidden">
-                <motion.div
-                  className="absolute inset-y-0 left-0 rounded-full bg-primary"
-                  initial={false}
-                  animate={{ width: `${(step / (progressSteps.length - 1)) * 100}%` }}
-                  transition={{ duration: 0.4, ease: [0.4, 0, 0.2, 1] }}
-                />
-                {/* Step markers */}
-                <div className="absolute inset-0 flex items-center justify-between px-0">
-                  {progressSteps.map((_, i) => (
-                    <div
-                      key={i}
-                      className={`w-2 h-2 rounded-full transition-colors duration-300 ${
-                        i <= step ? "bg-primary" : "bg-foreground/20"
-                      }`}
-                    />
-                  ))}
+              {/* Progress Steps — Proper stepper */}
+              <div className="mb-8">
+                <div className="flex items-center">
+                  {progressSteps.map((s, i) => {
+                    const isActive = i === step;
+                    const isDone = i < step;
+                    const Icon = s.icon;
+                    return (
+                      <div key={s.label} className="flex items-center flex-1 last:flex-initial">
+                        {/* Step node */}
+                        <button
+                          onClick={() => {
+                            if (i < step) { setDirection(-1); setStep(i); }
+                          }}
+                          className={`flex flex-col items-center gap-1.5 group ${
+                            i <= step ? "cursor-pointer" : "cursor-default"
+                          }`}
+                        >
+                          <div
+                            className={`w-9 h-9 rounded-full flex items-center justify-center transition-all duration-300 ${
+                              isDone
+                                ? "bg-primary text-primary-foreground"
+                                : isActive
+                                ? "bg-primary text-primary-foreground ring-4 ring-primary/20"
+                                : "bg-foreground/10 text-muted-foreground"
+                            }`}
+                          >
+                            {isDone ? (
+                              <Check className="w-4 h-4" />
+                            ) : (
+                              <Icon className="w-4 h-4" strokeWidth={1.5} />
+                            )}
+                          </div>
+                          <span
+                            className={`text-[11px] font-medium tracking-wide transition-colors duration-300 whitespace-nowrap ${
+                              isActive ? "text-primary" : isDone ? "text-foreground/70" : "text-muted-foreground/50"
+                            }`}
+                          >
+                            {s.label}
+                          </span>
+                        </button>
+                        {/* Connector line */}
+                        {i < progressSteps.length - 1 && (
+                          <div className="flex-1 h-0.5 mx-2 mt-[-18px] rounded-full overflow-hidden bg-foreground/10">
+                            <motion.div
+                              className="h-full bg-primary rounded-full"
+                              initial={false}
+                              animate={{ width: i < step ? "100%" : "0%" }}
+                              transition={{ duration: 0.4, ease: [0.4, 0, 0.2, 1] }}
+                            />
+                          </div>
+                        )}
+                      </div>
+                    );
+                  })}
                 </div>
               </div>
-            </div>
 
             {/* Step Content Card */}
             <div className="rounded-2xl p-5 sm:p-6 min-h-[340px] relative overflow-hidden">
@@ -727,7 +738,7 @@ export const CostCalculator = () => {
                 <button
                   onClick={goNext}
                   disabled={!canProceed()}
-                  className="inline-flex items-center gap-2 bg-primary text-primary-foreground font-semibold px-6 h-11 rounded-xl text-sm tracking-wide hover:bg-primary/90 shadow-md transition-all duration-300 disabled:opacity-40 disabled:cursor-not-allowed"
+                  className="inline-flex items-center gap-2 bg-primary text-primary-foreground font-medium px-6 h-11 rounded-xl text-sm tracking-wide hover:bg-primary/90 shadow-md transition-all duration-300 disabled:opacity-40 disabled:cursor-not-allowed"
                 >
                   {step === 4 ? "See Estimate" : "Next Step"}
                   <ArrowRight className="w-4 h-4" />
