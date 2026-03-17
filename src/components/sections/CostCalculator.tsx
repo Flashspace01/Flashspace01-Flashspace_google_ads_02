@@ -38,9 +38,6 @@ const activities = [
   { icon: Briefcase, label: "Consulting", desc: "Professional Services" },
   { icon: Utensils, label: "F&B", desc: "Food & Beverage" },
   { icon: ShoppingCart, label: "E-Commerce", desc: "Online Retail" },
-  { icon: Stethoscope, label: "Healthcare", desc: "Medical & Wellness" },
-  { icon: GraduationCap, label: "Education", desc: "Training & EdTech" },
-  { icon: Plane, label: "Tourism", desc: "Travel & Hospitality" },
   { icon: PenLine, label: "Other", desc: "Custom activity" },
 ];
 
