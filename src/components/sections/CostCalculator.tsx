@@ -621,17 +621,6 @@ export const CostCalculator = () => {
                   Back
                 </button>
 
-                <div className="hidden sm:flex items-center gap-3 bg-foreground rounded-full px-5 py-2">
-                  <span className="text-xs text-background/60 font-medium">Estimated Total</span>
-                  <div className="w-px h-4 bg-background/20" />
-                  <span
-                    className={`text-base font-bold text-secondary tabular-nums transition-all duration-500 ${
-                      step < 2 ? "blur-sm select-none" : ""
-                    }`}
-                  >
-                    AED <AnimatedTotal value={estimateTotal()} />
-                  </span>
-                </div>
 
                 <button
                   onClick={goNext}
