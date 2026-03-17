@@ -439,10 +439,9 @@ export const CostCalculator = () => {
         >
           <h2
             className="text-3xl sm:text-4xl lg:text-[56px] font-bold text-foreground mb-5 tracking-tight leading-[1.1]"
-            style={{ fontFamily: "'Playfair Display', Georgia, serif" }}
           >
             Calculate Your Business{" "}
-            <span className="text-gold">Setup Cost</span>
+            <span className="text-secondary">Setup Cost</span>
           </h2>
           <p className="text-muted-foreground text-lg max-w-xl mx-auto">
             Answer a few questions and get an instant estimate for your UAE business setup.
