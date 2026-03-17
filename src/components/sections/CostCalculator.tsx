@@ -109,7 +109,7 @@ const cardBase =
 const cardDefault =
   "bg-transparent hover:bg-primary/[0.04]";
 const cardSelected =
-  "bg-primary/10 shadow-[0_4px_24px_-4px_hsl(var(--primary)/0.18)]";
+  "bg-primary text-primary-foreground shadow-[0_4px_24px_-4px_hsl(var(--primary)/0.18)]";
 
 /* ── Prices ── */
 const basePrices = [8500, 12000, 9500, 15000, 7500, 18000];
@@ -149,7 +149,7 @@ const CostSummary = ({
   const addonsCost = selectedAddons.reduce((sum, i) => sum + (addonPrices[i] || 0), 0);
 
   return (
-    <div className="rounded-2xl bg-card border border-border shadow-lg p-6 flex flex-col">
+    <div className="rounded-2xl bg-secondary/50 p-6 flex flex-col">
       {/* Header */}
       <div className="mb-5">
         <p className="text-xs font-bold uppercase tracking-wider text-muted-foreground mb-1">
@@ -331,12 +331,9 @@ export const CostCalculator = () => {
       case 0:
         return (
           <div>
-            <h3 className="text-lg sm:text-xl font-bold text-foreground mb-1">
+            <h3 className="text-lg sm:text-xl font-bold text-foreground mb-5">
               What's your business activity?
             </h3>
-            <p className="text-muted-foreground text-sm mb-5">
-              Select the category that best describes your business.
-            </p>
             <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
               {activities.map((a, i) => {
                 const Icon = a.icon;
@@ -357,22 +354,14 @@ export const CostCalculator = () => {
                     <div
                       className={`w-10 h-10 rounded-xl mx-auto mb-2 flex items-center justify-center transition-colors duration-300 ${
                         selected
-                          ? "bg-primary/15 text-primary"
+                          ? "bg-primary-foreground/20 text-primary-foreground"
                           : "bg-foreground/[0.06] text-foreground"
                       }`}
                     >
                       <Icon className="w-5 h-5" strokeWidth={1.5} />
                     </div>
-                    <p className="font-semibold text-sm text-foreground">{a.label}</p>
-                    <p className="text-[11px] mt-0.5 text-muted-foreground">{a.desc}</p>
-                    {selected && !isOther && (
-                      <motion.div
-                        layoutId="tile-check"
-                        className="absolute top-2 right-2 w-5 h-5 rounded-full bg-primary flex items-center justify-center"
-                      >
-                        <Check className="w-3 h-3 text-primary-foreground" />
-                      </motion.div>
-                    )}
+                    <p className={`font-semibold text-sm ${selected ? "text-primary-foreground" : "text-foreground"}`}>{a.label}</p>
+                    <p className={`text-[11px] mt-0.5 ${selected ? "text-primary-foreground/70" : "text-muted-foreground"}`}>{a.desc}</p>
                     {isOther && selected && (
                       <motion.div
                         initial={{ opacity: 0, height: 0 }}
@@ -385,7 +374,7 @@ export const CostCalculator = () => {
                           onChange={(e) => setCustomActivity(e.target.value)}
                           onClick={(e) => e.stopPropagation()}
                           placeholder="Describe your activity…"
-                          className="w-full text-xs px-3 py-1.5 rounded-lg border border-border bg-background text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-primary"
+                          className="w-full text-xs px-3 py-1.5 rounded-lg border border-primary-foreground/30 bg-primary-foreground/10 text-primary-foreground placeholder:text-primary-foreground/50 focus:outline-none focus:ring-1 focus:ring-primary-foreground/40"
                         />
                       </motion.div>
                     )}
@@ -422,21 +411,13 @@ export const CostCalculator = () => {
                   >
                     {j.tag && (
                       <span className={`absolute top-2.5 right-2.5 text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full ${
-                        selected ? "bg-primary/15 text-primary" : "bg-foreground/[0.05] text-muted-foreground"
+                        selected ? "bg-primary-foreground/20 text-primary-foreground" : "bg-foreground/[0.05] text-muted-foreground"
                       }`}>
                         {j.tag}
                       </span>
                     )}
-                    <p className="font-bold text-sm text-foreground mb-0.5 pr-14">{j.label}</p>
-                    <p className="text-xs text-muted-foreground leading-relaxed">{j.desc}</p>
-                    {selected && (
-                      <motion.div
-                        layoutId="tile-check-j"
-                        className="absolute bottom-2.5 right-2.5 w-5 h-5 rounded-full bg-primary flex items-center justify-center"
-                      >
-                        <Check className="w-3 h-3 text-primary-foreground" />
-                      </motion.div>
-                    )}
+                    <p className={`font-bold text-sm mb-0.5 pr-14 ${selected ? "text-primary-foreground" : "text-foreground"}`}>{j.label}</p>
+                    <p className={`text-xs leading-relaxed ${selected ? "text-primary-foreground/70" : "text-muted-foreground"}`}>{j.desc}</p>
                   </motion.button>
                 );
               })}
@@ -468,10 +449,10 @@ export const CostCalculator = () => {
                     onClick={() => setSelectedVisas(i)}
                     className={`${cardBase} p-5 text-center ${selected ? cardSelected : cardDefault}`}
                   >
-                    <p className={`text-2xl font-bold mb-1 ${selected ? "text-primary" : "text-foreground"}`}>
+                    <p className={`text-2xl font-bold mb-1 ${selected ? "text-primary-foreground" : "text-foreground"}`}>
                       {v.label.split(" ")[0]}
                     </p>
-                    <p className="text-xs text-muted-foreground">{v.desc}</p>
+                    <p className={`text-xs ${selected ? "text-primary-foreground/70" : "text-muted-foreground"}`}>{v.desc}</p>
                   </motion.button>
                 );
               })}
@@ -504,22 +485,12 @@ export const CostCalculator = () => {
                     className={`${cardBase} p-4 text-left flex items-center justify-between ${selected ? cardSelected : cardDefault}`}
                   >
                     <div>
-                      <p className="font-bold text-sm text-foreground">{o.label}</p>
-                      <p className="text-xs text-muted-foreground mt-0.5">{o.desc}</p>
+                      <p className={`font-bold text-sm ${selected ? "text-primary-foreground" : "text-foreground"}`}>{o.label}</p>
+                      <p className={`text-xs mt-0.5 ${selected ? "text-primary-foreground/70" : "text-muted-foreground"}`}>{o.desc}</p>
                     </div>
-                    <div className="flex items-center gap-3">
-                      <span className={`text-xs font-bold ${selected ? "text-primary" : "text-muted-foreground"}`}>
-                        {o.price}
-                      </span>
-                      {selected && (
-                        <motion.div
-                          layoutId="tile-check-o"
-                          className="w-5 h-5 rounded-full bg-primary flex items-center justify-center"
-                        >
-                          <Check className="w-3 h-3 text-primary-foreground" />
-                        </motion.div>
-                      )}
-                    </div>
+                    <span className={`text-xs font-bold ${selected ? "text-primary-foreground" : "text-muted-foreground"}`}>
+                      {o.price}
+                    </span>
                   </motion.button>
                 );
               })}
@@ -673,44 +644,50 @@ export const CostCalculator = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 0.2 }}
-          className="flex flex-col lg:flex-row gap-8 lg:gap-12"
+          className="flex flex-col lg:flex-row gap-8 lg:gap-10"
         >
           {/* LEFT PANEL — Steps + Content */}
-          <div className="flex-1 min-w-0">
+          <div className="flex-1 min-w-0 lg:basis-1/2">
             {/* Progress Steps — Horizontal */}
-            {/* Progress Bar */}
+            {/* Progress Steps */}
             <div className="mb-8">
-              <div className="flex items-center justify-between mb-3">
+              <div className="flex items-center gap-0 mb-0">
                 {progressSteps.map((s, i) => {
                   const isActive = i === step;
                   const isDone = i < step;
                   return (
-                    <button
-                      key={s.label}
-                      onClick={() => {
-                        if (i < step) { setDirection(-1); setStep(i); }
-                      }}
-                      className={`flex flex-col items-center gap-1.5 transition-all duration-300 ${
-                        i <= step ? "cursor-pointer" : "cursor-default"
-                      }`}
-                    >
-                      <span className={`text-[11px] font-semibold tracking-wide transition-colors duration-300 ${
-                        isActive ? "text-primary" : isDone ? "text-foreground/70" : "text-muted-foreground/60"
-                      }`}>
-                        {s.label}
-                      </span>
-                    </button>
+                    <div key={s.label} className="flex items-center flex-1 last:flex-none">
+                      <button
+                        onClick={() => {
+                          if (i < step) { setDirection(-1); setStep(i); }
+                        }}
+                        className={`flex items-center gap-2 transition-all duration-300 ${
+                          i <= step ? "cursor-pointer" : "cursor-default"
+                        }`}
+                      >
+                        <div className={`w-7 h-7 rounded-full flex items-center justify-center text-xs font-bold transition-all duration-300 ${
+                          isActive
+                            ? "bg-primary text-primary-foreground"
+                            : isDone
+                              ? "bg-primary/20 text-primary"
+                              : "bg-foreground/10 text-muted-foreground/60"
+                        }`}>
+                          {isDone ? <Check className="w-3.5 h-3.5" /> : i + 1}
+                        </div>
+                        <span className={`text-[11px] font-semibold tracking-wide transition-colors duration-300 hidden sm:inline ${
+                          isActive ? "text-primary" : isDone ? "text-foreground/70" : "text-muted-foreground/60"
+                        }`}>
+                          {s.label}
+                        </span>
+                      </button>
+                      {i < progressSteps.length - 1 && (
+                        <div className={`flex-1 h-px mx-2 transition-colors duration-300 ${
+                          i < step ? "bg-primary/30" : "bg-foreground/10"
+                        }`} />
+                      )}
+                    </div>
                   );
                 })}
-              </div>
-              {/* Continuous progress track */}
-              <div className="relative h-1.5 rounded-full bg-foreground/10 overflow-hidden">
-                <motion.div
-                  className="absolute inset-y-0 left-0 rounded-full bg-primary"
-                  initial={false}
-                  animate={{ width: `${((step) / (progressSteps.length - 1)) * 100}%` }}
-                  transition={{ duration: 0.4, ease: [0.4, 0, 0.2, 1] }}
-                />
               </div>
             </div>
 
@@ -764,7 +741,7 @@ export const CostCalculator = () => {
           </div>
 
           {/* RIGHT PANEL — Sticky Cost Summary (desktop only) */}
-          <div className="hidden lg:block w-[320px] shrink-0">
+          <div className="hidden lg:block flex-1 lg:basis-1/2">
             <div className="sticky top-28">
               <CostSummary
                 step={step}
