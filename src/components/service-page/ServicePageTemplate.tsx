@@ -49,6 +49,8 @@ interface ServicePageTemplateProps {
 
 export const ServicePageTemplate = ({ page }: ServicePageTemplateProps) => {
   const bgImage = page.heroImage || heroImages[page.slug] || heroDubai;
+
+  useEffect(() => {
     window.scrollTo(0, 0);
     document.title = page.metaTitle;
     const desc = document.querySelector('meta[name="description"]');
@@ -61,14 +63,12 @@ export const ServicePageTemplate = ({ page }: ServicePageTemplateProps) => {
         {/* Hero — Center-aligned, premium open layout */}
         <section className="relative min-h-[70vh] flex items-center justify-center overflow-hidden">
           {/* Background image */}
-          {page.heroImage && (
-            <img
-              src={page.heroImage}
-              alt=""
-              className="absolute inset-0 w-full h-full object-cover"
-              loading="eager"
-            />
-          )}
+          <img
+            src={bgImage}
+            alt=""
+            className="absolute inset-0 w-full h-full object-cover"
+            loading="eager"
+          />
           {/* Dark overlay for contrast */}
           <div className="absolute inset-0 bg-foreground/50" />
 
