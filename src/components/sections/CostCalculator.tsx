@@ -13,7 +13,6 @@ import {
   CreditCard,
   FileCheck,
   Sparkles,
-  ChevronRight,
   ChevronLeft,
   Check,
   ArrowRight,
@@ -148,21 +147,16 @@ export const CostCalculator = () => {
     return total;
   };
 
-  /* ── Tile styles — borderless with gold-tinted bg ── */
-  const tileBase = "rounded-2xl transition-all duration-300 cursor-pointer border-2";
-  const tileDefault = "bg-secondary/[0.04] border-transparent hover:border-secondary/40 hover:scale-[1.03] hover:shadow-[0_8px_30px_-8px_hsl(var(--secondary),0.15)]";
-  const tileSelected = "border-secondary bg-secondary/[0.08] shadow-[0_8px_30px_-8px_hsl(var(--secondary),0.2)] scale-[1.02]";
-
   /* ── Render steps ── */
   const renderStep = () => {
     switch (step) {
       case 0:
         return (
           <div>
-            <h3 className="text-xl sm:text-2xl font-semibold text-foreground mb-2">
+            <h3 className="text-2xl sm:text-3xl font-bold text-foreground mb-2">
               What's your business activity?
             </h3>
-            <p className="text-muted-foreground text-sm mb-10">
+            <p className="text-muted-foreground mb-10">
               Select the category that best describes your business.
             </p>
             <div className="grid grid-cols-2 sm:grid-cols-3 gap-5">
@@ -175,12 +169,16 @@ export const CostCalculator = () => {
                     whileHover={{ y: -4 }}
                     whileTap={{ scale: 0.97 }}
                     onClick={() => setSelectedActivity(i)}
-                    className={`${tileBase} ${selected ? tileSelected : tileDefault} relative group p-6 sm:p-8 text-center`}
+                    className={`relative group rounded-2xl border-2 p-6 sm:p-8 text-center transition-all duration-300 cursor-pointer ${
+                      selected
+                        ? "border-primary bg-primary/[0.06] shadow-[0_8px_30px_-8px_hsl(var(--primary)/0.15)]"
+                        : "border-transparent bg-secondary/[0.25] hover:border-primary/30 hover:shadow-soft"
+                    }`}
                   >
                     <div
                       className={`w-14 h-14 rounded-xl mx-auto mb-4 flex items-center justify-center transition-colors duration-300 ${
                         selected
-                          ? "bg-secondary/20 text-secondary"
+                          ? "bg-primary/15 text-primary"
                           : "bg-foreground/[0.06] text-muted-foreground group-hover:text-foreground"
                       }`}
                     >
@@ -191,9 +189,9 @@ export const CostCalculator = () => {
                     {selected && (
                       <motion.div
                         layoutId="tile-check"
-                        className="absolute top-3 right-3 w-6 h-6 rounded-full bg-secondary flex items-center justify-center"
+                        className="absolute top-3 right-3 w-6 h-6 rounded-full bg-primary flex items-center justify-center"
                       >
-                        <Check className="w-3.5 h-3.5 text-foreground" />
+                        <Check className="w-3.5 h-3.5 text-primary-foreground" />
                       </motion.div>
                     )}
                   </motion.button>
@@ -206,42 +204,45 @@ export const CostCalculator = () => {
       case 1:
         return (
           <div>
-            <h3 className="text-xl sm:text-2xl font-semibold text-foreground mb-2">
+            <h3 className="text-2xl sm:text-3xl font-bold text-foreground mb-2">
               Choose your jurisdiction
             </h3>
-            <p className="text-muted-foreground text-sm mb-10">
+            <p className="text-muted-foreground mb-10">
               Each jurisdiction offers unique benefits for your business type.
             </p>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
               {jurisdictions.map((j, i) => {
                 const selected = selectedJurisdiction === i;
                 return (
                   <motion.button
                     key={j.label}
-                    whileHover={{ scale: 1.02 }}
-                    whileTap={{ scale: 0.98 }}
+                    whileHover={{ y: -4 }}
+                    whileTap={{ scale: 0.97 }}
                     onClick={() => setSelectedJurisdiction(i)}
-                    className={`${tileBase} ${selected ? tileSelected : tileDefault} relative p-5 text-left`}
+                    className={`relative rounded-2xl border-2 p-6 text-left transition-all duration-300 cursor-pointer ${
+                      selected
+                        ? "border-primary bg-primary/[0.06] shadow-[0_8px_30px_-8px_hsl(var(--primary)/0.15)]"
+                        : "border-transparent bg-secondary/[0.25] hover:border-primary/30 hover:shadow-soft"
+                    }`}
                   >
-                    <div className="flex items-start justify-between">
-                      <div>
-                        <p className="font-semibold text-foreground">{j.label}</p>
-                        <p className="text-xs mt-1 text-muted-foreground">{j.desc}</p>
-                      </div>
-                      {j.tag && (
-                        <span className={`text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full whitespace-nowrap ${
-                          selected ? "bg-secondary/20 text-secondary" : "bg-foreground/[0.06] text-muted-foreground"
-                        }`}>
-                          {j.tag}
-                        </span>
-                      )}
-                    </div>
+                    {/* Tag badge — top right corner */}
+                    {j.tag && (
+                      <span className={`absolute top-3 right-3 text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full ${
+                        selected
+                          ? "bg-primary/15 text-primary"
+                          : "bg-foreground/[0.06] text-muted-foreground"
+                      }`}>
+                        {j.tag}
+                      </span>
+                    )}
+                    <p className="font-bold text-lg text-foreground mb-1 pr-16">{j.label}</p>
+                    <p className="text-sm text-muted-foreground leading-relaxed">{j.desc}</p>
                     {selected && (
                       <motion.div
-                        layoutId="tile-check"
-                        className="absolute top-3 right-3 w-6 h-6 rounded-full bg-secondary flex items-center justify-center"
+                        layoutId="tile-check-j"
+                        className="absolute bottom-4 right-4 w-6 h-6 rounded-full bg-primary flex items-center justify-center"
                       >
-                        <Check className="w-3.5 h-3.5 text-foreground" />
+                        <Check className="w-3.5 h-3.5 text-primary-foreground" />
                       </motion.div>
                     )}
                   </motion.button>
@@ -254,27 +255,31 @@ export const CostCalculator = () => {
       case 2:
         return (
           <div>
-            <h3 className="text-xl sm:text-2xl font-semibold text-foreground mb-2">
+            <h3 className="text-2xl sm:text-3xl font-bold text-foreground mb-2">
               How many visas do you need?
             </h3>
-            <p className="text-muted-foreground text-sm mb-10">
+            <p className="text-muted-foreground mb-10">
               Select your visa requirements for your team.
             </p>
-            <div className="grid grid-cols-2 gap-6">
+            <div className="grid grid-cols-2 gap-5">
               {visaOptions.map((v, i) => {
                 const selected = selectedVisas === i;
                 return (
                   <motion.button
                     key={v.label}
-                    whileHover={{ scale: 1.04 }}
+                    whileHover={{ y: -4 }}
                     whileTap={{ scale: 0.97 }}
                     onClick={() => setSelectedVisas(i)}
-                    className={`${tileBase} ${selected ? tileSelected : tileDefault} p-6 text-center`}
+                    className={`relative rounded-2xl border-2 p-6 text-center transition-all duration-300 cursor-pointer ${
+                      selected
+                        ? "border-primary bg-primary/[0.06] shadow-[0_8px_30px_-8px_hsl(var(--primary)/0.15)]"
+                        : "border-transparent bg-secondary/[0.25] hover:border-primary/30 hover:shadow-soft"
+                    }`}
                   >
-                    <p className={`text-3xl font-bold mb-1 ${selected ? "text-secondary" : "text-foreground"}`}>
+                    <p className={`text-3xl font-bold mb-1 ${selected ? "text-primary" : "text-foreground"}`}>
                       {v.label.split(" ")[0]}
                     </p>
-                    <p className="text-xs text-muted-foreground">{v.desc}</p>
+                    <p className="text-sm text-muted-foreground">{v.desc}</p>
                   </motion.button>
                 );
               })}
@@ -285,10 +290,10 @@ export const CostCalculator = () => {
       case 3:
         return (
           <div>
-            <h3 className="text-xl sm:text-2xl font-semibold text-foreground mb-2">
+            <h3 className="text-2xl sm:text-3xl font-bold text-foreground mb-2">
               Select your office type
             </h3>
-            <p className="text-muted-foreground text-sm mb-10">
+            <p className="text-muted-foreground mb-10">
               Choose the workspace that fits your needs.
             </p>
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-5">
@@ -297,14 +302,18 @@ export const CostCalculator = () => {
                 return (
                   <motion.button
                     key={o.label}
-                    whileHover={{ scale: 1.04, y: -3 }}
+                    whileHover={{ y: -4 }}
                     whileTap={{ scale: 0.97 }}
                     onClick={() => setSelectedOffice(i)}
-                    className={`${tileBase} ${selected ? tileSelected : tileDefault} p-6 text-center`}
+                    className={`relative rounded-2xl border-2 p-6 text-center transition-all duration-300 cursor-pointer ${
+                      selected
+                        ? "border-primary bg-primary/[0.06] shadow-[0_8px_30px_-8px_hsl(var(--primary)/0.15)]"
+                        : "border-transparent bg-secondary/[0.25] hover:border-primary/30 hover:shadow-soft"
+                    }`}
                   >
-                    <p className="font-semibold mb-1 text-foreground">{o.label}</p>
-                    <p className="text-xs mb-3 text-muted-foreground">{o.desc}</p>
-                    <span className={`text-xs font-bold ${selected ? "text-secondary" : "text-muted-foreground"}`}>
+                    <p className="font-bold text-foreground mb-1">{o.label}</p>
+                    <p className="text-sm mb-3 text-muted-foreground">{o.desc}</p>
+                    <span className={`text-xs font-bold ${selected ? "text-primary" : "text-muted-foreground"}`}>
                       {o.price}
                     </span>
                   </motion.button>
@@ -317,30 +326,34 @@ export const CostCalculator = () => {
       case 4:
         return (
           <div>
-            <h3 className="text-xl sm:text-2xl font-semibold text-foreground mb-2">
+            <h3 className="text-2xl sm:text-3xl font-bold text-foreground mb-2">
               Optional add-ons
             </h3>
-            <p className="text-muted-foreground text-sm mb-10">
+            <p className="text-muted-foreground mb-10">
               Enhance your setup with additional services.
             </p>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
               {addons.map((a, i) => {
                 const selected = selectedAddons.includes(i);
                 return (
                   <motion.button
                     key={a.label}
-                    whileHover={{ scale: 1.02 }}
+                    whileHover={{ y: -2 }}
                     whileTap={{ scale: 0.98 }}
                     onClick={() => toggleAddon(i)}
-                    className={`${tileBase} ${selected ? tileSelected : tileDefault} p-5 text-left`}
+                    className={`relative rounded-2xl border-2 p-5 text-left transition-all duration-300 cursor-pointer ${
+                      selected
+                        ? "border-primary bg-primary/[0.06] shadow-[0_8px_30px_-8px_hsl(var(--primary)/0.15)]"
+                        : "border-transparent bg-secondary/[0.25] hover:border-primary/30 hover:shadow-soft"
+                    }`}
                   >
                     <div className="flex items-center gap-3">
                       <div
                         className={`w-5 h-5 rounded-md border-2 flex items-center justify-center shrink-0 transition-colors ${
-                          selected ? "bg-secondary border-secondary" : "border-foreground/20"
+                          selected ? "bg-primary border-primary" : "border-foreground/20"
                         }`}
                       >
-                        {selected && <Check className="w-3 h-3 text-foreground" />}
+                        {selected && <Check className="w-3 h-3 text-primary-foreground" />}
                       </div>
                       <div>
                         <p className="font-semibold text-sm text-foreground">{a.label}</p>
@@ -362,13 +375,13 @@ export const CostCalculator = () => {
               animate={{ scale: 1, opacity: 1 }}
               transition={{ duration: 0.5, ease: "easeOut" }}
             >
-              <div className="w-20 h-20 rounded-full bg-secondary/10 flex items-center justify-center mx-auto mb-6">
-                <Sparkles className="w-10 h-10 text-secondary" />
+              <div className="w-20 h-20 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-6">
+                <Sparkles className="w-10 h-10 text-primary" />
               </div>
-              <h3 className="text-xl sm:text-2xl font-semibold text-foreground mb-2">
+              <h3 className="text-2xl sm:text-3xl font-bold text-foreground mb-2">
                 Your Estimated Setup Cost
               </h3>
-              <p className="text-muted-foreground text-sm mb-8">
+              <p className="text-muted-foreground mb-8">
                 Based on your selections, here's an indicative range.
               </p>
               <motion.div
@@ -411,7 +424,7 @@ export const CostCalculator = () => {
                 )}
               </div>
 
-              <button className="inline-flex items-center gap-2 bg-secondary text-foreground font-semibold px-10 h-12 rounded-full text-sm uppercase tracking-wider hover:shadow-[0_0_30px_-4px_hsl(var(--secondary),0.4)] transition-all duration-300 hover:scale-[1.02]">
+              <button className="inline-flex items-center gap-2 bg-primary text-primary-foreground font-semibold px-10 h-12 rounded-full text-sm uppercase tracking-wider hover:bg-primary/90 transition-all duration-300 hover:scale-[1.02] hover:shadow-glow">
                 Get a Detailed Quote
                 <ArrowRight className="w-4 h-4" />
               </button>
@@ -425,46 +438,41 @@ export const CostCalculator = () => {
   };
 
   return (
-    <section className="py-24 lg:py-32 relative overflow-hidden" style={{ background: "#FAFAFA" }}>
-      {/* Decorative top band — thin gold gradient line */}
-      <div className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-transparent via-secondary to-transparent opacity-40" />
-
+    <section className="py-24 lg:py-32 bg-background relative overflow-hidden">
       <div className="max-w-[1200px] mx-auto px-4 lg:px-8 relative z-10">
-        {/* Header */}
+        {/* Header — clean stacked with generous spacing */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center max-w-3xl mx-auto mb-16"
+          className="text-center max-w-3xl mx-auto mb-20"
         >
-          <h2
-            className="text-3xl sm:text-4xl lg:text-[56px] font-bold text-foreground mb-5 tracking-tight leading-[1.1]"
-          >
-            Calculate Your Business{" "}
-            <span className="text-secondary">Setup Cost</span>
+          <h2 className="text-3xl sm:text-4xl lg:text-[52px] font-bold text-foreground tracking-tight leading-[1.15]">
+            Calculate Your Business
           </h2>
-          <p className="text-muted-foreground text-lg max-w-xl mx-auto">
+          <h2 className="text-3xl sm:text-4xl lg:text-[52px] font-bold text-primary tracking-tight leading-[1.15] mt-1">
+            Setup Cost
+          </h2>
+          <p className="text-muted-foreground text-lg max-w-xl mx-auto mt-6">
             Answer a few questions and get an instant estimate for your UAE business setup.
           </p>
-          {/* Subtle gold line under header */}
-          <div className="w-16 h-[2px] bg-secondary mx-auto mt-6 rounded-full" />
         </motion.div>
 
-        {/* Stepper — full width, no card border */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 0.1 }}
         >
-          {/* Progress Stepper */}
-          <div className="mb-14">
-            <div className="flex items-center justify-between max-w-3xl mx-auto relative">
-              {/* Connecting line */}
-              <div className="absolute top-6 left-[8%] right-[8%] h-[2px] bg-foreground/[0.08]" />
+          {/* Progress Stepper — wider, thicker line, centered */}
+          <div className="mb-16">
+            <div className="flex items-center justify-between max-w-[700px] mx-auto relative">
+              {/* Background line — thicker */}
+              <div className="absolute top-6 left-[6%] right-[6%] h-[3px] bg-border rounded-full" />
+              {/* Active progress line */}
               <motion.div
-                className="absolute top-6 left-[8%] h-[2px] bg-secondary origin-left"
-                animate={{ width: `${Math.max(0, ((step) / (progressSteps.length - 1)) * 84)}%` }}
+                className="absolute top-6 left-[6%] h-[3px] bg-primary rounded-full origin-left"
+                animate={{ width: `${Math.max(0, ((step) / (progressSteps.length - 1)) * 88)}%` }}
                 transition={{ duration: 0.5, ease: "easeOut" }}
               />
 
@@ -485,19 +493,19 @@ export const CostCalculator = () => {
                     <div className="relative">
                       {isActive && (
                         <motion.div
-                          className="absolute inset-0 rounded-full border-2 border-secondary/40"
+                          className="absolute inset-0 rounded-full border-2 border-primary/30"
                           animate={{ scale: [1, 1.5, 1], opacity: [0.5, 0, 0.5] }}
                           transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
                           style={{ margin: "-6px" }}
                         />
                       )}
                       <div
-                        className={`w-12 h-12 rounded-full flex items-center justify-center transition-all duration-400 ${
+                        className={`w-12 h-12 rounded-full flex items-center justify-center transition-all duration-300 ${
                           isActive
-                            ? "bg-secondary text-foreground shadow-[0_0_24px_-4px_hsl(var(--secondary),0.5)]"
+                            ? "bg-primary text-primary-foreground shadow-glow"
                             : isDone
-                            ? "bg-secondary text-foreground"
-                            : "bg-foreground/[0.06] text-muted-foreground group-hover:bg-foreground/[0.1]"
+                            ? "bg-primary text-primary-foreground"
+                            : "bg-card border border-border text-muted-foreground group-hover:border-primary/30"
                         }`}
                       >
                         {isDone ? (
@@ -524,7 +532,7 @@ export const CostCalculator = () => {
             </div>
           </div>
 
-          {/* Step Content — open, no card wrapper */}
+          {/* Step Content */}
           <div className="max-w-[1000px] mx-auto min-h-[420px] relative overflow-hidden">
             <AnimatePresence mode="wait" custom={direction}>
               <motion.div
@@ -541,24 +549,24 @@ export const CostCalculator = () => {
             </AnimatePresence>
           </div>
 
-          {/* Footer Navigation — floating charcoal bar for estimate */}
+          {/* Footer — defined bar with centered estimate */}
           {step < 5 && (
-            <div className="max-w-[1000px] mx-auto mt-12 flex items-center justify-between">
+            <div className="max-w-[1000px] mx-auto mt-14 rounded-2xl bg-card border border-border px-6 sm:px-8 py-5 flex items-center justify-between">
               <button
                 onClick={goBack}
                 disabled={step === 0}
-                className="inline-flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
+                className="inline-flex items-center gap-1.5 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
               >
                 <ChevronLeft className="w-4 h-4" />
                 Back
               </button>
 
-              {/* Floating estimate — charcoal bar with gold text */}
-              <div className="hidden sm:flex items-center gap-4 bg-foreground rounded-full px-6 py-3 shadow-soft">
+              {/* Centered estimate capsule */}
+              <div className="hidden sm:flex items-center gap-4 bg-foreground rounded-full px-6 py-2.5">
                 <span className="text-xs text-background/60 font-medium">Estimated Total</span>
                 <div className="w-px h-4 bg-background/20" />
                 <span
-                  className={`text-lg font-bold text-secondary transition-all duration-500 tabular-nums ${
+                  className={`text-lg font-bold text-secondary tabular-nums transition-all duration-500 ${
                     step < 2 ? "blur-sm select-none" : ""
                   }`}
                 >
@@ -566,11 +574,11 @@ export const CostCalculator = () => {
                 </span>
               </div>
 
-              {/* Next button */}
+              {/* Next button — prominent */}
               <button
                 onClick={goNext}
                 disabled={!canProceed()}
-                className="inline-flex items-center gap-2 bg-foreground text-background font-semibold px-10 h-12 rounded-full text-sm tracking-wide hover:bg-foreground/90 hover:shadow-soft-lg transition-all duration-300 hover:scale-[1.03] disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:scale-100 disabled:hover:shadow-none"
+                className="inline-flex items-center gap-2 bg-foreground text-background font-semibold px-8 sm:px-10 h-11 rounded-full text-sm tracking-wide hover:bg-foreground/90 hover:shadow-soft-lg transition-all duration-300 hover:scale-[1.03] disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:scale-100"
               >
                 {step === 4 ? "See Estimate" : "Next Step"}
                 <ArrowRight className="w-4 h-4" />
