@@ -29,7 +29,6 @@ const AnimatedNumber = ({ value, suffix, isDecimal }: { value: number; suffix: s
   useEffect(() => {
     const node = ref.current;
     if (!node) return;
-
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
@@ -52,19 +51,17 @@ const AnimatedNumber = ({ value, suffix, isDecimal }: { value: number; suffix: s
 };
 
 export const StatsByNumbers = () => {
-  // Split stats: featured center, others around
   const featured = stats.find((s) => s.featured)!;
   const others = stats.filter((s) => !s.featured);
   const topRow = others.slice(0, 3);
   const bottomRow = others.slice(3);
 
   return (
-    <section className="relative overflow-hidden">
-      {/* Background */}
+    <section className="relative overflow-hidden" style={{ background: "#FFFDF8" }}>
+      {/* Ghosted background image */}
       <div className="absolute inset-0">
-        <img src={statsBg} alt="" className="w-full h-full object-cover scale-105 blur-[2px]" />
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,hsl(142,28%,8%)_0%,hsl(160,20%,6%)_50%,hsl(220,25%,7%)_100%)] opacity-[0.93]" />
-        <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-transparent to-black/40" />
+        <img src={statsBg} alt="" className="w-full h-full object-cover opacity-[0.08]" />
+        <div className="absolute inset-0" style={{ background: "radial-gradient(ellipse at 50% 40%, rgba(212,175,55,0.06) 0%, transparent 70%)" }} />
       </div>
 
       <div className="relative z-10 container mx-auto px-4 lg:px-8 py-24 lg:py-32">
@@ -75,18 +72,20 @@ export const StatsByNumbers = () => {
           viewport={{ once: true }}
           className="text-center mb-20"
         >
-          <h2 className="text-4xl sm:text-5xl lg:text-[56px] font-medium text-secondary leading-[1.1] tracking-tight"
-              style={{ fontFamily: "'Georgia', 'Times New Roman', serif" }}>
+          <h2
+            className="text-4xl sm:text-5xl lg:text-[56px] font-medium leading-[1.1] tracking-tight"
+            style={{ fontFamily: "'Georgia', 'Times New Roman', serif", color: "#1a1a1a" }}
+          >
             Flash Space By The Numbers
           </h2>
-          <p className="text-white/40 text-sm mt-4 tracking-[0.2em] uppercase">
+          <p className="text-sm mt-4 tracking-[0.2em] uppercase" style={{ color: "#999" }}>
             Authority · Trust · Results
           </p>
         </motion.div>
 
-        {/* === Stats Layout === */}
+        {/* Stats grid */}
         <div className="max-w-5xl mx-auto">
-          {/* Top row: 3 stats */}
+          {/* Top row */}
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-4">
             {topRow.map((stat, i) => (
               <motion.div
@@ -95,13 +94,17 @@ export const StatsByNumbers = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1 }}
-                className="relative rounded-2xl border border-white/[0.08] bg-white/[0.04] backdrop-blur-md p-8 text-center group hover:border-secondary/20 transition-colors duration-500"
+                className="relative rounded-2xl p-8 text-center backdrop-blur-md transition-shadow duration-500 hover:shadow-xl"
+                style={{
+                  background: "rgba(255,255,255,0.6)",
+                  border: "1px solid rgba(212,175,55,0.15)",
+                  boxShadow: "0 8px 32px rgba(0,0,0,0.04)",
+                }}
               >
-                <div className="text-[44px] sm:text-[48px] lg:text-[56px] font-bold tracking-tight leading-none mb-2"
-                     style={{ color: "#d4a853" }}>
+                <div className="text-[44px] sm:text-[48px] lg:text-[56px] font-bold tracking-tight leading-none mb-2" style={{ color: "#D4AF37" }}>
                   <AnimatedNumber value={stat.value} suffix={stat.suffix} isDecimal={stat.isDecimal} />
                 </div>
-                <div className="text-white/50 text-sm font-medium tracking-wide">{stat.label}</div>
+                <div className="text-sm font-medium tracking-wide" style={{ color: "#666" }}>{stat.label}</div>
               </motion.div>
             ))}
           </div>
@@ -112,19 +115,23 @@ export const StatsByNumbers = () => {
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             transition={{ delay: 0.2, duration: 0.6 }}
-            className="relative rounded-2xl border border-secondary/20 bg-white/[0.05] backdrop-blur-lg p-12 lg:p-16 text-center mb-4 overflow-hidden"
+            className="relative rounded-2xl p-12 lg:p-16 text-center mb-4 overflow-hidden backdrop-blur-lg"
+            style={{
+              background: "rgba(255,255,255,0.7)",
+              border: "1px solid rgba(212,175,55,0.25)",
+              boxShadow: "0 12px 48px rgba(212,175,55,0.08), 0 4px 16px rgba(0,0,0,0.03)",
+            }}
           >
-            <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,hsl(42,60%,50%)_0%,transparent_70%)] opacity-[0.06]" />
+            <div className="absolute inset-0" style={{ background: "radial-gradient(circle at 50% 50%, rgba(212,175,55,0.05) 0%, transparent 70%)" }} />
             <div className="relative z-10">
-              <div className="text-[72px] sm:text-[96px] lg:text-[120px] font-bold tracking-tighter leading-none mb-3"
-                   style={{ color: "#d4a853" }}>
+              <div className="text-[72px] sm:text-[96px] lg:text-[120px] font-bold tracking-tighter leading-none mb-3" style={{ color: "#D4AF37" }}>
                 <AnimatedNumber value={featured.value} suffix={featured.suffix} isDecimal={featured.isDecimal} />
               </div>
-              <div className="text-white/60 text-base sm:text-lg font-medium tracking-wide">{featured.label}</div>
+              <div className="text-base sm:text-lg font-medium tracking-wide" style={{ color: "#555" }}>{featured.label}</div>
             </div>
           </motion.div>
 
-          {/* Bottom row: remaining stats */}
+          {/* Bottom row */}
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
             {bottomRow.map((stat, i) => (
               <motion.div
@@ -133,22 +140,26 @@ export const StatsByNumbers = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.3 + i * 0.1 }}
-                className="relative rounded-2xl border border-white/[0.08] bg-white/[0.04] backdrop-blur-md p-8 text-center group hover:border-secondary/20 transition-colors duration-500"
+                className="relative rounded-2xl p-8 text-center backdrop-blur-md transition-shadow duration-500 hover:shadow-xl"
+                style={{
+                  background: "rgba(255,255,255,0.6)",
+                  border: "1px solid rgba(212,175,55,0.15)",
+                  boxShadow: "0 8px 32px rgba(0,0,0,0.04)",
+                }}
               >
-                <div className="text-[44px] sm:text-[48px] lg:text-[56px] font-bold tracking-tight leading-none mb-2"
-                     style={{ color: "#d4a853" }}>
+                <div className="text-[44px] sm:text-[48px] lg:text-[56px] font-bold tracking-tight leading-none mb-2" style={{ color: "#D4AF37" }}>
                   <AnimatedNumber value={stat.value} suffix={stat.suffix} isDecimal={stat.isDecimal} />
                 </div>
-                <div className="text-white/50 text-sm font-medium tracking-wide">{stat.label}</div>
+                <div className="text-sm font-medium tracking-wide" style={{ color: "#666" }}>{stat.label}</div>
               </motion.div>
             ))}
           </div>
         </div>
 
         {/* Divider */}
-        <div className="h-px bg-gradient-to-r from-transparent via-white/10 to-transparent my-16 max-w-4xl mx-auto" />
+        <div className="h-px my-16 max-w-4xl mx-auto" style={{ background: "linear-gradient(to right, transparent, rgba(212,175,55,0.2), transparent)" }} />
 
-        {/* Partners marquee row */}
+        {/* Partners marquee */}
         <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
@@ -156,12 +167,12 @@ export const StatsByNumbers = () => {
           transition={{ delay: 0.5 }}
           className="overflow-hidden"
         >
-          <p className="text-center text-white/30 text-xs tracking-[0.25em] uppercase mb-8">
+          <p className="text-center text-xs tracking-[0.25em] uppercase mb-8" style={{ color: "#aaa" }}>
             Trusted Partners & Recognitions
           </p>
           <div className="relative">
-            <div className="absolute left-0 top-0 bottom-0 w-24 bg-gradient-to-r from-[hsl(160,20%,6%)] to-transparent z-10 pointer-events-none" />
-            <div className="absolute right-0 top-0 bottom-0 w-24 bg-gradient-to-l from-[hsl(160,20%,6%)] to-transparent z-10 pointer-events-none" />
+            <div className="absolute left-0 top-0 bottom-0 w-24 z-10 pointer-events-none" style={{ background: "linear-gradient(to right, #FFFDF8, transparent)" }} />
+            <div className="absolute right-0 top-0 bottom-0 w-24 z-10 pointer-events-none" style={{ background: "linear-gradient(to left, #FFFDF8, transparent)" }} />
             <motion.div
               className="flex gap-12 items-center w-max"
               animate={{ x: ["0%", "-50%"] }}
@@ -170,14 +181,22 @@ export const StatsByNumbers = () => {
               {[...partners, ...partners].map((p, i) => (
                 <div
                   key={`${p.name}-${i}`}
-                  className="flex-shrink-0 px-8 py-4 rounded-xl border border-white/[0.08] bg-white/[0.03] backdrop-blur-sm flex items-center gap-4"
+                  className="flex-shrink-0 px-8 py-4 rounded-xl backdrop-blur-sm flex items-center gap-4"
+                  style={{
+                    background: "rgba(255,255,255,0.7)",
+                    border: "1px solid rgba(212,175,55,0.12)",
+                    boxShadow: "0 4px 16px rgba(0,0,0,0.03)",
+                  }}
                 >
-                  <div className="w-11 h-11 rounded-full bg-secondary/10 border border-secondary/20 flex items-center justify-center">
-                    <span className="text-secondary text-[11px] font-bold tracking-wider">
+                  <div
+                    className="w-11 h-11 rounded-full flex items-center justify-center"
+                    style={{ background: "rgba(212,175,55,0.08)", border: "1px solid rgba(212,175,55,0.2)" }}
+                  >
+                    <span className="text-[11px] font-bold tracking-wider" style={{ color: "#B8962E" }}>
                       {p.initials}
                     </span>
                   </div>
-                  <span className="text-white/70 text-sm font-medium whitespace-nowrap">{p.name}</span>
+                  <span className="text-sm font-medium whitespace-nowrap" style={{ color: "#333" }}>{p.name}</span>
                 </div>
               ))}
             </motion.div>
