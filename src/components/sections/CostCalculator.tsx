@@ -707,7 +707,7 @@ export const CostCalculator = () => {
               </div>
 
             {/* Step Content Card */}
-            <div className="rounded-2xl p-5 sm:p-6 min-h-[340px] relative overflow-hidden">
+            <div className="min-h-[340px] relative overflow-hidden">
               <AnimatePresence mode="wait" custom={direction}>
                 <motion.div
                   key={step}
