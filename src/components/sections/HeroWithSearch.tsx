@@ -169,7 +169,7 @@ export const HeroWithSearch = () => {
           poster={heroFallback}
           className="w-full h-full object-cover"
         >
-          <source src={heroVideo.url} type="video/mp4" />
+          <source src={heroVideo} type="video/mp4" />
         </video>
         <div className="absolute inset-0 bg-gradient-to-b from-[hsl(142,20%,15%)]/70 via-[hsl(142,20%,15%)]/40 to-[hsl(142,20%,15%)]/80" />
       </div>
