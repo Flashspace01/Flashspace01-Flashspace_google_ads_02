@@ -458,16 +458,184 @@ export const CostCalculator = () => {
           </p>
         </motion.div>
 
+        {/* Two-column layout: vertical stepper left, content right */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 0.1 }}
+          className="flex gap-10 lg:gap-16"
         >
-          {/* Progress Stepper — wider, thicker line, centered */}
-          <div className="mb-16">
-            <div className="flex items-center justify-between max-w-[700px] mx-auto relative">
-              {/* Background line — thicker */}
+          {/* LEFT — Vertical Stepper */}
+          <div className="hidden md:flex flex-col items-center shrink-0 pt-2">
+            {progressSteps.map((s, i) => {
+              const isActive = i === step;
+              const isDone = i < step;
+              const isLast = i === progressSteps.length - 1;
+              return (
+                <div key={s.label} className="flex flex-col items-center">
+                  <button
+                    onClick={() => {
+                      if (i < step) {
+                        setDirection(-1);
+                        setStep(i);
+                      }
+                    }}
+                    className="flex flex-col items-center gap-2 group cursor-pointer relative"
+                  >
+                    <div className="relative">
+                      {isActive && (
+                        <motion.div
+                          className="absolute inset-0 rounded-full border-2 border-primary/30"
+                          animate={{ scale: [1, 1.5, 1], opacity: [0.5, 0, 0.5] }}
+                          transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+                          style={{ margin: "-6px" }}
+                        />
+                      )}
+                      <div
+                        className={`w-12 h-12 rounded-full flex items-center justify-center transition-all duration-300 ${
+                          isActive
+                            ? "bg-primary text-primary-foreground shadow-glow"
+                            : isDone
+                            ? "bg-primary text-primary-foreground"
+                            : "bg-card border border-border text-muted-foreground group-hover:border-primary/30"
+                        }`}
+                      >
+                        {isDone ? <Check className="w-5 h-5" /> : <s.icon className="w-5 h-5" />}
+                      </div>
+                    </div>
+                    <span
+                      className={`text-[10px] font-semibold tracking-wider uppercase transition-colors whitespace-nowrap ${
+                        isActive ? "text-foreground" : isDone ? "text-foreground/60" : "text-muted-foreground"
+                      }`}
+                    >
+                      {s.label}
+                    </span>
+                  </button>
+                  {/* Vertical connecting line */}
+                  {!isLast && (
+                    <div className="relative w-[3px] h-10 bg-border rounded-full my-1.5">
+                      {isDone && (
+                        <motion.div
+                          className="absolute inset-x-0 top-0 bg-primary rounded-full"
+                          initial={{ height: 0 }}
+                          animate={{ height: "100%" }}
+                          transition={{ duration: 0.4 }}
+                        />
+                      )}
+                      {isActive && (
+                        <motion.div
+                          className="absolute inset-x-0 top-0 bg-primary/40 rounded-full"
+                          initial={{ height: 0 }}
+                          animate={{ height: "50%" }}
+                          transition={{ duration: 0.4 }}
+                        />
+                      )}
+                    </div>
+                  )}
+                </div>
+              );
+            })}
+          </div>
+
+          {/* RIGHT — Step Content + Footer */}
+          <div className="flex-1 min-w-0">
+            {/* Mobile horizontal stepper */}
+            <div className="flex md:hidden items-center justify-between mb-8 overflow-x-auto gap-2">
+              {progressSteps.map((s, i) => {
+                const isActive = i === step;
+                const isDone = i < step;
+                return (
+                  <button
+                    key={s.label}
+                    onClick={() => { if (i < step) { setDirection(-1); setStep(i); } }}
+                    className="flex flex-col items-center gap-1.5 shrink-0"
+                  >
+                    <div
+                      className={`w-9 h-9 rounded-full flex items-center justify-center transition-all duration-300 ${
+                        isActive || isDone
+                          ? "bg-primary text-primary-foreground"
+                          : "bg-card border border-border text-muted-foreground"
+                      }`}
+                    >
+                      {isDone ? <Check className="w-4 h-4" /> : <s.icon className="w-4 h-4" />}
+                    </div>
+                    <span className={`text-[9px] font-semibold tracking-wider uppercase ${isActive ? "text-foreground" : "text-muted-foreground"}`}>
+                      {s.label}
+                    </span>
+                  </button>
+                );
+              })}
+            </div>
+
+            {/* Step Content */}
+            <div className="min-h-[420px] relative overflow-hidden">
+              <AnimatePresence mode="wait" custom={direction}>
+                <motion.div
+                  key={step}
+                  custom={direction}
+                  variants={slideVariants}
+                  initial="enter"
+                  animate="center"
+                  exit="exit"
+                  transition={{ duration: 0.35, ease: [0.4, 0, 0.2, 1] }}
+                >
+                  {renderStep()}
+                </motion.div>
+              </AnimatePresence>
+            </div>
+
+            {/* Footer */}
+            {step < 5 && (
+              <div className="mt-10 rounded-2xl bg-card border border-border px-6 sm:px-8 py-5 flex items-center justify-between">
+                <button
+                  onClick={goBack}
+                  disabled={step === 0}
+                  className="inline-flex items-center gap-1.5 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
+                >
+                  <ChevronLeft className="w-4 h-4" />
+                  Back
+                </button>
+
+                <div className="hidden sm:flex items-center gap-4 bg-foreground rounded-full px-6 py-2.5">
+                  <span className="text-xs text-background/60 font-medium">Estimated Total</span>
+                  <div className="w-px h-4 bg-background/20" />
+                  <span
+                    className={`text-lg font-bold text-secondary tabular-nums transition-all duration-500 ${
+                      step < 2 ? "blur-sm select-none" : ""
+                    }`}
+                  >
+                    AED <AnimatedTotal value={estimateTotal()} />
+                  </span>
+                </div>
+
+                <button
+                  onClick={goNext}
+                  disabled={!canProceed()}
+                  className="inline-flex items-center gap-2 bg-primary text-primary-foreground font-semibold px-8 sm:px-10 h-11 rounded-lg text-sm tracking-wide hover:bg-primary/90 shadow-md hover:shadow-lg transition-all duration-300 hover:scale-[1.03] disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:scale-100"
+                >
+                  {step === 4 ? "See Estimate" : "Next Step"}
+                  <ArrowRight className="w-4 h-4" />
+                </button>
+              </div>
+            )}
+
+            {step === 5 && (
+              <div className="mt-8 flex items-center justify-center">
+                <button
+                  onClick={() => { setStep(0); setDirection(-1); }}
+                  className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+                >
+                  Start Over
+                </button>
+              </div>
+            )}
+          </div>
+        </motion.div>
+      </div>
+    </section>
+  );
+};
               <div className="absolute top-6 left-[6%] right-[6%] h-[3px] bg-border rounded-full" />
               {/* Active progress line */}
               <motion.div
