@@ -524,7 +524,7 @@ export const CostCalculator = () => {
                     </span>
                   </button>
                   {!isLast && (
-                    <div className="relative w-[2px] h-9 bg-border rounded-full my-1.5">
+                    <div className="relative w-[2px] h-10 bg-border rounded-full my-2">
                       {(isDone || isActive) && (
                         <motion.div
                           className="absolute inset-x-0 top-0 bg-primary rounded-full"
