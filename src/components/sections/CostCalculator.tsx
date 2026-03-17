@@ -673,7 +673,7 @@ export const CostCalculator = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 0.2 }}
-          className="flex flex-col lg:flex-row gap-6 lg:gap-8"
+          className="flex flex-col lg:flex-row gap-8 lg:gap-12"
         >
           {/* LEFT PANEL — Steps + Content */}
           <div className="flex-1 min-w-0">
