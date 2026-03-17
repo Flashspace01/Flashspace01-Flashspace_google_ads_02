@@ -439,23 +439,23 @@ export const CostCalculator = () => {
   };
 
   return (
-    <section className="py-20 lg:py-28 bg-secondary relative overflow-hidden">
+    <section className="py-20 lg:py-28 bg-[#FDFBF7] relative overflow-hidden">
       {/* Subtle geometric dot pattern */}
       <div
-        className="absolute inset-0 opacity-[0.06]"
+        className="absolute inset-0 opacity-[0.04]"
         style={{
           backgroundImage: `radial-gradient(circle at 1px 1px, hsl(var(--primary)) 0.8px, transparent 0)`,
           backgroundSize: "48px 48px",
         }}
       />
 
-      <div className="container mx-auto px-4 lg:px-8 relative z-10">
+      <div className="max-w-7xl mx-auto px-4 lg:px-8 relative z-10">
         {/* Header — clean, no tag/badge */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center max-w-3xl mx-auto mb-14"
+          className="text-center max-w-3xl mx-auto mb-12"
         >
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-primary mb-4 tracking-tight">
             Calculate Your Business Setup Cost
@@ -465,18 +465,27 @@ export const CostCalculator = () => {
           </p>
         </motion.div>
 
-        {/* Main Card */}
+        {/* Main Card — wider */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 0.1 }}
-          className="max-w-3xl mx-auto"
+          className="max-w-5xl mx-auto"
         >
-          <div className="rounded-3xl bg-card/80 backdrop-blur-xl border border-primary/[0.08] shadow-[0_20px_60px_-15px_hsl(142,20%,26%,0.1)] overflow-hidden">
+          <div className="rounded-3xl bg-card backdrop-blur-xl border border-primary/[0.08] shadow-[0_24px_80px_-16px_hsl(142,20%,26%,0.12)] overflow-hidden">
+            {/* Top progress bar */}
+            <div className="h-1.5 bg-primary/[0.06] relative">
+              <motion.div
+                className="h-full bg-primary rounded-r-full"
+                animate={{ width: `${((step + 1) / progressSteps.length) * 100}%` }}
+                transition={{ duration: 0.5, ease: "easeOut" }}
+              />
+            </div>
+
             {/* Progress Timeline */}
-            <div className="border-b border-primary/[0.06] px-6 py-6">
-              <div className="flex items-center justify-between max-w-lg mx-auto relative">
+            <div className="border-b border-primary/[0.06] px-6 lg:px-10 py-6">
+              <div className="flex items-center justify-between max-w-2xl mx-auto relative">
                 {/* Connecting line */}
                 <div className="absolute top-5 left-[10%] right-[10%] h-[1px] bg-primary/10" />
                 <motion.div
