@@ -493,25 +493,25 @@ export const CostCalculator = () => {
                     <div className="relative">
                       {isActive && (
                         <motion.div
-                          className="absolute inset-0 rounded-full border-2 border-primary/40"
-                          animate={{ scale: [1, 1.35, 1], opacity: [0.5, 0, 0.5] }}
+                          className="absolute inset-0 rounded-full border-2 border-primary/30"
+                          animate={{ scale: [1, 1.4, 1], opacity: [0.6, 0, 0.6] }}
                           transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
-                          style={{ margin: "-4px" }}
+                          style={{ margin: "-5px" }}
                         />
                       )}
                       <div
-                        className={`w-10 h-10 rounded-full flex items-center justify-center transition-all duration-300 ${
+                        className={`w-12 h-12 rounded-full flex items-center justify-center transition-all duration-300 ${
                           isActive
-                            ? "bg-primary text-primary-foreground shadow-[0_0_16px_-2px_hsl(var(--primary)/0.4)]"
+                            ? "bg-primary text-primary-foreground shadow-[0_0_20px_-2px_hsl(var(--primary)/0.5)]"
                             : isDone
                             ? "bg-foreground text-background"
-                            : "bg-card border border-border text-muted-foreground group-hover:border-primary/30"
+                            : "bg-card border-2 border-border text-muted-foreground group-hover:border-primary/30"
                         }`}
                       >
                         {isDone ? (
                           <Check className="w-4 h-4" />
                         ) : (
-                          <s.icon className="w-4 h-4" strokeWidth={1.5} />
+                          <s.icon className="w-5 h-5" strokeWidth={1.5} />
                         )}
                       </div>
                     </div>
