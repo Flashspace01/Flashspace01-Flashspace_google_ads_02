@@ -552,7 +552,7 @@ export const CostCalculator = () => {
             </div>
 
             {/* Step Content */}
-            <div className="p-6 sm:p-10 min-h-[420px] relative overflow-hidden">
+            <div className="px-8 sm:px-12 lg:px-16 py-10 min-h-[440px] relative overflow-hidden">
               <AnimatePresence mode="wait" custom={direction}>
                 <motion.div
                   key={step}
