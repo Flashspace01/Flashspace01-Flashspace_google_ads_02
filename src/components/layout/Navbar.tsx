@@ -296,15 +296,15 @@ export const Navbar = () => {
                           </span>
                           <div className="space-y-1">
                             {group.items.map((item) => (
-                              <a
+                              <Link
                                 key={item.label}
-                                href={item.href}
+                                to={item.href}
                                 className="flex items-center gap-2 px-4 py-2 text-sm text-muted-foreground hover:text-foreground hover:bg-primary/5 rounded-lg transition-colors"
                                 onClick={() => setMobileOpen(false)}
                               >
                                 <item.icon className="w-4 h-4 text-primary/60 shrink-0" />
                                 {item.label}
-                              </a>
+                              </Link>
                             ))}
                           </div>
                         </div>
