@@ -58,19 +58,29 @@ const navLinks: NavLink[] = [
   {
     label: "Business Setup",
     href: "#business-setup",
-    dropdown: [
-      { label: "Free Zones Overview", href: "#", icon: Globe },
-      { label: "Mainland Overview", href: "#", icon: Landmark },
-      { label: "Business Activities", href: "#", icon: Lightbulb },
-      { label: "Sponsorships", href: "#", icon: Users },
-      { label: "Free Zone Licenses", href: "#", icon: FileText },
-      { label: "Locations", href: "#", icon: MapPin },
-      { label: "Dubai Mainland License", href: "#", icon: ShieldCheck },
-      { label: "UAE Residence Visa", href: "#", icon: Stamp },
-      { label: "Registration Process", href: "#", icon: ClipboardList },
-      { label: "Our Solutions", href: "#", icon: Building2 },
-      { label: "Mainland Visas", href: "#", icon: CreditCard },
-      { label: "Virtual Offices", href: "#", icon: Eye },
+    megaMenu: [
+      {
+        heading: "Free Zones",
+        items: [
+          { label: "Overview", href: "#", icon: Globe },
+          { label: "Business Activities", href: "#", icon: Lightbulb },
+          { label: "Free Zone License Locations and Pricing", href: "#", icon: MapPin },
+          { label: "UAE Residence Visa", href: "#", icon: Stamp },
+          { label: "Registration Process", href: "#", icon: ClipboardList },
+          { label: "Our Solution", href: "#", icon: Building2 },
+        ],
+      },
+      {
+        heading: "Mainland",
+        items: [
+          { label: "Overview", href: "#", icon: Landmark },
+          { label: "Sponsorship", href: "#", icon: Users },
+          { label: "Dubai Mainland Licence", href: "#", icon: ShieldCheck },
+          { label: "Business Activities", href: "#", icon: Lightbulb },
+          { label: "Mainland Visas", href: "#", icon: CreditCard },
+          { label: "VirtuFit", href: "#", icon: Eye },
+        ],
+      },
     ],
   },
   {
@@ -194,7 +204,7 @@ export const Navbar = () => {
                       className="absolute top-full left-1/2 -translate-x-1/2 mt-1 bg-card rounded-xl shadow-lg border border-border p-6"
                       style={{ width: "640px" }}
                     >
-                      <div className="grid grid-cols-3 gap-6">
+                      <div className={`grid gap-6 ${link.megaMenu.length === 2 ? 'grid-cols-2' : 'grid-cols-3'}`}>
                         {link.megaMenu.map((group) => (
                           <div key={group.heading}>
                             <h4 className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-3">
