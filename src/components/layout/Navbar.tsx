@@ -141,7 +141,7 @@ export const Navbar = () => {
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.5 }}
       className={`fixed top-0 left-0 right-0 z-[60] transition-all duration-300 ${
-        scrolled ? "bg-card shadow-md border-b border-border/30" : "bg-transparent"
+        scrolled ? "bg-white/12 backdrop-blur-xl shadow-lg border-b border-white/10" : "bg-transparent"
       }`}
     >
       <div className="container mx-auto px-4 lg:px-8">
