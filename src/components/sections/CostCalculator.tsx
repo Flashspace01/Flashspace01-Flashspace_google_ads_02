@@ -105,11 +105,11 @@ const AnimatedTotal = ({ value }: { value: number }) => {
 
 /* ── Shared card styles ── */
 const cardBase =
-  "relative rounded-2xl transition-all duration-300 cursor-pointer";
+  "relative rounded-xl border border-transparent transition-all duration-200 cursor-pointer";
 const cardDefault =
-  "bg-transparent hover:bg-primary/[0.04]";
+  "bg-card hover:bg-card/80 border-border hover:border-primary/30 hover:shadow-sm";
 const cardSelected =
-  "bg-primary text-primary-foreground shadow-[0_4px_24px_-4px_hsl(var(--primary)/0.18)]";
+  "bg-primary text-primary-foreground border-primary shadow-[0_4px_20px_-4px_hsl(var(--primary)/0.25)]";
 
 /* ── Prices ── */
 const basePrices = [8500, 12000, 9500, 15000, 7500, 18000];
@@ -149,10 +149,10 @@ const CostSummary = ({
   const addonsCost = selectedAddons.reduce((sum, i) => sum + (addonPrices[i] || 0), 0);
 
   return (
-    <div className="rounded-2xl bg-secondary/50 p-6 flex flex-col">
-      {/* Header */}
-      <div className="mb-5">
-        <p className="text-xs font-bold uppercase tracking-wider text-muted-foreground mb-1">
+    <div className="rounded-2xl bg-card border border-border shadow-lg p-6 lg:p-7 flex flex-col">
+      {/* Total */}
+      <div className="rounded-xl bg-primary p-5 mb-6">
+        <p className="text-xs font-semibold uppercase tracking-wider text-primary-foreground/70 mb-1">
           Total Setup Cost
         </p>
         <motion.div
@@ -161,96 +161,77 @@ const CostSummary = ({
           animate={{ scale: 1, opacity: 1 }}
           transition={{ duration: 0.3 }}
         >
-          <p className="text-4xl font-bold text-foreground tracking-tight">
+          <p className="text-3xl lg:text-4xl font-bold text-primary-foreground tracking-tight">
             AED <AnimatedTotal value={estimateTotal} />
           </p>
         </motion.div>
-        <p className="text-[11px] text-muted-foreground mt-1">
+        <p className="text-[11px] text-primary-foreground/50 mt-1.5">
           *Indicative pricing, subject to final review
         </p>
       </div>
 
-      {/* Divider */}
-      <div className="h-px bg-border mb-5" />
-
-      {/* Breakdown */}
+      {/* Cost Breakdown */}
       <div className="space-y-3 flex-1">
-        <p className="text-xs font-bold uppercase tracking-wider text-muted-foreground mb-2">
+        <p className="text-[11px] font-bold uppercase tracking-widest text-muted-foreground mb-3">
           Cost Breakdown
         </p>
 
-        <div className="flex justify-between text-sm">
-          <span className="text-muted-foreground">License Fee</span>
-          <span className="font-medium text-foreground">AED {licenseBase.toLocaleString()}</span>
-        </div>
+        {[
+          { label: "License Fee", value: `AED ${licenseBase.toLocaleString()}` },
+          { label: "Visa Package", value: visaCost > 0 ? `AED ${visaCost.toLocaleString()}` : "—" },
+          { label: "Office Space", value: officeCost > 0 ? `AED ${officeCost.toLocaleString()}` : "Included" },
+          { label: "Add-ons", value: addonsCost > 0 ? `AED ${addonsCost.toLocaleString()}` : "—" },
+        ].map((item) => (
+          <div key={item.label} className="flex justify-between items-center text-sm py-1">
+            <span className="text-muted-foreground">{item.label}</span>
+            <span className="font-semibold text-foreground tabular-nums">{item.value}</span>
+          </div>
+        ))}
 
-        <div className="flex justify-between text-sm">
-          <span className="text-muted-foreground">Visa Package</span>
-          <span className="font-medium text-foreground">
-            {visaCost > 0 ? `AED ${visaCost.toLocaleString()}` : "—"}
-          </span>
-        </div>
+        <div className="h-px bg-border my-3" />
 
-        <div className="flex justify-between text-sm">
-          <span className="text-muted-foreground">Office Space</span>
-          <span className="font-medium text-foreground">
-            {officeCost > 0 ? `AED ${officeCost.toLocaleString()}` : "Included"}
-          </span>
-        </div>
+        {/* Selections */}
+        <p className="text-[11px] font-bold uppercase tracking-widest text-muted-foreground mb-3">
+          Your Selections
+        </p>
 
-        <div className="flex justify-between text-sm">
-          <span className="text-muted-foreground">Add-ons</span>
-          <span className="font-medium text-foreground">
-            {addonsCost > 0 ? `AED ${addonsCost.toLocaleString()}` : "—"}
-          </span>
-        </div>
-
-        {/* Divider */}
-        <div className="h-px bg-border my-1" />
-
-        {/* Selections summary */}
-        <div className="space-y-2 pt-1">
-          <p className="text-xs font-bold uppercase tracking-wider text-muted-foreground mb-2">
-            Your Selections
-          </p>
-
+        <div className="space-y-2">
           {selectedActivity !== null && (
-            <div className="flex justify-between text-xs">
+            <div className="flex justify-between text-xs py-0.5">
               <span className="text-muted-foreground">Activity</span>
               <span className="font-medium text-foreground">
                 {selectedActivity === 5 ? customActivity || "Other" : activities[selectedActivity].label}
               </span>
             </div>
           )}
-
           {selectedJurisdiction !== null && (
-            <div className="flex justify-between text-xs">
+            <div className="flex justify-between text-xs py-0.5">
               <span className="text-muted-foreground">Jurisdiction</span>
               <span className="font-medium text-foreground">{jurisdictions[selectedJurisdiction].label}</span>
             </div>
           )}
-
           {selectedVisas !== null && (
-            <div className="flex justify-between text-xs">
+            <div className="flex justify-between text-xs py-0.5">
               <span className="text-muted-foreground">Visas</span>
               <span className="font-medium text-foreground">{visaOptions[selectedVisas].label}</span>
             </div>
           )}
-
           {selectedOffice !== null && (
-            <div className="flex justify-between text-xs">
+            <div className="flex justify-between text-xs py-0.5">
               <span className="text-muted-foreground">Office</span>
               <span className="font-medium text-foreground">{officeOptions[selectedOffice].label}</span>
             </div>
           )}
-
           {selectedAddons.length > 0 && (
-            <div className="flex justify-between text-xs">
+            <div className="flex justify-between text-xs py-0.5">
               <span className="text-muted-foreground">Add-ons</span>
-              <span className="font-medium text-foreground text-right">
+              <span className="font-medium text-foreground text-right max-w-[140px]">
                 {selectedAddons.map((i) => addons[i].label).join(", ")}
               </span>
             </div>
+          )}
+          {selectedActivity === null && selectedJurisdiction === null && (
+            <p className="text-xs text-muted-foreground/60 italic">Complete the steps to see your selections</p>
           )}
         </div>
       </div>
@@ -331,10 +312,11 @@ export const CostCalculator = () => {
       case 0:
         return (
           <div>
-            <h3 className="text-lg sm:text-xl font-bold text-foreground mb-5">
+            <h3 className="text-lg font-bold text-foreground mb-1">
               What's your business activity?
             </h3>
-            <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
+            <p className="text-sm text-muted-foreground mb-5">Select the category that best describes your business.</p>
+            <div className="grid grid-cols-2 sm:grid-cols-3 gap-2.5">
               {activities.map((a, i) => {
                 const Icon = a.icon;
                 const selected = selectedActivity === i;
@@ -346,21 +328,20 @@ export const CostCalculator = () => {
                     initial="hidden"
                     animate="visible"
                     variants={cardStagger}
-                    whileHover={{ y: -2 }}
                     whileTap={{ scale: 0.97 }}
                     onClick={() => setSelectedActivity(i)}
-                    className={`${cardBase} p-4 text-center ${selected ? cardSelected : cardDefault}`}
+                    className={`${cardBase} p-3.5 text-center ${selected ? cardSelected : cardDefault}`}
                   >
                     <div
-                      className={`w-10 h-10 rounded-xl mx-auto mb-2 flex items-center justify-center transition-colors duration-300 ${
+                      className={`w-9 h-9 rounded-lg mx-auto mb-2 flex items-center justify-center transition-colors duration-200 ${
                         selected
                           ? "bg-primary-foreground/20 text-primary-foreground"
-                          : "bg-foreground/[0.06] text-foreground"
+                          : "bg-muted text-foreground/70"
                       }`}
                     >
-                      <Icon className="w-5 h-5" strokeWidth={1.5} />
+                      <Icon className="w-4.5 h-4.5" strokeWidth={1.5} />
                     </div>
-                    <p className={`font-semibold text-sm ${selected ? "text-primary-foreground" : "text-foreground"}`}>{a.label}</p>
+                    <p className={`font-semibold text-sm leading-tight ${selected ? "text-primary-foreground" : "text-foreground"}`}>{a.label}</p>
                     <p className={`text-[11px] mt-0.5 ${selected ? "text-primary-foreground/70" : "text-muted-foreground"}`}>{a.desc}</p>
                     {isOther && selected && (
                       <motion.div
@@ -388,13 +369,13 @@ export const CostCalculator = () => {
       case 1:
         return (
           <div>
-            <h3 className="text-lg sm:text-xl font-bold text-foreground mb-1">
+            <h3 className="text-lg font-bold text-foreground mb-1">
               Choose your jurisdiction
             </h3>
             <p className="text-muted-foreground text-sm mb-5">
               Each jurisdiction offers unique benefits for your business type.
             </p>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
               {jurisdictions.map((j, i) => {
                 const selected = selectedJurisdiction === i;
                 return (
@@ -404,19 +385,18 @@ export const CostCalculator = () => {
                     initial="hidden"
                     animate="visible"
                     variants={cardStagger}
-                    whileHover={{ y: -2 }}
                     whileTap={{ scale: 0.97 }}
                     onClick={() => setSelectedJurisdiction(i)}
-                    className={`${cardBase} p-4 text-left ${selected ? cardSelected : cardDefault}`}
+                    className={`${cardBase} p-3.5 text-left ${selected ? cardSelected : cardDefault}`}
                   >
                     {j.tag && (
                       <span className={`absolute top-2.5 right-2.5 text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full ${
-                        selected ? "bg-primary-foreground/20 text-primary-foreground" : "bg-foreground/[0.05] text-muted-foreground"
+                        selected ? "bg-primary-foreground/20 text-primary-foreground" : "bg-muted text-muted-foreground"
                       }`}>
                         {j.tag}
                       </span>
                     )}
-                    <p className={`font-bold text-sm mb-0.5 pr-14 ${selected ? "text-primary-foreground" : "text-foreground"}`}>{j.label}</p>
+                    <p className={`font-semibold text-sm mb-0.5 pr-14 ${selected ? "text-primary-foreground" : "text-foreground"}`}>{j.label}</p>
                     <p className={`text-xs leading-relaxed ${selected ? "text-primary-foreground/70" : "text-muted-foreground"}`}>{j.desc}</p>
                   </motion.button>
                 );
@@ -428,13 +408,13 @@ export const CostCalculator = () => {
       case 2:
         return (
           <div>
-            <h3 className="text-lg sm:text-xl font-bold text-foreground mb-1">
+            <h3 className="text-lg font-bold text-foreground mb-1">
               How many visas do you need?
             </h3>
             <p className="text-muted-foreground text-sm mb-5">
               Select your visa requirements for your team.
             </p>
-            <div className="grid grid-cols-2 gap-3">
+            <div className="grid grid-cols-2 gap-2.5">
               {visaOptions.map((v, i) => {
                 const selected = selectedVisas === i;
                 return (
@@ -444,10 +424,9 @@ export const CostCalculator = () => {
                     initial="hidden"
                     animate="visible"
                     variants={cardStagger}
-                    whileHover={{ y: -2 }}
                     whileTap={{ scale: 0.97 }}
                     onClick={() => setSelectedVisas(i)}
-                    className={`${cardBase} p-5 text-center ${selected ? cardSelected : cardDefault}`}
+                    className={`${cardBase} p-4 text-center ${selected ? cardSelected : cardDefault}`}
                   >
                     <p className={`text-2xl font-bold mb-1 ${selected ? "text-primary-foreground" : "text-foreground"}`}>
                       {v.label.split(" ")[0]}
@@ -463,13 +442,13 @@ export const CostCalculator = () => {
       case 3:
         return (
           <div>
-            <h3 className="text-lg sm:text-xl font-bold text-foreground mb-1">
+            <h3 className="text-lg font-bold text-foreground mb-1">
               Select your office type
             </h3>
             <p className="text-muted-foreground text-sm mb-5">
               Choose the workspace that fits your needs.
             </p>
-            <div className="grid grid-cols-1 gap-3">
+            <div className="grid grid-cols-1 gap-2.5">
               {officeOptions.map((o, i) => {
                 const selected = selectedOffice === i;
                 return (
@@ -479,16 +458,15 @@ export const CostCalculator = () => {
                     initial="hidden"
                     animate="visible"
                     variants={cardStagger}
-                    whileHover={{ y: -2 }}
                     whileTap={{ scale: 0.97 }}
                     onClick={() => setSelectedOffice(i)}
                     className={`${cardBase} p-4 text-left flex items-center justify-between ${selected ? cardSelected : cardDefault}`}
                   >
                     <div>
-                      <p className={`font-bold text-sm ${selected ? "text-primary-foreground" : "text-foreground"}`}>{o.label}</p>
+                      <p className={`font-semibold text-sm ${selected ? "text-primary-foreground" : "text-foreground"}`}>{o.label}</p>
                       <p className={`text-xs mt-0.5 ${selected ? "text-primary-foreground/70" : "text-muted-foreground"}`}>{o.desc}</p>
                     </div>
-                    <span className={`text-xs font-bold ${selected ? "text-primary-foreground" : "text-muted-foreground"}`}>
+                    <span className={`text-xs font-bold shrink-0 ml-4 ${selected ? "text-primary-foreground" : "text-muted-foreground"}`}>
                       {o.price}
                     </span>
                   </motion.button>
@@ -501,13 +479,13 @@ export const CostCalculator = () => {
       case 4:
         return (
           <div>
-            <h3 className="text-lg sm:text-xl font-bold text-foreground mb-1">
+            <h3 className="text-lg font-bold text-foreground mb-1">
               Optional add-ons
             </h3>
             <p className="text-muted-foreground text-sm mb-5">
               Enhance your setup with additional services.
             </p>
-            <div className="grid grid-cols-1 gap-3">
+            <div className="grid grid-cols-1 gap-2.5">
               {addons.map((a, i) => {
                 const selected = selectedAddons.includes(i);
                 return (
@@ -517,7 +495,6 @@ export const CostCalculator = () => {
                     initial="hidden"
                     animate="visible"
                     variants={cardStagger}
-                    whileHover={{ y: -2 }}
                     whileTap={{ scale: 0.98 }}
                     onClick={() => toggleAddon(i)}
                     className={`${cardBase} p-4 text-left ${selected ? cardSelected : cardDefault}`}
@@ -525,19 +502,21 @@ export const CostCalculator = () => {
                     <div className="flex items-center gap-3">
                       <div
                         className={`w-5 h-5 rounded-md border-2 flex items-center justify-center shrink-0 transition-colors ${
-                          selected ? "bg-primary border-primary" : "border-foreground/20"
+                          selected ? "bg-primary-foreground border-primary-foreground" : "border-border"
                         }`}
                       >
-                        {selected && <Check className="w-3 h-3 text-primary-foreground" />}
+                        {selected && <Check className="w-3 h-3 text-primary" />}
                       </div>
-                      <div>
-                        <p className="font-semibold text-sm text-foreground">{a.label}</p>
-                        <p className="text-xs text-muted-foreground">{a.desc}</p>
+                      <div className="flex-1">
+                        <div className="flex items-center justify-between">
+                          <p className={`font-semibold text-sm ${selected ? "text-primary-foreground" : "text-foreground"}`}>{a.label}</p>
+                          <span className={`text-xs font-semibold shrink-0 ml-3 ${selected ? "text-primary-foreground/80" : "text-muted-foreground"}`}>
+                            +AED {addonPrices[i].toLocaleString()}
+                          </span>
+                        </div>
+                        <p className={`text-xs mt-0.5 ${selected ? "text-primary-foreground/70" : "text-muted-foreground"}`}>{a.desc}</p>
                       </div>
                     </div>
-                    <span className="text-xs font-medium text-muted-foreground mt-1 ml-8 block">
-                      +AED {addonPrices[i].toLocaleString()}
-                    </span>
                   </motion.button>
                 );
               })}
@@ -569,17 +548,17 @@ export const CostCalculator = () => {
                   initial={{ scale: 0.9 }}
                   animate={{ scale: 1 }}
                   transition={{ delay: 0.3, type: "spring", stiffness: 200 }}
-                  className="inline-block rounded-2xl bg-foreground px-8 py-5 mb-6"
+                  className="inline-block rounded-2xl bg-primary px-8 py-5 mb-6"
                 >
-                  <p className="text-background/70 text-sm font-medium mb-1">Estimated Total</p>
-                  <p className="text-3xl sm:text-4xl font-bold text-secondary tracking-tight">
+                  <p className="text-primary-foreground/70 text-sm font-medium mb-1">Estimated Total</p>
+                  <p className="text-3xl sm:text-4xl font-bold text-primary-foreground tracking-tight">
                     AED <AnimatedTotal value={estimateTotal()} />
                   </p>
                 </motion.div>
 
                 <div className="max-w-xs mx-auto text-left space-y-2 mb-6">
                   {selectedActivity !== null && (
-                    <div className="flex justify-between text-sm border-b border-foreground/10 pb-2">
+                    <div className="flex justify-between text-sm border-b border-border pb-2">
                       <span className="text-muted-foreground">Activity</span>
                       <span className="font-medium text-foreground">
                         {selectedActivity === 5 ? customActivity || "Other" : activities[selectedActivity].label}
@@ -587,13 +566,13 @@ export const CostCalculator = () => {
                     </div>
                   )}
                   {selectedJurisdiction !== null && (
-                    <div className="flex justify-between text-sm border-b border-foreground/10 pb-2">
+                    <div className="flex justify-between text-sm border-b border-border pb-2">
                       <span className="text-muted-foreground">Jurisdiction</span>
                       <span className="font-medium text-foreground">{jurisdictions[selectedJurisdiction].label}</span>
                     </div>
                   )}
                   {selectedVisas !== null && (
-                    <div className="flex justify-between text-sm border-b border-foreground/10 pb-2">
+                    <div className="flex justify-between text-sm border-b border-border pb-2">
                       <span className="text-muted-foreground">Visas</span>
                       <span className="font-medium text-foreground">{visaOptions[selectedVisas].label}</span>
                     </div>
@@ -644,15 +623,14 @@ export const CostCalculator = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 0.2 }}
-          className="flex flex-col lg:flex-row gap-8 lg:gap-10"
+          className="flex flex-col lg:flex-row gap-6 lg:gap-8"
         >
           {/* LEFT PANEL — Steps + Content */}
-          <div className="flex-1 min-w-0 lg:basis-1/2">
-            {/* Progress Steps — Horizontal */}
+          <div className="flex-1 min-w-0 lg:basis-[55%]">
             {/* Progress Steps */}
-            <div className="mb-8">
-              {/* Step labels */}
-              <div className="flex items-center justify-between mb-3">
+            <div className="rounded-2xl bg-card border border-border shadow-sm p-5 sm:p-6 mb-0">
+              {/* Step indicators */}
+              <div className="flex items-center gap-1 mb-6">
                 {progressSteps.map((s, i) => {
                   const isActive = i === step;
                   const isDone = i < step;
@@ -662,54 +640,55 @@ export const CostCalculator = () => {
                       onClick={() => {
                         if (i < step) { setDirection(-1); setStep(i); }
                       }}
-                      className={`text-xs font-semibold tracking-wide transition-colors duration-300 ${
+                      className={`flex-1 flex flex-col items-center gap-1.5 transition-all duration-200 ${
                         i <= step ? "cursor-pointer" : "cursor-default"
-                      } ${
-                        isActive ? "text-primary" : isDone ? "text-foreground/70" : "text-muted-foreground/50"
                       }`}
                     >
-                      {s.label}
+                      <div className={`w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold transition-all duration-300 ${
+                        isActive
+                          ? "bg-primary text-primary-foreground shadow-md"
+                          : isDone
+                            ? "bg-primary/15 text-primary"
+                            : "bg-muted text-muted-foreground"
+                      }`}>
+                        {isDone ? <Check className="w-3.5 h-3.5" /> : i + 1}
+                      </div>
+                      <span className={`text-[11px] font-medium transition-colors duration-200 hidden sm:block ${
+                        isActive ? "text-primary" : isDone ? "text-foreground/70" : "text-muted-foreground/60"
+                      }`}>
+                        {s.label}
+                      </span>
                     </button>
                   );
                 })}
               </div>
-              {/* Progress track */}
-              <div className="relative h-2 rounded-full bg-foreground/10 overflow-hidden">
+
+              {/* Progress bar */}
+              <div className="relative h-1 rounded-full bg-muted overflow-hidden mb-6">
                 <motion.div
                   className="absolute inset-y-0 left-0 rounded-full bg-primary"
                   initial={false}
                   animate={{ width: `${(step / (progressSteps.length - 1)) * 100}%` }}
                   transition={{ duration: 0.4, ease: [0.4, 0, 0.2, 1] }}
                 />
-                {/* Step markers */}
-                <div className="absolute inset-0 flex items-center justify-between px-0">
-                  {progressSteps.map((_, i) => (
-                    <div
-                      key={i}
-                      className={`w-2 h-2 rounded-full transition-colors duration-300 ${
-                        i <= step ? "bg-primary" : "bg-foreground/20"
-                      }`}
-                    />
-                  ))}
-                </div>
               </div>
-            </div>
 
-            {/* Step Content Card */}
-            <div className="rounded-2xl p-5 sm:p-6 min-h-[340px] relative overflow-hidden">
-              <AnimatePresence mode="wait" custom={direction}>
-                <motion.div
-                  key={step}
-                  custom={direction}
-                  variants={slideVariants}
-                  initial="enter"
-                  animate="center"
-                  exit="exit"
-                  transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
-                >
-                  {renderStep()}
-                </motion.div>
-              </AnimatePresence>
+              {/* Step Content */}
+              <div className="min-h-[320px] relative overflow-hidden">
+                <AnimatePresence mode="wait" custom={direction}>
+                  <motion.div
+                    key={step}
+                    custom={direction}
+                    variants={slideVariants}
+                    initial="enter"
+                    animate="center"
+                    exit="exit"
+                    transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
+                  >
+                    {renderStep()}
+                  </motion.div>
+                </AnimatePresence>
+              </div>
             </div>
 
             {/* Mobile: Navigation buttons */}
@@ -745,7 +724,7 @@ export const CostCalculator = () => {
           </div>
 
           {/* RIGHT PANEL — Sticky Cost Summary (desktop only) */}
-          <div className="hidden lg:block flex-1 lg:basis-1/2">
+          <div className="hidden lg:block lg:basis-[45%]">
             <div className="sticky top-28">
               <CostSummary
                 step={step}
