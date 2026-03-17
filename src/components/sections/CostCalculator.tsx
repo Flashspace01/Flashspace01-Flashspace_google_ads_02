@@ -149,7 +149,7 @@ const CostSummary = ({
   const addonsCost = selectedAddons.reduce((sum, i) => sum + (addonPrices[i] || 0), 0);
 
   return (
-    <div className="rounded-2xl bg-card border border-border shadow-lg p-6 flex flex-col">
+    <div className="rounded-2xl bg-secondary/50 p-6 flex flex-col">
       {/* Header */}
       <div className="mb-5">
         <p className="text-xs font-bold uppercase tracking-wider text-muted-foreground mb-1">
