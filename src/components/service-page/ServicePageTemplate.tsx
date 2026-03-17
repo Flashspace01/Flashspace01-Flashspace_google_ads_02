@@ -10,6 +10,38 @@ import { ReviewCarousel } from "./ReviewCarousel";
 import { ChevronDown } from "lucide-react";
 import { motion } from "framer-motion";
 import type { PageContent } from "@/data/pageContent";
+import heroDubai from "@/assets/hero-dubai-skyline.jpg";
+import heroPremium from "@/assets/hero-premium-bg.jpg";
+import heroCoworking from "@/assets/hero-coworking.jpg";
+
+const heroImages: Record<string, string> = {
+  "free-zone-overview": heroDubai,
+  "business-activities": heroPremium,
+  "uae-residency-visa": heroDubai,
+  "free-zone-license-locations": heroPremium,
+  "registration-process": heroCoworking,
+  "free-zone-solution": heroDubai,
+  "dubai-mainland": heroDubai,
+  "mainland-sponsorship": heroPremium,
+  "mainland-licence": heroDubai,
+  "mainland-visas": heroPremium,
+  "virtual-setup": heroCoworking,
+  "bank-account": heroPremium,
+  "accounting-vat": heroDubai,
+  "compliance-services": heroPremium,
+  "payroll-management": heroCoworking,
+  "health-insurance": heroPremium,
+  "it-services": heroCoworking,
+  "legal-services": heroDubai,
+  "mail-management": heroCoworking,
+  "virtual-receptionist": heroPremium,
+  "tourist-visa": heroDubai,
+  "golden-visa": heroDubai,
+  "second-citizenship": heroPremium,
+  "pro-services": heroDubai,
+  "will-preparation": heroPremium,
+  "trademark-registration": heroDubai,
+};
 
 interface ServicePageTemplateProps {
   page: PageContent;
