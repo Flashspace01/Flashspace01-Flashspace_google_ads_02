@@ -46,7 +46,7 @@ export const BusinessSetupOverview = () => {
           </p>
         </motion.div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {setupTypes.map((item, index) => {
             const isHovered = hovered === index;
             return (
@@ -59,9 +59,7 @@ export const BusinessSetupOverview = () => {
                 transition={{ delay: index * 0.08 }}
                 onMouseEnter={() => setHovered(index)}
                 onMouseLeave={() => setHovered(null)}
-                className={`relative flex flex-col justify-between p-8 lg:p-10 min-h-[360px] group overflow-hidden transition-colors duration-300 border-t border-border/40 border-b-4 border-b-secondary ${
-                  index < setupTypes.length - 1 ? "lg:border-r border-border/40" : ""
-                } ${index === 0 ? "sm:border-r border-border/40" : ""}`}
+                className="relative flex flex-col justify-between p-8 lg:p-10 min-h-[360px] group overflow-hidden border-b-2 border-border/60"
               >
                 {/* Background image on hover */}
                 <div
