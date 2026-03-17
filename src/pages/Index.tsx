@@ -16,6 +16,7 @@ const Index = () => {
         <HeroWithSearch />
         <BusinessSetupOverview />
         <SetupProcess />
+        <div className="py-16 sm:py-24" aria-hidden="true" />
         <CostCalculator />
         <ClientVoices />
         <FAQSection />
