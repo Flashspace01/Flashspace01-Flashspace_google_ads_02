@@ -108,9 +108,9 @@ const AnimatedTotal = ({ value }: { value: number }) => {
 const cardBase =
   "relative rounded-2xl border-2 transition-all duration-300 cursor-pointer";
 const cardDefault =
-  "border-transparent bg-card hover:shadow-md";
+  "border-transparent bg-muted/50 hover:shadow-md hover:bg-muted/70";
 const cardSelected =
-  "border-primary bg-[hsl(54_96%_88%/0.18)] shadow-[0_0_24px_-4px_hsl(var(--primary)/0.12)]";
+  "border-primary bg-secondary/30 shadow-[0_4px_24px_-4px_hsl(var(--primary)/0.18)]";
 
 /* ── Component ─────────────────────────────────────── */
 
@@ -185,16 +185,16 @@ export const CostCalculator = () => {
                     whileHover={{ y: -3 }}
                     whileTap={{ scale: 0.97 }}
                     onClick={() => setSelectedActivity(i)}
-                    className={`${cardBase} p-5 sm:p-7 text-center ${selected ? cardSelected : cardDefault}`}
+                    className={`${cardBase} p-6 sm:p-8 text-center ${selected ? cardSelected : cardDefault}`}
                   >
                     <div
-                      className={`w-12 h-12 rounded-xl mx-auto mb-3 flex items-center justify-center transition-colors duration-300 ${
+                      className={`w-14 h-14 rounded-xl mx-auto mb-4 flex items-center justify-center transition-colors duration-300 ${
                         selected
                           ? "bg-primary/15 text-primary"
-                          : "bg-foreground/[0.05] text-foreground"
+                          : "bg-foreground/[0.06] text-foreground"
                       }`}
                     >
-                      <Icon className="w-6 h-6" strokeWidth={1.6} />
+                      <Icon className="w-7 h-7" strokeWidth={1.5} />
                     </div>
                     <p className="font-semibold text-sm text-foreground">{a.label}</p>
                     <p className="text-xs mt-0.5 text-muted-foreground">{a.desc}</p>
@@ -447,7 +447,7 @@ export const CostCalculator = () => {
   };
 
   return (
-    <section className="py-20 lg:py-28 relative overflow-hidden bg-gradient-to-b from-background to-muted/40">
+    <section className="py-20 lg:py-28 relative overflow-hidden" style={{ backgroundColor: '#F9F9F9' }}>
       <div className="max-w-[1200px] mx-auto px-6 lg:px-12 relative z-10">
         {/* ── Header ── */}
         <motion.div
@@ -474,10 +474,10 @@ export const CostCalculator = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 0.1 }}
-          className="flex gap-14 lg:gap-20"
+          className="flex gap-10 lg:gap-16"
         >
           {/* LEFT — Vertical Progress Sidebar (desktop) */}
-          <div className="hidden lg:flex flex-col items-center shrink-0 w-[90px] pt-1">
+          <div className="hidden lg:flex flex-col items-center shrink-0 w-[100px] pt-1">
             {progressSteps.map((s, i) => {
               const isActive = i === step;
               const isDone = i < step;
@@ -493,30 +493,30 @@ export const CostCalculator = () => {
                     <div className="relative">
                       {isActive && (
                         <motion.div
-                          className="absolute inset-0 rounded-full border-2 border-primary/40"
-                          animate={{ scale: [1, 1.35, 1], opacity: [0.5, 0, 0.5] }}
+                          className="absolute inset-0 rounded-full border-2 border-primary/30"
+                          animate={{ scale: [1, 1.4, 1], opacity: [0.6, 0, 0.6] }}
                           transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
-                          style={{ margin: "-4px" }}
+                          style={{ margin: "-5px" }}
                         />
                       )}
                       <div
-                        className={`w-10 h-10 rounded-full flex items-center justify-center transition-all duration-300 ${
+                        className={`w-12 h-12 rounded-full flex items-center justify-center transition-all duration-300 ${
                           isActive
-                            ? "bg-primary text-primary-foreground shadow-[0_0_16px_-2px_hsl(var(--primary)/0.4)]"
+                            ? "bg-primary text-primary-foreground shadow-[0_0_20px_-2px_hsl(var(--primary)/0.5)]"
                             : isDone
                             ? "bg-foreground text-background"
-                            : "bg-card border border-border text-muted-foreground group-hover:border-primary/30"
+                            : "bg-card border-2 border-border text-muted-foreground group-hover:border-primary/30"
                         }`}
                       >
                         {isDone ? (
                           <Check className="w-4 h-4" />
                         ) : (
-                          <s.icon className="w-4 h-4" strokeWidth={1.5} />
+                          <s.icon className="w-5 h-5" strokeWidth={1.5} />
                         )}
                       </div>
                     </div>
                     <span
-                      className={`text-[10px] font-semibold tracking-wider uppercase transition-colors whitespace-nowrap ${
+                      className={`text-[11px] font-bold tracking-wider uppercase transition-colors whitespace-nowrap ${
                         isActive ? "text-foreground" : isDone ? "text-foreground/70" : "text-muted-foreground"
                       }`}
                     >
@@ -524,7 +524,7 @@ export const CostCalculator = () => {
                     </span>
                   </button>
                   {!isLast && (
-                    <div className="relative w-[2px] h-9 bg-border rounded-full my-1.5">
+                    <div className="relative w-[2px] h-10 bg-border rounded-full my-2">
                       {(isDone || isActive) && (
                         <motion.div
                           className="absolute inset-x-0 top-0 bg-primary rounded-full"
