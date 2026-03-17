@@ -40,7 +40,7 @@ export const ClientVoices = () => {
           <div className="absolute -bottom-2 -right-2 w-5 h-5 border-b border-r" style={{ borderColor: "#c8c8c8" }} />
 
           {/* Card */}
-          <div className="px-10 lg:px-16 pt-16 pb-12 lg:pt-20 lg:pb-16" style={{ background: "#f5f0e1" }}>
+          <div className="px-10 lg:px-16 pt-16 pb-12 lg:pt-20 lg:pb-16" style={{ background: "#fef8c3" }}>
             {/* Label */}
             <p className="text-sm mb-10 flex items-center gap-2" style={{ color: "#1a1a1a" }}>
               <span>+</span> What our clients say
