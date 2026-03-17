@@ -148,10 +148,10 @@ export const CostCalculator = () => {
     return total;
   };
 
-  /* ── Tile styles ── */
-  const tileBase = "rounded-xl border-2 transition-all duration-300 cursor-pointer";
-  const tileDefault = "bg-card border-border hover:border-gold/50 hover:shadow-soft";
-  const tileSelected = "border-gold bg-card shadow-[0_4px_24px_-4px_hsl(43,96%,50%,0.2)]";
+  /* ── Tile styles — borderless with gold-tinted bg ── */
+  const tileBase = "rounded-2xl transition-all duration-300 cursor-pointer border-2";
+  const tileDefault = "bg-gold/[0.04] border-transparent hover:border-gold/40 hover:scale-[1.03] hover:shadow-[0_8px_30px_-8px_hsl(43,96%,50%,0.15)]";
+  const tileSelected = "border-gold bg-gold/[0.08] shadow-[0_8px_30px_-8px_hsl(43,96%,50%,0.2)] scale-[1.02]";
 
   /* ── Render steps ── */
   const renderStep = () => {
@@ -172,7 +172,7 @@ export const CostCalculator = () => {
                 return (
                   <motion.button
                     key={a.label}
-                    whileHover={{ y: -4, scale: 1.02 }}
+                    whileHover={{ y: -4 }}
                     whileTap={{ scale: 0.97 }}
                     onClick={() => setSelectedActivity(i)}
                     className={`${tileBase} ${selected ? tileSelected : tileDefault} relative group p-6 sm:p-8 text-center`}
@@ -180,18 +180,14 @@ export const CostCalculator = () => {
                     <div
                       className={`w-14 h-14 rounded-xl mx-auto mb-4 flex items-center justify-center transition-colors duration-300 ${
                         selected
-                          ? "bg-gold/15 text-gold"
-                          : "bg-muted text-muted-foreground group-hover:text-foreground group-hover:bg-muted/80"
+                          ? "bg-gold/20 text-gold"
+                          : "bg-foreground/[0.06] text-muted-foreground group-hover:text-foreground"
                       }`}
                     >
                       <Icon className="w-7 h-7" strokeWidth={1.4} />
                     </div>
-                    <p className={`font-semibold text-sm ${selected ? "text-foreground" : "text-foreground"}`}>
-                      {a.label}
-                    </p>
-                    <p className="text-xs mt-1 text-muted-foreground">
-                      {a.desc}
-                    </p>
+                    <p className="font-semibold text-sm text-foreground">{a.label}</p>
+                    <p className="text-xs mt-1 text-muted-foreground">{a.desc}</p>
                     {selected && (
                       <motion.div
                         layoutId="tile-check"
@@ -229,18 +225,12 @@ export const CostCalculator = () => {
                   >
                     <div className="flex items-start justify-between">
                       <div>
-                        <p className="font-semibold text-foreground">
-                          {j.label}
-                        </p>
-                        <p className="text-xs mt-1 text-muted-foreground">
-                          {j.desc}
-                        </p>
+                        <p className="font-semibold text-foreground">{j.label}</p>
+                        <p className="text-xs mt-1 text-muted-foreground">{j.desc}</p>
                       </div>
                       {j.tag && (
                         <span className={`text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full whitespace-nowrap ${
-                          selected
-                            ? "bg-gold/20 text-gold"
-                            : "bg-muted text-muted-foreground"
+                          selected ? "bg-gold/20 text-gold" : "bg-foreground/[0.06] text-muted-foreground"
                         }`}>
                           {j.tag}
                         </span>
@@ -284,9 +274,7 @@ export const CostCalculator = () => {
                     <p className={`text-3xl font-bold mb-1 ${selected ? "text-gold" : "text-foreground"}`}>
                       {v.label.split(" ")[0]}
                     </p>
-                    <p className="text-xs text-muted-foreground">
-                      {v.desc}
-                    </p>
+                    <p className="text-xs text-muted-foreground">{v.desc}</p>
                   </motion.button>
                 );
               })}
@@ -314,12 +302,8 @@ export const CostCalculator = () => {
                     onClick={() => setSelectedOffice(i)}
                     className={`${tileBase} ${selected ? tileSelected : tileDefault} p-6 text-center`}
                   >
-                    <p className="font-semibold mb-1 text-foreground">
-                      {o.label}
-                    </p>
-                    <p className="text-xs mb-3 text-muted-foreground">
-                      {o.desc}
-                    </p>
+                    <p className="font-semibold mb-1 text-foreground">{o.label}</p>
+                    <p className="text-xs mb-3 text-muted-foreground">{o.desc}</p>
                     <span className={`text-xs font-bold ${selected ? "text-gold" : "text-muted-foreground"}`}>
                       {o.price}
                     </span>
@@ -353,18 +337,14 @@ export const CostCalculator = () => {
                     <div className="flex items-center gap-3">
                       <div
                         className={`w-5 h-5 rounded-md border-2 flex items-center justify-center shrink-0 transition-colors ${
-                          selected ? "bg-gold border-gold" : "border-border"
+                          selected ? "bg-gold border-gold" : "border-foreground/20"
                         }`}
                       >
                         {selected && <Check className="w-3 h-3 text-foreground" />}
                       </div>
                       <div>
-                        <p className="font-semibold text-sm text-foreground">
-                          {a.label}
-                        </p>
-                        <p className="text-xs text-muted-foreground">
-                          {a.desc}
-                        </p>
+                        <p className="font-semibold text-sm text-foreground">{a.label}</p>
+                        <p className="text-xs text-muted-foreground">{a.desc}</p>
                       </div>
                     </div>
                   </motion.button>
@@ -395,7 +375,7 @@ export const CostCalculator = () => {
                 initial={{ scale: 0.9 }}
                 animate={{ scale: 1 }}
                 transition={{ delay: 0.3, type: "spring", stiffness: 200 }}
-                className="inline-block rounded-2xl bg-foreground px-10 py-6 mb-8 shadow-soft-lg"
+                className="inline-block rounded-2xl bg-foreground px-10 py-6 mb-8"
               >
                 <p className="text-background/70 text-sm font-medium mb-1">Estimated Total</p>
                 <p className="text-4xl sm:text-5xl font-bold text-gold tracking-tight">
@@ -406,19 +386,19 @@ export const CostCalculator = () => {
 
               <div className="max-w-sm mx-auto text-left space-y-3 mb-8">
                 {selectedActivity !== null && (
-                  <div className="flex justify-between text-sm border-b border-border pb-2">
+                  <div className="flex justify-between text-sm border-b border-foreground/10 pb-2">
                     <span className="text-muted-foreground">Activity</span>
                     <span className="font-medium text-foreground">{activities[selectedActivity].label}</span>
                   </div>
                 )}
                 {selectedJurisdiction !== null && (
-                  <div className="flex justify-between text-sm border-b border-border pb-2">
+                  <div className="flex justify-between text-sm border-b border-foreground/10 pb-2">
                     <span className="text-muted-foreground">Jurisdiction</span>
                     <span className="font-medium text-foreground">{jurisdictions[selectedJurisdiction].label}</span>
                   </div>
                 )}
                 {selectedVisas !== null && (
-                  <div className="flex justify-between text-sm border-b border-border pb-2">
+                  <div className="flex justify-between text-sm border-b border-foreground/10 pb-2">
                     <span className="text-muted-foreground">Visas</span>
                     <span className="font-medium text-foreground">{visaOptions[selectedVisas].label}</span>
                   </div>
@@ -445,179 +425,173 @@ export const CostCalculator = () => {
   };
 
   return (
-    <section className="py-20 lg:py-28 bg-background relative overflow-hidden">
-      <div className="max-w-[1100px] mx-auto px-4 lg:px-8 relative z-10">
-        {/* Header — Serif title */}
+    <section className="py-24 lg:py-32 relative overflow-hidden" style={{ background: "#FAFAFA" }}>
+      {/* Decorative top band — thin gold gradient line */}
+      <div className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-transparent via-gold to-transparent opacity-40" />
+
+      <div className="max-w-[1200px] mx-auto px-4 lg:px-8 relative z-10">
+        {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center max-w-3xl mx-auto mb-14"
+          className="text-center max-w-3xl mx-auto mb-16"
         >
           <h2
-            className="text-3xl sm:text-4xl lg:text-[52px] font-bold text-foreground mb-4 tracking-tight leading-[1.1]"
+            className="text-3xl sm:text-4xl lg:text-[56px] font-bold text-foreground mb-5 tracking-tight leading-[1.1]"
             style={{ fontFamily: "'Playfair Display', Georgia, serif" }}
           >
             Calculate Your Business{" "}
             <span className="text-gold">Setup Cost</span>
           </h2>
-          <p className="text-muted-foreground text-lg">
+          <p className="text-muted-foreground text-lg max-w-xl mx-auto">
             Answer a few questions and get an instant estimate for your UAE business setup.
           </p>
+          {/* Subtle gold line under header */}
+          <div className="w-16 h-[2px] bg-gold mx-auto mt-6 rounded-full" />
         </motion.div>
 
-        {/* Main Card */}
+        {/* Stepper — full width, no card border */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 0.1 }}
         >
-          <div className="rounded-2xl bg-card border border-border shadow-soft-lg overflow-hidden">
-            {/* Top progress bar */}
-            <div className="h-1 bg-muted relative">
+          {/* Progress Stepper */}
+          <div className="mb-14">
+            <div className="flex items-center justify-between max-w-3xl mx-auto relative">
+              {/* Connecting line */}
+              <div className="absolute top-6 left-[8%] right-[8%] h-[2px] bg-foreground/[0.08]" />
               <motion.div
-                className="h-full bg-gold rounded-r-full"
-                animate={{ width: `${((step + 1) / progressSteps.length) * 100}%` }}
+                className="absolute top-6 left-[8%] h-[2px] bg-gold origin-left"
+                animate={{ width: `${Math.max(0, ((step) / (progressSteps.length - 1)) * 84)}%` }}
                 transition={{ duration: 0.5, ease: "easeOut" }}
               />
-            </div>
 
-            {/* Progress Timeline */}
-            <div className="border-b border-border px-6 lg:px-12 py-7">
-              <div className="flex items-center justify-between max-w-2xl mx-auto relative">
-                {/* Connecting line */}
-                <div className="absolute top-6 left-[10%] right-[10%] h-[2px] bg-border" />
-                <motion.div
-                  className="absolute top-6 left-[10%] h-[2px] bg-gold origin-left"
-                  animate={{ width: `${Math.max(0, ((step) / (progressSteps.length - 1)) * 80)}%` }}
-                  transition={{ duration: 0.5, ease: "easeOut" }}
-                />
-
-                {progressSteps.map((s, i) => {
-                  const isActive = i === step;
-                  const isDone = i < step;
-                  return (
-                    <button
-                      key={s.label}
-                      onClick={() => {
-                        if (i < step) {
-                          setDirection(-1);
-                          setStep(i);
-                        }
-                      }}
-                      className="flex flex-col items-center gap-2.5 group cursor-pointer relative z-10"
-                    >
-                      <div className="relative">
-                        {isActive && (
-                          <motion.div
-                            className="absolute inset-0 rounded-full border-2 border-gold/50"
-                            animate={{ scale: [1, 1.5, 1], opacity: [0.6, 0, 0.6] }}
-                            transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-                            style={{ margin: "-5px" }}
-                          />
-                        )}
-                        <div
-                          className={`w-12 h-12 rounded-full flex items-center justify-center transition-all duration-400 ${
-                            isActive
-                              ? "bg-gold text-foreground shadow-[0_0_20px_-2px_hsl(43,96%,50%,0.4)]"
-                              : isDone
-                              ? "bg-gold text-foreground"
-                              : "bg-muted text-muted-foreground group-hover:bg-muted/80"
-                          }`}
-                        >
-                          {isDone ? (
-                            <Check className="w-5 h-5" />
-                          ) : (
-                            <s.icon className="w-5 h-5" />
-                          )}
-                        </div>
-                      </div>
-                      <span
-                        className={`text-[11px] font-semibold tracking-wider uppercase transition-colors ${
+              {progressSteps.map((s, i) => {
+                const isActive = i === step;
+                const isDone = i < step;
+                return (
+                  <button
+                    key={s.label}
+                    onClick={() => {
+                      if (i < step) {
+                        setDirection(-1);
+                        setStep(i);
+                      }
+                    }}
+                    className="flex flex-col items-center gap-3 group cursor-pointer relative z-10"
+                  >
+                    <div className="relative">
+                      {isActive && (
+                        <motion.div
+                          className="absolute inset-0 rounded-full border-2 border-gold/40"
+                          animate={{ scale: [1, 1.5, 1], opacity: [0.5, 0, 0.5] }}
+                          transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+                          style={{ margin: "-6px" }}
+                        />
+                      )}
+                      <div
+                        className={`w-12 h-12 rounded-full flex items-center justify-center transition-all duration-400 ${
                           isActive
-                            ? "text-foreground"
+                            ? "bg-gold text-foreground shadow-[0_0_24px_-4px_hsl(43,96%,50%,0.5)]"
                             : isDone
-                            ? "text-foreground/70"
-                            : "text-muted-foreground"
+                            ? "bg-gold text-foreground"
+                            : "bg-foreground/[0.06] text-muted-foreground group-hover:bg-foreground/[0.1]"
                         }`}
                       >
-                        {s.label}
-                      </span>
-                    </button>
-                  );
-                })}
-              </div>
+                        {isDone ? (
+                          <Check className="w-5 h-5" />
+                        ) : (
+                          <s.icon className="w-5 h-5" />
+                        )}
+                      </div>
+                    </div>
+                    <span
+                      className={`text-[11px] font-semibold tracking-wider uppercase transition-colors ${
+                        isActive
+                          ? "text-foreground"
+                          : isDone
+                          ? "text-foreground/60"
+                          : "text-muted-foreground"
+                      }`}
+                    >
+                      {s.label}
+                    </span>
+                  </button>
+                );
+              })}
             </div>
-
-            {/* Step Content */}
-            <div className="px-8 sm:px-14 lg:px-20 py-12 min-h-[460px] relative overflow-hidden">
-              <AnimatePresence mode="wait" custom={direction}>
-                <motion.div
-                  key={step}
-                  custom={direction}
-                  variants={slideVariants}
-                  initial="enter"
-                  animate="center"
-                  exit="exit"
-                  transition={{ duration: 0.35, ease: [0.4, 0, 0.2, 1] }}
-                >
-                  {renderStep()}
-                </motion.div>
-              </AnimatePresence>
-            </div>
-
-            {/* Footer Navigation */}
-            {step < 5 && (
-              <div className="border-t border-border px-8 sm:px-14 lg:px-20 py-6 flex items-center justify-between">
-                <button
-                  onClick={goBack}
-                  disabled={step === 0}
-                  className="inline-flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
-                >
-                  <ChevronLeft className="w-4 h-4" />
-                  Back
-                </button>
-
-                {/* Floating estimate preview */}
-                <div className="hidden sm:flex items-center gap-3 bg-muted/50 rounded-full px-5 py-2.5">
-                  <span className="text-xs text-muted-foreground font-medium">Estimated Total</span>
-                  <div className="w-px h-4 bg-border" />
-                  <span
-                    className={`text-lg font-bold text-foreground transition-all duration-500 tabular-nums ${
-                      step < 2 ? "blur-sm select-none" : ""
-                    }`}
-                  >
-                    AED <AnimatedTotal value={estimateTotal()} />
-                  </span>
-                </div>
-
-                {/* Next button — charcoal/gold */}
-                <button
-                  onClick={goNext}
-                  disabled={!canProceed()}
-                  className="inline-flex items-center gap-2 bg-foreground text-background font-semibold px-10 h-12 rounded-full text-sm tracking-wide hover:bg-foreground/90 hover:shadow-soft-lg transition-all duration-300 hover:scale-[1.03] disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:scale-100 disabled:hover:shadow-none"
-                >
-                  {step === 4 ? "See Estimate" : "Next Step"}
-                  <ArrowRight className="w-4 h-4" />
-                </button>
-              </div>
-            )}
-
-            {step === 5 && (
-              <div className="border-t border-border px-8 sm:px-14 lg:px-20 py-6 flex items-center justify-center">
-                <button
-                  onClick={() => {
-                    setStep(0);
-                    setDirection(-1);
-                  }}
-                  className="text-sm text-muted-foreground hover:text-foreground transition-colors"
-                >
-                  Start Over
-                </button>
-              </div>
-            )}
           </div>
+
+          {/* Step Content — open, no card wrapper */}
+          <div className="max-w-[1000px] mx-auto min-h-[420px] relative overflow-hidden">
+            <AnimatePresence mode="wait" custom={direction}>
+              <motion.div
+                key={step}
+                custom={direction}
+                variants={slideVariants}
+                initial="enter"
+                animate="center"
+                exit="exit"
+                transition={{ duration: 0.35, ease: [0.4, 0, 0.2, 1] }}
+              >
+                {renderStep()}
+              </motion.div>
+            </AnimatePresence>
+          </div>
+
+          {/* Footer Navigation — floating charcoal bar for estimate */}
+          {step < 5 && (
+            <div className="max-w-[1000px] mx-auto mt-12 flex items-center justify-between">
+              <button
+                onClick={goBack}
+                disabled={step === 0}
+                className="inline-flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
+              >
+                <ChevronLeft className="w-4 h-4" />
+                Back
+              </button>
+
+              {/* Floating estimate — charcoal bar with gold text */}
+              <div className="hidden sm:flex items-center gap-4 bg-foreground rounded-full px-6 py-3 shadow-soft">
+                <span className="text-xs text-background/60 font-medium">Estimated Total</span>
+                <div className="w-px h-4 bg-background/20" />
+                <span
+                  className={`text-lg font-bold text-gold transition-all duration-500 tabular-nums ${
+                    step < 2 ? "blur-sm select-none" : ""
+                  }`}
+                >
+                  AED <AnimatedTotal value={estimateTotal()} />
+                </span>
+              </div>
+
+              {/* Next button */}
+              <button
+                onClick={goNext}
+                disabled={!canProceed()}
+                className="inline-flex items-center gap-2 bg-foreground text-background font-semibold px-10 h-12 rounded-full text-sm tracking-wide hover:bg-foreground/90 hover:shadow-soft-lg transition-all duration-300 hover:scale-[1.03] disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:scale-100 disabled:hover:shadow-none"
+              >
+                {step === 4 ? "See Estimate" : "Next Step"}
+                <ArrowRight className="w-4 h-4" />
+              </button>
+            </div>
+          )}
+
+          {step === 5 && (
+            <div className="mt-8 flex items-center justify-center">
+              <button
+                onClick={() => {
+                  setStep(0);
+                  setDirection(-1);
+                }}
+                className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+              >
+                Start Over
+              </button>
+            </div>
+          )}
         </motion.div>
       </div>
     </section>
