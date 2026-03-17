@@ -213,14 +213,15 @@ export const Navbar = () => {
                             </h4>
                             <div className="space-y-1">
                               {group.items.map((item) => (
-                                <a
+                                <Link
                                   key={item.label}
-                                  href={item.href}
+                                  to={item.href}
                                   className="flex items-center gap-2.5 px-3 py-2 text-sm text-foreground/80 hover:text-foreground hover:bg-primary/5 rounded-lg transition-colors"
+                                  onClick={() => setActiveDropdown(null)}
                                 >
                                   <item.icon className="w-4 h-4 text-primary/70 shrink-0" />
                                   {item.label}
-                                </a>
+                                </Link>
                               ))}
                             </div>
                           </div>
