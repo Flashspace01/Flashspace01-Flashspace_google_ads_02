@@ -70,9 +70,19 @@ const addons = [
 /* ── Slide animation ───────────────────────────────── */
 
 const slideVariants = {
-  enter: (dir: number) => ({ x: dir > 0 ? 300 : -300, opacity: 0 }),
+  enter: (dir: number) => ({ x: dir > 0 ? 200 : -200, opacity: 0 }),
   center: { x: 0, opacity: 1 },
-  exit: (dir: number) => ({ x: dir > 0 ? -300 : 300, opacity: 0 }),
+  exit: (dir: number) => ({ x: dir > 0 ? -200 : 200, opacity: 0 }),
+};
+
+/* ── Stagger card animation ── */
+const cardStagger = {
+  hidden: { opacity: 0, y: 20 },
+  visible: (i: number) => ({
+    opacity: 1,
+    y: 0,
+    transition: { delay: i * 0.06, duration: 0.35, ease: "easeOut" },
+  }),
 };
 
 /* ── Animated Number ── */
@@ -93,6 +103,14 @@ const AnimatedTotal = ({ value }: { value: number }) => {
 
   return <>{display.toLocaleString()}</>;
 };
+
+/* ── Shared card styles ── */
+const cardBase =
+  "relative rounded-2xl border-2 transition-all duration-300 cursor-pointer";
+const cardDefault =
+  "border-transparent bg-card hover:shadow-md";
+const cardSelected =
+  "border-primary bg-[hsl(54_96%_88%/0.18)] shadow-[0_0_24px_-4px_hsl(var(--primary)/0.12)]";
 
 /* ── Component ─────────────────────────────────────── */
 
@@ -115,16 +133,10 @@ export const CostCalculator = () => {
   };
 
   const goNext = () => {
-    if (step < 5 && canProceed()) {
-      setDirection(1);
-      setStep((s) => s + 1);
-    }
+    if (step < 5 && canProceed()) { setDirection(1); setStep((s) => s + 1); }
   };
   const goBack = () => {
-    if (step > 0) {
-      setDirection(-1);
-      setStep((s) => s - 1);
-    }
+    if (step > 0) { setDirection(-1); setStep((s) => s - 1); }
   };
 
   const toggleAddon = (i: number) => {
@@ -153,43 +165,43 @@ export const CostCalculator = () => {
       case 0:
         return (
           <div>
-            <h3 className="text-2xl sm:text-3xl font-bold text-foreground mb-2">
+            <h3 className="text-xl sm:text-2xl font-bold text-foreground mb-1.5">
               What's your business activity?
             </h3>
-            <p className="text-muted-foreground mb-10">
+            <p className="text-muted-foreground text-sm mb-8">
               Select the category that best describes your business.
             </p>
-            <div className="grid grid-cols-2 sm:grid-cols-3 gap-5">
+            <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
               {activities.map((a, i) => {
                 const Icon = a.icon;
                 const selected = selectedActivity === i;
                 return (
                   <motion.button
                     key={a.label}
-                    whileHover={{ y: -4 }}
+                    custom={i}
+                    initial="hidden"
+                    animate="visible"
+                    variants={cardStagger}
+                    whileHover={{ y: -3 }}
                     whileTap={{ scale: 0.97 }}
                     onClick={() => setSelectedActivity(i)}
-                    className={`relative group rounded-2xl border-2 p-6 sm:p-8 text-center transition-all duration-300 cursor-pointer ${
-                      selected
-                        ? "border-primary bg-primary/[0.06] shadow-[0_8px_30px_-8px_hsl(var(--primary)/0.15)]"
-                        : "border-transparent bg-secondary/[0.25] hover:border-primary/30 hover:shadow-soft"
-                    }`}
+                    className={`${cardBase} p-5 sm:p-7 text-center ${selected ? cardSelected : cardDefault}`}
                   >
                     <div
-                      className={`w-14 h-14 rounded-xl mx-auto mb-4 flex items-center justify-center transition-colors duration-300 ${
+                      className={`w-12 h-12 rounded-xl mx-auto mb-3 flex items-center justify-center transition-colors duration-300 ${
                         selected
                           ? "bg-primary/15 text-primary"
-                          : "bg-foreground/[0.06] text-foreground group-hover:text-foreground"
+                          : "bg-foreground/[0.05] text-foreground"
                       }`}
                     >
-                      <Icon className="w-7 h-7" strokeWidth={1.6} />
+                      <Icon className="w-6 h-6" strokeWidth={1.6} />
                     </div>
                     <p className="font-semibold text-sm text-foreground">{a.label}</p>
-                    <p className="text-xs mt-1 text-muted-foreground">{a.desc}</p>
+                    <p className="text-xs mt-0.5 text-muted-foreground">{a.desc}</p>
                     {selected && (
                       <motion.div
                         layoutId="tile-check"
-                        className="absolute top-3 right-3 w-5 h-5 rounded-full bg-primary flex items-center justify-center"
+                        className="absolute top-2.5 right-2.5 w-5 h-5 rounded-full bg-primary flex items-center justify-center"
                       >
                         <Check className="w-3 h-3 text-primary-foreground" />
                       </motion.div>
@@ -204,40 +216,40 @@ export const CostCalculator = () => {
       case 1:
         return (
           <div>
-            <h3 className="text-2xl sm:text-3xl font-bold text-foreground mb-2">
+            <h3 className="text-xl sm:text-2xl font-bold text-foreground mb-1.5">
               Choose your jurisdiction
             </h3>
-            <p className="text-muted-foreground mb-10">
+            <p className="text-muted-foreground text-sm mb-8">
               Each jurisdiction offers unique benefits for your business type.
             </p>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
               {jurisdictions.map((j, i) => {
                 const selected = selectedJurisdiction === i;
                 return (
                   <motion.button
                     key={j.label}
-                    whileHover={{ y: -4 }}
+                    custom={i}
+                    initial="hidden"
+                    animate="visible"
+                    variants={cardStagger}
+                    whileHover={{ y: -3 }}
                     whileTap={{ scale: 0.97 }}
                     onClick={() => setSelectedJurisdiction(i)}
-                    className={`relative rounded-2xl border-2 p-6 text-left transition-all duration-300 cursor-pointer ${
-                      selected
-                        ? "border-primary bg-primary/[0.06] shadow-[0_8px_30px_-8px_hsl(var(--primary)/0.15)]"
-                        : "border-transparent bg-secondary/[0.25] hover:border-primary/30 hover:shadow-soft"
-                    }`}
+                    className={`${cardBase} p-5 text-left ${selected ? cardSelected : cardDefault}`}
                   >
                     {j.tag && (
-                      <span className={`absolute top-3 right-3 text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full ${
-                        selected ? "bg-primary/15 text-primary" : "bg-foreground/[0.06] text-muted-foreground"
+                      <span className={`absolute top-3 right-3 text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full ${
+                        selected ? "bg-primary/15 text-primary" : "bg-foreground/[0.05] text-muted-foreground"
                       }`}>
                         {j.tag}
                       </span>
                     )}
-                    <p className="font-bold text-lg text-foreground mb-1 pr-16">{j.label}</p>
+                    <p className="font-bold text-base text-foreground mb-1 pr-14">{j.label}</p>
                     <p className="text-sm text-muted-foreground leading-relaxed">{j.desc}</p>
                     {selected && (
                       <motion.div
                         layoutId="tile-check-j"
-                        className="absolute bottom-4 right-4 w-5 h-5 rounded-full bg-primary flex items-center justify-center"
+                        className="absolute bottom-3 right-3 w-5 h-5 rounded-full bg-primary flex items-center justify-center"
                       >
                         <Check className="w-3 h-3 text-primary-foreground" />
                       </motion.div>
@@ -252,26 +264,26 @@ export const CostCalculator = () => {
       case 2:
         return (
           <div>
-            <h3 className="text-2xl sm:text-3xl font-bold text-foreground mb-2">
+            <h3 className="text-xl sm:text-2xl font-bold text-foreground mb-1.5">
               How many visas do you need?
             </h3>
-            <p className="text-muted-foreground mb-10">
+            <p className="text-muted-foreground text-sm mb-8">
               Select your visa requirements for your team.
             </p>
-            <div className="grid grid-cols-2 gap-5">
+            <div className="grid grid-cols-2 gap-4">
               {visaOptions.map((v, i) => {
                 const selected = selectedVisas === i;
                 return (
                   <motion.button
                     key={v.label}
-                    whileHover={{ y: -4 }}
+                    custom={i}
+                    initial="hidden"
+                    animate="visible"
+                    variants={cardStagger}
+                    whileHover={{ y: -3 }}
                     whileTap={{ scale: 0.97 }}
                     onClick={() => setSelectedVisas(i)}
-                    className={`relative rounded-2xl border-2 p-6 text-center transition-all duration-300 cursor-pointer ${
-                      selected
-                        ? "border-primary bg-primary/[0.06] shadow-[0_8px_30px_-8px_hsl(var(--primary)/0.15)]"
-                        : "border-transparent bg-secondary/[0.25] hover:border-primary/30 hover:shadow-soft"
-                    }`}
+                    className={`${cardBase} p-6 text-center ${selected ? cardSelected : cardDefault}`}
                   >
                     <p className={`text-3xl font-bold mb-1 ${selected ? "text-primary" : "text-foreground"}`}>
                       {v.label.split(" ")[0]}
@@ -287,26 +299,26 @@ export const CostCalculator = () => {
       case 3:
         return (
           <div>
-            <h3 className="text-2xl sm:text-3xl font-bold text-foreground mb-2">
+            <h3 className="text-xl sm:text-2xl font-bold text-foreground mb-1.5">
               Select your office type
             </h3>
-            <p className="text-muted-foreground mb-10">
+            <p className="text-muted-foreground text-sm mb-8">
               Choose the workspace that fits your needs.
             </p>
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-5">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
               {officeOptions.map((o, i) => {
                 const selected = selectedOffice === i;
                 return (
                   <motion.button
                     key={o.label}
-                    whileHover={{ y: -4 }}
+                    custom={i}
+                    initial="hidden"
+                    animate="visible"
+                    variants={cardStagger}
+                    whileHover={{ y: -3 }}
                     whileTap={{ scale: 0.97 }}
                     onClick={() => setSelectedOffice(i)}
-                    className={`relative rounded-2xl border-2 p-6 text-center transition-all duration-300 cursor-pointer ${
-                      selected
-                        ? "border-primary bg-primary/[0.06] shadow-[0_8px_30px_-8px_hsl(var(--primary)/0.15)]"
-                        : "border-transparent bg-secondary/[0.25] hover:border-primary/30 hover:shadow-soft"
-                    }`}
+                    className={`${cardBase} p-6 text-center ${selected ? cardSelected : cardDefault}`}
                   >
                     <p className="font-bold text-foreground mb-1">{o.label}</p>
                     <p className="text-sm mb-3 text-muted-foreground">{o.desc}</p>
@@ -323,26 +335,26 @@ export const CostCalculator = () => {
       case 4:
         return (
           <div>
-            <h3 className="text-2xl sm:text-3xl font-bold text-foreground mb-2">
+            <h3 className="text-xl sm:text-2xl font-bold text-foreground mb-1.5">
               Optional add-ons
             </h3>
-            <p className="text-muted-foreground mb-10">
+            <p className="text-muted-foreground text-sm mb-8">
               Enhance your setup with additional services.
             </p>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               {addons.map((a, i) => {
                 const selected = selectedAddons.includes(i);
                 return (
                   <motion.button
                     key={a.label}
+                    custom={i}
+                    initial="hidden"
+                    animate="visible"
+                    variants={cardStagger}
                     whileHover={{ y: -2 }}
                     whileTap={{ scale: 0.98 }}
                     onClick={() => toggleAddon(i)}
-                    className={`relative rounded-2xl border-2 p-5 text-left transition-all duration-300 cursor-pointer ${
-                      selected
-                        ? "border-primary bg-primary/[0.06] shadow-[0_8px_30px_-8px_hsl(var(--primary)/0.15)]"
-                        : "border-transparent bg-secondary/[0.25] hover:border-primary/30 hover:shadow-soft"
-                    }`}
+                    className={`${cardBase} p-5 text-left ${selected ? cardSelected : cardDefault}`}
                   >
                     <div className="flex items-center gap-3">
                       <div
@@ -435,34 +447,37 @@ export const CostCalculator = () => {
   };
 
   return (
-    <section className="py-20 lg:py-28 relative overflow-hidden" style={{ background: "#F9F9F9" }}>
-      <div className="max-w-[1200px] mx-auto px-6 lg:px-10 relative z-10">
-        {/* Header — left-aligned above the two-column layout */}
+    <section className="py-20 lg:py-28 relative overflow-hidden bg-gradient-to-b from-background to-muted/40">
+      <div className="max-w-[1200px] mx-auto px-6 lg:px-12 relative z-10">
+        {/* ── Header ── */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           className="mb-14"
         >
-          <h2 className="text-3xl sm:text-4xl lg:text-[48px] font-bold text-foreground tracking-tight leading-[1.15]">
+          <h2
+            className="text-3xl sm:text-4xl lg:text-[44px] font-bold text-foreground tracking-tight leading-[1.15]"
+            style={{ fontFamily: "'Playfair Display', serif" }}
+          >
             Calculate Your Business{" "}
             <span className="text-primary">Setup Cost</span>
           </h2>
-          <p className="text-muted-foreground text-lg mt-4 max-w-2xl">
+          <p className="text-muted-foreground text-base mt-3 max-w-xl">
             Answer a few questions and get an instant estimate for your UAE business setup.
           </p>
         </motion.div>
 
-        {/* Two-column layout */}
+        {/* ── Two-Column Layout ── */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 0.1 }}
-          className="flex gap-12 lg:gap-20"
+          className="flex gap-14 lg:gap-20"
         >
-          {/* LEFT — Vertical Progress Stepper */}
-          <div className="hidden lg:flex flex-col items-center shrink-0 w-[100px]">
+          {/* LEFT — Vertical Progress Sidebar (desktop) */}
+          <div className="hidden lg:flex flex-col items-center shrink-0 w-[90px] pt-1">
             {progressSteps.map((s, i) => {
               const isActive = i === step;
               const isDone = i < step;
@@ -473,39 +488,43 @@ export const CostCalculator = () => {
                     onClick={() => {
                       if (i < step) { setDirection(-1); setStep(i); }
                     }}
-                    className="flex flex-col items-center gap-2 group cursor-pointer relative"
+                    className="flex flex-col items-center gap-1.5 group cursor-pointer relative"
                   >
                     <div className="relative">
                       {isActive && (
                         <motion.div
-                          className="absolute inset-0 rounded-full border-2 border-primary/30"
-                          animate={{ scale: [1, 1.4, 1], opacity: [0.4, 0, 0.4] }}
-                          transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-                          style={{ margin: "-5px" }}
+                          className="absolute inset-0 rounded-full border-2 border-primary/40"
+                          animate={{ scale: [1, 1.35, 1], opacity: [0.5, 0, 0.5] }}
+                          transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
+                          style={{ margin: "-4px" }}
                         />
                       )}
                       <div
-                        className={`w-11 h-11 rounded-full flex items-center justify-center transition-all duration-300 ${
+                        className={`w-10 h-10 rounded-full flex items-center justify-center transition-all duration-300 ${
                           isActive
-                            ? "bg-primary text-primary-foreground shadow-glow"
+                            ? "bg-primary text-primary-foreground shadow-[0_0_16px_-2px_hsl(var(--primary)/0.4)]"
                             : isDone
-                            ? "bg-primary text-primary-foreground"
+                            ? "bg-foreground text-background"
                             : "bg-card border border-border text-muted-foreground group-hover:border-primary/30"
                         }`}
                       >
-                        {isDone ? <Check className="w-4 h-4" /> : <s.icon className="w-4 h-4" strokeWidth={1.5} />}
+                        {isDone ? (
+                          <Check className="w-4 h-4" />
+                        ) : (
+                          <s.icon className="w-4 h-4" strokeWidth={1.5} />
+                        )}
                       </div>
                     </div>
                     <span
                       className={`text-[10px] font-semibold tracking-wider uppercase transition-colors whitespace-nowrap ${
-                        isActive ? "text-foreground" : isDone ? "text-foreground/60" : "text-muted-foreground"
+                        isActive ? "text-foreground" : isDone ? "text-foreground/70" : "text-muted-foreground"
                       }`}
                     >
                       {s.label}
                     </span>
                   </button>
                   {!isLast && (
-                    <div className="relative w-[2px] h-8 bg-border rounded-full my-2">
+                    <div className="relative w-[2px] h-9 bg-border rounded-full my-1.5">
                       {(isDone || isActive) && (
                         <motion.div
                           className="absolute inset-x-0 top-0 bg-primary rounded-full"
@@ -521,9 +540,9 @@ export const CostCalculator = () => {
             })}
           </div>
 
-          {/* RIGHT — Content */}
+          {/* RIGHT — Content Area */}
           <div className="flex-1 min-w-0">
-            {/* Mobile stepper */}
+            {/* Mobile horizontal stepper */}
             <div className="flex lg:hidden items-center justify-between mb-8 gap-1">
               {progressSteps.map((s, i) => {
                 const isActive = i === step;
@@ -536,8 +555,10 @@ export const CostCalculator = () => {
                   >
                     <div
                       className={`w-8 h-8 rounded-full flex items-center justify-center transition-all duration-300 ${
-                        isActive || isDone
+                        isActive
                           ? "bg-primary text-primary-foreground"
+                          : isDone
+                          ? "bg-foreground text-background"
                           : "bg-card border border-border text-muted-foreground"
                       }`}
                     >
@@ -551,8 +572,8 @@ export const CostCalculator = () => {
               })}
             </div>
 
-            {/* Step Content */}
-            <div className="min-h-[400px] relative overflow-hidden">
+            {/* Step Content with slide transitions */}
+            <div className="min-h-[380px] relative overflow-hidden">
               <AnimatePresence mode="wait" custom={direction}>
                 <motion.div
                   key={step}
@@ -561,7 +582,7 @@ export const CostCalculator = () => {
                   initial="enter"
                   animate="center"
                   exit="exit"
-                  transition={{ duration: 0.35, ease: [0.4, 0, 0.2, 1] }}
+                  transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
                 >
                   {renderStep()}
                 </motion.div>
@@ -570,7 +591,7 @@ export const CostCalculator = () => {
 
             {/* Footer Action Bar */}
             {step < 5 && (
-              <div className="mt-8 flex items-center justify-between gap-4">
+              <div className="mt-10 flex items-center justify-between gap-4">
                 <button
                   onClick={goBack}
                   disabled={step === 0}
@@ -580,12 +601,12 @@ export const CostCalculator = () => {
                   Back
                 </button>
 
-                {/* Estimate capsule */}
-                <div className="hidden sm:flex items-center gap-4 bg-foreground rounded-full px-6 py-2.5">
+                {/* Estimate capsule — charcoal with gold text */}
+                <div className="hidden sm:flex items-center gap-3 bg-foreground rounded-full px-5 py-2">
                   <span className="text-xs text-background/60 font-medium">Estimated Total</span>
                   <div className="w-px h-4 bg-background/20" />
                   <span
-                    className={`text-lg font-bold text-secondary tabular-nums transition-all duration-500 ${
+                    className={`text-base font-bold text-secondary tabular-nums transition-all duration-500 ${
                       step < 2 ? "blur-sm select-none" : ""
                     }`}
                   >
@@ -593,11 +614,11 @@ export const CostCalculator = () => {
                   </span>
                 </div>
 
-                {/* Next button */}
+                {/* Next button — charcoal bg with gold text */}
                 <button
                   onClick={goNext}
                   disabled={!canProceed()}
-                  className="inline-flex items-center gap-2 bg-primary text-primary-foreground font-semibold px-8 sm:px-10 h-11 rounded-lg text-sm tracking-wide hover:bg-primary/90 shadow-md hover:shadow-lg transition-all duration-300 hover:scale-[1.03] disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:scale-100"
+                  className="inline-flex items-center gap-2 bg-foreground text-secondary font-semibold px-8 h-11 rounded-lg text-sm tracking-wide hover:bg-foreground/90 shadow-md hover:shadow-lg transition-all duration-300 hover:scale-[1.02] disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:scale-100"
                 >
                   {step === 4 ? "See Estimate" : "Next Step"}
                   <ArrowRight className="w-4 h-4" />
