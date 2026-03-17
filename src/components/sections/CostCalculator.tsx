@@ -515,27 +515,27 @@ export const CostCalculator = () => {
                             className="absolute inset-0 rounded-full border-2 border-primary/40"
                             animate={{ scale: [1, 1.5, 1], opacity: [0.5, 0, 0.5] }}
                             transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-                            style={{ margin: "-4px" }}
+                            style={{ margin: "-5px" }}
                           />
                         )}
                         <div
-                          className={`w-10 h-10 rounded-full flex items-center justify-center transition-all duration-400 ${
+                          className={`w-12 h-12 rounded-full flex items-center justify-center transition-all duration-400 ${
                             isActive
-                              ? "bg-primary text-secondary shadow-[0_0_20px_-2px_hsl(142,20%,26%,0.35)]"
+                              ? "bg-primary text-secondary shadow-[0_0_24px_-2px_hsl(142,20%,26%,0.4)]"
                               : isDone
                               ? "bg-primary text-secondary"
                               : "bg-primary/[0.08] text-primary/50 group-hover:bg-primary/[0.14]"
                           }`}
                         >
                           {isDone ? (
-                            <Check className="w-4 h-4" />
+                            <Check className="w-4.5 h-4.5" />
                           ) : (
-                            <s.icon className="w-4 h-4" />
+                            <s.icon className="w-4.5 h-4.5" />
                           )}
                         </div>
                       </div>
                       <span
-                        className={`text-[10px] font-semibold tracking-wider uppercase transition-colors ${
+                        className={`text-[11px] font-semibold tracking-wider uppercase transition-colors ${
                           isActive
                             ? "text-primary"
                             : isDone
