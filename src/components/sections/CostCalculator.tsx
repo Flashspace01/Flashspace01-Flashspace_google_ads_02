@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { useState, useEffect, useRef } from "react";
+import { motion, AnimatePresence, useMotionValue, animate } from "framer-motion";
 import {
   Globe,
   Laptop,
@@ -76,14 +76,24 @@ const slideVariants = {
   exit: (dir: number) => ({ x: dir > 0 ? -300 : 300, opacity: 0 }),
 };
 
-/* ── Tile styles: pale yellow field with green cards ── */
+/* ── Animated Number ── */
+const AnimatedTotal = ({ value }: { value: number }) => {
+  const motionVal = useMotionValue(0);
+  const [display, setDisplay] = useState(value);
+  const prevRef = useRef(value);
 
-const tileBase =
-  "rounded-2xl border-2 transition-all duration-300 cursor-pointer";
-const tileDefault =
-  "bg-primary/[0.06] border-primary/10 hover:border-primary/30 hover:bg-primary/[0.1]";
-const tileSelected =
-  "border-primary bg-primary text-secondary shadow-[0_0_24px_-6px_hsl(142,20%,26%,0.25)]";
+  useEffect(() => {
+    const controls = animate(prevRef.current, value, {
+      duration: 0.6,
+      ease: "easeOut",
+      onUpdate: (v) => setDisplay(Math.round(v)),
+    });
+    prevRef.current = value;
+    return controls.stop;
+  }, [value, motionVal]);
+
+  return <>{display.toLocaleString()}</>;
+};
 
 /* ── Component ─────────────────────────────────────── */
 
@@ -138,60 +148,56 @@ export const CostCalculator = () => {
     return total;
   };
 
-  /* ── Render steps ── */
+  /* ── Tile styles ── */
+  const tileBase = "rounded-xl border-2 transition-all duration-300 cursor-pointer";
+  const tileDefault = "bg-card border-border hover:border-gold/50 hover:shadow-soft";
+  const tileSelected = "border-gold bg-card shadow-[0_4px_24px_-4px_hsl(43,96%,50%,0.2)]";
 
+  /* ── Render steps ── */
   const renderStep = () => {
     switch (step) {
       case 0:
         return (
           <div>
-            <h3 className="text-xl sm:text-2xl font-semibold text-primary mb-2">
+            <h3 className="text-xl sm:text-2xl font-semibold text-foreground mb-2">
               What's your business activity?
             </h3>
             <p className="text-muted-foreground text-sm mb-10">
               Select the category that best describes your business.
             </p>
-            <div className="grid grid-cols-2 sm:grid-cols-3 gap-6 sm:gap-8">
+            <div className="grid grid-cols-2 sm:grid-cols-3 gap-5">
               {activities.map((a, i) => {
                 const Icon = a.icon;
                 const selected = selectedActivity === i;
                 return (
                   <motion.button
                     key={a.label}
-                    whileHover={{ scale: 1.04, y: -3 }}
+                    whileHover={{ y: -4, scale: 1.02 }}
                     whileTap={{ scale: 0.97 }}
                     onClick={() => setSelectedActivity(i)}
                     className={`${tileBase} ${selected ? tileSelected : tileDefault} relative group p-6 sm:p-8 text-center`}
                   >
-                    {/* Pulsing ring on selected */}
-                    {selected && (
-                      <motion.div
-                        className="absolute inset-0 rounded-2xl border-2 border-primary/40"
-                        animate={{ scale: [1, 1.04, 1], opacity: [0.6, 0, 0.6] }}
-                        transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
-                      />
-                    )}
                     <div
                       className={`w-14 h-14 rounded-xl mx-auto mb-4 flex items-center justify-center transition-colors duration-300 ${
                         selected
-                          ? "bg-secondary/20 text-secondary"
-                          : "bg-primary/[0.08] text-primary/70 group-hover:text-primary group-hover:bg-primary/[0.12]"
+                          ? "bg-gold/15 text-gold"
+                          : "bg-muted text-muted-foreground group-hover:text-foreground group-hover:bg-muted/80"
                       }`}
                     >
                       <Icon className="w-7 h-7" strokeWidth={1.4} />
                     </div>
-                    <p className={`font-semibold text-sm ${selected ? "text-secondary" : "text-primary"}`}>
+                    <p className={`font-semibold text-sm ${selected ? "text-foreground" : "text-foreground"}`}>
                       {a.label}
                     </p>
-                    <p className={`text-xs mt-1 ${selected ? "text-secondary/70" : "text-muted-foreground"}`}>
+                    <p className="text-xs mt-1 text-muted-foreground">
                       {a.desc}
                     </p>
                     {selected && (
                       <motion.div
                         layoutId="tile-check"
-                        className="absolute top-3 right-3 w-6 h-6 rounded-full bg-secondary flex items-center justify-center"
+                        className="absolute top-3 right-3 w-6 h-6 rounded-full bg-gold flex items-center justify-center"
                       >
-                        <Check className="w-3.5 h-3.5 text-primary" />
+                        <Check className="w-3.5 h-3.5 text-foreground" />
                       </motion.div>
                     )}
                   </motion.button>
@@ -204,7 +210,7 @@ export const CostCalculator = () => {
       case 1:
         return (
           <div>
-            <h3 className="text-xl sm:text-2xl font-semibold text-primary mb-2">
+            <h3 className="text-xl sm:text-2xl font-semibold text-foreground mb-2">
               Choose your jurisdiction
             </h3>
             <p className="text-muted-foreground text-sm mb-10">
@@ -223,18 +229,18 @@ export const CostCalculator = () => {
                   >
                     <div className="flex items-start justify-between">
                       <div>
-                        <p className={`font-semibold ${selected ? "text-secondary" : "text-primary"}`}>
+                        <p className="font-semibold text-foreground">
                           {j.label}
                         </p>
-                        <p className={`text-xs mt-1 ${selected ? "text-secondary/70" : "text-muted-foreground"}`}>
+                        <p className="text-xs mt-1 text-muted-foreground">
                           {j.desc}
                         </p>
                       </div>
                       {j.tag && (
                         <span className={`text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full whitespace-nowrap ${
                           selected
-                            ? "bg-secondary/20 text-secondary"
-                            : "bg-primary/[0.08] text-primary/60"
+                            ? "bg-gold/20 text-gold"
+                            : "bg-muted text-muted-foreground"
                         }`}>
                           {j.tag}
                         </span>
@@ -243,9 +249,9 @@ export const CostCalculator = () => {
                     {selected && (
                       <motion.div
                         layoutId="tile-check"
-                        className="absolute top-3 right-3 w-6 h-6 rounded-full bg-secondary flex items-center justify-center"
+                        className="absolute top-3 right-3 w-6 h-6 rounded-full bg-gold flex items-center justify-center"
                       >
-                        <Check className="w-3.5 h-3.5 text-primary" />
+                        <Check className="w-3.5 h-3.5 text-foreground" />
                       </motion.div>
                     )}
                   </motion.button>
@@ -258,7 +264,7 @@ export const CostCalculator = () => {
       case 2:
         return (
           <div>
-            <h3 className="text-xl sm:text-2xl font-semibold text-primary mb-2">
+            <h3 className="text-xl sm:text-2xl font-semibold text-foreground mb-2">
               How many visas do you need?
             </h3>
             <p className="text-muted-foreground text-sm mb-10">
@@ -275,10 +281,10 @@ export const CostCalculator = () => {
                     onClick={() => setSelectedVisas(i)}
                     className={`${tileBase} ${selected ? tileSelected : tileDefault} p-6 text-center`}
                   >
-                    <p className={`text-3xl font-bold mb-1 ${selected ? "text-secondary" : "text-primary"}`}>
+                    <p className={`text-3xl font-bold mb-1 ${selected ? "text-gold" : "text-foreground"}`}>
                       {v.label.split(" ")[0]}
                     </p>
-                    <p className={`text-xs ${selected ? "text-secondary/70" : "text-muted-foreground"}`}>
+                    <p className="text-xs text-muted-foreground">
                       {v.desc}
                     </p>
                   </motion.button>
@@ -291,7 +297,7 @@ export const CostCalculator = () => {
       case 3:
         return (
           <div>
-            <h3 className="text-xl sm:text-2xl font-semibold text-primary mb-2">
+            <h3 className="text-xl sm:text-2xl font-semibold text-foreground mb-2">
               Select your office type
             </h3>
             <p className="text-muted-foreground text-sm mb-10">
@@ -308,13 +314,13 @@ export const CostCalculator = () => {
                     onClick={() => setSelectedOffice(i)}
                     className={`${tileBase} ${selected ? tileSelected : tileDefault} p-6 text-center`}
                   >
-                    <p className={`font-semibold mb-1 ${selected ? "text-secondary" : "text-primary"}`}>
+                    <p className="font-semibold mb-1 text-foreground">
                       {o.label}
                     </p>
-                    <p className={`text-xs mb-3 ${selected ? "text-secondary/70" : "text-muted-foreground"}`}>
+                    <p className="text-xs mb-3 text-muted-foreground">
                       {o.desc}
                     </p>
-                    <span className={`text-xs font-bold ${selected ? "text-secondary/90" : "text-primary/70"}`}>
+                    <span className={`text-xs font-bold ${selected ? "text-gold" : "text-muted-foreground"}`}>
                       {o.price}
                     </span>
                   </motion.button>
@@ -327,7 +333,7 @@ export const CostCalculator = () => {
       case 4:
         return (
           <div>
-            <h3 className="text-xl sm:text-2xl font-semibold text-primary mb-2">
+            <h3 className="text-xl sm:text-2xl font-semibold text-foreground mb-2">
               Optional add-ons
             </h3>
             <p className="text-muted-foreground text-sm mb-10">
@@ -347,16 +353,16 @@ export const CostCalculator = () => {
                     <div className="flex items-center gap-3">
                       <div
                         className={`w-5 h-5 rounded-md border-2 flex items-center justify-center shrink-0 transition-colors ${
-                          selected ? "bg-secondary border-secondary" : "border-primary/25"
+                          selected ? "bg-gold border-gold" : "border-border"
                         }`}
                       >
-                        {selected && <Check className="w-3 h-3 text-primary" />}
+                        {selected && <Check className="w-3 h-3 text-foreground" />}
                       </div>
                       <div>
-                        <p className={`font-semibold text-sm ${selected ? "text-secondary" : "text-primary"}`}>
+                        <p className="font-semibold text-sm text-foreground">
                           {a.label}
                         </p>
-                        <p className={`text-xs ${selected ? "text-secondary/70" : "text-muted-foreground"}`}>
+                        <p className="text-xs text-muted-foreground">
                           {a.desc}
                         </p>
                       </div>
@@ -376,10 +382,10 @@ export const CostCalculator = () => {
               animate={{ scale: 1, opacity: 1 }}
               transition={{ duration: 0.5, ease: "easeOut" }}
             >
-              <div className="w-20 h-20 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-6">
-                <Sparkles className="w-10 h-10 text-primary" />
+              <div className="w-20 h-20 rounded-full bg-gold/10 flex items-center justify-center mx-auto mb-6">
+                <Sparkles className="w-10 h-10 text-gold" />
               </div>
-              <h3 className="text-xl sm:text-2xl font-semibold text-primary mb-2">
+              <h3 className="text-xl sm:text-2xl font-semibold text-foreground mb-2">
                 Your Estimated Setup Cost
               </h3>
               <p className="text-muted-foreground text-sm mb-8">
@@ -389,43 +395,43 @@ export const CostCalculator = () => {
                 initial={{ scale: 0.9 }}
                 animate={{ scale: 1 }}
                 transition={{ delay: 0.3, type: "spring", stiffness: 200 }}
-                className="inline-block rounded-2xl bg-primary px-10 py-6 mb-8 shadow-[0_0_40px_-8px_hsl(142,20%,26%,0.3)]"
+                className="inline-block rounded-2xl bg-foreground px-10 py-6 mb-8 shadow-soft-lg"
               >
-                <p className="text-secondary/80 text-sm font-medium mb-1">Estimated Total</p>
-                <p className="text-4xl sm:text-5xl font-bold text-secondary tracking-tight">
-                  AED {estimateTotal().toLocaleString()}
+                <p className="text-background/70 text-sm font-medium mb-1">Estimated Total</p>
+                <p className="text-4xl sm:text-5xl font-bold text-gold tracking-tight">
+                  AED <AnimatedTotal value={estimateTotal()} />
                 </p>
-                <p className="text-secondary/50 text-xs mt-2">*Indicative pricing, subject to final review</p>
+                <p className="text-background/40 text-xs mt-2">*Indicative pricing, subject to final review</p>
               </motion.div>
 
               <div className="max-w-sm mx-auto text-left space-y-3 mb-8">
                 {selectedActivity !== null && (
-                  <div className="flex justify-between text-sm border-b border-primary/10 pb-2">
+                  <div className="flex justify-between text-sm border-b border-border pb-2">
                     <span className="text-muted-foreground">Activity</span>
-                    <span className="font-medium text-primary">{activities[selectedActivity].label}</span>
+                    <span className="font-medium text-foreground">{activities[selectedActivity].label}</span>
                   </div>
                 )}
                 {selectedJurisdiction !== null && (
-                  <div className="flex justify-between text-sm border-b border-primary/10 pb-2">
+                  <div className="flex justify-between text-sm border-b border-border pb-2">
                     <span className="text-muted-foreground">Jurisdiction</span>
-                    <span className="font-medium text-primary">{jurisdictions[selectedJurisdiction].label}</span>
+                    <span className="font-medium text-foreground">{jurisdictions[selectedJurisdiction].label}</span>
                   </div>
                 )}
                 {selectedVisas !== null && (
-                  <div className="flex justify-between text-sm border-b border-primary/10 pb-2">
+                  <div className="flex justify-between text-sm border-b border-border pb-2">
                     <span className="text-muted-foreground">Visas</span>
-                    <span className="font-medium text-primary">{visaOptions[selectedVisas].label}</span>
+                    <span className="font-medium text-foreground">{visaOptions[selectedVisas].label}</span>
                   </div>
                 )}
                 {selectedOffice !== null && (
                   <div className="flex justify-between text-sm">
                     <span className="text-muted-foreground">Office</span>
-                    <span className="font-medium text-primary">{officeOptions[selectedOffice].label}</span>
+                    <span className="font-medium text-foreground">{officeOptions[selectedOffice].label}</span>
                   </div>
                 )}
               </div>
 
-              <button className="inline-flex items-center gap-2 bg-primary text-secondary font-semibold px-10 h-12 rounded-full text-sm uppercase tracking-wider hover:shadow-[0_0_30px_-4px_hsl(142,20%,26%,0.4)] transition-all duration-300 hover:scale-[1.02]">
+              <button className="inline-flex items-center gap-2 bg-gold text-foreground font-semibold px-10 h-12 rounded-full text-sm uppercase tracking-wider hover:shadow-[0_0_30px_-4px_hsl(43,96%,50%,0.4)] transition-all duration-300 hover:scale-[1.02]">
                 Get a Detailed Quote
                 <ArrowRight className="w-4 h-4" />
               </button>
@@ -439,57 +445,51 @@ export const CostCalculator = () => {
   };
 
   return (
-    <section className="py-20 lg:py-28 bg-[#FDFBF7] relative overflow-hidden">
-      {/* Subtle geometric dot pattern */}
-      <div
-        className="absolute inset-0 opacity-[0.04]"
-        style={{
-          backgroundImage: `radial-gradient(circle at 1px 1px, hsl(var(--primary)) 0.8px, transparent 0)`,
-          backgroundSize: "48px 48px",
-        }}
-      />
-
-      <div className="max-w-7xl mx-auto px-4 lg:px-8 relative z-10">
-        {/* Header — clean, no tag/badge */}
+    <section className="py-20 lg:py-28 bg-background relative overflow-hidden">
+      <div className="max-w-[1100px] mx-auto px-4 lg:px-8 relative z-10">
+        {/* Header — Serif title */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center max-w-3xl mx-auto mb-12"
+          className="text-center max-w-3xl mx-auto mb-14"
         >
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-primary mb-4 tracking-tight">
-            Calculate Your Business Setup Cost
+          <h2
+            className="text-3xl sm:text-4xl lg:text-[52px] font-bold text-foreground mb-4 tracking-tight leading-[1.1]"
+            style={{ fontFamily: "'Playfair Display', Georgia, serif" }}
+          >
+            Calculate Your Business{" "}
+            <span className="text-gold">Setup Cost</span>
           </h2>
           <p className="text-muted-foreground text-lg">
             Answer a few questions and get an instant estimate for your UAE business setup.
           </p>
         </motion.div>
 
-        {/* Main Card — wider */}
+        {/* Main Card */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 0.1 }}
-          className="max-w-5xl mx-auto"
         >
-          <div className="rounded-3xl bg-card backdrop-blur-xl border border-primary/[0.08] shadow-[0_24px_80px_-16px_hsl(142,20%,26%,0.12)] overflow-hidden">
+          <div className="rounded-2xl bg-card border border-border shadow-soft-lg overflow-hidden">
             {/* Top progress bar */}
-            <div className="h-1.5 bg-primary/[0.06] relative">
+            <div className="h-1 bg-muted relative">
               <motion.div
-                className="h-full bg-primary rounded-r-full"
+                className="h-full bg-gold rounded-r-full"
                 animate={{ width: `${((step + 1) / progressSteps.length) * 100}%` }}
                 transition={{ duration: 0.5, ease: "easeOut" }}
               />
             </div>
 
             {/* Progress Timeline */}
-            <div className="border-b border-primary/[0.06] px-6 lg:px-10 py-6">
+            <div className="border-b border-border px-6 lg:px-12 py-7">
               <div className="flex items-center justify-between max-w-2xl mx-auto relative">
                 {/* Connecting line */}
-                <div className="absolute top-5 left-[10%] right-[10%] h-[1px] bg-primary/10" />
+                <div className="absolute top-6 left-[10%] right-[10%] h-[2px] bg-border" />
                 <motion.div
-                  className="absolute top-5 left-[10%] h-[1px] bg-primary/40 origin-left"
+                  className="absolute top-6 left-[10%] h-[2px] bg-gold origin-left"
                   animate={{ width: `${Math.max(0, ((step) / (progressSteps.length - 1)) * 80)}%` }}
                   transition={{ duration: 0.5, ease: "easeOut" }}
                 />
@@ -506,14 +506,13 @@ export const CostCalculator = () => {
                           setStep(i);
                         }
                       }}
-                      className="flex flex-col items-center gap-2 group cursor-pointer relative z-10"
+                      className="flex flex-col items-center gap-2.5 group cursor-pointer relative z-10"
                     >
                       <div className="relative">
-                        {/* Pulsing ring for active */}
                         {isActive && (
                           <motion.div
-                            className="absolute inset-0 rounded-full border-2 border-primary/40"
-                            animate={{ scale: [1, 1.5, 1], opacity: [0.5, 0, 0.5] }}
+                            className="absolute inset-0 rounded-full border-2 border-gold/50"
+                            animate={{ scale: [1, 1.5, 1], opacity: [0.6, 0, 0.6] }}
                             transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
                             style={{ margin: "-5px" }}
                           />
@@ -521,26 +520,26 @@ export const CostCalculator = () => {
                         <div
                           className={`w-12 h-12 rounded-full flex items-center justify-center transition-all duration-400 ${
                             isActive
-                              ? "bg-primary text-secondary shadow-[0_0_24px_-2px_hsl(142,20%,26%,0.4)]"
+                              ? "bg-gold text-foreground shadow-[0_0_20px_-2px_hsl(43,96%,50%,0.4)]"
                               : isDone
-                              ? "bg-primary text-secondary"
-                              : "bg-primary/[0.08] text-primary/50 group-hover:bg-primary/[0.14]"
+                              ? "bg-gold text-foreground"
+                              : "bg-muted text-muted-foreground group-hover:bg-muted/80"
                           }`}
                         >
                           {isDone ? (
-                            <Check className="w-4.5 h-4.5" />
+                            <Check className="w-5 h-5" />
                           ) : (
-                            <s.icon className="w-4.5 h-4.5" />
+                            <s.icon className="w-5 h-5" />
                           )}
                         </div>
                       </div>
                       <span
                         className={`text-[11px] font-semibold tracking-wider uppercase transition-colors ${
                           isActive
-                            ? "text-primary"
+                            ? "text-foreground"
                             : isDone
-                            ? "text-primary/70"
-                            : "text-primary/40"
+                            ? "text-foreground/70"
+                            : "text-muted-foreground"
                         }`}
                       >
                         {s.label}
@@ -552,7 +551,7 @@ export const CostCalculator = () => {
             </div>
 
             {/* Step Content */}
-            <div className="px-8 sm:px-12 lg:px-16 py-10 min-h-[440px] relative overflow-hidden">
+            <div className="px-8 sm:px-14 lg:px-20 py-12 min-h-[460px] relative overflow-hidden">
               <AnimatePresence mode="wait" custom={direction}>
                 <motion.div
                   key={step}
@@ -570,48 +569,49 @@ export const CostCalculator = () => {
 
             {/* Footer Navigation */}
             {step < 5 && (
-              <div className="border-t border-primary/[0.06] px-8 sm:px-12 lg:px-16 py-6 flex items-center justify-between">
+              <div className="border-t border-border px-8 sm:px-14 lg:px-20 py-6 flex items-center justify-between">
                 <button
                   onClick={goBack}
                   disabled={step === 0}
-                  className="inline-flex items-center gap-1.5 text-sm text-primary/50 hover:text-primary transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
+                  className="inline-flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
                 >
                   <ChevronLeft className="w-4 h-4" />
                   Back
                 </button>
 
-                {/* Blurred price preview */}
-                <div className="hidden sm:flex items-center gap-2">
-                  <span className="text-xs text-muted-foreground">Est.</span>
+                {/* Floating estimate preview */}
+                <div className="hidden sm:flex items-center gap-3 bg-muted/50 rounded-full px-5 py-2.5">
+                  <span className="text-xs text-muted-foreground font-medium">Estimated Total</span>
+                  <div className="w-px h-4 bg-border" />
                   <span
-                    className={`text-xl font-bold text-primary transition-all duration-500 ${
-                      step < 3 ? "blur-sm select-none" : ""
+                    className={`text-lg font-bold text-foreground transition-all duration-500 tabular-nums ${
+                      step < 2 ? "blur-sm select-none" : ""
                     }`}
                   >
-                    AED {estimateTotal().toLocaleString()}
+                    AED <AnimatedTotal value={estimateTotal()} />
                   </span>
                 </div>
 
-                {/* Premium pill CTA — larger */}
+                {/* Next button — charcoal/gold */}
                 <button
                   onClick={goNext}
                   disabled={!canProceed()}
-                  className="inline-flex items-center gap-2 bg-primary text-secondary font-semibold px-10 h-12 rounded-full text-sm tracking-wide hover:shadow-[0_0_30px_-4px_hsl(142,20%,26%,0.4)] transition-all duration-300 hover:scale-[1.03] disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:scale-100 disabled:hover:shadow-none"
+                  className="inline-flex items-center gap-2 bg-foreground text-background font-semibold px-10 h-12 rounded-full text-sm tracking-wide hover:bg-foreground/90 hover:shadow-soft-lg transition-all duration-300 hover:scale-[1.03] disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:scale-100 disabled:hover:shadow-none"
                 >
                   {step === 4 ? "See Estimate" : "Next Step"}
-                  <ChevronRight className="w-4 h-4" />
+                  <ArrowRight className="w-4 h-4" />
                 </button>
               </div>
             )}
 
             {step === 5 && (
-              <div className="border-t border-primary/[0.06] px-8 sm:px-12 lg:px-16 py-6 flex items-center justify-center">
+              <div className="border-t border-border px-8 sm:px-14 lg:px-20 py-6 flex items-center justify-center">
                 <button
                   onClick={() => {
                     setStep(0);
                     setDirection(-1);
                   }}
-                  className="text-sm text-primary/50 hover:text-primary transition-colors"
+                  className="text-sm text-muted-foreground hover:text-foreground transition-colors"
                 >
                   Start Over
                 </button>
