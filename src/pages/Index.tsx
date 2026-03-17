@@ -2,6 +2,7 @@ import { AppLayout } from "@/components/layout/AppLayout";
 import { HeroWithSearch } from "@/components/sections/HeroWithSearch";
 import { BusinessSetupOverview } from "@/components/sections/BusinessSetupOverview";
 import { SetupProcess } from "@/components/sections/SetupProcess";
+import { CostCalculator } from "@/components/sections/CostCalculator";
 import { ClientVoices } from "@/components/sections/ClientVoices";
 import { FAQSection } from "@/components/sections/FAQSection";
 import { StatsByNumbers } from "@/components/sections/StatsByNumbers";
