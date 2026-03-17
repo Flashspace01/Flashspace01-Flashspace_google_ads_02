@@ -557,9 +557,6 @@ export const CostCalculator = () => {
                 Calculate Your Business{" "}
                 <span className="text-primary">Setup Cost</span>
               </h2>
-              <p className="text-muted-foreground text-base mt-2 max-w-xl">
-                Answer a few questions and get an instant estimate for your UAE business setup.
-              </p>
             </div>
 
             {/* Mobile horizontal stepper */}
