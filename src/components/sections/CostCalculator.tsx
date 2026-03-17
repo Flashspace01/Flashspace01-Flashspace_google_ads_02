@@ -556,7 +556,6 @@ export const CostCalculator = () => {
             <div className="mb-8">
               <h2
                 className="text-3xl sm:text-4xl lg:text-[42px] font-bold text-foreground tracking-tight leading-[1.15]"
-                style={{ fontFamily: "'Playfair Display', serif" }}
               >
                 Calculate Your Business{" "}
                 <span className="text-primary">Setup Cost</span>
