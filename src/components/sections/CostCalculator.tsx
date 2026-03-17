@@ -570,11 +570,11 @@ export const CostCalculator = () => {
 
             {/* Footer Navigation */}
             {step < 5 && (
-              <div className="border-t border-primary/[0.06] px-6 sm:px-10 py-5 flex items-center justify-between">
+              <div className="border-t border-primary/[0.06] px-8 sm:px-12 lg:px-16 py-6 flex items-center justify-between">
                 <button
                   onClick={goBack}
                   disabled={step === 0}
-                  className="inline-flex items-center gap-1 text-sm text-primary/50 hover:text-primary transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
+                  className="inline-flex items-center gap-1.5 text-sm text-primary/50 hover:text-primary transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
                 >
                   <ChevronLeft className="w-4 h-4" />
                   Back
@@ -584,7 +584,7 @@ export const CostCalculator = () => {
                 <div className="hidden sm:flex items-center gap-2">
                   <span className="text-xs text-muted-foreground">Est.</span>
                   <span
-                    className={`text-lg font-bold text-primary transition-all duration-500 ${
+                    className={`text-xl font-bold text-primary transition-all duration-500 ${
                       step < 3 ? "blur-sm select-none" : ""
                     }`}
                   >
@@ -592,11 +592,11 @@ export const CostCalculator = () => {
                   </span>
                 </div>
 
-                {/* Premium pill CTA */}
+                {/* Premium pill CTA — larger */}
                 <button
                   onClick={goNext}
                   disabled={!canProceed()}
-                  className="inline-flex items-center gap-2 bg-primary text-secondary font-semibold px-8 h-11 rounded-full text-sm tracking-wide hover:shadow-[0_0_24px_-4px_hsl(142,20%,26%,0.35)] transition-all duration-300 hover:scale-[1.03] disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:scale-100 disabled:hover:shadow-none"
+                  className="inline-flex items-center gap-2 bg-primary text-secondary font-semibold px-10 h-12 rounded-full text-sm tracking-wide hover:shadow-[0_0_30px_-4px_hsl(142,20%,26%,0.4)] transition-all duration-300 hover:scale-[1.03] disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:scale-100 disabled:hover:shadow-none"
                 >
                   {step === 4 ? "See Estimate" : "Next Step"}
                   <ChevronRight className="w-4 h-4" />
@@ -605,7 +605,7 @@ export const CostCalculator = () => {
             )}
 
             {step === 5 && (
-              <div className="border-t border-primary/[0.06] px-6 sm:px-10 py-5 flex items-center justify-center">
+              <div className="border-t border-primary/[0.06] px-8 sm:px-12 lg:px-16 py-6 flex items-center justify-center">
                 <button
                   onClick={() => {
                     setStep(0);
