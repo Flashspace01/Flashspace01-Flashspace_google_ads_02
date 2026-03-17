@@ -179,19 +179,19 @@ export const CostCalculator = () => {
                       className={`w-14 h-14 rounded-xl mx-auto mb-4 flex items-center justify-center transition-colors duration-300 ${
                         selected
                           ? "bg-primary/15 text-primary"
-                          : "bg-foreground/[0.06] text-muted-foreground group-hover:text-foreground"
+                          : "bg-foreground/[0.06] text-foreground group-hover:text-foreground"
                       }`}
                     >
-                      <Icon className="w-7 h-7" strokeWidth={1.4} />
+                      <Icon className="w-7 h-7" strokeWidth={1.6} />
                     </div>
                     <p className="font-semibold text-sm text-foreground">{a.label}</p>
                     <p className="text-xs mt-1 text-muted-foreground">{a.desc}</p>
                     {selected && (
                       <motion.div
                         layoutId="tile-check"
-                        className="absolute top-3 right-3 w-6 h-6 rounded-full bg-primary flex items-center justify-center"
+                        className="absolute top-3 right-3 w-5 h-5 rounded-full bg-primary flex items-center justify-center"
                       >
-                        <Check className="w-3.5 h-3.5 text-primary-foreground" />
+                        <Check className="w-3 h-3 text-primary-foreground" />
                       </motion.div>
                     )}
                   </motion.button>
@@ -225,12 +225,9 @@ export const CostCalculator = () => {
                         : "border-transparent bg-secondary/[0.25] hover:border-primary/30 hover:shadow-soft"
                     }`}
                   >
-                    {/* Tag badge — top right corner */}
                     {j.tag && (
                       <span className={`absolute top-3 right-3 text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full ${
-                        selected
-                          ? "bg-primary/15 text-primary"
-                          : "bg-foreground/[0.06] text-muted-foreground"
+                        selected ? "bg-primary/15 text-primary" : "bg-foreground/[0.06] text-muted-foreground"
                       }`}>
                         {j.tag}
                       </span>
@@ -240,9 +237,9 @@ export const CostCalculator = () => {
                     {selected && (
                       <motion.div
                         layoutId="tile-check-j"
-                        className="absolute bottom-4 right-4 w-6 h-6 rounded-full bg-primary flex items-center justify-center"
+                        className="absolute bottom-4 right-4 w-5 h-5 rounded-full bg-primary flex items-center justify-center"
                       >
-                        <Check className="w-3.5 h-3.5 text-primary-foreground" />
+                        <Check className="w-3 h-3 text-primary-foreground" />
                       </motion.div>
                     )}
                   </motion.button>
@@ -424,7 +421,7 @@ export const CostCalculator = () => {
                 )}
               </div>
 
-              <button className="inline-flex items-center gap-2 bg-primary text-primary-foreground font-semibold px-10 h-12 rounded-full text-sm uppercase tracking-wider hover:bg-primary/90 transition-all duration-300 hover:scale-[1.02] hover:shadow-glow">
+              <button className="inline-flex items-center gap-2 bg-primary text-primary-foreground font-semibold px-10 h-12 rounded-lg text-sm uppercase tracking-wider hover:bg-primary/90 transition-all duration-300 hover:scale-[1.02] hover:shadow-glow">
                 Get a Detailed Quote
                 <ArrowRight className="w-4 h-4" />
               </button>
@@ -439,13 +436,16 @@ export const CostCalculator = () => {
 
   return (
     <section className="py-24 lg:py-32 bg-background relative overflow-hidden">
-      <div className="max-w-[1200px] mx-auto px-4 lg:px-8 relative z-10">
-        {/* Header — clean stacked with generous spacing */}
+      {/* Soft gradient overlay for depth */}
+      <div className="absolute inset-0 bg-gradient-to-b from-background via-background to-muted/30 pointer-events-none" />
+
+      <div className="max-w-[1100px] mx-auto px-6 lg:px-10 relative z-10">
+        {/* Header — centered */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center max-w-3xl mx-auto mb-20"
+          className="text-center mb-16"
         >
           <h2 className="text-3xl sm:text-4xl lg:text-[52px] font-bold text-foreground tracking-tight leading-[1.15]">
             Calculate Your Business
@@ -458,30 +458,37 @@ export const CostCalculator = () => {
           </p>
         </motion.div>
 
-        {/* Two-column layout: vertical stepper left, content right */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 0.1 }}
-          className="flex gap-10 lg:gap-16"
         >
-          {/* LEFT — Vertical Stepper */}
-          <div className="hidden md:flex flex-col items-center shrink-0 pt-2">
-            {progressSteps.map((s, i) => {
-              const isActive = i === step;
-              const isDone = i < step;
-              const isLast = i === progressSteps.length - 1;
-              return (
-                <div key={s.label} className="flex flex-col items-center">
+          {/* Horizontal Stepper — full width of content */}
+          <div className="mb-14">
+            <div className="flex items-center justify-between relative">
+              {/* Background connecting line */}
+              <div className="absolute top-6 left-[6%] right-[6%] h-[3px] bg-border rounded-full" />
+              {/* Active progress fill */}
+              <motion.div
+                className="absolute top-6 left-[6%] h-[3px] bg-primary rounded-full origin-left"
+                animate={{ width: `${Math.max(0, (step / (progressSteps.length - 1)) * 88)}%` }}
+                transition={{ duration: 0.5, ease: "easeOut" }}
+              />
+
+              {progressSteps.map((s, i) => {
+                const isActive = i === step;
+                const isDone = i < step;
+                return (
                   <button
+                    key={s.label}
                     onClick={() => {
                       if (i < step) {
                         setDirection(-1);
                         setStep(i);
                       }
                     }}
-                    className="flex flex-col items-center gap-2 group cursor-pointer relative"
+                    className="flex flex-col items-center gap-2.5 group cursor-pointer relative z-10"
                   >
                     <div className="relative">
                       {isActive && (
@@ -501,136 +508,86 @@ export const CostCalculator = () => {
                             : "bg-card border border-border text-muted-foreground group-hover:border-primary/30"
                         }`}
                       >
-                        {isDone ? <Check className="w-5 h-5" /> : <s.icon className="w-5 h-5" />}
+                        {isDone ? <Check className="w-5 h-5" /> : <s.icon className="w-5 h-5" strokeWidth={1.5} />}
                       </div>
                     </div>
                     <span
-                      className={`text-[10px] font-semibold tracking-wider uppercase transition-colors whitespace-nowrap ${
+                      className={`text-[10px] sm:text-[11px] font-semibold tracking-wider uppercase transition-colors ${
                         isActive ? "text-foreground" : isDone ? "text-foreground/60" : "text-muted-foreground"
                       }`}
                     >
                       {s.label}
                     </span>
                   </button>
-                  {/* Vertical connecting line */}
-                  {!isLast && (
-                    <div className="relative w-[3px] h-10 bg-border rounded-full my-1.5">
-                      {isDone && (
-                        <motion.div
-                          className="absolute inset-x-0 top-0 bg-primary rounded-full"
-                          initial={{ height: 0 }}
-                          animate={{ height: "100%" }}
-                          transition={{ duration: 0.4 }}
-                        />
-                      )}
-                      {isActive && (
-                        <motion.div
-                          className="absolute inset-x-0 top-0 bg-primary/40 rounded-full"
-                          initial={{ height: 0 }}
-                          animate={{ height: "50%" }}
-                          transition={{ duration: 0.4 }}
-                        />
-                      )}
-                    </div>
-                  )}
-                </div>
-              );
-            })}
-          </div>
-
-          {/* RIGHT — Step Content + Footer */}
-          <div className="flex-1 min-w-0">
-            {/* Mobile horizontal stepper */}
-            <div className="flex md:hidden items-center justify-between mb-8 overflow-x-auto gap-2">
-              {progressSteps.map((s, i) => {
-                const isActive = i === step;
-                const isDone = i < step;
-                return (
-                  <button
-                    key={s.label}
-                    onClick={() => { if (i < step) { setDirection(-1); setStep(i); } }}
-                    className="flex flex-col items-center gap-1.5 shrink-0"
-                  >
-                    <div
-                      className={`w-9 h-9 rounded-full flex items-center justify-center transition-all duration-300 ${
-                        isActive || isDone
-                          ? "bg-primary text-primary-foreground"
-                          : "bg-card border border-border text-muted-foreground"
-                      }`}
-                    >
-                      {isDone ? <Check className="w-4 h-4" /> : <s.icon className="w-4 h-4" />}
-                    </div>
-                    <span className={`text-[9px] font-semibold tracking-wider uppercase ${isActive ? "text-foreground" : "text-muted-foreground"}`}>
-                      {s.label}
-                    </span>
-                  </button>
                 );
               })}
             </div>
-
-            {/* Step Content */}
-            <div className="min-h-[420px] relative overflow-hidden">
-              <AnimatePresence mode="wait" custom={direction}>
-                <motion.div
-                  key={step}
-                  custom={direction}
-                  variants={slideVariants}
-                  initial="enter"
-                  animate="center"
-                  exit="exit"
-                  transition={{ duration: 0.35, ease: [0.4, 0, 0.2, 1] }}
-                >
-                  {renderStep()}
-                </motion.div>
-              </AnimatePresence>
-            </div>
-
-            {/* Footer */}
-            {step < 5 && (
-              <div className="mt-10 rounded-2xl bg-card border border-border px-6 sm:px-8 py-5 flex items-center justify-between">
-                <button
-                  onClick={goBack}
-                  disabled={step === 0}
-                  className="inline-flex items-center gap-1.5 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
-                >
-                  <ChevronLeft className="w-4 h-4" />
-                  Back
-                </button>
-
-                <div className="hidden sm:flex items-center gap-4 bg-foreground rounded-full px-6 py-2.5">
-                  <span className="text-xs text-background/60 font-medium">Estimated Total</span>
-                  <div className="w-px h-4 bg-background/20" />
-                  <span
-                    className={`text-lg font-bold text-secondary tabular-nums transition-all duration-500 ${
-                      step < 2 ? "blur-sm select-none" : ""
-                    }`}
-                  >
-                    AED <AnimatedTotal value={estimateTotal()} />
-                  </span>
-                </div>
-
-                <button
-                  onClick={goNext}
-                  disabled={!canProceed()}
-                  className="inline-flex items-center gap-2 bg-primary text-primary-foreground font-semibold px-8 sm:px-10 h-11 rounded-lg text-sm tracking-wide hover:bg-primary/90 shadow-md hover:shadow-lg transition-all duration-300 hover:scale-[1.03] disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:scale-100"
-                >
-                  {step === 4 ? "See Estimate" : "Next Step"}
-                  <ArrowRight className="w-4 h-4" />
-                </button>
-              </div>
-            )}
-
-            {step === 5 && (
-              <div className="mt-8 flex items-center justify-center">
-                <button
-                  onClick={() => { setStep(0); setDirection(-1); }}
-                  className="text-sm text-muted-foreground hover:text-foreground transition-colors"
-                >
-                  Start Over
-                </button>
-              </div>
-            )}
           </div>
+
+          {/* Step Content */}
+          <div className="min-h-[420px] relative overflow-hidden">
+            <AnimatePresence mode="wait" custom={direction}>
+              <motion.div
+                key={step}
+                custom={direction}
+                variants={slideVariants}
+                initial="enter"
+                animate="center"
+                exit="exit"
+                transition={{ duration: 0.35, ease: [0.4, 0, 0.2, 1] }}
+              >
+                {renderStep()}
+              </motion.div>
+            </AnimatePresence>
+          </div>
+
+          {/* Footer Action Bar */}
+          {step < 5 && (
+            <div className="mt-10 rounded-2xl bg-card border border-border px-6 sm:px-8 py-5 flex items-center justify-between">
+              <button
+                onClick={goBack}
+                disabled={step === 0}
+                className="inline-flex items-center gap-1.5 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
+              >
+                <ChevronLeft className="w-4 h-4" />
+                Back
+              </button>
+
+              {/* Estimate capsule */}
+              <div className="hidden sm:flex items-center gap-4 bg-foreground rounded-full px-6 py-2.5">
+                <span className="text-xs text-background/60 font-medium">Estimated Total</span>
+                <div className="w-px h-4 bg-background/20" />
+                <span
+                  className={`text-lg font-bold text-secondary tabular-nums transition-all duration-500 ${
+                    step < 2 ? "blur-sm select-none" : ""
+                  }`}
+                >
+                  AED <AnimatedTotal value={estimateTotal()} />
+                </span>
+              </div>
+
+              {/* Next button */}
+              <button
+                onClick={goNext}
+                disabled={!canProceed()}
+                className="inline-flex items-center gap-2 bg-primary text-primary-foreground font-semibold px-8 sm:px-10 h-11 rounded-lg text-sm tracking-wide hover:bg-primary/90 shadow-md hover:shadow-lg transition-all duration-300 hover:scale-[1.03] disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:scale-100"
+              >
+                {step === 4 ? "See Estimate" : "Next Step"}
+                <ArrowRight className="w-4 h-4" />
+              </button>
+            </div>
+          )}
+
+          {step === 5 && (
+            <div className="mt-8 flex items-center justify-center">
+              <button
+                onClick={() => { setStep(0); setDirection(-1); }}
+                className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+              >
+                Start Over
+              </button>
+            </div>
+          )}
         </motion.div>
       </div>
     </section>
