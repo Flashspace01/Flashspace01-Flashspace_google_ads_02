@@ -5,7 +5,7 @@ import { SetupProcess } from "@/components/sections/SetupProcess";
 import { ClientVoices } from "@/components/sections/ClientVoices";
 import { FAQSection } from "@/components/sections/FAQSection";
 import { StatsByNumbers } from "@/components/sections/StatsByNumbers";
-import { CostCalculator } from "@/components/sections/CostCalculator";
+
 import { Footer } from "@/components/layout/Footer";
 
 const Index = () => {
