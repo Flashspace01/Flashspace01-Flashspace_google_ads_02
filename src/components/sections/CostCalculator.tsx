@@ -411,21 +411,13 @@ export const CostCalculator = () => {
                   >
                     {j.tag && (
                       <span className={`absolute top-2.5 right-2.5 text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full ${
-                        selected ? "bg-primary/15 text-primary" : "bg-foreground/[0.05] text-muted-foreground"
+                        selected ? "bg-primary-foreground/20 text-primary-foreground" : "bg-foreground/[0.05] text-muted-foreground"
                       }`}>
                         {j.tag}
                       </span>
                     )}
-                    <p className="font-bold text-sm text-foreground mb-0.5 pr-14">{j.label}</p>
-                    <p className="text-xs text-muted-foreground leading-relaxed">{j.desc}</p>
-                    {selected && (
-                      <motion.div
-                        layoutId="tile-check-j"
-                        className="absolute bottom-2.5 right-2.5 w-5 h-5 rounded-full bg-primary flex items-center justify-center"
-                      >
-                        <Check className="w-3 h-3 text-primary-foreground" />
-                      </motion.div>
-                    )}
+                    <p className={`font-bold text-sm mb-0.5 pr-14 ${selected ? "text-primary-foreground" : "text-foreground"}`}>{j.label}</p>
+                    <p className={`text-xs leading-relaxed ${selected ? "text-primary-foreground/70" : "text-muted-foreground"}`}>{j.desc}</p>
                   </motion.button>
                 );
               })}
