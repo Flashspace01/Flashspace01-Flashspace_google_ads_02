@@ -182,7 +182,7 @@ export const CostCalculator = () => {
               {activities.map((a, i) => {
                 const Icon = a.icon;
                 const selected = selectedActivity === i;
-                const isOther = i === 8;
+                const isOther = i === 5;
                 return (
                   <motion.button
                     key={a.label}
