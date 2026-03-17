@@ -435,72 +435,57 @@ export const CostCalculator = () => {
   };
 
   return (
-    <section className="py-24 lg:py-32 bg-background relative overflow-hidden">
-      {/* Soft gradient overlay for depth */}
-      <div className="absolute inset-0 bg-gradient-to-b from-background via-background to-muted/30 pointer-events-none" />
-
-      <div className="max-w-[1100px] mx-auto px-6 lg:px-10 relative z-10">
-        {/* Header — centered */}
+    <section className="py-20 lg:py-28 relative overflow-hidden" style={{ background: "#F9F9F9" }}>
+      <div className="max-w-[1200px] mx-auto px-6 lg:px-10 relative z-10">
+        {/* Header — left-aligned above the two-column layout */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center mb-16"
+          className="mb-14"
         >
-          <h2 className="text-3xl sm:text-4xl lg:text-[52px] font-bold text-foreground tracking-tight leading-[1.15]">
-            Calculate Your Business
+          <h2 className="text-3xl sm:text-4xl lg:text-[48px] font-bold text-foreground tracking-tight leading-[1.15]">
+            Calculate Your Business{" "}
+            <span className="text-primary">Setup Cost</span>
           </h2>
-          <h2 className="text-3xl sm:text-4xl lg:text-[52px] font-bold text-primary tracking-tight leading-[1.15] mt-1">
-            Setup Cost
-          </h2>
-          <p className="text-muted-foreground text-lg max-w-xl mx-auto mt-6">
+          <p className="text-muted-foreground text-lg mt-4 max-w-2xl">
             Answer a few questions and get an instant estimate for your UAE business setup.
           </p>
         </motion.div>
 
+        {/* Two-column layout */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 0.1 }}
+          className="flex gap-12 lg:gap-20"
         >
-          {/* Horizontal Stepper — full width of content */}
-          <div className="mb-14">
-            <div className="flex items-center justify-between relative">
-              {/* Background connecting line */}
-              <div className="absolute top-6 left-[6%] right-[6%] h-[3px] bg-border rounded-full" />
-              {/* Active progress fill */}
-              <motion.div
-                className="absolute top-6 left-[6%] h-[3px] bg-primary rounded-full origin-left"
-                animate={{ width: `${Math.max(0, (step / (progressSteps.length - 1)) * 88)}%` }}
-                transition={{ duration: 0.5, ease: "easeOut" }}
-              />
-
-              {progressSteps.map((s, i) => {
-                const isActive = i === step;
-                const isDone = i < step;
-                return (
+          {/* LEFT — Vertical Progress Stepper */}
+          <div className="hidden lg:flex flex-col items-center shrink-0 w-[100px]">
+            {progressSteps.map((s, i) => {
+              const isActive = i === step;
+              const isDone = i < step;
+              const isLast = i === progressSteps.length - 1;
+              return (
+                <div key={s.label} className="flex flex-col items-center">
                   <button
-                    key={s.label}
                     onClick={() => {
-                      if (i < step) {
-                        setDirection(-1);
-                        setStep(i);
-                      }
+                      if (i < step) { setDirection(-1); setStep(i); }
                     }}
-                    className="flex flex-col items-center gap-2.5 group cursor-pointer relative z-10"
+                    className="flex flex-col items-center gap-2 group cursor-pointer relative"
                   >
                     <div className="relative">
                       {isActive && (
                         <motion.div
                           className="absolute inset-0 rounded-full border-2 border-primary/30"
-                          animate={{ scale: [1, 1.5, 1], opacity: [0.5, 0, 0.5] }}
+                          animate={{ scale: [1, 1.4, 1], opacity: [0.4, 0, 0.4] }}
                           transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-                          style={{ margin: "-6px" }}
+                          style={{ margin: "-5px" }}
                         />
                       )}
                       <div
-                        className={`w-12 h-12 rounded-full flex items-center justify-center transition-all duration-300 ${
+                        className={`w-11 h-11 rounded-full flex items-center justify-center transition-all duration-300 ${
                           isActive
                             ? "bg-primary text-primary-foreground shadow-glow"
                             : isDone
@@ -508,86 +493,129 @@ export const CostCalculator = () => {
                             : "bg-card border border-border text-muted-foreground group-hover:border-primary/30"
                         }`}
                       >
-                        {isDone ? <Check className="w-5 h-5" /> : <s.icon className="w-5 h-5" strokeWidth={1.5} />}
+                        {isDone ? <Check className="w-4 h-4" /> : <s.icon className="w-4 h-4" strokeWidth={1.5} />}
                       </div>
                     </div>
                     <span
-                      className={`text-[10px] sm:text-[11px] font-semibold tracking-wider uppercase transition-colors ${
+                      className={`text-[10px] font-semibold tracking-wider uppercase transition-colors whitespace-nowrap ${
                         isActive ? "text-foreground" : isDone ? "text-foreground/60" : "text-muted-foreground"
                       }`}
                     >
                       {s.label}
                     </span>
                   </button>
+                  {!isLast && (
+                    <div className="relative w-[2px] h-8 bg-border rounded-full my-2">
+                      {(isDone || isActive) && (
+                        <motion.div
+                          className="absolute inset-x-0 top-0 bg-primary rounded-full"
+                          initial={{ height: 0 }}
+                          animate={{ height: isDone ? "100%" : "50%" }}
+                          transition={{ duration: 0.4 }}
+                        />
+                      )}
+                    </div>
+                  )}
+                </div>
+              );
+            })}
+          </div>
+
+          {/* RIGHT — Content */}
+          <div className="flex-1 min-w-0">
+            {/* Mobile stepper */}
+            <div className="flex lg:hidden items-center justify-between mb-8 gap-1">
+              {progressSteps.map((s, i) => {
+                const isActive = i === step;
+                const isDone = i < step;
+                return (
+                  <button
+                    key={s.label}
+                    onClick={() => { if (i < step) { setDirection(-1); setStep(i); } }}
+                    className="flex flex-col items-center gap-1 shrink-0"
+                  >
+                    <div
+                      className={`w-8 h-8 rounded-full flex items-center justify-center transition-all duration-300 ${
+                        isActive || isDone
+                          ? "bg-primary text-primary-foreground"
+                          : "bg-card border border-border text-muted-foreground"
+                      }`}
+                    >
+                      {isDone ? <Check className="w-3.5 h-3.5" /> : <s.icon className="w-3.5 h-3.5" />}
+                    </div>
+                    <span className={`text-[8px] font-semibold tracking-wider uppercase ${isActive ? "text-foreground" : "text-muted-foreground"}`}>
+                      {s.label}
+                    </span>
+                  </button>
                 );
               })}
             </div>
-          </div>
 
-          {/* Step Content */}
-          <div className="min-h-[420px] relative overflow-hidden">
-            <AnimatePresence mode="wait" custom={direction}>
-              <motion.div
-                key={step}
-                custom={direction}
-                variants={slideVariants}
-                initial="enter"
-                animate="center"
-                exit="exit"
-                transition={{ duration: 0.35, ease: [0.4, 0, 0.2, 1] }}
-              >
-                {renderStep()}
-              </motion.div>
-            </AnimatePresence>
-          </div>
-
-          {/* Footer Action Bar */}
-          {step < 5 && (
-            <div className="mt-10 rounded-2xl bg-card border border-border px-6 sm:px-8 py-5 flex items-center justify-between">
-              <button
-                onClick={goBack}
-                disabled={step === 0}
-                className="inline-flex items-center gap-1.5 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
-              >
-                <ChevronLeft className="w-4 h-4" />
-                Back
-              </button>
-
-              {/* Estimate capsule */}
-              <div className="hidden sm:flex items-center gap-4 bg-foreground rounded-full px-6 py-2.5">
-                <span className="text-xs text-background/60 font-medium">Estimated Total</span>
-                <div className="w-px h-4 bg-background/20" />
-                <span
-                  className={`text-lg font-bold text-secondary tabular-nums transition-all duration-500 ${
-                    step < 2 ? "blur-sm select-none" : ""
-                  }`}
+            {/* Step Content */}
+            <div className="min-h-[400px] relative overflow-hidden">
+              <AnimatePresence mode="wait" custom={direction}>
+                <motion.div
+                  key={step}
+                  custom={direction}
+                  variants={slideVariants}
+                  initial="enter"
+                  animate="center"
+                  exit="exit"
+                  transition={{ duration: 0.35, ease: [0.4, 0, 0.2, 1] }}
                 >
-                  AED <AnimatedTotal value={estimateTotal()} />
-                </span>
+                  {renderStep()}
+                </motion.div>
+              </AnimatePresence>
+            </div>
+
+            {/* Footer Action Bar */}
+            {step < 5 && (
+              <div className="mt-8 flex items-center justify-between gap-4">
+                <button
+                  onClick={goBack}
+                  disabled={step === 0}
+                  className="inline-flex items-center gap-1.5 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
+                >
+                  <ChevronLeft className="w-4 h-4" />
+                  Back
+                </button>
+
+                {/* Estimate capsule */}
+                <div className="hidden sm:flex items-center gap-4 bg-foreground rounded-full px-6 py-2.5">
+                  <span className="text-xs text-background/60 font-medium">Estimated Total</span>
+                  <div className="w-px h-4 bg-background/20" />
+                  <span
+                    className={`text-lg font-bold text-secondary tabular-nums transition-all duration-500 ${
+                      step < 2 ? "blur-sm select-none" : ""
+                    }`}
+                  >
+                    AED <AnimatedTotal value={estimateTotal()} />
+                  </span>
+                </div>
+
+                {/* Next button */}
+                <button
+                  onClick={goNext}
+                  disabled={!canProceed()}
+                  className="inline-flex items-center gap-2 bg-primary text-primary-foreground font-semibold px-8 sm:px-10 h-11 rounded-lg text-sm tracking-wide hover:bg-primary/90 shadow-md hover:shadow-lg transition-all duration-300 hover:scale-[1.03] disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:scale-100"
+                >
+                  {step === 4 ? "See Estimate" : "Next Step"}
+                  <ArrowRight className="w-4 h-4" />
+                </button>
               </div>
+            )}
 
-              {/* Next button */}
-              <button
-                onClick={goNext}
-                disabled={!canProceed()}
-                className="inline-flex items-center gap-2 bg-primary text-primary-foreground font-semibold px-8 sm:px-10 h-11 rounded-lg text-sm tracking-wide hover:bg-primary/90 shadow-md hover:shadow-lg transition-all duration-300 hover:scale-[1.03] disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:scale-100"
-              >
-                {step === 4 ? "See Estimate" : "Next Step"}
-                <ArrowRight className="w-4 h-4" />
-              </button>
-            </div>
-          )}
-
-          {step === 5 && (
-            <div className="mt-8 flex items-center justify-center">
-              <button
-                onClick={() => { setStep(0); setDirection(-1); }}
-                className="text-sm text-muted-foreground hover:text-foreground transition-colors"
-              >
-                Start Over
-              </button>
-            </div>
-          )}
+            {step === 5 && (
+              <div className="mt-8 flex items-center justify-center">
+                <button
+                  onClick={() => { setStep(0); setDirection(-1); }}
+                  className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+                >
+                  Start Over
+                </button>
+              </div>
+            )}
+          </div>
         </motion.div>
       </div>
     </section>
