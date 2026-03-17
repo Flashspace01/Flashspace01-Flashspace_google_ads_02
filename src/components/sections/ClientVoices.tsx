@@ -1,91 +1,101 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { ChevronsLeft, ChevronsRight } from "lucide-react";
 
 const testimonials = [
   {
-    quote: "Flash Space has transformed the way we operate. Their administrative support has freed up our team to focus on our core business, and their responsiveness is unmatched.",
+    quote: "Flash Space has transformed the way we operate.",
+    quoteHighlight: " Their administrative support has freed up our team to focus on our core business, and their responsiveness is unmatched. I can't imagine running our operations without them!",
     name: "Arjun Mehta",
-    title: "Founder, NovaTech Solutions",
-    avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=120&h=120&fit=crop&crop=face",
+    title: "Founder at NovaTech Solutions",
   },
   {
-    quote: "We reduced our workspace costs by 40% while doubling our team's access to premium offices. FlashSpace made it effortless.",
-    name: "Vikram Desai",
-    title: "Co-founder, Meridian Labs",
-    avatar: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=120&h=120&fit=crop&crop=face",
+    quote: "We explored three consultancies before choosing Flash Space.",
+    quoteHighlight: " Their transparent pricing and hands-on support were unmatched. Truly a five-star experience from start to finish.",
+    name: "Sarah Al-Khalifa",
+    title: "CEO at Bloom Interiors",
   },
   {
-    quote: "As a solo founder relocating from London, I needed a partner I could trust. Flash Space guided me through every step — visa, license, office, banking.",
+    quote: "As a solo founder relocating from London, I needed a partner I could trust.",
+    quoteHighlight: " Flash Space guided me through every step — visa, license, office, banking. Exceptional service all around.",
     name: "James Thornton",
-    title: "Director, Thornton Capital",
-    avatar: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=120&h=120&fit=crop&crop=face",
+    title: "Director at Thornton Capital",
   },
 ];
 
 export const ClientVoices = () => {
   const [index, setIndex] = useState(0);
 
+  const prev = () => setIndex((i) => (i === 0 ? testimonials.length - 1 : i - 1));
+  const next = () => setIndex((i) => (i === testimonials.length - 1 ? 0 : i + 1));
+
   return (
-    <section className="py-24 lg:py-32" style={{ backgroundColor: "#1a2332" }}>
+    <section className="py-20 lg:py-28 bg-background">
       <div className="container mx-auto px-4 lg:px-8">
-        <div className="max-w-4xl mx-auto text-center">
-          {/* Label */}
-          <p
-            className="text-xs tracking-[0.25em] uppercase mb-14 font-medium"
-            style={{ color: "#8a9bae" }}
-          >
-            Trusted by Founders
-          </p>
+        <div className="relative mx-auto max-w-5xl">
+          {/* Corner marks */}
+          <div className="absolute -top-2 -left-2 w-5 h-5 border-t border-l border-border/40" />
+          <div className="absolute -top-2 -right-2 w-5 h-5 border-t border-r border-border/40" />
+          <div className="absolute -bottom-2 -left-2 w-5 h-5 border-b border-l border-border/40" />
+          <div className="absolute -bottom-2 -right-2 w-5 h-5 border-b border-r border-border/40" />
 
-          {/* Quote */}
-          <div className="min-h-[180px] flex items-center justify-center">
-            <AnimatePresence mode="wait">
-              <motion.blockquote
-                key={index}
-                initial={{ opacity: 0, y: 8 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -8 }}
-                transition={{ duration: 0.3 }}
-                className="text-2xl sm:text-3xl lg:text-[34px] leading-[1.35] tracking-tight font-medium"
-                style={{ color: "#e8ecf1" }}
-              >
-                "{testimonials[index].quote}"
-              </motion.blockquote>
-            </AnimatePresence>
-          </div>
+          {/* Card */}
+          <div className="px-10 lg:px-16 pt-16 pb-12 lg:pt-20 lg:pb-16 bg-background">
+            {/* Label */}
+            <p className="text-sm mb-10 flex items-center gap-2 text-foreground">
+              <span>+</span> What our clients say
+            </p>
 
-          {/* Avatar + Name */}
-          <div className="mt-12 flex flex-col items-center gap-3">
-            <img
-              src={testimonials[index].avatar}
-              alt={testimonials[index].name}
-              className="w-14 h-14 rounded-full object-cover"
-            />
-            <div>
-              <p className="text-sm font-semibold" style={{ color: "#e8ecf1" }}>
-                {testimonials[index].name}
-              </p>
-              <p className="text-sm mt-0.5" style={{ color: "#7a8a9b" }}>
-                {testimonials[index].title}
-              </p>
+            {/* Quote */}
+            <div className="min-h-[240px]">
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.25 }}
+                >
+                  <blockquote className="text-[28px] sm:text-[34px] lg:text-[40px] leading-[1.25] tracking-tight font-normal">
+                    <span className="text-muted-foreground/50">
+                      "{testimonials[index].quote}
+                    </span>
+                    <span className="text-foreground">
+                      {testimonials[index].quoteHighlight}"
+                    </span>
+                  </blockquote>
+                </motion.div>
+              </AnimatePresence>
             </div>
-          </div>
 
-          {/* Dot pagination */}
-          <div className="flex items-center justify-center gap-2 mt-10">
-            {testimonials.map((_, i) => (
-              <button
-                key={i}
-                onClick={() => setIndex(i)}
-                aria-label={`Go to testimonial ${i + 1}`}
-                className="transition-all duration-300 rounded-full"
-                style={{
-                  width: i === index ? 24 : 8,
-                  height: 8,
-                  backgroundColor: i === index ? "#d4a853" : "#3a4a5c",
-                }}
-              />
-            ))}
+            {/* Footer */}
+            <div className="flex items-end justify-between mt-12">
+              <div>
+                <p className="text-base font-medium text-foreground">
+                  {testimonials[index].name}
+                </p>
+                <p className="text-sm mt-0.5 text-muted-foreground">
+                  {testimonials[index].title}
+                </p>
+              </div>
+
+              <div className="flex items-center gap-2">
+                <button
+                  onClick={prev}
+                  className="w-12 h-12 rounded-full border border-border flex items-center justify-center transition-colors hover:bg-accent text-foreground"
+                  aria-label="Previous testimonial"
+                >
+                  <ChevronsLeft className="w-5 h-5" />
+                </button>
+                <button
+                  onClick={next}
+                  className="w-12 h-12 rounded-full border border-border flex items-center justify-center transition-colors hover:bg-accent text-foreground"
+                  aria-label="Next testimonial"
+                >
+                  <ChevronsRight className="w-5 h-5" />
+                </button>
+              </div>
+            </div>
           </div>
         </div>
       </div>
