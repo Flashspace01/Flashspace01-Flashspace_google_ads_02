@@ -6,7 +6,6 @@ import {
   Briefcase,
   Utensils,
   ShoppingCart,
-  Stethoscope,
   Building2,
   MapPin,
   Users,
@@ -16,8 +15,6 @@ import {
   ChevronLeft,
   Check,
   ArrowRight,
-  GraduationCap,
-  Plane,
   PenLine,
 } from "lucide-react";
 
@@ -38,9 +35,6 @@ const activities = [
   { icon: Briefcase, label: "Consulting", desc: "Professional Services" },
   { icon: Utensils, label: "F&B", desc: "Food & Beverage" },
   { icon: ShoppingCart, label: "E-Commerce", desc: "Online Retail" },
-  { icon: Stethoscope, label: "Healthcare", desc: "Medical & Wellness" },
-  { icon: GraduationCap, label: "Education", desc: "Training & EdTech" },
-  { icon: Plane, label: "Tourism", desc: "Travel & Hospitality" },
   { icon: PenLine, label: "Other", desc: "Custom activity" },
 ];
 
@@ -133,7 +127,7 @@ export const CostCalculator = () => {
   const canProceed = () => {
     if (step === 0) {
       if (selectedActivity === null) return false;
-      if (selectedActivity === 8 && customActivity.trim() === "") return false;
+      if (selectedActivity === 5 && customActivity.trim() === "") return false;
       return true;
     }
     if (step === 1) return selectedJurisdiction !== null;
@@ -185,7 +179,7 @@ export const CostCalculator = () => {
               {activities.map((a, i) => {
                 const Icon = a.icon;
                 const selected = selectedActivity === i;
-                const isOther = i === 8;
+                const isOther = i === 5;
                 return (
                   <motion.button
                     key={a.label}
@@ -439,7 +433,7 @@ export const CostCalculator = () => {
                   <div className="flex justify-between text-sm border-b border-foreground/10 pb-2">
                     <span className="text-muted-foreground">Activity</span>
                     <span className="font-medium text-foreground">
-                      {selectedActivity === 8 ? customActivity || "Other" : activities[selectedActivity].label}
+                      {selectedActivity === 5 ? customActivity || "Other" : activities[selectedActivity].label}
                     </span>
                   </div>
                 )}
@@ -559,7 +553,6 @@ export const CostCalculator = () => {
             <div className="mb-8">
               <h2
                 className="text-3xl sm:text-4xl lg:text-[42px] font-bold text-foreground tracking-tight leading-[1.15]"
-                style={{ fontFamily: "'Playfair Display', serif" }}
               >
                 Calculate Your Business{" "}
                 <span className="text-primary">Setup Cost</span>
