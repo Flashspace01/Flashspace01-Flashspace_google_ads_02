@@ -153,45 +153,45 @@ export const CostCalculator = () => {
       case 0:
         return (
           <div>
-            <h3 className="text-xl sm:text-2xl font-bold text-foreground mb-1.5">
+            <h3 className="text-2xl sm:text-3xl font-bold text-foreground mb-2">
               What's your business activity?
             </h3>
-            <p className="text-muted-foreground text-sm mb-8">
+            <p className="text-muted-foreground mb-10">
               Select the category that best describes your business.
             </p>
-            <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
+            <div className="grid grid-cols-2 sm:grid-cols-3 gap-5">
               {activities.map((a, i) => {
                 const Icon = a.icon;
                 const selected = selectedActivity === i;
                 return (
                   <motion.button
                     key={a.label}
-                    whileHover={{ y: -3, boxShadow: "0 8px 30px -8px hsl(43 96% 50% / 0.2)" }}
+                    whileHover={{ y: -4 }}
                     whileTap={{ scale: 0.97 }}
                     onClick={() => setSelectedActivity(i)}
-                    className={`relative group rounded-2xl border-2 p-5 sm:p-7 text-center transition-all duration-300 cursor-pointer ${
+                    className={`relative group rounded-2xl border-2 p-6 sm:p-8 text-center transition-all duration-300 cursor-pointer ${
                       selected
-                        ? "border-gold bg-[#FFFDF0] shadow-[0_8px_30px_-8px_hsl(43_96%_50%/0.2)]"
-                        : "border-transparent bg-card hover:border-gold/40"
+                        ? "border-primary bg-primary/[0.06] shadow-[0_8px_30px_-8px_hsl(var(--primary)/0.15)]"
+                        : "border-transparent bg-secondary/[0.25] hover:border-primary/30 hover:shadow-soft"
                     }`}
                   >
                     <div
-                      className={`w-14 h-14 rounded-xl mx-auto mb-3 flex items-center justify-center transition-colors duration-300 ${
+                      className={`w-14 h-14 rounded-xl mx-auto mb-4 flex items-center justify-center transition-colors duration-300 ${
                         selected
-                          ? "bg-gold/15 text-foreground"
-                          : "bg-foreground/[0.05] text-foreground"
+                          ? "bg-primary/15 text-primary"
+                          : "bg-foreground/[0.06] text-foreground group-hover:text-foreground"
                       }`}
                     >
-                      <Icon className="w-7 h-7" strokeWidth={1.8} />
+                      <Icon className="w-7 h-7" strokeWidth={1.6} />
                     </div>
-                    <p className="font-bold text-sm text-foreground">{a.label}</p>
-                    <p className="text-xs mt-0.5 text-muted-foreground">{a.desc}</p>
+                    <p className="font-semibold text-sm text-foreground">{a.label}</p>
+                    <p className="text-xs mt-1 text-muted-foreground">{a.desc}</p>
                     {selected && (
                       <motion.div
                         layoutId="tile-check"
-                        className="absolute top-2.5 right-2.5 w-4.5 h-4.5 rounded-full bg-primary flex items-center justify-center"
+                        className="absolute top-3 right-3 w-5 h-5 rounded-full bg-primary flex items-center justify-center"
                       >
-                        <Check className="w-2.5 h-2.5 text-primary-foreground" />
+                        <Check className="w-3 h-3 text-primary-foreground" />
                       </motion.div>
                     )}
                   </motion.button>
@@ -204,42 +204,42 @@ export const CostCalculator = () => {
       case 1:
         return (
           <div>
-            <h3 className="text-xl sm:text-2xl font-bold text-foreground mb-1.5">
+            <h3 className="text-2xl sm:text-3xl font-bold text-foreground mb-2">
               Choose your jurisdiction
             </h3>
-            <p className="text-muted-foreground text-sm mb-8">
+            <p className="text-muted-foreground mb-10">
               Each jurisdiction offers unique benefits for your business type.
             </p>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
               {jurisdictions.map((j, i) => {
                 const selected = selectedJurisdiction === i;
                 return (
                   <motion.button
                     key={j.label}
-                    whileHover={{ y: -3, boxShadow: "0 8px 30px -8px hsl(43 96% 50% / 0.2)" }}
+                    whileHover={{ y: -4 }}
                     whileTap={{ scale: 0.97 }}
                     onClick={() => setSelectedJurisdiction(i)}
-                    className={`relative rounded-2xl border-2 p-5 text-left transition-all duration-300 cursor-pointer ${
+                    className={`relative rounded-2xl border-2 p-6 text-left transition-all duration-300 cursor-pointer ${
                       selected
-                        ? "border-gold bg-[#FFFDF0] shadow-[0_8px_30px_-8px_hsl(43_96%_50%/0.2)]"
-                        : "border-transparent bg-card hover:border-gold/40"
+                        ? "border-primary bg-primary/[0.06] shadow-[0_8px_30px_-8px_hsl(var(--primary)/0.15)]"
+                        : "border-transparent bg-secondary/[0.25] hover:border-primary/30 hover:shadow-soft"
                     }`}
                   >
                     {j.tag && (
-                      <span className={`absolute top-3 right-3 text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full ${
-                        selected ? "bg-gold/15 text-foreground" : "bg-foreground/[0.06] text-muted-foreground"
+                      <span className={`absolute top-3 right-3 text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full ${
+                        selected ? "bg-primary/15 text-primary" : "bg-foreground/[0.06] text-muted-foreground"
                       }`}>
                         {j.tag}
                       </span>
                     )}
-                    <p className="font-bold text-base text-foreground mb-1 pr-14">{j.label}</p>
-                    <p className="text-xs text-muted-foreground leading-relaxed">{j.desc}</p>
+                    <p className="font-bold text-lg text-foreground mb-1 pr-16">{j.label}</p>
+                    <p className="text-sm text-muted-foreground leading-relaxed">{j.desc}</p>
                     {selected && (
                       <motion.div
                         layoutId="tile-check-j"
-                        className="absolute bottom-3 right-3 w-4.5 h-4.5 rounded-full bg-primary flex items-center justify-center"
+                        className="absolute bottom-4 right-4 w-5 h-5 rounded-full bg-primary flex items-center justify-center"
                       >
-                        <Check className="w-2.5 h-2.5 text-primary-foreground" />
+                        <Check className="w-3 h-3 text-primary-foreground" />
                       </motion.div>
                     )}
                   </motion.button>
@@ -252,31 +252,31 @@ export const CostCalculator = () => {
       case 2:
         return (
           <div>
-            <h3 className="text-xl sm:text-2xl font-bold text-foreground mb-1.5">
+            <h3 className="text-2xl sm:text-3xl font-bold text-foreground mb-2">
               How many visas do you need?
             </h3>
-            <p className="text-muted-foreground text-sm mb-8">
+            <p className="text-muted-foreground mb-10">
               Select your visa requirements for your team.
             </p>
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-2 gap-5">
               {visaOptions.map((v, i) => {
                 const selected = selectedVisas === i;
                 return (
                   <motion.button
                     key={v.label}
-                    whileHover={{ y: -3, boxShadow: "0 8px 30px -8px hsl(43 96% 50% / 0.2)" }}
+                    whileHover={{ y: -4 }}
                     whileTap={{ scale: 0.97 }}
                     onClick={() => setSelectedVisas(i)}
-                    className={`relative rounded-2xl border-2 p-5 text-center transition-all duration-300 cursor-pointer ${
+                    className={`relative rounded-2xl border-2 p-6 text-center transition-all duration-300 cursor-pointer ${
                       selected
-                        ? "border-gold bg-[#FFFDF0] shadow-[0_8px_30px_-8px_hsl(43_96%_50%/0.2)]"
-                        : "border-transparent bg-card hover:border-gold/40"
+                        ? "border-primary bg-primary/[0.06] shadow-[0_8px_30px_-8px_hsl(var(--primary)/0.15)]"
+                        : "border-transparent bg-secondary/[0.25] hover:border-primary/30 hover:shadow-soft"
                     }`}
                   >
-                    <p className={`text-2xl font-bold mb-1 ${selected ? "text-primary" : "text-foreground"}`}>
+                    <p className={`text-3xl font-bold mb-1 ${selected ? "text-primary" : "text-foreground"}`}>
                       {v.label.split(" ")[0]}
                     </p>
-                    <p className="text-xs text-muted-foreground">{v.desc}</p>
+                    <p className="text-sm text-muted-foreground">{v.desc}</p>
                   </motion.button>
                 );
               })}
@@ -287,29 +287,29 @@ export const CostCalculator = () => {
       case 3:
         return (
           <div>
-            <h3 className="text-xl sm:text-2xl font-bold text-foreground mb-1.5">
+            <h3 className="text-2xl sm:text-3xl font-bold text-foreground mb-2">
               Select your office type
             </h3>
-            <p className="text-muted-foreground text-sm mb-8">
+            <p className="text-muted-foreground mb-10">
               Choose the workspace that fits your needs.
             </p>
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-5">
               {officeOptions.map((o, i) => {
                 const selected = selectedOffice === i;
                 return (
                   <motion.button
                     key={o.label}
-                    whileHover={{ y: -3, boxShadow: "0 8px 30px -8px hsl(43 96% 50% / 0.2)" }}
+                    whileHover={{ y: -4 }}
                     whileTap={{ scale: 0.97 }}
                     onClick={() => setSelectedOffice(i)}
-                    className={`relative rounded-2xl border-2 p-5 text-center transition-all duration-300 cursor-pointer ${
+                    className={`relative rounded-2xl border-2 p-6 text-center transition-all duration-300 cursor-pointer ${
                       selected
-                        ? "border-gold bg-[#FFFDF0] shadow-[0_8px_30px_-8px_hsl(43_96%_50%/0.2)]"
-                        : "border-transparent bg-card hover:border-gold/40"
+                        ? "border-primary bg-primary/[0.06] shadow-[0_8px_30px_-8px_hsl(var(--primary)/0.15)]"
+                        : "border-transparent bg-secondary/[0.25] hover:border-primary/30 hover:shadow-soft"
                     }`}
                   >
                     <p className="font-bold text-foreground mb-1">{o.label}</p>
-                    <p className="text-xs mb-2 text-muted-foreground">{o.desc}</p>
+                    <p className="text-sm mb-3 text-muted-foreground">{o.desc}</p>
                     <span className={`text-xs font-bold ${selected ? "text-primary" : "text-muted-foreground"}`}>
                       {o.price}
                     </span>
@@ -323,25 +323,25 @@ export const CostCalculator = () => {
       case 4:
         return (
           <div>
-            <h3 className="text-xl sm:text-2xl font-bold text-foreground mb-1.5">
+            <h3 className="text-2xl sm:text-3xl font-bold text-foreground mb-2">
               Optional add-ons
             </h3>
-            <p className="text-muted-foreground text-sm mb-8">
+            <p className="text-muted-foreground mb-10">
               Enhance your setup with additional services.
             </p>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
               {addons.map((a, i) => {
                 const selected = selectedAddons.includes(i);
                 return (
                   <motion.button
                     key={a.label}
-                    whileHover={{ y: -2, boxShadow: "0 8px 30px -8px hsl(43 96% 50% / 0.2)" }}
+                    whileHover={{ y: -2 }}
                     whileTap={{ scale: 0.98 }}
                     onClick={() => toggleAddon(i)}
-                    className={`relative rounded-2xl border-2 p-4 text-left transition-all duration-300 cursor-pointer ${
+                    className={`relative rounded-2xl border-2 p-5 text-left transition-all duration-300 cursor-pointer ${
                       selected
-                        ? "border-gold bg-[#FFFDF0] shadow-[0_8px_30px_-8px_hsl(43_96%_50%/0.2)]"
-                        : "border-transparent bg-card hover:border-gold/40"
+                        ? "border-primary bg-primary/[0.06] shadow-[0_8px_30px_-8px_hsl(var(--primary)/0.15)]"
+                        : "border-transparent bg-secondary/[0.25] hover:border-primary/30 hover:shadow-soft"
                     }`}
                   >
                     <div className="flex items-center gap-3">
@@ -372,43 +372,43 @@ export const CostCalculator = () => {
               animate={{ scale: 1, opacity: 1 }}
               transition={{ duration: 0.5, ease: "easeOut" }}
             >
-              <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-5">
-                <Sparkles className="w-8 h-8 text-primary" />
+              <div className="w-20 h-20 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-6">
+                <Sparkles className="w-10 h-10 text-primary" />
               </div>
-              <h3 className="text-xl sm:text-2xl font-bold text-foreground mb-2">
+              <h3 className="text-2xl sm:text-3xl font-bold text-foreground mb-2">
                 Your Estimated Setup Cost
               </h3>
-              <p className="text-muted-foreground text-sm mb-6">
+              <p className="text-muted-foreground mb-8">
                 Based on your selections, here's an indicative range.
               </p>
               <motion.div
                 initial={{ scale: 0.9 }}
                 animate={{ scale: 1 }}
                 transition={{ delay: 0.3, type: "spring", stiffness: 200 }}
-                className="inline-block rounded-2xl bg-foreground px-8 py-5 mb-6"
+                className="inline-block rounded-2xl bg-foreground px-10 py-6 mb-8"
               >
-                <p className="text-background/70 text-xs font-medium mb-1">Estimated Total</p>
-                <p className="text-3xl sm:text-4xl font-bold text-secondary tracking-tight">
+                <p className="text-background/70 text-sm font-medium mb-1">Estimated Total</p>
+                <p className="text-4xl sm:text-5xl font-bold text-secondary tracking-tight">
                   AED <AnimatedTotal value={estimateTotal()} />
                 </p>
-                <p className="text-background/40 text-[10px] mt-1.5">*Indicative pricing, subject to final review</p>
+                <p className="text-background/40 text-xs mt-2">*Indicative pricing, subject to final review</p>
               </motion.div>
 
-              <div className="max-w-xs mx-auto text-left space-y-2.5 mb-6">
+              <div className="max-w-sm mx-auto text-left space-y-3 mb-8">
                 {selectedActivity !== null && (
-                  <div className="flex justify-between text-sm border-b border-foreground/10 pb-1.5">
+                  <div className="flex justify-between text-sm border-b border-foreground/10 pb-2">
                     <span className="text-muted-foreground">Activity</span>
                     <span className="font-medium text-foreground">{activities[selectedActivity].label}</span>
                   </div>
                 )}
                 {selectedJurisdiction !== null && (
-                  <div className="flex justify-between text-sm border-b border-foreground/10 pb-1.5">
+                  <div className="flex justify-between text-sm border-b border-foreground/10 pb-2">
                     <span className="text-muted-foreground">Jurisdiction</span>
                     <span className="font-medium text-foreground">{jurisdictions[selectedJurisdiction].label}</span>
                   </div>
                 )}
                 {selectedVisas !== null && (
-                  <div className="flex justify-between text-sm border-b border-foreground/10 pb-1.5">
+                  <div className="flex justify-between text-sm border-b border-foreground/10 pb-2">
                     <span className="text-muted-foreground">Visas</span>
                     <span className="font-medium text-foreground">{visaOptions[selectedVisas].label}</span>
                   </div>
@@ -421,7 +421,7 @@ export const CostCalculator = () => {
                 )}
               </div>
 
-              <button className="inline-flex items-center gap-2 bg-primary text-primary-foreground font-semibold px-8 h-11 rounded-lg text-sm uppercase tracking-wider hover:bg-primary/90 transition-all duration-300 hover:scale-[1.02] hover:shadow-glow">
+              <button className="inline-flex items-center gap-2 bg-primary text-primary-foreground font-semibold px-10 h-12 rounded-lg text-sm uppercase tracking-wider hover:bg-primary/90 transition-all duration-300 hover:scale-[1.02] hover:shadow-glow">
                 Get a Detailed Quote
                 <ArrowRight className="w-4 h-4" />
               </button>
@@ -435,100 +435,96 @@ export const CostCalculator = () => {
   };
 
   return (
-    <section className="py-20 lg:py-28 relative overflow-hidden bg-gradient-to-b from-background to-muted/50">
+    <section className="py-20 lg:py-28 relative overflow-hidden" style={{ background: "#F9F9F9" }}>
       <div className="max-w-[1200px] mx-auto px-6 lg:px-10 relative z-10">
-        {/* Header — centered */}
+        {/* Header — left-aligned above the two-column layout */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center mb-14"
+          className="mb-14"
         >
-          <h2 className="text-3xl sm:text-4xl lg:text-[44px] font-bold text-foreground tracking-tight leading-[1.15] font-serif">
+          <h2 className="text-3xl sm:text-4xl lg:text-[48px] font-bold text-foreground tracking-tight leading-[1.15]">
             Calculate Your Business{" "}
             <span className="text-primary">Setup Cost</span>
           </h2>
-          <p className="text-muted-foreground text-base mt-3 max-w-xl mx-auto">
+          <p className="text-muted-foreground text-lg mt-4 max-w-2xl">
             Answer a few questions and get an instant estimate for your UAE business setup.
           </p>
         </motion.div>
 
-        {/* Two-column dashboard layout */}
+        {/* Two-column layout */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 0.1 }}
-          className="flex gap-0 rounded-2xl overflow-hidden shadow-soft-lg border border-border/50"
+          className="flex gap-12 lg:gap-20"
         >
-          {/* LEFT — Sidebar with background */}
-          <div className="hidden lg:flex flex-col w-[220px] shrink-0 bg-muted/60 border-r border-border/50 p-6 pt-10">
-            <div className="flex flex-col gap-0">
-              {progressSteps.map((s, i) => {
-                const isActive = i === step;
-                const isDone = i < step;
-                const isLast = i === progressSteps.length - 1;
-                return (
-                  <div key={s.label}>
-                    <button
-                      onClick={() => {
-                        if (i < step) { setDirection(-1); setStep(i); }
-                      }}
-                      className={`flex items-center gap-3.5 w-full py-2.5 group cursor-pointer transition-all duration-200 rounded-lg px-2 -mx-2 ${
-                        isActive ? "bg-card shadow-sm" : isDone ? "hover:bg-card/60" : ""
-                      }`}
-                    >
-                      <div className="relative shrink-0">
-                        {isActive && (
-                          <motion.div
-                            className="absolute inset-0 rounded-full border-2 border-gold/40"
-                            animate={{ scale: [1, 1.35, 1], opacity: [0.5, 0, 0.5] }}
-                            transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-                            style={{ margin: "-4px" }}
-                          />
-                        )}
-                        <div
-                          className={`w-10 h-10 rounded-full flex items-center justify-center transition-all duration-300 ${
-                            isActive
-                              ? "bg-gold text-foreground shadow-[0_4px_12px_-2px_hsl(43_96%_50%/0.4)]"
-                              : isDone
-                              ? "bg-primary text-primary-foreground"
-                              : "bg-card border border-border text-muted-foreground"
-                          }`}
-                        >
-                          {isDone ? <Check className="w-4 h-4" /> : <s.icon className="w-4.5 h-4.5" strokeWidth={1.6} />}
-                        </div>
-                      </div>
-                      <span
-                        className={`text-xs font-semibold tracking-wide uppercase transition-colors ${
-                          isActive ? "text-foreground" : isDone ? "text-foreground/70" : "text-muted-foreground"
+          {/* LEFT — Vertical Progress Stepper */}
+          <div className="hidden lg:flex flex-col items-center shrink-0 w-[100px]">
+            {progressSteps.map((s, i) => {
+              const isActive = i === step;
+              const isDone = i < step;
+              const isLast = i === progressSteps.length - 1;
+              return (
+                <div key={s.label} className="flex flex-col items-center">
+                  <button
+                    onClick={() => {
+                      if (i < step) { setDirection(-1); setStep(i); }
+                    }}
+                    className="flex flex-col items-center gap-2 group cursor-pointer relative"
+                  >
+                    <div className="relative">
+                      {isActive && (
+                        <motion.div
+                          className="absolute inset-0 rounded-full border-2 border-primary/30"
+                          animate={{ scale: [1, 1.4, 1], opacity: [0.4, 0, 0.4] }}
+                          transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+                          style={{ margin: "-5px" }}
+                        />
+                      )}
+                      <div
+                        className={`w-11 h-11 rounded-full flex items-center justify-center transition-all duration-300 ${
+                          isActive
+                            ? "bg-primary text-primary-foreground shadow-glow"
+                            : isDone
+                            ? "bg-primary text-primary-foreground"
+                            : "bg-card border border-border text-muted-foreground group-hover:border-primary/30"
                         }`}
                       >
-                        {s.label}
-                      </span>
-                    </button>
-                    {!isLast && (
-                      <div className="ml-[18px] relative w-[2px] h-6 bg-border/60 rounded-full">
-                        {(isDone || isActive) && (
-                          <motion.div
-                            className="absolute inset-x-0 top-0 bg-foreground/40 rounded-full"
-                            initial={{ height: 0 }}
-                            animate={{ height: isDone ? "100%" : "50%" }}
-                            transition={{ duration: 0.4 }}
-                          />
-                        )}
+                        {isDone ? <Check className="w-4 h-4" /> : <s.icon className="w-4 h-4" strokeWidth={1.5} />}
                       </div>
-                    )}
-                  </div>
-                );
-              })}
-            </div>
+                    </div>
+                    <span
+                      className={`text-[10px] font-semibold tracking-wider uppercase transition-colors whitespace-nowrap ${
+                        isActive ? "text-foreground" : isDone ? "text-foreground/60" : "text-muted-foreground"
+                      }`}
+                    >
+                      {s.label}
+                    </span>
+                  </button>
+                  {!isLast && (
+                    <div className="relative w-[2px] h-8 bg-border rounded-full my-2">
+                      {(isDone || isActive) && (
+                        <motion.div
+                          className="absolute inset-x-0 top-0 bg-primary rounded-full"
+                          initial={{ height: 0 }}
+                          animate={{ height: isDone ? "100%" : "50%" }}
+                          transition={{ duration: 0.4 }}
+                        />
+                      )}
+                    </div>
+                  )}
+                </div>
+              );
+            })}
           </div>
 
-          {/* RIGHT — Content area */}
-          <div className="flex-1 min-w-0 bg-card p-6 sm:p-8 lg:p-10">
+          {/* RIGHT — Content */}
+          <div className="flex-1 min-w-0">
             {/* Mobile stepper */}
-            <div className="flex lg:hidden items-center justify-between mb-6 gap-1">
+            <div className="flex lg:hidden items-center justify-between mb-8 gap-1">
               {progressSteps.map((s, i) => {
                 const isActive = i === step;
                 const isDone = i < step;
@@ -540,11 +536,9 @@ export const CostCalculator = () => {
                   >
                     <div
                       className={`w-8 h-8 rounded-full flex items-center justify-center transition-all duration-300 ${
-                        isActive
-                          ? "bg-gold text-foreground"
-                          : isDone
+                        isActive || isDone
                           ? "bg-primary text-primary-foreground"
-                          : "bg-muted border border-border text-muted-foreground"
+                          : "bg-card border border-border text-muted-foreground"
                       }`}
                     >
                       {isDone ? <Check className="w-3.5 h-3.5" /> : <s.icon className="w-3.5 h-3.5" />}
@@ -558,7 +552,7 @@ export const CostCalculator = () => {
             </div>
 
             {/* Step Content */}
-            <div className="min-h-[380px] relative overflow-hidden">
+            <div className="min-h-[400px] relative overflow-hidden">
               <AnimatePresence mode="wait" custom={direction}>
                 <motion.div
                   key={step}
@@ -576,7 +570,7 @@ export const CostCalculator = () => {
 
             {/* Footer Action Bar */}
             {step < 5 && (
-              <div className="mt-6 pt-5 border-t border-border/50 flex items-center justify-between gap-4">
+              <div className="mt-8 flex items-center justify-between gap-4">
                 <button
                   onClick={goBack}
                   disabled={step === 0}
@@ -587,11 +581,11 @@ export const CostCalculator = () => {
                 </button>
 
                 {/* Estimate capsule */}
-                <div className="hidden sm:flex items-center gap-3 bg-foreground rounded-full px-5 py-2">
-                  <span className="text-[10px] text-background/60 font-medium uppercase tracking-wider">Est. Total</span>
-                  <div className="w-px h-3.5 bg-background/20" />
+                <div className="hidden sm:flex items-center gap-4 bg-foreground rounded-full px-6 py-2.5">
+                  <span className="text-xs text-background/60 font-medium">Estimated Total</span>
+                  <div className="w-px h-4 bg-background/20" />
                   <span
-                    className={`text-base font-bold text-gold tabular-nums transition-all duration-500 ${
+                    className={`text-lg font-bold text-secondary tabular-nums transition-all duration-500 ${
                       step < 2 ? "blur-sm select-none" : ""
                     }`}
                   >
@@ -599,11 +593,11 @@ export const CostCalculator = () => {
                   </span>
                 </div>
 
-                {/* Next button — charcoal with gold text */}
+                {/* Next button */}
                 <button
                   onClick={goNext}
                   disabled={!canProceed()}
-                  className="inline-flex items-center gap-2 bg-foreground text-gold font-semibold px-7 sm:px-9 h-10 rounded-lg text-sm tracking-wide hover:bg-foreground/90 shadow-md hover:shadow-lg transition-all duration-300 hover:scale-[1.03] disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:scale-100"
+                  className="inline-flex items-center gap-2 bg-primary text-primary-foreground font-semibold px-8 sm:px-10 h-11 rounded-lg text-sm tracking-wide hover:bg-primary/90 shadow-md hover:shadow-lg transition-all duration-300 hover:scale-[1.03] disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:scale-100"
                 >
                   {step === 4 ? "See Estimate" : "Next Step"}
                   <ArrowRight className="w-4 h-4" />
@@ -612,7 +606,7 @@ export const CostCalculator = () => {
             )}
 
             {step === 5 && (
-              <div className="mt-6 pt-5 border-t border-border/50 flex items-center justify-center">
+              <div className="mt-8 flex items-center justify-center">
                 <button
                   onClick={() => { setStep(0); setDirection(-1); }}
                   className="text-sm text-muted-foreground hover:text-foreground transition-colors"
