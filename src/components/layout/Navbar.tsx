@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import {
@@ -62,23 +63,23 @@ const navLinks: NavLink[] = [
       {
         heading: "Free Zones",
         items: [
-          { label: "Overview", href: "#", icon: Globe },
-          { label: "Business Activities", href: "#", icon: Lightbulb },
-          { label: "Free Zone License Locations and Pricing", href: "#", icon: MapPin },
-          { label: "UAE Residence Visa", href: "#", icon: Stamp },
-          { label: "Registration Process", href: "#", icon: ClipboardList },
-          { label: "Our Solution", href: "#", icon: Building2 },
+          { label: "Overview", href: "/services/free-zone-overview", icon: Globe },
+          { label: "Business Activities", href: "/services/business-activities", icon: Lightbulb },
+          { label: "Free Zone License Locations and Pricing", href: "/services/free-zone-license-locations", icon: MapPin },
+          { label: "UAE Residence Visa", href: "/services/uae-residency-visa", icon: Stamp },
+          { label: "Registration Process", href: "/services/registration-process", icon: ClipboardList },
+          { label: "Our Solution", href: "/services/free-zone-solution", icon: Building2 },
         ],
       },
       {
         heading: "Mainland",
         items: [
-          { label: "Overview", href: "#", icon: Landmark },
-          { label: "Sponsorship", href: "#", icon: Users },
-          { label: "Dubai Mainland Licence", href: "#", icon: ShieldCheck },
-          { label: "Business Activities", href: "#", icon: Lightbulb },
-          { label: "Mainland Visas", href: "#", icon: CreditCard },
-          { label: "VirtuFit", href: "#", icon: Eye },
+          { label: "Overview", href: "/services/dubai-mainland", icon: Landmark },
+          { label: "Sponsorship", href: "/services/mainland-sponsorship", icon: Users },
+          { label: "Dubai Mainland Licence", href: "/services/dubai-mainland-licence", icon: ShieldCheck },
+          { label: "Business Activities", href: "/services/business-activities", icon: Lightbulb },
+          { label: "Mainland Visas", href: "/services/mainland-visas", icon: CreditCard },
+          { label: "VirtuFit", href: "/services/virtual-setup", icon: Eye },
         ],
       },
     ],
@@ -90,31 +91,31 @@ const navLinks: NavLink[] = [
       {
         heading: "Essential Services",
         items: [
-          { label: "Bank Account Opening", href: "#", icon: Banknote },
-          { label: "Accounting Services", href: "#", icon: Calculator },
-          { label: "Compliance Services", href: "#", icon: Scale },
-          { label: "Payroll Management", href: "#", icon: Wallet },
-          { label: "Health Insurance", href: "#", icon: HeartPulse },
+          { label: "Bank Account Opening", href: "/services/bank-account", icon: Banknote },
+          { label: "Accounting Services", href: "/services/accounting-vat", icon: Calculator },
+          { label: "Compliance Services", href: "/services/compliance-services", icon: Scale },
+          { label: "Payroll Management", href: "/services/payroll-management", icon: Wallet },
+          { label: "Health Insurance", href: "/services/health-insurance", icon: HeartPulse },
         ],
       },
       {
         heading: "Operational Services",
         items: [
-          { label: "IT Services", href: "#", icon: Monitor },
-          { label: "Legal Services", href: "#", icon: Gavel },
-          { label: "Mail Management", href: "#", icon: Mail },
-          { label: "Virtual Receptionist", href: "#", icon: Phone },
+          { label: "IT Services", href: "/services/it-services", icon: Monitor },
+          { label: "Legal Services", href: "/services/legal-services", icon: Gavel },
+          { label: "Mail Management", href: "/services/mail-management", icon: Mail },
+          { label: "Virtual Receptionist", href: "/services/virtual-receptionist", icon: Phone },
         ],
       },
       {
         heading: "Support Services",
         items: [
-          { label: "Tourist Visa", href: "#", icon: Plane },
-          { label: "Golden Visa UAE", href: "#", icon: Award },
-          { label: "Second Citizenship", href: "#", icon: Flag },
-          { label: "PRO Services", href: "#", icon: BadgeCheck },
-          { label: "Will Preparation", href: "#", icon: ScrollText },
-          { label: "Trademark Registration", href: "#", icon: BookmarkCheck },
+          { label: "Tourist Visa", href: "/services/tourist-visa", icon: Plane },
+          { label: "Golden Visa UAE", href: "/services/golden-visa", icon: Award },
+          { label: "Second Citizenship", href: "/services/second-citizenship", icon: Flag },
+          { label: "PRO Services", href: "/services/pro-services", icon: BadgeCheck },
+          { label: "Will Preparation", href: "/services/will-preparation", icon: ScrollText },
+          { label: "Trademark Registration", href: "/services/trademark-registration", icon: BookmarkCheck },
         ],
       },
     ],
@@ -182,14 +183,15 @@ export const Navbar = () => {
                       className="absolute top-full left-0 mt-1 w-56 py-2 bg-card rounded-xl shadow-lg border border-border max-h-[70vh] overflow-y-auto"
                     >
                       {link.dropdown.map((item) => (
-                        <a
+                        <Link
                           key={item.label}
-                          href={item.href}
+                          to={item.href}
                           className="flex items-center gap-3 px-4 py-2.5 text-sm font-normal text-foreground/80 hover:text-foreground hover:bg-primary/5 transition-colors"
+                          onClick={() => setActiveDropdown(null)}
                         >
                           <item.icon className="w-4 h-4 text-primary/70 shrink-0" />
                           {item.label}
-                        </a>
+                        </Link>
                       ))}
                     </motion.div>
                   )}
@@ -212,14 +214,15 @@ export const Navbar = () => {
                             </h4>
                             <div className="space-y-1">
                               {group.items.map((item) => (
-                                <a
+                                <Link
                                   key={item.label}
-                                  href={item.href}
+                                  to={item.href}
                                   className="flex items-center gap-2.5 px-3 py-2 text-sm text-foreground/80 hover:text-foreground hover:bg-primary/5 rounded-lg transition-colors"
+                                  onClick={() => setActiveDropdown(null)}
                                 >
                                   <item.icon className="w-4 h-4 text-primary/70 shrink-0" />
                                   {item.label}
-                                </a>
+                                </Link>
                               ))}
                             </div>
                           </div>
@@ -273,15 +276,15 @@ export const Navbar = () => {
                   {link.dropdown && (
                     <div className="pl-6 space-y-1">
                       {link.dropdown.map((item) => (
-                        <a
+                        <Link
                           key={item.label}
-                          href={item.href}
+                          to={item.href}
                           className="flex items-center gap-2 px-4 py-2 text-sm text-muted-foreground hover:text-foreground hover:bg-primary/5 rounded-lg transition-colors"
                           onClick={() => setMobileOpen(false)}
                         >
                           <item.icon className="w-4 h-4 text-primary/60 shrink-0" />
                           {item.label}
-                        </a>
+                        </Link>
                       ))}
                     </div>
                   )}
@@ -294,15 +297,15 @@ export const Navbar = () => {
                           </span>
                           <div className="space-y-1">
                             {group.items.map((item) => (
-                              <a
+                              <Link
                                 key={item.label}
-                                href={item.href}
+                                to={item.href}
                                 className="flex items-center gap-2 px-4 py-2 text-sm text-muted-foreground hover:text-foreground hover:bg-primary/5 rounded-lg transition-colors"
                                 onClick={() => setMobileOpen(false)}
                               >
                                 <item.icon className="w-4 h-4 text-primary/60 shrink-0" />
                                 {item.label}
-                              </a>
+                              </Link>
                             ))}
                           </div>
                         </div>
