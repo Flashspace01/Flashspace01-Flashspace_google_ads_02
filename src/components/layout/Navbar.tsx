@@ -204,7 +204,7 @@ export const Navbar = () => {
                       className="absolute top-full left-1/2 -translate-x-1/2 mt-1 bg-card rounded-xl shadow-lg border border-border p-6"
                       style={{ width: "640px" }}
                     >
-                      <div className="grid grid-cols-3 gap-6">
+                      <div className={`grid gap-6 ${link.megaMenu.length === 2 ? 'grid-cols-2' : 'grid-cols-3'}`}>
                         {link.megaMenu.map((group) => (
                           <div key={group.heading}>
                             <h4 className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-3">
