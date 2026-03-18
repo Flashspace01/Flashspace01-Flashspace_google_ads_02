@@ -546,7 +546,71 @@ export const CostCalculator = () => {
         );
 
       case 5:
-        return null;
+        return (
+          <div className="text-center py-8">
+            <motion.div
+              initial={{ scale: 0.8, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              transition={{ duration: 0.5, ease: "easeOut" }}
+            >
+              <h3 className="text-xl sm:text-2xl font-bold text-foreground mb-2">
+                Your Estimate is Ready!
+              </h3>
+              <p className="text-muted-foreground text-sm max-w-md mx-auto">
+                Review your cost breakdown on the right panel. Ready to proceed? Click "Get a Detailed Quote" to connect with our team.
+              </p>
+
+              {/* Mobile: show summary inline */}
+              <div className="lg:hidden mt-8">
+                <motion.div
+                  initial={{ scale: 0.9 }}
+                  animate={{ scale: 1 }}
+                  transition={{ delay: 0.3, type: "spring", stiffness: 200 }}
+                  className="inline-block rounded-2xl bg-foreground px-8 py-5 mb-6"
+                >
+                  <p className="text-background/70 text-sm font-medium mb-1">Estimated Total</p>
+                  <p className="text-3xl sm:text-4xl font-bold text-secondary tracking-tight">
+                    AED <AnimatedTotal value={estimateTotal()} />
+                  </p>
+                </motion.div>
+
+                <div className="max-w-xs mx-auto text-left space-y-2 mb-6">
+                  {selectedActivity !== null && (
+                    <div className="flex justify-between text-sm border-b border-foreground/10 pb-2">
+                      <span className="text-muted-foreground">Activity</span>
+                      <span className="font-medium text-foreground">
+                        {selectedActivity === 5 ? customActivity || "Other" : activities[selectedActivity].label}
+                      </span>
+                    </div>
+                  )}
+                  {selectedJurisdiction !== null && (
+                    <div className="flex justify-between text-sm border-b border-foreground/10 pb-2">
+                      <span className="text-muted-foreground">Jurisdiction</span>
+                      <span className="font-medium text-foreground">{jurisdictions[selectedJurisdiction].label}</span>
+                    </div>
+                  )}
+                  {selectedVisas !== null && (
+                    <div className="flex justify-between text-sm border-b border-foreground/10 pb-2">
+                      <span className="text-muted-foreground">Visas</span>
+                      <span className="font-medium text-foreground">{visaOptions[selectedVisas].label}</span>
+                    </div>
+                  )}
+                  {selectedOffice !== null && (
+                    <div className="flex justify-between text-sm">
+                      <span className="text-muted-foreground">Office</span>
+                      <span className="font-medium text-foreground">{officeOptions[selectedOffice].label}</span>
+                    </div>
+                  )}
+                </div>
+
+                <button className="inline-flex items-center gap-2 bg-primary text-primary-foreground font-semibold px-8 h-12 rounded-xl text-sm tracking-wide hover:bg-primary/90 shadow-md transition-all duration-300">
+                  Get a Detailed Quote
+                  <ArrowRight className="w-4 h-4" />
+                </button>
+              </div>
+            </motion.div>
+          </div>
+        );
 
       default:
         return null;
