@@ -75,9 +75,6 @@ export const BusinessSetupOverview = () => {
                 />
 
                 <div className="relative z-10">
-                  <span className={`text-sm mb-5 block transition-colors duration-300 ${isHovered ? "text-white/70" : "text-muted-foreground"}`}>
-                    {String(index + 1).padStart(2, "0")}
-                  </span>
                   <h3 className={`text-2xl lg:text-3xl font-medium mb-5 transition-colors duration-300 ${isHovered ? "text-white" : "text-foreground"}`}>
                     {item.title}
                   </h3>
