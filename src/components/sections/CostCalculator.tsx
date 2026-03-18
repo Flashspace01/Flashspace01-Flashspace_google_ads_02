@@ -603,7 +603,7 @@ export const CostCalculator = () => {
                   )}
                 </div>
 
-                <button className="inline-flex items-center gap-2 bg-primary text-primary-foreground font-semibold px-8 h-12 rounded-xl text-sm tracking-wide hover:bg-primary/90 shadow-md transition-all duration-300">
+                <button className="inline-flex items-center gap-2 bg-primary text-primary-foreground font-semibold px-8 h-12 rounded-xl text-sm tracking-wide shadow-md hover:shadow-[0_0_24px_hsla(54,96%,88%,0.3)] hover:text-secondary transition-all duration-300 font-sans">
                   Get a Detailed Quote
                   <ArrowRight className="w-4 h-4" />
                 </button>
