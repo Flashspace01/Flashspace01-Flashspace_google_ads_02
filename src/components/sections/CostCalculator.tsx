@@ -15,64 +15,64 @@ import {
   ChevronLeft,
   Check,
   ArrowRight,
-  PenLine } from
-"lucide-react";
+  PenLine,
+} from "lucide-react";
 
 /* ── Step Data ─────────────────────────────────────── */
 
 const progressSteps = [
-{ icon: Briefcase, label: "Activity" },
-{ icon: MapPin, label: "Jurisdiction" },
-{ icon: Users, label: "Visas" },
-{ icon: Building2, label: "Office" },
-{ icon: FileCheck, label: "Add-ons" },
-{ icon: CreditCard, label: "Estimate" }];
-
+  { icon: Briefcase, label: "Activity" },
+  { icon: MapPin, label: "Jurisdiction" },
+  { icon: Users, label: "Visas" },
+  { icon: Building2, label: "Office" },
+  { icon: FileCheck, label: "Add-ons" },
+  { icon: CreditCard, label: "Estimate" },
+];
 
 const activities = [
-{ icon: Globe, label: "Trading", desc: "Import / Export" },
-{ icon: Laptop, label: "Technology", desc: "IT & Software" },
-{ icon: Briefcase, label: "Consulting", desc: "Professional Services" },
-{ icon: Utensils, label: "F&B", desc: "Food & Beverage" },
-{ icon: ShoppingCart, label: "E-Commerce", desc: "Online Retail" },
-{ icon: PenLine, label: "Other", desc: "Custom activity" }];
-
+  { icon: Globe, label: "Trading", desc: "Import / Export" },
+  { icon: Laptop, label: "Technology", desc: "IT & Software" },
+  { icon: Briefcase, label: "Consulting", desc: "Professional Services" },
+  { icon: Utensils, label: "F&B", desc: "Food & Beverage" },
+  { icon: ShoppingCart, label: "E-Commerce", desc: "Online Retail" },
+  { icon: PenLine, label: "Other", desc: "Custom activity" },
+];
 
 const jurisdictions = [
-{ label: "Mainland", desc: "Full market access across the UAE", tag: "Popular" },
-{ label: "DMCC Free Zone", desc: "Global commodities & trading hub", tag: "Top Rated" },
-{ label: "IFZA Free Zone", desc: "Cost-effective & fast setup", tag: null },
-{ label: "DIFC", desc: "Financial services & fintech", tag: "Premium" },
-{ label: "Offshore (RAK)", desc: "Asset protection & holding", tag: null },
-{ label: "ADGM", desc: "Abu Dhabi financial centre", tag: null }];
-
+  { label: "Mainland", desc: "Full market access across the UAE", tag: "Popular" },
+  { label: "DMCC Free Zone", desc: "Global commodities & trading hub", tag: "Top Rated" },
+  { label: "IFZA Free Zone", desc: "Cost-effective & fast setup", tag: null },
+  { label: "DIFC", desc: "Financial services & fintech", tag: "Premium" },
+  { label: "Offshore (RAK)", desc: "Asset protection & holding", tag: null },
+  { label: "ADGM", desc: "Abu Dhabi financial centre", tag: null },
+];
 
 const visaOptions = [
-{ label: "0 Visas", desc: "No visa package needed" },
-{ label: "1–3 Visas", desc: "Small team or founder only" },
-{ label: "4–10 Visas", desc: "Growing team" },
-{ label: "10+ Visas", desc: "Large team setup" }];
-
+  { label: "0 Visas", desc: "No visa package needed" },
+  { label: "1–3 Visas", desc: "Small team or founder only" },
+  { label: "4–10 Visas", desc: "Growing team" },
+  { label: "10+ Visas", desc: "Large team setup" },
+];
 
 const officeOptions = [
-{ label: "Virtual Office", desc: "Registered address only", price: "Included" },
-{ label: "Flexi Desk", desc: "Shared workspace access", price: "+AED 5,000/yr" },
-{ label: "Private Office", desc: "Dedicated private space", price: "+AED 18,000/yr" }];
-
+  { label: "Virtual Office", desc: "Registered address only", price: "Included" },
+  { label: "Flexi Desk", desc: "Shared workspace access", price: "+AED 5,000/yr" },
+  { label: "Private Office", desc: "Dedicated private space", price: "+AED 18,000/yr" },
+];
 
 const addons = [
-{ label: "PRO Services", desc: "Government liaison & document clearing" },
-{ label: "Corporate Bank Account", desc: "Assisted bank account opening" },
-{ label: "VAT Registration", desc: "Tax registration & filing support" },
-{ label: "Golden Visa Assist", desc: "Long-term residency application" }];
-
+  { label: "PRO Services", desc: "Government liaison & document clearing" },
+  { label: "Corporate Bank Account", desc: "Assisted bank account opening" },
+  { label: "VAT Registration", desc: "Tax registration & filing support" },
+  { label: "Golden Visa Assist", desc: "Long-term residency application" },
+];
 
 /* ── Slide animation ───────────────────────────────── */
 
 const slideVariants = {
   enter: (dir: number) => ({ x: dir > 0 ? 200 : -200, opacity: 0 }),
   center: { x: 0, opacity: 1 },
-  exit: (dir: number) => ({ x: dir > 0 ? -200 : 200, opacity: 0 })
+  exit: (dir: number) => ({ x: dir > 0 ? -200 : 200, opacity: 0 }),
 };
 
 const cardStagger = {
@@ -80,12 +80,12 @@ const cardStagger = {
   visible: (i: number) => ({
     opacity: 1,
     y: 0,
-    transition: { delay: i * 0.05, duration: 0.3, ease: [0.4, 0, 0.2, 1] as const }
-  })
+    transition: { delay: i * 0.05, duration: 0.3, ease: [0.4, 0, 0.2, 1] as const },
+  }),
 };
 
 /* ── Animated Number ── */
-const AnimatedTotal = ({ value }: {value: number;}) => {
+const AnimatedTotal = ({ value }: { value: number }) => {
   const motionVal = useMotionValue(0);
   const [display, setDisplay] = useState(value);
   const prevRef = useRef(value);
@@ -94,7 +94,7 @@ const AnimatedTotal = ({ value }: {value: number;}) => {
     const controls = animate(prevRef.current, value, {
       duration: 0.6,
       ease: "easeOut",
-      onUpdate: (v) => setDisplay(Math.round(v))
+      onUpdate: (v) => setDisplay(Math.round(v)),
     });
     prevRef.current = value;
     return controls.stop;
@@ -105,11 +105,11 @@ const AnimatedTotal = ({ value }: {value: number;}) => {
 
 /* ── Shared card styles ── */
 const cardBase =
-"relative rounded-2xl transition-all duration-300 cursor-pointer";
+  "relative rounded-2xl transition-all duration-300 cursor-pointer font-sans";
 const cardDefault =
-"bg-transparent hover:bg-primary/[0.04]";
+  "bg-transparent hover:bg-primary/[0.04]";
 const cardSelected =
-"bg-primary text-primary-foreground shadow-[0_4px_24px_-4px_hsl(var(--primary)/0.18)]";
+  "bg-primary text-primary-foreground shadow-[0_8px_32px_-4px_hsl(var(--primary)/0.25)]";
 
 /* ── Prices ── */
 const basePrices = [8500, 12000, 9500, 15000, 7500, 18000];
@@ -129,27 +129,27 @@ const CostSummary = ({
   estimateTotal,
   canProceed,
   goNext,
-  goBack
-
-
-
-
-
-
-
-
-
-
-
-
-}: {step: number;selectedActivity: number | null;customActivity: string;selectedJurisdiction: number | null;selectedVisas: number | null;selectedOffice: number | null;selectedAddons: number[];estimateTotal: number;canProceed: boolean;goNext: () => void;goBack: () => void;}) => {
+  goBack,
+}: {
+  step: number;
+  selectedActivity: number | null;
+  customActivity: string;
+  selectedJurisdiction: number | null;
+  selectedVisas: number | null;
+  selectedOffice: number | null;
+  selectedAddons: number[];
+  estimateTotal: number;
+  canProceed: boolean;
+  goNext: () => void;
+  goBack: () => void;
+}) => {
   const licenseBase = basePrices[selectedJurisdiction ?? 0] || 8500;
   const visaCost = visaMultiplier[selectedVisas ?? 0] || 0;
   const officeCost = officePrices[selectedOffice ?? 0] || 0;
   const addonsCost = selectedAddons.reduce((sum, i) => sum + (addonPrices[i] || 0), 0);
 
   return (
-    <div className="rounded-2xl p-6 flex flex-col bg-primary-foreground">
+    <div className="rounded-2xl bg-card/80 backdrop-blur-sm p-6 flex flex-col border border-card/40 shadow-soft font-sans">
       {/* Header */}
       <div className="mb-5">
         <p className="text-xs font-bold uppercase tracking-wider text-muted-foreground mb-1">
@@ -159,9 +159,9 @@ const CostSummary = ({
           key={estimateTotal}
           initial={{ scale: 0.95, opacity: 0.5 }}
           animate={{ scale: 1, opacity: 1 }}
-          transition={{ duration: 0.3 }}>
-          
-          <p className="text-4xl font-bold text-foreground tracking-tight">
+          transition={{ duration: 0.3 }}
+        >
+          <p className="text-4xl font-bold text-foreground tracking-tight font-sans">
             AED <AnimatedTotal value={estimateTotal} />
           </p>
         </motion.div>
@@ -214,44 +214,44 @@ const CostSummary = ({
             Your Selections
           </p>
 
-          {selectedActivity !== null &&
-          <div className="flex justify-between text-xs">
+          {selectedActivity !== null && (
+            <div className="flex justify-between text-xs">
               <span className="text-muted-foreground">Activity</span>
               <span className="font-medium text-foreground">
                 {selectedActivity === 5 ? customActivity || "Other" : activities[selectedActivity].label}
               </span>
             </div>
-          }
+          )}
 
-          {selectedJurisdiction !== null &&
-          <div className="flex justify-between text-xs">
+          {selectedJurisdiction !== null && (
+            <div className="flex justify-between text-xs">
               <span className="text-muted-foreground">Jurisdiction</span>
               <span className="font-medium text-foreground">{jurisdictions[selectedJurisdiction].label}</span>
             </div>
-          }
+          )}
 
-          {selectedVisas !== null &&
-          <div className="flex justify-between text-xs">
+          {selectedVisas !== null && (
+            <div className="flex justify-between text-xs">
               <span className="text-muted-foreground">Visas</span>
               <span className="font-medium text-foreground">{visaOptions[selectedVisas].label}</span>
             </div>
-          }
+          )}
 
-          {selectedOffice !== null &&
-          <div className="flex justify-between text-xs">
+          {selectedOffice !== null && (
+            <div className="flex justify-between text-xs">
               <span className="text-muted-foreground">Office</span>
               <span className="font-medium text-foreground">{officeOptions[selectedOffice].label}</span>
             </div>
-          }
+          )}
 
-          {selectedAddons.length > 0 &&
-          <div className="flex justify-between text-xs">
+          {selectedAddons.length > 0 && (
+            <div className="flex justify-between text-xs">
               <span className="text-muted-foreground">Add-ons</span>
               <span className="font-medium text-foreground text-right">
                 {selectedAddons.map((i) => addons[i].label).join(", ")}
               </span>
             </div>
-          }
+          )}
         </div>
       </div>
 
@@ -260,23 +260,23 @@ const CostSummary = ({
         <button
           onClick={goNext}
           disabled={!canProceed}
-          className="w-full inline-flex items-center justify-center gap-2 bg-primary text-primary-foreground font-medium h-12 rounded-xl text-sm tracking-wide hover:bg-primary/90 shadow-md hover:shadow-lg transition-all duration-300 hover:scale-[1.01] disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:scale-100">
-          
+          className="w-full inline-flex items-center justify-center gap-2 bg-primary text-primary-foreground font-medium h-12 rounded-xl text-sm tracking-wide shadow-md hover:shadow-[0_0_24px_hsla(54,96%,88%,0.3)] hover:text-secondary transition-all duration-300 hover:scale-[1.01] disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:scale-100 font-sans"
+        >
           {step >= 5 ? "Get a Detailed Quote" : step === 4 ? "See Estimate" : "Next Step"}
           <ArrowRight className="w-4 h-4" />
         </button>
-        {step > 0 &&
-        <button
-          onClick={goBack}
-          className="w-full inline-flex items-center justify-center gap-1.5 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors h-10">
-          
+        {step > 0 && (
+          <button
+            onClick={goBack}
+            className="w-full inline-flex items-center justify-center gap-1.5 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors h-10"
+          >
             <ChevronLeft className="w-4 h-4" />
             Back
           </button>
-        }
+        )}
       </div>
-    </div>);
-
+    </div>
+  );
 };
 
 /* ── Main Component ─────────────────────────────────── */
@@ -305,15 +305,15 @@ export const CostCalculator = () => {
   };
 
   const goNext = () => {
-    if (step < 5 && canProceed()) {setDirection(1);setStep((s) => s + 1);}
+    if (step < 5 && canProceed()) { setDirection(1); setStep((s) => s + 1); }
   };
   const goBack = () => {
-    if (step > 0) {setDirection(-1);setStep((s) => s - 1);}
+    if (step > 0) { setDirection(-1); setStep((s) => s - 1); }
   };
 
   const toggleAddon = (i: number) => {
     setSelectedAddons((prev) =>
-    prev.includes(i) ? prev.filter((x) => x !== i) : [...prev, i]
+      prev.includes(i) ? prev.filter((x) => x !== i) : [...prev, i]
     );
   };
 
@@ -321,7 +321,7 @@ export const CostCalculator = () => {
     let total = basePrices[selectedJurisdiction ?? 0] || 8500;
     total += visaMultiplier[selectedVisas ?? 0] || 0;
     total += officePrices[selectedOffice ?? 0] || 0;
-    selectedAddons.forEach((i) => total += addonPrices[i] || 0);
+    selectedAddons.forEach((i) => (total += addonPrices[i] || 0));
     return total;
   };
 
@@ -349,41 +349,41 @@ export const CostCalculator = () => {
                     whileHover={{ y: -2 }}
                     whileTap={{ scale: 0.97 }}
                     onClick={() => setSelectedActivity(i)}
-                    className={`${cardBase} p-4 text-center ${selected ? cardSelected : cardDefault}`}>
-                    
+                    className={`${cardBase} p-4 text-center ${selected ? cardSelected : cardDefault}`}
+                  >
                     <div
-                      className={`w-10 h-10 rounded-xl mx-auto mb-2 flex items-center justify-center transition-colors duration-300 ${
-                      selected ?
-                      "bg-primary-foreground/20 text-primary-foreground" :
-                      "bg-foreground/[0.06] text-foreground"}`
-                      }>
-                      
+                      className={`w-10 h-10 rounded-xl mx-auto mb-2 flex items-center justify-center transition-all duration-300 ${
+                        selected
+                          ? "bg-secondary/30 text-secondary shadow-[0_0_16px_hsla(54,96%,88%,0.4)]"
+                          : "bg-foreground/[0.06] text-foreground"
+                      }`}
+                    >
                       <Icon className="w-5 h-5" strokeWidth={1.5} />
                     </div>
                     <p className={`font-semibold text-sm ${selected ? "text-primary-foreground" : "text-foreground"}`}>{a.label}</p>
                     <p className={`text-[11px] mt-0.5 ${selected ? "text-primary-foreground/70" : "text-muted-foreground"}`}>{a.desc}</p>
-                    {isOther && selected &&
-                    <motion.div
-                      initial={{ opacity: 0, height: 0 }}
-                      animate={{ opacity: 1, height: "auto" }}
-                      className="mt-2">
-                      
+                    {isOther && selected && (
+                      <motion.div
+                        initial={{ opacity: 0, height: 0 }}
+                        animate={{ opacity: 1, height: "auto" }}
+                        className="mt-2"
+                      >
                         <input
-                        type="text"
-                        value={customActivity}
-                        onChange={(e) => setCustomActivity(e.target.value)}
-                        onClick={(e) => e.stopPropagation()}
-                        placeholder="Describe your activity…"
-                        className="w-full text-xs px-3 py-1.5 rounded-lg border border-primary-foreground/30 bg-primary-foreground/10 text-primary-foreground placeholder:text-primary-foreground/50 focus:outline-none focus:ring-1 focus:ring-primary-foreground/40" />
-                      
+                          type="text"
+                          value={customActivity}
+                          onChange={(e) => setCustomActivity(e.target.value)}
+                          onClick={(e) => e.stopPropagation()}
+                          placeholder="Describe your activity…"
+                          className="w-full text-xs px-3 py-1.5 rounded-lg border border-primary-foreground/30 bg-primary-foreground/10 text-primary-foreground placeholder:text-primary-foreground/50 focus:outline-none focus:ring-1 focus:ring-primary-foreground/40"
+                        />
                       </motion.div>
-                    }
-                  </motion.button>);
-
+                    )}
+                  </motion.button>
+                );
               })}
             </div>
-          </div>);
-
+          </div>
+        );
 
       case 1:
         return (
@@ -407,23 +407,23 @@ export const CostCalculator = () => {
                     whileHover={{ y: -2 }}
                     whileTap={{ scale: 0.97 }}
                     onClick={() => setSelectedJurisdiction(i)}
-                    className={`${cardBase} p-4 text-left ${selected ? cardSelected : cardDefault}`}>
-                    
-                    {j.tag &&
-                    <span className={`absolute top-2.5 right-2.5 text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full ${
-                    selected ? "bg-primary-foreground/20 text-primary-foreground" : "bg-foreground/[0.05] text-muted-foreground"}`
-                    }>
+                    className={`${cardBase} p-4 text-left ${selected ? cardSelected : cardDefault}`}
+                  >
+                    {j.tag && (
+                      <span className={`absolute top-2.5 right-2.5 text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full ${
+                        selected ? "bg-primary-foreground/20 text-primary-foreground" : "bg-foreground/[0.05] text-muted-foreground"
+                      }`}>
                         {j.tag}
                       </span>
-                    }
+                    )}
                     <p className={`font-bold text-sm mb-0.5 pr-14 ${selected ? "text-primary-foreground" : "text-foreground"}`}>{j.label}</p>
                     <p className={`text-xs leading-relaxed ${selected ? "text-primary-foreground/70" : "text-muted-foreground"}`}>{j.desc}</p>
-                  </motion.button>);
-
+                  </motion.button>
+                );
               })}
             </div>
-          </div>);
-
+          </div>
+        );
 
       case 2:
         return (
@@ -447,18 +447,18 @@ export const CostCalculator = () => {
                     whileHover={{ y: -2 }}
                     whileTap={{ scale: 0.97 }}
                     onClick={() => setSelectedVisas(i)}
-                    className={`${cardBase} p-5 text-center ${selected ? cardSelected : cardDefault}`}>
-                    
+                    className={`${cardBase} p-5 text-center ${selected ? cardSelected : cardDefault}`}
+                  >
                     <p className={`text-2xl font-bold mb-1 ${selected ? "text-primary-foreground" : "text-foreground"}`}>
                       {v.label.split(" ")[0]}
                     </p>
                     <p className={`text-xs ${selected ? "text-primary-foreground/70" : "text-muted-foreground"}`}>{v.desc}</p>
-                  </motion.button>);
-
+                  </motion.button>
+                );
               })}
             </div>
-          </div>);
-
+          </div>
+        );
 
       case 3:
         return (
@@ -482,8 +482,8 @@ export const CostCalculator = () => {
                     whileHover={{ y: -2 }}
                     whileTap={{ scale: 0.97 }}
                     onClick={() => setSelectedOffice(i)}
-                    className={`${cardBase} p-4 text-left flex items-center justify-between ${selected ? cardSelected : cardDefault}`}>
-                    
+                    className={`${cardBase} p-4 text-left flex items-center justify-between ${selected ? cardSelected : cardDefault}`}
+                  >
                     <div>
                       <p className={`font-bold text-sm ${selected ? "text-primary-foreground" : "text-foreground"}`}>{o.label}</p>
                       <p className={`text-xs mt-0.5 ${selected ? "text-primary-foreground/70" : "text-muted-foreground"}`}>{o.desc}</p>
@@ -491,12 +491,12 @@ export const CostCalculator = () => {
                     <span className={`text-xs font-bold ${selected ? "text-primary-foreground" : "text-muted-foreground"}`}>
                       {o.price}
                     </span>
-                  </motion.button>);
-
+                  </motion.button>
+                );
               })}
             </div>
-          </div>);
-
+          </div>
+        );
 
       case 4:
         return (
@@ -520,14 +520,14 @@ export const CostCalculator = () => {
                     whileHover={{ y: -2 }}
                     whileTap={{ scale: 0.98 }}
                     onClick={() => toggleAddon(i)}
-                    className={`${cardBase} p-4 text-left ${selected ? cardSelected : cardDefault}`}>
-                    
+                    className={`${cardBase} p-4 text-left ${selected ? cardSelected : cardDefault}`}
+                  >
                     <div className="flex items-center gap-3">
                       <div
                         className={`w-5 h-5 rounded-md border-2 flex items-center justify-center shrink-0 transition-colors ${
-                        selected ? "bg-primary border-primary" : "border-foreground/20"}`
-                        }>
-                        
+                          selected ? "bg-primary border-primary" : "border-foreground/20"
+                        }`}
+                      >
                         {selected && <Check className="w-3 h-3 text-primary-foreground" />}
                       </div>
                       <div>
@@ -538,12 +538,12 @@ export const CostCalculator = () => {
                     <span className="text-xs font-medium text-muted-foreground mt-1 ml-8 block">
                       +AED {addonPrices[i].toLocaleString()}
                     </span>
-                  </motion.button>);
-
+                  </motion.button>
+                );
               })}
             </div>
-          </div>);
-
+          </div>
+        );
 
       case 5:
         return (
@@ -551,11 +551,8 @@ export const CostCalculator = () => {
             <motion.div
               initial={{ scale: 0.8, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
-              transition={{ duration: 0.5, ease: "easeOut" }}>
-              
-              <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-5">
-                <Sparkles className="w-8 h-8 text-primary" />
-              </div>
+              transition={{ duration: 0.5, ease: "easeOut" }}
+            >
               <h3 className="text-xl sm:text-2xl font-bold text-foreground mb-2">
                 Your Estimate is Ready!
               </h3>
@@ -569,8 +566,8 @@ export const CostCalculator = () => {
                   initial={{ scale: 0.9 }}
                   animate={{ scale: 1 }}
                   transition={{ delay: 0.3, type: "spring", stiffness: 200 }}
-                  className="inline-block rounded-2xl bg-foreground px-8 py-5 mb-6">
-                  
+                  className="inline-block rounded-2xl bg-foreground px-8 py-5 mb-6"
+                >
                   <p className="text-background/70 text-sm font-medium mb-1">Estimated Total</p>
                   <p className="text-3xl sm:text-4xl font-bold text-secondary tracking-tight">
                     AED <AnimatedTotal value={estimateTotal()} />
@@ -578,42 +575,42 @@ export const CostCalculator = () => {
                 </motion.div>
 
                 <div className="max-w-xs mx-auto text-left space-y-2 mb-6">
-                  {selectedActivity !== null &&
-                  <div className="flex justify-between text-sm border-b border-foreground/10 pb-2">
+                  {selectedActivity !== null && (
+                    <div className="flex justify-between text-sm border-b border-foreground/10 pb-2">
                       <span className="text-muted-foreground">Activity</span>
                       <span className="font-medium text-foreground">
                         {selectedActivity === 5 ? customActivity || "Other" : activities[selectedActivity].label}
                       </span>
                     </div>
-                  }
-                  {selectedJurisdiction !== null &&
-                  <div className="flex justify-between text-sm border-b border-foreground/10 pb-2">
+                  )}
+                  {selectedJurisdiction !== null && (
+                    <div className="flex justify-between text-sm border-b border-foreground/10 pb-2">
                       <span className="text-muted-foreground">Jurisdiction</span>
                       <span className="font-medium text-foreground">{jurisdictions[selectedJurisdiction].label}</span>
                     </div>
-                  }
-                  {selectedVisas !== null &&
-                  <div className="flex justify-between text-sm border-b border-foreground/10 pb-2">
+                  )}
+                  {selectedVisas !== null && (
+                    <div className="flex justify-between text-sm border-b border-foreground/10 pb-2">
                       <span className="text-muted-foreground">Visas</span>
                       <span className="font-medium text-foreground">{visaOptions[selectedVisas].label}</span>
                     </div>
-                  }
-                  {selectedOffice !== null &&
-                  <div className="flex justify-between text-sm">
+                  )}
+                  {selectedOffice !== null && (
+                    <div className="flex justify-between text-sm">
                       <span className="text-muted-foreground">Office</span>
                       <span className="font-medium text-foreground">{officeOptions[selectedOffice].label}</span>
                     </div>
-                  }
+                  )}
                 </div>
 
-                <button className="inline-flex items-center gap-2 bg-primary text-primary-foreground font-semibold px-8 h-12 rounded-xl text-sm tracking-wide hover:bg-primary/90 shadow-md transition-all duration-300">
+                <button className="inline-flex items-center gap-2 bg-primary text-primary-foreground font-semibold px-8 h-12 rounded-xl text-sm tracking-wide shadow-md hover:shadow-[0_0_24px_hsla(54,96%,88%,0.3)] hover:text-secondary transition-all duration-300 font-sans">
                   Get a Detailed Quote
                   <ArrowRight className="w-4 h-4" />
                 </button>
               </div>
             </motion.div>
-          </div>);
-
+          </div>
+        );
 
       default:
         return null;
@@ -621,7 +618,7 @@ export const CostCalculator = () => {
   };
 
   return (
-    <section className="py-20 lg:py-28 relative overflow-hidden bg-secondary">
+    <section className="py-20 lg:py-28 relative overflow-hidden" style={{ backgroundColor: '#f7f9f7' }}>
       <div className="max-w-[1200px] mx-auto px-6 sm:px-10 lg:px-16 relative z-10">
 
         {/* Section Header */}
@@ -630,9 +627,9 @@ export const CostCalculator = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 0.1 }}
-          className="mb-12 text-center">
-          
-          <h2 className="text-3xl sm:text-4xl lg:text-[42px] font-bold text-foreground tracking-tight leading-[1.15]">
+          className="mb-12 text-center"
+        >
+          <h2 className="text-3xl sm:text-4xl lg:text-[42px] font-medium text-foreground tracking-tight leading-[1.15] font-sans">
             Calculate Your Business{" "}
             <span className="text-primary">Setup Cost</span>
           </h2>
@@ -644,65 +641,70 @@ export const CostCalculator = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 0.2 }}
-          className="flex flex-col lg:flex-row gap-8 lg:gap-10">
-          
+          className="flex flex-col lg:flex-row gap-8 lg:gap-10 rounded-3xl p-6 sm:p-8 lg:p-10"
+          style={{
+            background: 'linear-gradient(135deg, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0.6) 100%)',
+            border: '1px solid rgba(255,255,255,0.6)',
+            boxShadow: '0 8px 40px -8px hsla(142, 20%, 26%, 0.08)',
+          }}
+        >
           {/* LEFT PANEL — Steps + Content */}
           <div className="flex-1 min-w-0 lg:basis-1/2">
               {/* Progress Steps — Proper stepper */}
               <div className="mb-8">
                 <div className="flex items-center">
                   {progressSteps.map((s, i) => {
-                  const isActive = i === step;
-                  const isDone = i < step;
-                  const Icon = s.icon;
-                  return (
-                    <div key={s.label} className="flex items-center flex-1 last:flex-initial">
+                    const isActive = i === step;
+                    const isDone = i < step;
+                    const Icon = s.icon;
+                    return (
+                      <div key={s.label} className="flex items-center flex-1 last:flex-initial">
                         {/* Step node */}
                         <button
-                        onClick={() => {
-                          if (i < step) {setDirection(-1);setStep(i);}
-                        }}
-                        className={`flex flex-col items-center gap-1.5 group ${
-                        i <= step ? "cursor-pointer" : "cursor-default"}`
-                        }>
-                        
+                          onClick={() => {
+                            if (i < step) { setDirection(-1); setStep(i); }
+                          }}
+                          className={`flex flex-col items-center gap-1.5 group ${
+                            i <= step ? "cursor-pointer" : "cursor-default"
+                          }`}
+                        >
                           <div
-                          className={`w-9 h-9 rounded-full flex items-center justify-center transition-all duration-300 ${
-                          isDone ?
-                          "bg-primary text-primary-foreground" :
-                          isActive ?
-                          "bg-primary text-primary-foreground ring-4 ring-primary/20" :
-                          "bg-foreground/10 text-muted-foreground"}`
-                          }>
-                          
-                            {isDone ?
-                          <Check className="w-4 h-4" /> :
-
-                          <Icon className="w-4 h-4" strokeWidth={1.5} />
-                          }
+                            className={`w-9 h-9 rounded-full flex items-center justify-center transition-all duration-300 ${
+                              isDone
+                                ? "bg-primary text-primary-foreground"
+                                : isActive
+                                ? "bg-primary text-primary-foreground ring-4 ring-primary/20"
+                                : "bg-foreground/10 text-muted-foreground"
+                            }`}
+                          >
+                            {isDone ? (
+                              <Check className="w-4 h-4" />
+                            ) : (
+                              <Icon className="w-4 h-4" strokeWidth={1.5} />
+                            )}
                           </div>
                           <span
-                          className={`text-[11px] font-medium tracking-wide transition-colors duration-300 whitespace-nowrap ${
-                          isActive ? "text-primary" : isDone ? "text-foreground/70" : "text-muted-foreground/50"}`
-                          }>
-                          
+                            className={`text-[11px] font-medium tracking-wide transition-colors duration-300 whitespace-nowrap ${
+                              isActive ? "text-primary" : isDone ? "text-foreground/70" : "text-muted-foreground/50"
+                            }`}
+                          >
                             {s.label}
                           </span>
                         </button>
                         {/* Connector line */}
-                        {i < progressSteps.length - 1 &&
-                      <div className="flex-1 h-0.5 mx-2 mt-[-18px] rounded-full overflow-hidden bg-foreground/10">
+                        {i < progressSteps.length - 1 && (
+                          <div className="flex-1 h-0.5 mx-2 mt-[-18px] rounded-full overflow-hidden bg-foreground/10">
                             <motion.div
-                          className="h-full bg-primary rounded-full"
-                          initial={false}
-                          animate={{ width: i < step ? "100%" : "0%" }}
-                          transition={{ duration: 0.4, ease: [0.4, 0, 0.2, 1] }} />
-                        
+                              className="h-full bg-primary rounded-full"
+                              initial={false}
+                              animate={{ width: i < step ? "100%" : "0%" }}
+                              transition={{ duration: 0.4, ease: [0.4, 0, 0.2, 1] }}
+                            />
                           </div>
-                      }
-                      </div>);
-
-                })}
+                        )}
+                      </div>
+                    );
+                  })}
                 </div>
               </div>
 
@@ -716,8 +718,8 @@ export const CostCalculator = () => {
                   initial="enter"
                   animate="center"
                   exit="exit"
-                  transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] }}>
-                  
+                  transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
+                >
                   {renderStep()}
                 </motion.div>
               </AnimatePresence>
@@ -725,33 +727,33 @@ export const CostCalculator = () => {
 
             {/* Mobile: Navigation buttons */}
             <div className="lg:hidden mt-5 flex items-center justify-between gap-4">
-              {step > 0 ?
-              <button
-                onClick={goBack}
-                className="inline-flex items-center gap-1.5 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
-                
+              {step > 0 ? (
+                <button
+                  onClick={goBack}
+                  className="inline-flex items-center gap-1.5 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
+                >
                   <ChevronLeft className="w-4 h-4" />
                   Back
-                </button> :
-              <div />}
-              {step < 5 &&
-              <button
-                onClick={goNext}
-                disabled={!canProceed()}
-                className="inline-flex items-center gap-2 bg-primary text-primary-foreground font-medium px-6 h-11 rounded-xl text-sm tracking-wide hover:bg-primary/90 shadow-md transition-all duration-300 disabled:opacity-40 disabled:cursor-not-allowed">
-                
+                </button>
+              ) : <div />}
+              {step < 5 && (
+                <button
+                  onClick={goNext}
+                  disabled={!canProceed()}
+                  className="inline-flex items-center gap-2 bg-primary text-primary-foreground font-medium px-6 h-11 rounded-xl text-sm tracking-wide shadow-md hover:shadow-[0_0_24px_hsla(54,96%,88%,0.3)] hover:text-secondary transition-all duration-300 disabled:opacity-40 disabled:cursor-not-allowed font-sans"
+                >
                   {step === 4 ? "See Estimate" : "Next Step"}
                   <ArrowRight className="w-4 h-4" />
                 </button>
-              }
-              {step === 5 &&
-              <button
-                onClick={() => {setStep(0);setDirection(-1);}}
-                className="text-sm text-muted-foreground hover:text-foreground transition-colors">
-                
+              )}
+              {step === 5 && (
+                <button
+                  onClick={() => { setStep(0); setDirection(-1); }}
+                  className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+                >
                   Start Over
                 </button>
-              }
+              )}
             </div>
           </div>
 
@@ -769,20 +771,20 @@ export const CostCalculator = () => {
                 estimateTotal={estimateTotal()}
                 canProceed={canProceed()}
                 goNext={step === 5 ? () => {} : goNext}
-                goBack={goBack} />
-              
-              {step === 5 &&
-              <button
-                onClick={() => {setStep(0);setDirection(-1);}}
-                className="w-full text-sm text-muted-foreground hover:text-foreground transition-colors mt-3 text-center">
-                
+                goBack={goBack}
+              />
+              {step === 5 && (
+                <button
+                  onClick={() => { setStep(0); setDirection(-1); }}
+                  className="w-full text-sm text-muted-foreground hover:text-foreground transition-colors mt-3 text-center"
+                >
                   Start Over
                 </button>
-              }
+              )}
             </div>
           </div>
         </motion.div>
       </div>
-    </section>);
-
+    </section>
+  );
 };
