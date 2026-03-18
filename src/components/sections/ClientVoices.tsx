@@ -42,7 +42,7 @@ export const ClientVoices = () => {
           {/* Card */}
           <div className="px-10 lg:px-16 pt-16 pb-12 lg:pt-20 lg:pb-16 bg-background">
             {/* Label */}
-            <p className="text-sm mb-10 flex items-center gap-2 text-foreground">
+            <p className="text-sm mb-10 flex items-center gap-2 text-primary">
               <span>+</span> What our clients say
             </p>
 
