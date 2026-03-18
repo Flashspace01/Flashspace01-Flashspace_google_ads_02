@@ -629,7 +629,7 @@ export const CostCalculator = () => {
           transition={{ delay: 0.1 }}
           className="mb-12 text-center"
         >
-          <h2 className="text-3xl sm:text-4xl lg:text-[42px] font-bold text-foreground tracking-tight leading-[1.15]">
+          <h2 className="text-3xl sm:text-4xl lg:text-[42px] font-medium text-foreground tracking-tight leading-[1.15] font-sans">
             Calculate Your Business{" "}
             <span className="text-primary">Setup Cost</span>
           </h2>
