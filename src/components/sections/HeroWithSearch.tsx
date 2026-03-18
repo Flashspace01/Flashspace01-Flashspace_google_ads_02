@@ -79,9 +79,9 @@ const StepsCarousel = () => {
   };
 
   const positionStyles: Record<number, { x: string; scale: number; opacity: number; zIndex: number }> = {
-    [-1]: { x: "-110%", scale: 0.82, opacity: 0.45, zIndex: 1 },
-    0: { x: "0%", scale: 1, opacity: 1, zIndex: 3 },
-    1: { x: "110%", scale: 0.82, opacity: 0.45, zIndex: 1 },
+    [-1]: { x: "-110%", scale: 0.78, opacity: 0.5, zIndex: 1 },
+    0: { x: "0%", scale: 1.15, opacity: 1, zIndex: 3 },
+    1: { x: "110%", scale: 0.78, opacity: 0.5, zIndex: 1 },
     2: { x: "200%", scale: 0.7, opacity: 0, zIndex: 0 },
   };
 
@@ -95,12 +95,13 @@ const StepsCarousel = () => {
           whileInView="visible"
           viewport={{ once: true }}
           className="text-xl sm:text-2xl lg:text-3xl font-medium text-white mb-10 tracking-[-0.02em] text-center"
+          style={{ fontFamily: "'Inter', sans-serif" }}
         >
           From Vision to Reality — Here's How We Make It Happen
         </motion.h2>
 
         {/* Circular carousel */}
-        <div className="relative max-w-md mx-auto mb-8 h-[260px] sm:max-w-lg">
+        <div className="relative max-w-md mx-auto mb-8 h-[280px] sm:max-w-lg" style={{ perspective: "1000px" }}>
           {steps.map((step, index) => {
             const pos = getPosition(index);
             const style = positionStyles[pos] || positionStyles[2];
@@ -115,22 +116,33 @@ const StepsCarousel = () => {
                   scale: style.scale,
                   opacity: style.opacity,
                   zIndex: style.zIndex,
+                  rotateY: pos === -1 ? 8 : pos === 1 ? -8 : 0,
                 }}
-                transition={{ duration: 0.6, ease: [0.4, 0, 0.2, 1] }}
+                transition={{ type: "spring", stiffness: 260, damping: 26 }}
                 onClick={() => setCurrent(index)}
-                className="absolute inset-0 rounded-2xl border border-white/15 text-center cursor-pointer bg-white p-8"
-                style={{ zIndex: style.zIndex }}
+                className="absolute inset-0 rounded-2xl border border-white/20 text-center cursor-pointer p-8 group"
+                style={{
+                  zIndex: style.zIndex,
+                  background: "rgba(255, 255, 255, 0.1)",
+                  backdropFilter: "blur(15px)",
+                  WebkitBackdropFilter: "blur(15px)",
+                  transformStyle: "preserve-3d",
+                }}
+                whileHover={isCenter ? { y: -6, boxShadow: "0 20px 60px -10px rgba(0,0,0,0.4)" } : {}}
               >
-                <div className={`rounded-xl bg-primary flex items-center justify-center mx-auto mb-4 ${
-                  isCenter ? "w-14 h-14" : "w-10 h-10"
+                <div className={`rounded-xl bg-primary flex items-center justify-center mx-auto mb-4 transition-shadow duration-300 ${
+                  isCenter ? "w-14 h-14 group-hover:shadow-[0_0_20px_rgba(254,248,195,0.4)]" : "w-10 h-10"
                 }`}>
-                  <Icon className={`text-secondary ${isCenter ? "w-7 h-7" : "w-5 h-5"}`} />
+                  <Icon className={`transition-colors duration-300 ${isCenter ? "w-7 h-7 text-secondary group-hover:text-[#FEF8C3]" : "w-5 h-5 text-secondary"}`} />
                 </div>
-                <h3 className={`text-foreground font-medium mb-3 ${isCenter ? "text-xl" : "text-base"}`}>
+                <h3
+                  className={`font-medium mb-3 text-white ${isCenter ? "text-xl" : "text-base"}`}
+                  style={{ fontFamily: "'Inter', sans-serif" }}
+                >
                   {step.title}
                 </h3>
                 {isCenter && (
-                  <p className="text-muted-foreground text-sm leading-relaxed">
+                  <p className="text-white/70 text-sm" style={{ lineHeight: 1.6 }}>
                     {step.description}
                   </p>
                 )}
