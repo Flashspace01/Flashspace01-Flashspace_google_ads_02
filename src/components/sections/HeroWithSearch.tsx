@@ -249,7 +249,7 @@ export const HeroWithSearch = () => {
               <Button
                 size="lg"
                 variant="white"
-                className="font-semibold px-10 h-12 rounded-lg uppercase tracking-wider text-sm"
+                className="font-semibold px-10 h-12 rounded-lg uppercase tracking-wider text-sm transition-all duration-300 hover:bg-secondary hover:text-secondary-foreground hover:shadow-[0_0_30px_hsla(54,96%,88%,0.3)]"
               >
                 <MessageSquare className="w-4 h-4 mr-2" />
                 Book a Call
