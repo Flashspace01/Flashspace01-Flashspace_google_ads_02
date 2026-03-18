@@ -1,6 +1,6 @@
 import { motion, useMotionValue, useTransform, animate } from "framer-motion";
 import { useEffect, useRef } from "react";
-import statsBg from "@/assets/stats-green-office.jpg";
+import statsBg from "@/assets/stats-modern-office.jpg";
 
 const topRow = [
   { value: 20, suffix: "", label: "Years in Business" },
