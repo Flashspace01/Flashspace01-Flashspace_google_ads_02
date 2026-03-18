@@ -1,6 +1,6 @@
 import { motion, useMotionValue, useTransform, animate } from "framer-motion";
 import { useEffect, useRef } from "react";
-import heroVideo from "@/assets/hero-skyline-loop.mp4";
+import statsBackground from "@/assets/stats-green-office.jpg";
 
 const topRow = [
   { value: 20, suffix: "", label: "Years in Business" },
@@ -56,18 +56,14 @@ const cardClass = "rounded-2xl border border-white/[0.08] bg-white/[0.04] backdr
 export const StatsByNumbers = () => {
   return (
     <section className="relative overflow-hidden" style={{ background: "transparent" }}>
-      {/* Background Video */}
-      <video
-        autoPlay
-        loop
-        muted
-        playsInline
-        className="absolute inset-0 w-full h-full object-cover"
+      {/* Background Image */}
+      <div
+        className="absolute inset-0 w-full h-full bg-cover bg-center"
         style={{
           zIndex: -1,
+          backgroundImage: `url(${statsBackground})`,
           animation: "breathe 5s ease-in-out infinite",
         }}
-        src={heroVideo}
       />
       {/* Dark overlay */}
       <div className="absolute inset-0 bg-black/60" style={{ zIndex: 0 }} />
