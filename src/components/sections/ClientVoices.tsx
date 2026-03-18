@@ -57,10 +57,10 @@ export const ClientVoices = () => {
                   transition={{ duration: 0.25 }}
                 >
                   <blockquote className="text-[28px] sm:text-[34px] lg:text-[40px] leading-[1.25] tracking-tight font-normal">
-                    <span className="text-muted-foreground/50">
+                    <span className="text-primary/50">
                       "{testimonials[index].quote}
                     </span>
-                    <span className="text-foreground">
+                    <span className="text-primary">
                       {testimonials[index].quoteHighlight}"
                     </span>
                   </blockquote>
