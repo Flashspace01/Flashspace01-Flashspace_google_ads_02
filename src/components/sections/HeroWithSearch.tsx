@@ -10,7 +10,7 @@ import {
   Landmark,
   PhoneCall,
 } from "lucide-react";
-import heroVideo from "@/assets/hero-skyline-video.mp4";
+import heroVideo from "@/assets/hero-skyline-loop.mp4";
 import heroFallback from "@/assets/hero-skyline-fallback.jpg";
 
 const fadeUp = {
