@@ -2,13 +2,17 @@ import { motion, useMotionValue, useTransform, animate } from "framer-motion";
 import { useEffect, useRef } from "react";
 import statsBg from "@/assets/stats-green-office.jpg";
 
-const stats = [
-  { value: 20, suffix: "", label: "Years in Business", featured: false },
-  { value: 100, suffix: "+", label: "Awards Won", featured: false },
-  { value: 100, suffix: ",000+", label: "Creative Clients", featured: true },
-  { value: 1, suffix: "", label: "Global Creative Community", featured: false },
-  { value: 10, suffix: "+", label: "Languages Spoken", featured: false },
-  { value: 4.9, suffix: "/5", label: "Client Rating", isDecimal: true, featured: false },
+const topRow = [
+  { value: 20, suffix: "", label: "Years in Business" },
+  { value: 100, suffix: "+", label: "Awards Won" },
+  { value: 1, suffix: "", label: "Global Community" },
+];
+
+const featured = { value: 100, suffix: ",000+", label: "Creative Clients" };
+
+const bottomRight = [
+  { value: 10, suffix: "+", label: "Languages Spoken" },
+  { value: 4.9, suffix: "/5", label: "Client Rating", isDecimal: true },
 ];
 
 const partners = [
