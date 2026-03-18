@@ -76,7 +76,7 @@ export const StatsByNumbers = () => {
           className="text-center mb-20"
         >
           <h2 className="text-4xl sm:text-5xl lg:text-[56px] font-medium text-secondary leading-[1.1] tracking-tight"
-              style={{ fontFamily: "'Georgia', 'Times New Roman', serif" }}>
+              style={{ fontFamily: "'Playfair Display', Georgia, serif" }}>
             Flash Space By The Numbers
           </h2>
           <p className="text-white/40 text-sm mt-4 tracking-[0.2em] uppercase">
