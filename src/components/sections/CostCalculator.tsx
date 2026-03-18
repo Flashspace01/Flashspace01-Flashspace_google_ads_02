@@ -553,9 +553,6 @@ export const CostCalculator = () => {
               animate={{ scale: 1, opacity: 1 }}
               transition={{ duration: 0.5, ease: "easeOut" }}
             >
-              <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-5">
-                <Sparkles className="w-8 h-8 text-primary" />
-              </div>
               <h3 className="text-xl sm:text-2xl font-bold text-foreground mb-2">
                 Your Estimate is Ready!
               </h3>
