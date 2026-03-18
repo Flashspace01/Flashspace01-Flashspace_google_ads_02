@@ -42,7 +42,7 @@ export const ClientVoices = () => {
           {/* Card */}
           <div className="px-10 lg:px-16 pt-16 pb-12 lg:pt-20 lg:pb-16 bg-background">
             {/* Label */}
-            <p className="text-sm mb-10 flex items-center gap-2 text-foreground">
+            <p className="text-sm mb-10 flex items-center gap-2 text-primary">
               <span>+</span> What our clients say
             </p>
 
@@ -57,10 +57,10 @@ export const ClientVoices = () => {
                   transition={{ duration: 0.25 }}
                 >
                   <blockquote className="text-[28px] sm:text-[34px] lg:text-[40px] leading-[1.25] tracking-tight font-normal">
-                    <span className="text-muted-foreground/50">
+                    <span className="text-primary/50">
                       "{testimonials[index].quote}
                     </span>
-                    <span className="text-foreground">
+                    <span className="text-primary">
                       {testimonials[index].quoteHighlight}"
                     </span>
                   </blockquote>
@@ -71,10 +71,10 @@ export const ClientVoices = () => {
             {/* Footer */}
             <div className="flex items-end justify-between mt-12">
               <div>
-                <p className="text-base font-medium text-foreground">
+                <p className="text-base font-medium text-primary">
                   {testimonials[index].name}
                 </p>
-                <p className="text-sm mt-0.5 text-muted-foreground">
+                <p className="text-sm mt-0.5 text-primary/70">
                   {testimonials[index].title}
                 </p>
               </div>
@@ -82,14 +82,14 @@ export const ClientVoices = () => {
               <div className="flex items-center gap-2">
                 <button
                   onClick={prev}
-                  className="w-12 h-12 rounded-full border border-border flex items-center justify-center transition-colors hover:bg-accent text-foreground"
+                  className="w-12 h-12 rounded-full border border-primary/30 flex items-center justify-center transition-colors hover:bg-accent text-primary"
                   aria-label="Previous testimonial"
                 >
                   <ChevronsLeft className="w-5 h-5" />
                 </button>
                 <button
                   onClick={next}
-                  className="w-12 h-12 rounded-full border border-border flex items-center justify-center transition-colors hover:bg-accent text-foreground"
+                  className="w-12 h-12 rounded-full border border-primary/30 flex items-center justify-center transition-colors hover:bg-accent text-primary"
                   aria-label="Next testimonial"
                 >
                   <ChevronsRight className="w-5 h-5" />
