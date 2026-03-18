@@ -170,9 +170,9 @@ const StepsCarousel = () => {
 
 export const HeroWithSearch = () => {
   return (
-    <section className="relative w-full overflow-hidden">
-      {/* Background image */}
-      <div className="absolute inset-0">
+    <section className="relative w-full overflow-hidden" style={{ backgroundColor: "hsl(var(--primary))" }}>
+      {/* Background video with duotone blend */}
+      <div className="absolute inset-0" style={{ backgroundColor: "hsl(var(--primary))" }}>
         <video
           autoPlay
           loop
@@ -180,10 +180,29 @@ export const HeroWithSearch = () => {
           playsInline
           poster={heroFallback}
           className="w-full h-full object-cover"
+          style={{
+            mixBlendMode: "luminosity",
+            opacity: 0.55,
+            filter: "contrast(1.3) brightness(1.1)",
+          }}
         >
           <source src={heroVideo} type="video/mp4" />
         </video>
-        <div className="absolute inset-0 bg-gradient-to-b from-[hsl(142,20%,15%)]/70 via-[hsl(142,20%,15%)]/40 to-[hsl(142,20%,15%)]/80" />
+        {/* Duotone highlight tint */}
+        <div
+          className="absolute inset-0 pointer-events-none"
+          style={{
+            background: "linear-gradient(180deg, hsla(54, 96%, 88%, 0.12) 0%, transparent 50%, hsla(54, 96%, 88%, 0.08) 100%)",
+            mixBlendMode: "soft-light",
+          }}
+        />
+        {/* Radial fog blend */}
+        <div
+          className="absolute inset-0 pointer-events-none"
+          style={{
+            background: "radial-gradient(circle at 50% 50%, transparent 40%, hsl(var(--primary)) 100%)",
+          }}
+        />
       </div>
 
       {/* Hero content - left aligned */}
