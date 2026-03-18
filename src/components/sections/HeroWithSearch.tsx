@@ -10,7 +10,7 @@ import {
   Landmark,
   PhoneCall,
 } from "lucide-react";
-import heroVideo from "@/assets/hero-skyline-loop.mp4";
+import heroVideo from "@/assets/hero-skyline-video.mp4";
 import heroFallback from "@/assets/hero-skyline-fallback.jpg";
 
 const fadeUp = {
@@ -174,7 +174,12 @@ export const HeroWithSearch = () => {
       {/* Background video with duotone blend */}
       <div className="absolute inset-0" style={{ backgroundColor: "hsl(var(--primary))" }}>
         <video
-          ref={(el) => { if (el) el.playbackRate = 0.5; }}
+          ref={(el) => {
+            if (el) {
+              el.playbackRate = 0.5;
+              el.play().catch(() => {});
+            }
+          }}
           autoPlay
           loop
           muted
@@ -184,7 +189,9 @@ export const HeroWithSearch = () => {
           style={{
             mixBlendMode: "luminosity",
             opacity: 0.55,
-            filter: "contrast(1.3) brightness(1.1)",
+            filter: "contrast(1.3) brightness(1.1) saturate(0.8) sepia(0.2) hue-rotate(120deg)",
+            zIndex: -1,
+            position: "relative",
           }}
         >
           <source src={heroVideo} type="video/mp4" />
