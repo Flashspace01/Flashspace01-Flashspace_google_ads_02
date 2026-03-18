@@ -260,7 +260,7 @@ const CostSummary = ({
         <button
           onClick={goNext}
           disabled={!canProceed}
-          className="w-full inline-flex items-center justify-center gap-2 bg-primary text-primary-foreground font-medium h-12 rounded-xl text-sm tracking-wide hover:bg-primary/90 shadow-md hover:shadow-lg transition-all duration-300 hover:scale-[1.01] disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:scale-100"
+          className="w-full inline-flex items-center justify-center gap-2 bg-primary text-primary-foreground font-medium h-12 rounded-xl text-sm tracking-wide shadow-md hover:shadow-[0_0_24px_hsla(54,96%,88%,0.3)] hover:text-secondary transition-all duration-300 hover:scale-[1.01] disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:scale-100 font-sans"
         >
           {step >= 5 ? "Get a Detailed Quote" : step === 4 ? "See Estimate" : "Next Step"}
           <ArrowRight className="w-4 h-4" />
