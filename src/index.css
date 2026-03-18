@@ -302,6 +302,11 @@
   50% { opacity: 0.8; }
 }
 
+@keyframes cityBreathe {
+  0%, 100% { filter: brightness(0.85) contrast(1.1); }
+  50% { filter: brightness(1.15) contrast(1.2); }
+}
+
 /* Leaflet popup overrides */
 .leaflet-pane {
   z-index: auto !important;
