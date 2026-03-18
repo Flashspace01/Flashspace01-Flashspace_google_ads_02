@@ -89,7 +89,7 @@ export const ClientVoices = () => {
                 </button>
                 <button
                   onClick={next}
-                  className="w-12 h-12 rounded-full border border-border flex items-center justify-center transition-colors hover:bg-accent text-foreground"
+                  className="w-12 h-12 rounded-full border border-primary/30 flex items-center justify-center transition-colors hover:bg-accent text-primary"
                   aria-label="Next testimonial"
                 >
                   <ChevronsRight className="w-5 h-5" />
