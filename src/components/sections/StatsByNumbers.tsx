@@ -55,18 +55,19 @@ const cardClass = "rounded-2xl border border-white/[0.08] bg-white/[0.04] backdr
 
 export const StatsByNumbers = () => {
   return (
-    <section className="relative overflow-hidden" style={{ background: "transparent" }}>
-      {/* Background Image */}
+    <section className="relative overflow-hidden" style={{ background: "#35503f" }}>
+      {/* Background Image with multiply blend */}
       <div
         className="absolute inset-0 w-full h-full bg-cover bg-center"
         style={{
-          zIndex: -1,
+          zIndex: 0,
           backgroundImage: `url(${statsBackground})`,
-          animation: "cityBreathe 6s ease-in-out infinite",
+          mixBlendMode: "multiply",
+          animation: "cityBreathe 3.5s ease-in-out infinite",
         }}
       />
-      {/* Dark overlay */}
-      <div className="absolute inset-0 bg-black/40" style={{ zIndex: 0 }} />
+      {/* Subtle dark overlay for text contrast */}
+      <div className="absolute inset-0 bg-black/30" style={{ zIndex: 1 }} />
 
       <div className="relative z-10 container mx-auto px-4 lg:px-8 py-24 lg:py-32">
         {/* Headline */}
