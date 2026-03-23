@@ -223,6 +223,46 @@ const TrustSection = () => (
   </section>
 );
 
+/* ─── HOW IT WORKS ─── */
+const steps = [
+  { num: "01", title: "Choose Your City", desc: "Pick from prime locations across Delhi, Mumbai, Bangalore, Chennai & more." },
+  { num: "02", title: "Submit Documents", desc: "Upload basic KYC — PAN, Aadhaar & business details. Takes under 5 minutes." },
+  { num: "03", title: "Get Your Address", desc: "Receive your GST-ready business address within 24 hours. Start operating immediately." },
+];
+
+const HowItWorksSection = () => (
+  <section className="py-20 lg:py-28 bg-muted/20">
+    <div className="container mx-auto px-4 lg:px-8">
+      <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center mb-14">
+        <span className="text-xs font-bold text-primary uppercase tracking-widest mb-3 block">How It Works</span>
+        <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-foreground tracking-tight">
+          Get Started in 3 Simple Steps
+        </h2>
+      </motion.div>
+
+      <div className="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto">
+        {steps.map((step, i) => (
+          <motion.div
+            key={step.num}
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: i * 0.1 }}
+            className="text-center"
+          >
+            <div className="w-14 h-14 rounded-2xl bg-primary/10 flex items-center justify-center mx-auto mb-5">
+              <span className="text-lg font-bold text-primary">{step.num}</span>
+            </div>
+            <h3 className="text-lg font-bold text-foreground mb-2">{step.title}</h3>
+            <p className="text-sm text-muted-foreground leading-relaxed max-w-xs mx-auto">{step.desc}</p>
+          </motion.div>
+        ))}
+      </div>
+    </div>
+  </section>
+);
+
+
 
 
 /* ─── FAQ ─── */
