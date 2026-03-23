@@ -223,12 +223,12 @@ export const VPOBCostSection = () => {
                 return (
                   <div
                     key={`${s.title}-${currentPage}-${i}`}
-                    className="group flex flex-col justify-between border-r border-border/40 last:border-r-0 px-7 py-14 hover:bg-destructive/5 transition-colors duration-300"
+                    className="group flex flex-col justify-between border-r border-border/40 last:border-r-0 px-7 py-14 hover:bg-secondary transition-colors duration-300"
                   >
                     <div>
                       {/* Icon */}
-                      <div className="w-10 h-10 rounded-xl bg-destructive/10 flex items-center justify-center mb-5 group-hover:bg-destructive/15 transition-colors">
-                        <Icon className="w-5 h-5 text-destructive" />
+                      <div className="w-10 h-10 rounded-xl bg-primary/15 flex items-center justify-center mb-5 group-hover:bg-primary/25 transition-colors">
+                        <Icon className="w-5 h-5 text-secondary" />
                       </div>
 
                       {/* Title */}
