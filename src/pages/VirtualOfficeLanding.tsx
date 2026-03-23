@@ -363,6 +363,7 @@ const VirtualOfficeLanding = () => (
       <ScanStrip />
       <PainAndCards />
       <WhyFlashSpace />
+      <HowItWorksSection />
       <TrustSection />
       
       <FAQSection />
