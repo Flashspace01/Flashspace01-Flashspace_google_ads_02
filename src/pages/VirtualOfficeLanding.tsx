@@ -87,18 +87,6 @@ const HeroSection = () => {
   );
 };
 
-/* ─── SCAN STRIP ─── */
-const ScanStrip = () => (
-  <section className="py-4 bg-secondary border-y border-secondary/60">
-    <div className="container mx-auto px-4 lg:px-8">
-      <div className="flex flex-wrap items-center justify-center gap-6 sm:gap-12">
-        {["₹699/month", "24-Hour Setup", "GST + MCA Ready", "Pan-India Locations"].map((t) => (
-          <span key={t} className="text-sm font-bold text-secondary-foreground tracking-wide">{t}</span>
-        ))}
-      </div>
-    </div>
-  </section>
-);
 
 /* ─── PAIN HIT + CARDS ─── */
 const coreCards = [
