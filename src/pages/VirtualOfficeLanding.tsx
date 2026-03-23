@@ -326,7 +326,7 @@ const VirtualOfficeLanding = () => (
       <PainAndCards />
       <WhyFlashSpace />
       <TrustSection />
-      <PricingSection />
+      
       <FAQSection />
       <FinalCTA />
     </main>
