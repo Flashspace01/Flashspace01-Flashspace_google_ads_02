@@ -1,51 +1,30 @@
 import { useRef, useEffect, useCallback } from "react";
 import { motion } from "framer-motion";
-import {
-  FileText,
-  MapPin,
-  Map,
-  ShoppingCart,
-  Receipt,
-  Calculator,
-  ChevronLeft,
-  ChevronRight,
-} from "lucide-react";
+import { Plus, ChevronLeft, ChevronRight } from "lucide-react";
 
 const services = [
   {
-    icon: FileText,
     title: "GST Registration & Compliance",
-    subtitle: "End-to-end GST support",
     description: "Complete GST registration, return filing, and ongoing compliance management so your e-commerce business stays fully legal.",
   },
   {
-    icon: MapPin,
     title: "VPOB Setup",
-    subtitle: "Virtual Place of Business",
     description: "Get a verified Virtual Place of Business address for GST registration in any state — the core requirement for multi-state selling.",
   },
   {
-    icon: Map,
     title: "Multi-State GST Registration",
-    subtitle: "Sell across all 28 states",
     description: "Register for GST in multiple states to unlock pan-India selling on Amazon, Flipkart, and other marketplaces without compliance gaps.",
   },
   {
-    icon: ShoppingCart,
     title: "E-commerce Compliance",
-    subtitle: "Amazon, Flipkart & more",
     description: "Stay compliant with marketplace-specific requirements — from TCS handling to listing documentation and seller verification.",
   },
   {
-    icon: Receipt,
     title: "TDS / TCS Handling",
-    subtitle: "Tax deduction management",
     description: "Proper handling of TDS and TCS deducted by marketplaces so you can claim credits and avoid permanent tax losses.",
   },
   {
-    icon: Calculator,
     title: "Accounting & Filing",
-    subtitle: "Books, returns & ITR",
     description: "Professional bookkeeping, GST return filing, and income tax filing tailored for e-commerce sellers across India.",
   },
 ];
@@ -120,35 +99,53 @@ export const EcommerceServices = () => {
           </div>
         </motion.div>
 
-        <div
-          ref={scrollRef}
-          className="flex gap-5 overflow-x-auto pb-4 snap-x snap-mandatory scrollbar-hide"
-          style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
-          onMouseEnter={stopAutoScroll}
-          onMouseLeave={startAutoScroll}
-          onTouchStart={stopAutoScroll}
-          onTouchEnd={startAutoScroll}
-        >
-          {services.map((service, i) => {
-            const Icon = service.icon;
-            return (
+        {/* Corner crosses + cards row */}
+        <div className="relative">
+          {/* Corner decorative crosses */}
+          <div className="absolute -top-3 -left-3 text-muted-foreground/30 text-xl select-none">+</div>
+          <div className="absolute -top-3 -right-3 text-muted-foreground/30 text-xl select-none">+</div>
+
+          <div
+            ref={scrollRef}
+            className="flex overflow-x-auto snap-x snap-mandatory scrollbar-hide"
+            style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
+            onMouseEnter={stopAutoScroll}
+            onMouseLeave={startAutoScroll}
+            onTouchStart={stopAutoScroll}
+            onTouchEnd={startAutoScroll}
+          >
+            {services.map((service, i) => (
               <motion.div
                 key={service.title}
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0, y: 16 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.2 }}
-                transition={{ delay: i * 0.08, duration: 0.5 }}
-                className="group shrink-0 w-[280px] sm:w-[300px] snap-start bg-card rounded-2xl border border-border/50 p-7 hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
+                transition={{ delay: i * 0.07, duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+                className="group shrink-0 w-[280px] sm:w-[300px] snap-start flex flex-col justify-between border-r border-border/40 last:border-r-0 px-7 py-8 hover:bg-muted/30 transition-colors duration-300"
               >
-                <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center mb-5 group-hover:bg-primary/20 transition-colors">
-                  <Icon className="w-6 h-6 text-primary" />
+                <div>
+                  <h3 className="text-lg font-semibold text-foreground mb-3 leading-snug">
+                    {service.title}
+                  </h3>
+                  <p className="text-sm text-muted-foreground leading-relaxed">
+                    {service.description}
+                  </p>
                 </div>
-                <h3 className="text-lg font-semibold text-foreground mb-1">{service.title}</h3>
-                <p className="text-xs font-medium text-primary/70 mb-3 uppercase tracking-wider">{service.subtitle}</p>
-                <p className="text-sm text-muted-foreground leading-relaxed">{service.description}</p>
+                <div className="mt-8">
+                  <button
+                    className="w-11 h-11 rounded-lg border border-border/50 flex items-center justify-center text-muted-foreground hover:text-foreground hover:border-foreground/40 transition-all duration-200 active:scale-95"
+                    aria-label={`Learn more about ${service.title}`}
+                  >
+                    <Plus className="w-5 h-5" />
+                  </button>
+                </div>
               </motion.div>
-            );
-          })}
+            ))}
+          </div>
+
+          {/* Bottom crosses */}
+          <div className="absolute -bottom-3 -left-3 text-muted-foreground/30 text-xl select-none">+</div>
+          <div className="absolute -bottom-3 -right-3 text-muted-foreground/30 text-xl select-none">+</div>
         </div>
       </div>
     </section>
