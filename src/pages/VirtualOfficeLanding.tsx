@@ -65,7 +65,7 @@ const HeroSection = () => {
         <motion.div custom={0.15} variants={fadeUp} initial="hidden" animate="visible" className="mb-10">
           <Button
             size="lg"
-            className="bg-primary text-primary-foreground hover:bg-primary/90 shadow-lg font-bold px-10 h-14 rounded-xl text-base"
+            className="bg-primary text-primary-foreground hover:bg-primary/90 shadow-lg font-medium px-10 h-14 rounded-xl text-base"
             onClick={() => scrollTo("#contact")}
           >
             Get Virtual Office Now
