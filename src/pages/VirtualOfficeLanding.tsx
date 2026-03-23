@@ -46,7 +46,7 @@ const HeroSection = () => {
           variants={fadeUp}
           initial="hidden"
           animate="visible"
-          className="text-3xl sm:text-4xl lg:text-[52px] font-bold tracking-tight text-foreground leading-[1.1] mb-5"
+          className="text-3xl sm:text-4xl lg:text-[52px] font-bold tracking-tight text-foreground leading-[1.2] lg:leading-[1.15] mb-5"
         >
           Get GST-Ready Virtual Office{" "}
           <span className="text-primary">@ ₹699/month</span>
@@ -135,7 +135,7 @@ const PainAndCards = () => (
         </p>
       </motion.div>
 
-      <div className="grid sm:grid-cols-2 gap-6 max-w-4xl mx-auto">
+      <div className="flex flex-col gap-4 max-w-2xl mx-auto">
         {coreCards.map((card, i) => (
           <motion.div
             key={card.title}
@@ -143,13 +143,15 @@ const PainAndCards = () => (
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: i * 0.07 }}
-            className="bg-card rounded-2xl border border-border p-7 shadow-sm hover:shadow-md transition-shadow"
+            className="flex items-start gap-5 bg-card rounded-xl border border-border p-6 shadow-sm hover:shadow-md transition-shadow"
           >
-            <div className="w-11 h-11 rounded-xl bg-primary/10 flex items-center justify-center mb-5">
+            <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center shrink-0 mt-0.5">
               <card.icon className="w-5 h-5 text-primary" />
             </div>
-            <h3 className="text-lg font-bold text-foreground mb-2">{card.title}</h3>
-            <p className="text-sm text-muted-foreground leading-relaxed">{card.desc}</p>
+            <div>
+              <h3 className="text-base font-bold text-foreground mb-1">{card.title}</h3>
+              <p className="text-sm text-muted-foreground leading-relaxed">{card.desc}</p>
+            </div>
           </motion.div>
         ))}
       </div>
@@ -223,34 +225,7 @@ const TrustSection = () => (
   </section>
 );
 
-/* ─── PRICING ─── */
-const PricingSection = () => {
-  const scrollTo = (id: string) => document.querySelector(id)?.scrollIntoView({ behavior: "smooth" });
 
-  return (
-    <section className="py-20 lg:py-28 bg-primary">
-      <div className="container mx-auto px-4 lg:px-8 text-center">
-        <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
-          <p className="text-white/50 text-sm font-semibold uppercase tracking-widest mb-4">Pricing</p>
-          <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white tracking-tight mb-3">
-            <span className="text-secondary">₹699</span>/month
-          </h2>
-          <p className="text-white/55 text-base mb-10 max-w-sm mx-auto">
-            No lock-in. No hidden charges. Cancel anytime.
-          </p>
-          <Button
-            size="lg"
-            className="bg-secondary text-secondary-foreground hover:bg-secondary/90 shadow-lg font-bold px-12 h-14 rounded-xl text-base"
-            onClick={() => scrollTo("#contact")}
-          >
-            Get Started
-            <ArrowRight className="w-4 h-4 ml-2" />
-          </Button>
-        </motion.div>
-      </div>
-    </section>
-  );
-};
 
 /* ─── FAQ ─── */
 const faqs = [
@@ -351,7 +326,7 @@ const VirtualOfficeLanding = () => (
       <PainAndCards />
       <WhyFlashSpace />
       <TrustSection />
-      <PricingSection />
+      
       <FAQSection />
       <FinalCTA />
     </main>
