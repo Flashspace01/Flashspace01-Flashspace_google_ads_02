@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { useRef, useState, useEffect, useCallback } from "react";
 import {
   AlertTriangle,
   TrendingDown,
@@ -10,7 +11,6 @@ import {
   XCircle,
   CheckCircle2,
 } from "lucide-react";
-import { useState } from "react";
 
 const scenarios = [
   {
@@ -117,6 +117,33 @@ const cardVariant = {
 
 export const VPOBCostSection = () => {
   const [activeCard, setActiveCard] = useState<number | null>(null);
+  const scrollRef = useRef<HTMLDivElement>(null);
+  const autoScrollRef = useRef<ReturnType<typeof setInterval> | null>(null);
+
+  const startAutoScroll = useCallback(() => {
+    if (autoScrollRef.current) return;
+    autoScrollRef.current = setInterval(() => {
+      if (!scrollRef.current) return;
+      const { scrollLeft, scrollWidth, clientWidth } = scrollRef.current;
+      if (scrollLeft + clientWidth >= scrollWidth - 10) {
+        scrollRef.current.scrollTo({ left: 0, behavior: "smooth" });
+      } else {
+        scrollRef.current.scrollBy({ left: 330, behavior: "smooth" });
+      }
+    }, 3000);
+  }, []);
+
+  const stopAutoScroll = useCallback(() => {
+    if (autoScrollRef.current) {
+      clearInterval(autoScrollRef.current);
+      autoScrollRef.current = null;
+    }
+  }, []);
+
+  useEffect(() => {
+    startAutoScroll();
+    return stopAutoScroll;
+  }, [startAutoScroll, stopAutoScroll]);
 
   return (
     <section className="py-20 lg:py-28 bg-background">
@@ -145,12 +172,17 @@ export const VPOBCostSection = () => {
         {/* Scenario Cards — Horizontal Scroll */}
         <div className="mb-16 -mx-4 lg:-mx-8">
           <motion.div
+            ref={scrollRef}
             variants={stagger}
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, amount: 0.1 }}
             className="flex gap-5 overflow-x-auto px-4 lg:px-8 pb-4 snap-x snap-mandatory scrollbar-thin"
             style={{ WebkitOverflowScrolling: "touch" }}
+            onMouseEnter={stopAutoScroll}
+            onMouseLeave={startAutoScroll}
+            onTouchStart={stopAutoScroll}
+            onTouchEnd={startAutoScroll}
           >
             {scenarios.map((s, i) => {
               const Icon = s.icon;

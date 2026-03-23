@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useRef, useEffect, useCallback } from "react";
 import { motion } from "framer-motion";
 import {
   FileText,
@@ -52,12 +52,38 @@ const services = [
 
 export const EcommerceServices = () => {
   const scrollRef = useRef<HTMLDivElement>(null);
+  const autoScrollRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
   const scroll = (dir: "left" | "right") => {
     if (!scrollRef.current) return;
     const amount = 320;
     scrollRef.current.scrollBy({ left: dir === "left" ? -amount : amount, behavior: "smooth" });
   };
+
+  const startAutoScroll = useCallback(() => {
+    if (autoScrollRef.current) return;
+    autoScrollRef.current = setInterval(() => {
+      if (!scrollRef.current) return;
+      const { scrollLeft, scrollWidth, clientWidth } = scrollRef.current;
+      if (scrollLeft + clientWidth >= scrollWidth - 10) {
+        scrollRef.current.scrollTo({ left: 0, behavior: "smooth" });
+      } else {
+        scrollRef.current.scrollBy({ left: 320, behavior: "smooth" });
+      }
+    }, 3000);
+  }, []);
+
+  const stopAutoScroll = useCallback(() => {
+    if (autoScrollRef.current) {
+      clearInterval(autoScrollRef.current);
+      autoScrollRef.current = null;
+    }
+  }, []);
+
+  useEffect(() => {
+    startAutoScroll();
+    return stopAutoScroll;
+  }, [startAutoScroll, stopAutoScroll]);
 
   return (
     <section id="what-we-do" className="py-20 lg:py-28 bg-background">
@@ -98,6 +124,10 @@ export const EcommerceServices = () => {
           ref={scrollRef}
           className="flex gap-5 overflow-x-auto pb-4 snap-x snap-mandatory scrollbar-hide"
           style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
+          onMouseEnter={stopAutoScroll}
+          onMouseLeave={startAutoScroll}
+          onTouchStart={stopAutoScroll}
+          onTouchEnd={startAutoScroll}
         >
           {services.map((service, i) => {
             const Icon = service.icon;
