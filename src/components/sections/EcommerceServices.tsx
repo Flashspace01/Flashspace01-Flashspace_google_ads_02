@@ -22,7 +22,7 @@ const services = [
 
 export const EcommerceServices = () => {
   return (
-    <section id="what-we-do" className="py-20 lg:py-28 bg-background">
+    <section id="what-we-do" className="py-12 lg:py-16 bg-background">
       <div className="container mx-auto px-4 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
