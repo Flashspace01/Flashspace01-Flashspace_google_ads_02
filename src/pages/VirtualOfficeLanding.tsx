@@ -144,7 +144,7 @@ const PainAndCards = () => (
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: i * 0.07 }}
-            className="flex flex-col justify-between p-8 min-h-[280px] hover:bg-muted/30 transition-colors"
+            className="flex flex-col justify-between p-8 min-h-[280px] hover:bg-secondary transition-colors"
           >
             <div>
               <h3 className="text-lg font-bold text-foreground mb-3">{card.title}</h3>
