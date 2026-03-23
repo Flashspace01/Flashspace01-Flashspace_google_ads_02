@@ -295,38 +295,7 @@ const FAQSection = () => (
   </section>
 );
 
-/* ─── FINAL CTA ─── */
-const FinalCTA = () => (
-  <section id="contact" className="py-20 lg:py-28 bg-foreground relative overflow-hidden">
-    <div className="absolute top-0 right-0 w-80 h-80 bg-primary/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
-    <div className="container mx-auto px-4 lg:px-8 relative z-10 text-center">
-      <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
-        <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-3 tracking-tight">
-          Get Your Business Address <span className="text-secondary italic">Today</span>
-        </h2>
-        <p className="text-white/50 text-lg mb-10">Fast. Compliant. Affordable.</p>
-        <div className="flex flex-col sm:flex-row gap-3 justify-center">
-          <Button
-            size="xl"
-            className="bg-secondary text-secondary-foreground hover:bg-secondary/90 shadow-lg font-bold rounded-xl"
-          >
-            Get Virtual Office Now
-            <ArrowRight className="w-5 h-5 ml-2" />
-          </Button>
-          <Button
-            size="lg"
-            variant="outline"
-            className="border-white/20 text-white hover:bg-white/10 font-medium rounded-xl"
-          >
-            <MessageCircle className="w-4 h-4 mr-2" />
-            WhatsApp
-          </Button>
-        </div>
-        <p className="text-white/25 text-xs mt-8">100% Secure. No spam.</p>
-      </motion.div>
-    </div>
-  </section>
-);
+
 
 /* ─── STICKY MOBILE CTA ─── */
 const StickyMobileCTA = () => {
