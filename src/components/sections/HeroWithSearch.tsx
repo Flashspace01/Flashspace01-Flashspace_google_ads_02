@@ -72,7 +72,7 @@ export const HeroWithSearch = () => {
               <Button
                 size="lg"
                 variant="white"
-                className="font-semibold px-8 h-12 rounded-lg uppercase tracking-wider text-sm transition-all duration-300 hover:bg-secondary hover:text-secondary-foreground hover:shadow-[0_0_30px_hsla(54,96%,88%,0.3)]"
+                className="font-medium px-8 h-12 rounded-lg uppercase tracking-wider text-sm transition-all duration-300 hover:bg-secondary hover:text-secondary-foreground hover:shadow-[0_0_30px_hsla(54,96%,88%,0.3)]"
                 onClick={() => scrollTo("#contact")}
               >
                 <ArrowRight className="w-4 h-4 mr-2" />
@@ -81,7 +81,7 @@ export const HeroWithSearch = () => {
               <Button
                 size="lg"
                 variant="outline"
-                className="font-semibold px-8 h-12 rounded-lg uppercase tracking-wider text-sm border-white text-white bg-white/10 hover:bg-white/20 transition-all duration-300"
+                className="font-medium px-8 h-12 rounded-lg uppercase tracking-wider text-sm border-white text-white bg-white/10 hover:bg-white/20 transition-all duration-300"
                 onClick={() => scrollTo("#contact")}
               >
                 <MessageSquare className="w-4 h-4 mr-2" />
