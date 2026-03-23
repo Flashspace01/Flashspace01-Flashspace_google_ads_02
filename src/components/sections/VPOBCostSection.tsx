@@ -346,29 +346,38 @@ export const VPOBCostSection = () => {
           whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
           viewport={{ once: true, amount: 0.2 }}
           transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-          className="rounded-2xl bg-foreground text-background p-8 lg:p-12 text-center"
+          className="rounded-2xl bg-primary text-primary-foreground p-8 lg:p-12 text-center relative overflow-hidden"
         >
-          <h3 className="text-2xl lg:text-3xl font-semibold tracking-tight mb-3">
-            Total Potential Loss Without VPOB
-          </h3>
-          <p className="text-background/60 text-sm mb-6 max-w-lg mx-auto">
-            Adding up all scenarios — TCS, penalties, inventory freezes, ITC
-            loss, suspensions, TDS, and revenue limitations.
-          </p>
-          <div className="text-5xl lg:text-6xl font-bold tabular-nums tracking-tight mb-6">
-            ₹1,69,11,200<span className="text-background/40 text-2xl">+</span>
+          {/* Subtle decorative elements */}
+          <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(ellipse_at_top_right,hsl(var(--secondary)/0.08),transparent_60%)] pointer-events-none" />
+          <div className="absolute bottom-0 right-0 w-64 h-64 bg-[radial-gradient(circle,hsl(var(--secondary)/0.05),transparent_70%)] pointer-events-none" />
+          
+          <div className="relative z-10">
+            <span className="inline-block text-xs font-semibold tracking-widest uppercase text-secondary mb-4">
+              Annual Impact
+            </span>
+            <h3 className="text-2xl lg:text-3xl font-semibold tracking-tight mb-3">
+              Total Potential Loss Without VPOB
+            </h3>
+            <p className="text-primary-foreground/60 text-sm mb-6 max-w-lg mx-auto">
+              Adding up all scenarios — TCS, penalties, inventory freezes, ITC
+              loss, suspensions, TDS, and revenue limitations.
+            </p>
+            <div className="text-5xl lg:text-6xl font-bold tabular-nums tracking-tight mb-2 text-secondary">
+              ₹1,69,11,200<span className="text-secondary/50 text-2xl">+</span>
+            </div>
+            <p className="text-primary-foreground/50 text-xs mb-8 max-w-md mx-auto">
+              And this is a conservative estimate. Real losses compound with
+              missed opportunities, refiling costs, and brand damage.
+            </p>
+            <a
+              href="#contact"
+              className="inline-flex items-center gap-2 bg-secondary text-primary px-8 py-3.5 rounded-xl text-sm font-semibold hover:bg-secondary/90 transition-colors duration-200 active:scale-[0.97]"
+            >
+              Get Your VPOB Now
+              <ArrowRight className="w-4 h-4" />
+            </a>
           </div>
-          <p className="text-background/50 text-xs mb-8 max-w-md mx-auto">
-            And this is a conservative estimate. Real losses compound with
-            missed opportunities, refiling costs, and brand damage.
-          </p>
-          <a
-            href="#contact"
-            className="inline-flex items-center gap-2 bg-background text-foreground px-8 py-3.5 rounded-xl text-sm font-medium hover:bg-background/90 transition-colors duration-200 active:scale-[0.97]"
-          >
-            Get Your VPOB Now
-            <ArrowRight className="w-4 h-4" />
-          </a>
         </motion.div>
       </div>
     </section>
