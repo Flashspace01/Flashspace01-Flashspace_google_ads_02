@@ -11,6 +11,7 @@ import {
   Headphones,
   CheckCircle2,
   MessageCircle,
+  Plus,
 } from "lucide-react";
 import {
   Accordion,
