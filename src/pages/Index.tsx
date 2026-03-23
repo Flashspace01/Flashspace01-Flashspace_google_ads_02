@@ -1,6 +1,6 @@
 import { AppLayout } from "@/components/layout/AppLayout";
 import { HeroWithSearch } from "@/components/sections/HeroWithSearch";
-import { EcommerceServices } from "@/components/sections/EcommerceServices";
+
 import { WhyEcommerce } from "@/components/sections/WhyEcommerce";
 import { HowItWorks } from "@/components/sections/HowItWorks";
 import { TrustBanner } from "@/components/sections/TrustBanner";
@@ -15,7 +15,7 @@ const Index = () => {
     <AppLayout>
       <main>
         <HeroWithSearch />
-        <EcommerceServices />
+        
         <WhyEcommerce />
         <VPOBCostSection />
         <HowItWorks />
