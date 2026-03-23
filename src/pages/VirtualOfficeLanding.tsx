@@ -345,7 +345,7 @@ const VirtualOfficeLanding = () => (
   <AppLayout>
     <main>
       <HeroSection />
-      <ScanStrip />
+      
       <PainAndCards />
       <WhyFlashSpace />
       <HowItWorksSection />
