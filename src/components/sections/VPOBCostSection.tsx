@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import {
+import { useRef, useEffect, useCallback } from "react";
   AlertTriangle,
   TrendingDown,
   Ban,
