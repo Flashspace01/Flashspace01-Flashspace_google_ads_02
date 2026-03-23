@@ -1,98 +1,100 @@
 import { motion } from "framer-motion";
-import {
-  ShieldCheck,
-  Zap,
-  Clock,
-  Users,
-  Award,
-  HeadphonesIcon,
-} from "lucide-react";
+import { AlertTriangle, Ban, Receipt, ShieldOff } from "lucide-react";
+import logisticsImg from "@/assets/india-ecommerce-logistics.png";
 
-const painPoints = [
-  "Confusing multi-state GST regulations for online sellers",
-  "VPOB rejections delay your marketplace onboarding",
-  "TCS/TDS credits lost without proper state registration",
-  "Marketplace listings suspended for compliance gaps",
-  "Managing GST filings across multiple states is overwhelming",
-];
-
-const advantages = [
-  { icon: Zap, title: "Go Live in Under 2 Weeks", description: "Our streamlined process gets your GST, VPOB, and marketplace compliance sorted fast." },
-  { icon: Clock, title: "One Team, Every Service", description: "GST, VPOB, TDS/TCS, accounting, filings — all handled under one roof." },
-  { icon: Users, title: "E-commerce Specialists", description: "We understand marketplace rules, state-wise GST, and seller compliance inside out." },
-  { icon: Award, title: "2,000+ Sellers Onboarded", description: "Your success is backed by proven expertise across India's top marketplaces." },
-  { icon: HeadphonesIcon, title: "Ongoing Support Post-Launch", description: "Renewals, filings, scaling to new states — we're here for the long run." },
-  { icon: ShieldCheck, title: "Full Compliance Guaranteed", description: "We keep you on the right side of Indian tax regulations from day one." },
+const problems = [
+  { icon: AlertTriangle, text: "Blocked TCS credits — money gone forever" },
+  { icon: Receipt, text: "GST penalties & surprise notices" },
+  { icon: Ban, text: "Inventory stuck in warehouses across states" },
+  { icon: ShieldOff, text: "Listing suspensions on Amazon & Flipkart" },
 ];
 
 export const WhyEcommerce = () => {
   return (
     <section id="why-us" className="py-20 lg:py-28 bg-card/30">
-      <div className="container mx-auto px-4 lg:px-8">
-        <div className="grid lg:grid-cols-2 gap-16 lg:gap-20 max-w-6xl mx-auto">
-          {/* Left — Pain points */}
+      <div className="container mx-auto px-4 lg:px-8 max-w-6xl">
+        <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+          {/* Left — Content blocks */}
           <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            whileInView={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0, x: -20, filter: "blur(4px)" }}
+            whileInView={{ opacity: 1, x: 0, filter: "blur(0px)" }}
             viewport={{ once: true, amount: 0.2 }}
-            transition={{ duration: 0.6 }}
+            transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+            className="space-y-10"
           >
-            <h2 className="text-3xl sm:text-4xl font-medium text-foreground mb-4 tracking-tight">
-              Selling across India is harder than it looks
-            </h2>
-            <p className="text-muted-foreground text-base leading-relaxed mb-8">
-              Most sellers hit the same walls. We've already solved them.
-            </p>
-            <ul className="space-y-4">
-              {painPoints.map((point, i) => (
-                <motion.li
-                  key={i}
-                  initial={{ opacity: 0, x: -12 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true, amount: 0.2 }}
-                  transition={{ delay: i * 0.07, duration: 0.4 }}
-                  className="flex items-start gap-3 bg-card rounded-xl border border-border/50 px-5 py-4"
-                >
-                  <span className="shrink-0 mt-1 w-5 h-5 rounded-full bg-destructive/10 flex items-center justify-center text-destructive text-xs font-bold">!</span>
-                  <span className="text-foreground text-[15px] leading-snug">{point}</span>
-                </motion.li>
-              ))}
-            </ul>
+            {/* Block 1 — Primary heading */}
+            <div>
+              <h2 className="text-3xl sm:text-4xl font-medium text-foreground tracking-tight leading-tight mb-3">
+                Selling Across India Without GST Setup is a Costly Mistake
+              </h2>
+              <p className="text-muted-foreground text-base leading-relaxed max-w-lg">
+                Most e-commerce sellers lose lakhs due to compliance gaps they don't even realize.
+              </p>
+            </div>
+
+            {/* Block 2 — Problem statement */}
+            <div>
+              <h3 className="text-lg font-semibold text-foreground mb-4">
+                Where E-commerce Sellers Lose Money
+              </h3>
+              <ul className="space-y-3">
+                {problems.map((p, i) => {
+                  const Icon = p.icon;
+                  return (
+                    <motion.li
+                      key={i}
+                      initial={{ opacity: 0, x: -12 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      viewport={{ once: true, amount: 0.2 }}
+                      transition={{ delay: 0.15 + i * 0.07, duration: 0.4 }}
+                      className="flex items-center gap-3"
+                    >
+                      <span className="shrink-0 w-8 h-8 rounded-lg bg-destructive/10 flex items-center justify-center">
+                        <Icon className="w-4 h-4 text-destructive" />
+                      </span>
+                      <span className="text-foreground text-[15px] leading-snug">{p.text}</span>
+                    </motion.li>
+                  );
+                })}
+              </ul>
+            </div>
+
+            {/* Block 3 — Core insight */}
+            <div className="border-l-2 border-primary/30 pl-5">
+              <h3 className="text-base font-semibold text-foreground mb-1.5">
+                The Real Problem: No Multi-State GST Setup (VPOB)
+              </h3>
+              <p className="text-sm text-muted-foreground leading-relaxed">
+                Without proper state-wise GST registration, you cannot legally store, sell, or claim tax benefits across India.
+              </p>
+            </div>
+
+            {/* Block 4 — Transition hook */}
+            <div className="bg-foreground text-background rounded-xl px-6 py-5">
+              <p className="text-sm font-semibold mb-1">
+                This is Why Most Sellers Stay Stuck at ₹3–5L/month
+              </p>
+              <p className="text-xs text-background/60">
+                While others scale to ₹15L+/month using proper setup.
+              </p>
+            </div>
           </motion.div>
 
-          {/* Right — Advantages */}
+          {/* Right — Visual */}
           <motion.div
-            initial={{ opacity: 0, x: 20 }}
-            whileInView={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0, x: 20, filter: "blur(4px)" }}
+            whileInView={{ opacity: 1, x: 0, filter: "blur(0px)" }}
             viewport={{ once: true, amount: 0.2 }}
-            transition={{ duration: 0.6, delay: 0.1 }}
+            transition={{ duration: 0.7, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+            className="relative"
           >
-            <h2 className="text-3xl sm:text-4xl font-medium text-foreground mb-4 tracking-tight">
-              Why e-commerce sellers choose Flash Space
-            </h2>
-            <p className="text-muted-foreground text-base leading-relaxed mb-8">
-              We bring speed, expertise, and end-to-end support.
-            </p>
-            <div className="grid sm:grid-cols-2 gap-4">
-              {advantages.map((item, i) => {
-                const Icon = item.icon;
-                return (
-                  <motion.div
-                    key={item.title}
-                    initial={{ opacity: 0, y: 16 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true, amount: 0.2 }}
-                    transition={{ delay: i * 0.06, duration: 0.4 }}
-                    className="bg-card rounded-xl border border-border/50 p-5 hover:shadow-md hover:-translate-y-0.5 transition-all duration-300 group"
-                  >
-                    <div className="w-9 h-9 rounded-lg bg-primary/10 flex items-center justify-center mb-3 group-hover:bg-primary/20 transition-colors">
-                      <Icon className="w-4 h-4 text-primary" />
-                    </div>
-                    <h3 className="text-sm font-semibold text-foreground mb-1">{item.title}</h3>
-                    <p className="text-xs text-muted-foreground leading-relaxed">{item.description}</p>
-                  </motion.div>
-                );
-              })}
+            <div className="rounded-2xl overflow-hidden shadow-lg border border-border/50">
+              <img
+                src={logisticsImg}
+                alt="Indian e-commerce logistics — warehouse with packages and delivery"
+                className="w-full h-auto object-cover"
+                loading="lazy"
+              />
             </div>
           </motion.div>
         </div>
