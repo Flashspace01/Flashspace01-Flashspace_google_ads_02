@@ -7,7 +7,7 @@ import { TrustBanner } from "@/components/sections/TrustBanner";
 import { ClientVoices } from "@/components/sections/ClientVoices";
 import { FAQSection } from "@/components/sections/FAQSection";
 import { StatsByNumbers } from "@/components/sections/StatsByNumbers";
-import { ContactCTA } from "@/components/sections/ContactCTA";
+
 import { Footer } from "@/components/layout/Footer";
 
 const Index = () => {
@@ -22,7 +22,7 @@ const Index = () => {
         <ClientVoices />
         <FAQSection />
         <StatsByNumbers />
-        <ContactCTA />
+        
       </main>
       <Footer />
     </AppLayout>
