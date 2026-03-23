@@ -208,17 +208,40 @@ const WhyFlashSpace = () => {
 };
 
 /* ─── TRUST ─── */
+const trustStats = [
+  { value: "1,000+", label: "Businesses Registered" },
+  { value: "28+", label: "States Covered" },
+  { value: "24hrs", label: "Avg. Setup Time" },
+  { value: "98%", label: "Client Satisfaction" },
+];
+
 const TrustSection = () => (
-  <section className="py-14 lg:py-18 bg-background">
+  <section className="py-16 lg:py-20 bg-muted/20 border-y border-border/40">
     <div className="container mx-auto px-4 lg:px-8 text-center">
       <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
         <h2 className="text-2xl sm:text-3xl font-bold text-foreground tracking-tight mb-2">
           Trusted by 1000+ Businesses Across India
         </h2>
-        <p className="text-muted-foreground text-sm max-w-md mx-auto">
+        <p className="text-muted-foreground text-sm max-w-md mx-auto mb-10">
           Startups, freelancers & growing brands use FlashSpace to register and scale.
         </p>
       </motion.div>
+
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 max-w-3xl mx-auto">
+        {trustStats.map((stat, i) => (
+          <motion.div
+            key={stat.label}
+            initial={{ opacity: 0, y: 12 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: i * 0.08 }}
+            className="flex flex-col items-center gap-1"
+          >
+            <span className="text-3xl lg:text-4xl font-bold text-primary tracking-tight">{stat.value}</span>
+            <span className="text-xs text-muted-foreground font-medium">{stat.label}</span>
+          </motion.div>
+        ))}
+      </div>
     </div>
   </section>
 );
