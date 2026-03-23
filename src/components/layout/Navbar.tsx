@@ -1,11 +1,10 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import { Menu, X, ShoppingCart } from "lucide-react";
+import { Menu, X, LogIn, UserPlus } from "lucide-react";
 import flashspaceLogo from "@/assets/flashspace-logo.png";
 
 const navLinks = [
-  { label: "Why Us", href: "#why-us" },
   { label: "How It Works", href: "#how-it-works" },
   { label: "Pricing", href: "#pricing" },
   { label: "Contact", href: "#contact" },
@@ -60,13 +59,24 @@ export const Navbar = () => {
 
           <div className="flex items-center gap-2 lg:gap-3">
             <Button
+              variant="ghost"
+              size="sm"
+              className={`hidden sm:inline-flex text-sm px-4 ${
+                scrolled
+                  ? "text-foreground/80 hover:text-foreground"
+                  : "text-white/80 hover:text-white hover:bg-white/10"
+              }`}
+            >
+              <LogIn className="w-4 h-4 mr-1.5" />
+              Log In
+            </Button>
+            <Button
               variant="default"
               size="sm"
               className="hidden sm:inline-flex text-sm px-5"
-              onClick={() => scrollTo("#contact")}
             >
-              <ShoppingCart className="w-4 h-4" />
-              Start Your E-commerce Business
+              <UserPlus className="w-4 h-4 mr-1.5" />
+              Sign Up
             </Button>
             <button
               onClick={() => setMobileOpen(!mobileOpen)}
@@ -99,13 +109,16 @@ export const Navbar = () => {
                   {link.label}
                 </button>
               ))}
-              <Button
-                className="w-full mt-2"
-                onClick={() => scrollTo("#contact")}
-              >
-                <ShoppingCart className="w-4 h-4" />
-                Start Your E-commerce Business
-              </Button>
+              <div className="flex gap-2 mt-3 pt-3 border-t border-border/30">
+                <Button variant="outline" className="flex-1">
+                  <LogIn className="w-4 h-4 mr-1.5" />
+                  Log In
+                </Button>
+                <Button className="flex-1">
+                  <UserPlus className="w-4 h-4 mr-1.5" />
+                  Sign Up
+                </Button>
+              </div>
             </div>
           </motion.div>
         )}

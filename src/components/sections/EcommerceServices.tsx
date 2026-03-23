@@ -1,3 +1,4 @@
+import { useRef } from "react";
 import { motion } from "framer-motion";
 import {
   Building2,
@@ -5,6 +6,8 @@ import {
   Landmark,
   FileText,
   Truck,
+  ChevronLeft,
+  ChevronRight,
 } from "lucide-react";
 
 const services = [
@@ -41,6 +44,14 @@ const services = [
 ];
 
 export const EcommerceServices = () => {
+  const scrollRef = useRef<HTMLDivElement>(null);
+
+  const scroll = (dir: "left" | "right") => {
+    if (!scrollRef.current) return;
+    const amount = 320;
+    scrollRef.current.scrollBy({ left: dir === "left" ? -amount : amount, behavior: "smooth" });
+  };
+
   return (
     <section id="what-we-do" className="py-20 lg:py-28 bg-background">
       <div className="container mx-auto px-4 lg:px-8">
@@ -48,20 +59,39 @@ export const EcommerceServices = () => {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.2 }}
-          className="text-center max-w-3xl mx-auto mb-16"
+          className="flex items-end justify-between mb-12"
         >
-          <span className="inline-flex items-center gap-2 text-sm text-muted-foreground mb-4">
-            <span className="text-primary">+</span> What We Do
-          </span>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-medium text-foreground mb-5 tracking-tight">
-            Everything your e-commerce<br />business needs to launch
-          </h2>
-          <p className="text-muted-foreground text-lg leading-relaxed">
-            One partner. Every service. From licence to logistics.
-          </p>
+          <div>
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-medium text-foreground mb-3 tracking-tight">
+              Everything your e-commerce<br className="hidden sm:block" />business needs to launch
+            </h2>
+            <p className="text-muted-foreground text-lg leading-relaxed">
+              One partner. Every service. From licence to logistics.
+            </p>
+          </div>
+          <div className="hidden sm:flex items-center gap-2">
+            <button
+              onClick={() => scroll("left")}
+              className="w-10 h-10 rounded-full border border-border/50 flex items-center justify-center text-muted-foreground hover:text-foreground hover:border-foreground/30 transition-colors"
+              aria-label="Scroll left"
+            >
+              <ChevronLeft className="w-5 h-5" />
+            </button>
+            <button
+              onClick={() => scroll("right")}
+              className="w-10 h-10 rounded-full border border-border/50 flex items-center justify-center text-muted-foreground hover:text-foreground hover:border-foreground/30 transition-colors"
+              aria-label="Scroll right"
+            >
+              <ChevronRight className="w-5 h-5" />
+            </button>
+          </div>
         </motion.div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
+        <div
+          ref={scrollRef}
+          className="flex gap-5 overflow-x-auto pb-4 snap-x snap-mandatory scrollbar-hide"
+          style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
+        >
           {services.map((service, i) => {
             const Icon = service.icon;
             return (
@@ -71,7 +101,7 @@ export const EcommerceServices = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.2 }}
                 transition={{ delay: i * 0.08, duration: 0.5 }}
-                className="group bg-card rounded-2xl border border-border/50 p-8 hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
+                className="group shrink-0 w-[280px] sm:w-[300px] snap-start bg-card rounded-2xl border border-border/50 p-7 hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
               >
                 <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center mb-5 group-hover:bg-primary/20 transition-colors">
                   <Icon className="w-6 h-6 text-primary" />

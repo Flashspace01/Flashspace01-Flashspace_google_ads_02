@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import { ShoppingCart, MessageSquare } from "lucide-react";
+import { ArrowRight, MessageSquare } from "lucide-react";
 import heroVideo from "@/assets/hero-skyline-loop.mp4";
 import heroFallback from "@/assets/hero-skyline-fallback.jpg";
 
@@ -21,7 +21,6 @@ export const HeroWithSearch = () => {
 
   return (
     <section className="relative w-full overflow-hidden min-h-[85vh] flex items-center" style={{ backgroundColor: "hsl(var(--primary))" }}>
-      {/* Background video */}
       <div className="absolute inset-0" style={{ backgroundColor: "hsl(var(--primary))" }}>
         <video
           ref={(el) => { if (el) el.playbackRate = 0.5; }}
@@ -76,7 +75,7 @@ export const HeroWithSearch = () => {
                 className="font-semibold px-8 h-12 rounded-lg uppercase tracking-wider text-sm transition-all duration-300 hover:bg-secondary hover:text-secondary-foreground hover:shadow-[0_0_30px_hsla(54,96%,88%,0.3)]"
                 onClick={() => scrollTo("#contact")}
               >
-                <ShoppingCart className="w-4 h-4 mr-2" />
+                <ArrowRight className="w-4 h-4 mr-2" />
                 Start Your Business
               </Button>
               <Button
