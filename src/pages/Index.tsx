@@ -6,7 +6,7 @@ import { HowItWorks } from "@/components/sections/HowItWorks";
 import { TrustBanner } from "@/components/sections/TrustBanner";
 import { ClientVoices } from "@/components/sections/ClientVoices";
 import { FAQSection } from "@/components/sections/FAQSection";
-import { StatsByNumbers } from "@/components/sections/StatsByNumbers";
+
 
 import { Footer } from "@/components/layout/Footer";
 
@@ -21,7 +21,7 @@ const Index = () => {
         <TrustBanner />
         <ClientVoices />
         <FAQSection />
-        <StatsByNumbers />
+        
         
       </main>
       <Footer />
