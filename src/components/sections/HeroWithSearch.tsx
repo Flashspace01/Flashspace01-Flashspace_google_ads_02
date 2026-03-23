@@ -19,7 +19,7 @@ export const HeroWithSearch = () => {
   };
 
   return (
-    <section className="relative w-full overflow-hidden min-h-[85vh] flex items-center" style={{ backgroundColor: "hsl(var(--primary))" }}>
+    <section className="relative w-full overflow-hidden min-h-[70vh] flex items-center" style={{ backgroundColor: "hsl(var(--primary))" }}>
       <div className="absolute inset-0" style={{ backgroundColor: "hsl(var(--primary))" }}>
         <img
           src={heroFallback}
