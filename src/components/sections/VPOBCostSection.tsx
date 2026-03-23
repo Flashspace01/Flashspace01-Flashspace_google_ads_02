@@ -172,12 +172,17 @@ export const VPOBCostSection = () => {
         {/* Scenario Cards — Horizontal Scroll */}
         <div className="mb-16 -mx-4 lg:-mx-8">
           <motion.div
+            ref={scrollRef}
             variants={stagger}
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, amount: 0.1 }}
             className="flex gap-5 overflow-x-auto px-4 lg:px-8 pb-4 snap-x snap-mandatory scrollbar-thin"
             style={{ WebkitOverflowScrolling: "touch" }}
+            onMouseEnter={stopAutoScroll}
+            onMouseLeave={startAutoScroll}
+            onTouchStart={stopAutoScroll}
+            onTouchEnd={startAutoScroll}
           >
             {scenarios.map((s, i) => {
               const Icon = s.icon;
