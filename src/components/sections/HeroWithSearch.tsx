@@ -19,7 +19,7 @@ export const HeroWithSearch = () => {
   };
 
   return (
-    <section className="relative w-full overflow-hidden min-h-[85vh] flex items-center" style={{ backgroundColor: "hsl(var(--primary))" }}>
+    <section className="relative w-full overflow-hidden min-h-[70vh] flex items-center" style={{ backgroundColor: "hsl(var(--primary))" }}>
       <div className="absolute inset-0" style={{ backgroundColor: "hsl(var(--primary))" }}>
         <img
           src={heroFallback}
@@ -32,7 +32,7 @@ export const HeroWithSearch = () => {
         <div className="absolute bottom-0 left-0 right-0 h-32 pointer-events-none" style={{ background: "linear-gradient(to bottom, transparent 0%, hsl(var(--primary)) 100%)" }} />
       </div>
 
-      <div className="relative z-10 w-full px-6 lg:px-12 py-32 lg:py-40">
+      <div className="relative z-10 w-full px-6 lg:px-12 py-20 lg:py-24">
         <div className="container mx-auto">
           <div className="max-w-[720px]">
             <motion.h1

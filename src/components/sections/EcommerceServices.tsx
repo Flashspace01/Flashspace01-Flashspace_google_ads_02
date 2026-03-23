@@ -22,13 +22,13 @@ const services = [
 
 export const EcommerceServices = () => {
   return (
-    <section id="what-we-do" className="py-20 lg:py-28 bg-background">
+    <section id="what-we-do" className="py-12 lg:py-16 bg-background">
       <div className="container mx-auto px-4 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.2 }}
-          className="mb-12"
+          className="mb-8"
         >
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-medium text-foreground mb-3 tracking-tight">
             Everything your e-commerce<br className="hidden sm:block" />business needs to scale

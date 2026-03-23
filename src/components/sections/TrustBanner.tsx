@@ -9,7 +9,7 @@ const stats = [
 
 export const TrustBanner = () => {
   return (
-    <section className="py-16 lg:py-20 border-y border-border/40">
+    <section className="py-10 lg:py-12 border-y border-border/40">
       <div className="container mx-auto px-4 lg:px-8">
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12 max-w-4xl mx-auto">
           {stats.map((stat) => (
