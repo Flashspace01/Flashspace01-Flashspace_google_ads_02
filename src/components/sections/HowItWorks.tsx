@@ -73,12 +73,12 @@ export const HowItWorks = () => {
 
   if (submitted) {
     return (
-      <section id="how-it-works" className="py-20 lg:py-28 bg-primary">
+      <section id="how-it-works" className="py-12 lg:py-16 bg-primary">
         <div className="container mx-auto px-4 lg:px-8">
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
-            className="max-w-lg mx-auto text-center py-16"
+            className="max-w-lg mx-auto text-center py-10"
           >
             <CheckCircle className="w-16 h-16 text-secondary mx-auto mb-6" />
             <h2 className="text-3xl font-medium text-secondary mb-4 tracking-tight">Thank you!</h2>
