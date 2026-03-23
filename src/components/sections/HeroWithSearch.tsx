@@ -81,7 +81,7 @@ export const HeroWithSearch = () => {
               <Button
                 size="lg"
                 variant="outline"
-                className="font-semibold px-8 h-12 rounded-lg uppercase tracking-wider text-sm border-white/30 text-white hover:bg-white/10 transition-all duration-300"
+                className="font-semibold px-8 h-12 rounded-lg uppercase tracking-wider text-sm border-white text-white bg-white/10 hover:bg-white/20 transition-all duration-300"
                 onClick={() => scrollTo("#contact")}
               >
                 <MessageSquare className="w-4 h-4 mr-2" />
