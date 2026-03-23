@@ -142,77 +142,80 @@ export const VPOBCostSection = () => {
           </p>
         </motion.div>
 
-        {/* Scenario Cards Grid */}
-        <motion.div
-          variants={stagger}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.1 }}
-          className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 mb-16"
-        >
-          {scenarios.map((s, i) => {
-            const Icon = s.icon;
-            const isActive = activeCard === i;
-            return (
-              <motion.div
-                key={s.title}
-                variants={cardVariant}
-                onMouseEnter={() => setActiveCard(i)}
-                onMouseLeave={() => setActiveCard(null)}
-                className={`relative bg-card rounded-2xl border transition-all duration-300 p-6 cursor-default group ${
-                  isActive
-                    ? "border-destructive/40 shadow-lg -translate-y-1"
-                    : "border-border/50 shadow-sm hover:shadow-md hover:-translate-y-0.5"
-                }`}
-              >
-                {/* Icon */}
-                <div className="w-10 h-10 rounded-xl bg-destructive/10 flex items-center justify-center mb-4 group-hover:bg-destructive/15 transition-colors">
-                  <Icon className="w-5 h-5 text-destructive" />
-                </div>
+        {/* Scenario Cards — Horizontal Scroll */}
+        <div className="mb-16 -mx-4 lg:-mx-8">
+          <motion.div
+            variants={stagger}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.1 }}
+            className="flex gap-5 overflow-x-auto px-4 lg:px-8 pb-4 snap-x snap-mandatory scrollbar-thin"
+            style={{ WebkitOverflowScrolling: "touch" }}
+          >
+            {scenarios.map((s, i) => {
+              const Icon = s.icon;
+              const isActive = activeCard === i;
+              return (
+                <motion.div
+                  key={s.title}
+                  variants={cardVariant}
+                  onMouseEnter={() => setActiveCard(i)}
+                  onMouseLeave={() => setActiveCard(null)}
+                  className={`relative bg-card rounded-2xl border transition-all duration-300 p-6 cursor-default group snap-start shrink-0 w-[300px] sm:w-[320px] ${
+                    isActive
+                      ? "border-destructive/40 shadow-lg -translate-y-1"
+                      : "border-border/50 shadow-sm hover:shadow-md hover:-translate-y-0.5"
+                  }`}
+                >
+                  {/* Icon */}
+                  <div className="w-10 h-10 rounded-xl bg-destructive/10 flex items-center justify-center mb-4 group-hover:bg-destructive/15 transition-colors">
+                    <Icon className="w-5 h-5 text-destructive" />
+                  </div>
 
-                {/* Title */}
-                <h3 className="text-base font-semibold text-foreground mb-2">
-                  {s.title}
-                </h3>
-                <p className="text-xs text-muted-foreground leading-relaxed mb-5">
-                  {s.explanation}
-                </p>
+                  {/* Title */}
+                  <h3 className="text-base font-semibold text-foreground mb-2">
+                    {s.title}
+                  </h3>
+                  <p className="text-xs text-muted-foreground leading-relaxed mb-5">
+                    {s.explanation}
+                  </p>
 
-                {/* Data rows */}
-                <div className="space-y-2 mb-5">
-                  {s.rows.map((r) => (
-                    <div
-                      key={r.label}
-                      className="flex items-center justify-between text-sm"
-                    >
-                      <span className="text-muted-foreground">{r.label}</span>
-                      <span className="font-medium text-foreground tabular-nums">
-                        {r.value}
+                  {/* Data rows */}
+                  <div className="space-y-2 mb-5">
+                    {s.rows.map((r) => (
+                      <div
+                        key={r.label}
+                        className="flex items-center justify-between text-sm"
+                      >
+                        <span className="text-muted-foreground">{r.label}</span>
+                        <span className="font-medium text-foreground tabular-nums">
+                          {r.value}
+                        </span>
+                      </div>
+                    ))}
+                  </div>
+
+                  {/* Total */}
+                  <div className="border-t border-border/50 pt-4 mb-4">
+                    <div className="flex items-center justify-between">
+                      <span className="text-sm font-medium text-muted-foreground">
+                        {s.totalLabel}
+                      </span>
+                      <span className="text-xl font-bold text-destructive tabular-nums">
+                        {s.totalValue}
                       </span>
                     </div>
-                  ))}
-                </div>
-
-                {/* Total */}
-                <div className="border-t border-border/50 pt-4 mb-4">
-                  <div className="flex items-center justify-between">
-                    <span className="text-sm font-medium text-muted-foreground">
-                      {s.totalLabel}
-                    </span>
-                    <span className="text-xl font-bold text-destructive tabular-nums">
-                      {s.totalValue}
-                    </span>
                   </div>
-                </div>
 
-                {/* Highlight */}
-                <p className="text-xs text-destructive/80 font-medium leading-snug italic">
-                  "{s.highlight}"
-                </p>
-              </motion.div>
-            );
-          })}
-        </motion.div>
+                  {/* Highlight */}
+                  <p className="text-xs text-destructive/80 font-medium leading-snug italic">
+                    "{s.highlight}"
+                  </p>
+                </motion.div>
+              );
+            })}
+          </motion.div>
+        </div>
 
         {/* Revenue Comparison — Hero Block */}
         <motion.div
