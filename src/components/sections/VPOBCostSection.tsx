@@ -170,9 +170,6 @@ export const VPOBCostSection = () => {
           className="flex items-end justify-between mb-12"
         >
           <div>
-            <span className="inline-block text-xs font-semibold tracking-widest uppercase text-destructive mb-4">
-              India E-Commerce Sellers
-            </span>
             <h2 className="text-3xl sm:text-4xl lg:text-[2.75rem] font-medium text-foreground tracking-tight leading-tight text-balance max-w-3xl">
               The Hidden Cost of{" "}
               <span className="text-destructive">NOT</span> Having a VPOB
