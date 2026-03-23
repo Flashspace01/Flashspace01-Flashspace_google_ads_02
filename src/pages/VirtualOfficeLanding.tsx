@@ -136,7 +136,7 @@ const PainAndCards = () => (
         </p>
       </motion.div>
 
-      <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 divide-y sm:divide-y-0 sm:divide-x divide-border border border-border rounded-2xl overflow-hidden bg-card">
         {coreCards.map((card, i) => (
           <motion.div
             key={card.title}
@@ -144,13 +144,17 @@ const PainAndCards = () => (
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: i * 0.07 }}
-            className="bg-card rounded-2xl border border-border p-6 shadow-sm hover:shadow-md transition-shadow"
+            className="flex flex-col justify-between p-8 min-h-[280px] hover:bg-muted/30 transition-colors"
           >
-            <div className="w-11 h-11 rounded-xl bg-primary/10 flex items-center justify-center mb-4">
-              <card.icon className="w-5 h-5 text-primary" />
+            <div>
+              <h3 className="text-lg font-bold text-foreground mb-3">{card.title}</h3>
+              <p className="text-sm text-muted-foreground leading-relaxed">{card.desc}</p>
             </div>
-            <h3 className="text-base font-bold text-foreground mb-2">{card.title}</h3>
-            <p className="text-sm text-muted-foreground leading-relaxed">{card.desc}</p>
+            <div className="mt-8">
+              <div className="w-10 h-10 rounded-lg border border-border flex items-center justify-center text-muted-foreground hover:text-primary hover:border-primary transition-colors cursor-pointer">
+                <Plus className="w-5 h-5" />
+              </div>
+            </div>
           </motion.div>
         ))}
       </div>
