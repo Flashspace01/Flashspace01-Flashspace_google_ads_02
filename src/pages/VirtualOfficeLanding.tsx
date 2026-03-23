@@ -135,7 +135,7 @@ const PainAndCards = () => (
         </p>
       </motion.div>
 
-      <div className="grid sm:grid-cols-2 gap-6 max-w-4xl mx-auto">
+      <div className="flex flex-col gap-4 max-w-2xl mx-auto">
         {coreCards.map((card, i) => (
           <motion.div
             key={card.title}
@@ -143,13 +143,15 @@ const PainAndCards = () => (
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: i * 0.07 }}
-            className="bg-card rounded-2xl border border-border p-7 shadow-sm hover:shadow-md transition-shadow"
+            className="flex items-start gap-5 bg-card rounded-xl border border-border p-6 shadow-sm hover:shadow-md transition-shadow"
           >
-            <div className="w-11 h-11 rounded-xl bg-primary/10 flex items-center justify-center mb-5">
+            <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center shrink-0 mt-0.5">
               <card.icon className="w-5 h-5 text-primary" />
             </div>
-            <h3 className="text-lg font-bold text-foreground mb-2">{card.title}</h3>
-            <p className="text-sm text-muted-foreground leading-relaxed">{card.desc}</p>
+            <div>
+              <h3 className="text-base font-bold text-foreground mb-1">{card.title}</h3>
+              <p className="text-sm text-muted-foreground leading-relaxed">{card.desc}</p>
+            </div>
           </motion.div>
         ))}
       </div>
