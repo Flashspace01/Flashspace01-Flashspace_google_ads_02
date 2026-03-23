@@ -21,15 +21,12 @@ export const HeroWithSearch = () => {
   return (
     <section className="relative w-full overflow-hidden min-h-[85vh] flex items-center" style={{ backgroundColor: "hsl(var(--primary))" }}>
       <div className="absolute inset-0" style={{ backgroundColor: "hsl(var(--primary))" }}>
-        <video
-          ref={(el) => { if (el) el.playbackRate = 0.5; }}
-          autoPlay loop muted playsInline
-          poster={heroFallback}
+        <img
+          src={heroFallback}
+          alt="Indian city skyline"
           className="w-full h-full object-cover"
           style={{ mixBlendMode: "luminosity", opacity: 0.55, filter: "contrast(1.3) brightness(1.1)" }}
-        >
-          <source src={heroVideo} type="video/mp4" />
-        </video>
+        />
         <div className="absolute inset-0 pointer-events-none" style={{ background: "radial-gradient(circle at 80% 20%, hsla(54, 96%, 88%, 0.3) 0%, transparent 50%)", mixBlendMode: "screen" }} />
         <div className="absolute inset-0 pointer-events-none" style={{ background: "radial-gradient(circle at 50% 50%, transparent 40%, hsl(var(--primary)) 100%)" }} />
         <div className="absolute bottom-0 left-0 right-0 h-32 pointer-events-none" style={{ background: "linear-gradient(to bottom, transparent 0%, hsl(var(--primary)) 100%)" }} />
