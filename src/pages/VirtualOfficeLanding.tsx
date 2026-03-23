@@ -225,34 +225,7 @@ const TrustSection = () => (
   </section>
 );
 
-/* ─── PRICING ─── */
-const PricingSection = () => {
-  const scrollTo = (id: string) => document.querySelector(id)?.scrollIntoView({ behavior: "smooth" });
 
-  return (
-    <section className="py-20 lg:py-28 bg-primary">
-      <div className="container mx-auto px-4 lg:px-8 text-center">
-        <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
-          <p className="text-white/50 text-sm font-semibold uppercase tracking-widest mb-4">Pricing</p>
-          <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white tracking-tight mb-3">
-            <span className="text-secondary">₹699</span>/month
-          </h2>
-          <p className="text-white/55 text-base mb-10 max-w-sm mx-auto">
-            No lock-in. No hidden charges. Cancel anytime.
-          </p>
-          <Button
-            size="lg"
-            className="bg-secondary text-secondary-foreground hover:bg-secondary/90 shadow-lg font-bold px-12 h-14 rounded-xl text-base"
-            onClick={() => scrollTo("#contact")}
-          >
-            Get Started
-            <ArrowRight className="w-4 h-4 ml-2" />
-          </Button>
-        </motion.div>
-      </div>
-    </section>
-  );
-};
 
 /* ─── FAQ ─── */
 const faqs = [
