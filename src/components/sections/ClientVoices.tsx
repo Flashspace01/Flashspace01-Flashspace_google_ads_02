@@ -29,7 +29,7 @@ export const ClientVoices = () => {
   const next = () => setIndex((i) => (i === testimonials.length - 1 ? 0 : i + 1));
 
   return (
-    <section className="py-20 lg:py-28 bg-background">
+    <section className="py-12 lg:py-16 bg-background">
       <div className="container mx-auto px-4 lg:px-8">
         <div className="relative mx-auto max-w-5xl">
           <div className="absolute -top-2 -left-2 w-5 h-5 border-t border-l border-border/40" />

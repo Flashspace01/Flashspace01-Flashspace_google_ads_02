@@ -92,9 +92,9 @@ export const HowItWorks = () => {
   }
 
   return (
-    <section id="how-it-works" className="py-20 lg:py-28 bg-primary">
+    <section id="how-it-works" className="py-12 lg:py-16 bg-primary">
       <div className="container mx-auto px-4 lg:px-8">
-        <div className="grid lg:grid-cols-[1fr_1.2fr] gap-12 lg:gap-20 max-w-5xl mx-auto">
+        <div className="grid lg:grid-cols-[1fr_1.2fr] gap-8 lg:gap-14 max-w-5xl mx-auto">
           {/* Left copy */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}

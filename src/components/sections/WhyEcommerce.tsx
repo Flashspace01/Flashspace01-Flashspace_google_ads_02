@@ -5,7 +5,7 @@ const ease = [0.16, 1, 0.3, 1] as const;
 
 export const WhyEcommerce = () => {
   return (
-    <section id="why-us" className="py-24 lg:py-32 bg-card/30">
+    <section id="why-us" className="py-12 lg:py-16 bg-card/30">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-16 items-center">

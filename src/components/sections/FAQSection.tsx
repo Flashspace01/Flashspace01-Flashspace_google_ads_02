@@ -35,7 +35,7 @@ const faqs = [
 
 export const FAQSection = () => {
   return (
-    <section className="py-20 lg:py-28 bg-background">
+    <section className="py-12 lg:py-16 bg-background">
       <div className="container mx-auto px-4 lg:px-8">
         <div className="grid lg:grid-cols-[1fr_1.5fr] gap-12 lg:gap-20">
           <motion.div
