@@ -58,26 +58,6 @@ export const Navbar = () => {
           </div>
 
           <div className="flex items-center gap-2 lg:gap-3">
-            <Button
-              variant="ghost"
-              size="sm"
-              className={`hidden sm:inline-flex text-sm px-4 ${
-                scrolled
-                  ? "text-foreground/80 hover:text-foreground"
-                  : "text-white/80 hover:text-white hover:bg-white/10"
-              }`}
-            >
-              <LogIn className="w-4 h-4 mr-1.5" />
-              Log In
-            </Button>
-            <Button
-              variant="default"
-              size="sm"
-              className="hidden sm:inline-flex text-sm px-5"
-            >
-              <UserPlus className="w-4 h-4 mr-1.5" />
-              Sign Up
-            </Button>
             <button
               onClick={() => setMobileOpen(!mobileOpen)}
               className={`lg:hidden inline-flex items-center justify-center w-9 h-9 rounded-lg transition-colors ${
