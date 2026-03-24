@@ -699,7 +699,7 @@ const VirtualOfficeLanding = () => {
 
   return (
     <FormDialogContext.Provider value={{ open: () => setFormOpen(true) }}>
-      <AppLayout>
+      <AppLayout onNavCtaClick={() => setFormOpen(true)}>
         <main>
           <HeroSection />
           <PainAndCards />
