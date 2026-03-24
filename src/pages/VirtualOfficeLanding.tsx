@@ -247,7 +247,7 @@ const WhyFlashSpace = () => {
           </BentoCard>
 
           {/* Element 4 — Premium Address — Soft peach */}
-          <BentoCard className="md:col-span-2 relative overflow-hidden order-5 md:order-none border-transparent" delay={0.15} style={{ background: 'hsl(20 40% 96%)' }}>
+          <BentoCard className="md:col-span-2 relative overflow-hidden order-5 md:order-none border-transparent" delay={0.15} style={{ background: 'hsl(30 20% 97%)' }}>
             <div className="absolute inset-0 opacity-[0.08] pointer-events-none" style={{ backgroundImage: 'url("https://images.unsplash.com/photo-1486325212027-8081e485255e?w=600&q=80")', backgroundSize: 'cover', backgroundPosition: 'center' }} aria-hidden="true" />
             <div className="relative z-10">
               <span className="inline-flex items-center gap-1.5 text-xs font-semibold text-primary tracking-wide mb-3">
