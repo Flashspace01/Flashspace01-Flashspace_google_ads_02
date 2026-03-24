@@ -12,6 +12,8 @@ import {
   CheckCircle2,
   MessageCircle,
   Plus,
+  Building2,
+  TrendingDown,
 } from "lucide-react";
 import {
   Accordion,
