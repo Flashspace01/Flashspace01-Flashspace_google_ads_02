@@ -157,16 +157,19 @@ const BentoCard = ({
   children,
   className = "",
   delay = 0,
+  style,
 }: {
   children: React.ReactNode;
   className?: string;
   delay?: number;
+  style?: React.CSSProperties;
 }) => (
   <motion.div
     initial={{ opacity: 0, y: 20 }}
     whileInView={{ opacity: 1, y: 0 }}
     viewport={{ once: true }}
     transition={{ delay, duration: 0.5, ease: [0.25, 0.4, 0.25, 1] }}
+    style={style}
     className={`rounded-[24px] border border-border/40 p-5 lg:p-6 flex flex-col justify-between shadow-[0_2px_40px_-12px_rgba(0,0,0,0.08)] hover:shadow-[0_8px_50px_-12px_rgba(0,0,0,0.15)] hover:scale-[1.02] hover:-translate-y-1 transition-all duration-300 ${className}`}
   >
     {children}
