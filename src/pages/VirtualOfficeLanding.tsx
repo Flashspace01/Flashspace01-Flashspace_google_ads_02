@@ -176,23 +176,6 @@ const BentoCard = ({
   </motion.div>
 );
 
-const DashboardSnippet = ({ title, rows }: { title: string; rows: string[] }) => (
-  <div className="rounded-xl border border-border/30 bg-background/80 backdrop-blur-sm shadow-sm p-3 max-w-[200px]" aria-hidden="true">
-    <div className="flex items-center gap-1.5 mb-2">
-      <div className="w-2 h-2 rounded-full bg-red-400" />
-      <div className="w-2 h-2 rounded-full bg-yellow-400" />
-      <div className="w-2 h-2 rounded-full bg-green-400" />
-      <span className="text-[10px] text-muted-foreground ml-1 font-medium">{title}</span>
-    </div>
-    {rows.map((r, i) => (
-      <div key={i} className="flex items-center gap-2 mb-1.5">
-        <div className="h-1.5 rounded-full bg-primary/20" style={{ width: `${60 + i * 15}%` }} />
-        <span className="text-[9px] text-muted-foreground whitespace-nowrap">{r}</span>
-      </div>
-    ))}
-  </div>
-);
-
 const WhyFlashSpace = () => {
   const scrollTo = (id: string) => document.querySelector(id)?.scrollIntoView({ behavior: "smooth" });
 
