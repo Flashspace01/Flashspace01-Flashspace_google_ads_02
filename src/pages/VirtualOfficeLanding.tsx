@@ -184,12 +184,12 @@ const HeroSection = () => {
           variants={fadeUp}
           initial="hidden"
           animate="visible"
-          className="text-3xl sm:text-4xl lg:text-[52px] font-bold tracking-tight text-foreground leading-[1.2] lg:leading-[1.15] mb-5"
+          className="text-3xl sm:text-4xl lg:text-[52px] font-bold tracking-tight text-white leading-[1.2] lg:leading-[1.15] mb-5"
         >
           Virtual Office{" "}
-          <span className="text-primary">@ ₹699/month</span>
+          <span className="text-secondary">@ ₹699/month</span>
           <br />
-          <span className="text-muted-foreground text-xl sm:text-2xl lg:text-3xl font-medium">Activated in Just 1–2 Days</span>
+          <span className="text-white/70 text-xl sm:text-2xl lg:text-3xl font-medium">Activated in Just 1–2 Days</span>
         </motion.h1>
 
         <motion.p
