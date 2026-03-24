@@ -22,8 +22,8 @@ export const Navbar = ({ onCtaClick }: NavbarProps) => {
       initial={{ y: -20, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.5 }}
-      className={`fixed top-0 left-0 right-0 z-[60] transition-all duration-300 ${
-        scrolled ? "bg-card shadow-md border-b border-border/30" : "bg-transparent"
+      className={`fixed top-0 left-0 right-0 z-[60] transition-all duration-300 bg-card ${
+        scrolled ? "shadow-md border-b border-border/30" : ""
       }`}
     >
       <div className="container mx-auto px-4 lg:px-8">
