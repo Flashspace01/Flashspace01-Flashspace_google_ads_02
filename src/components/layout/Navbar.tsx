@@ -36,9 +36,7 @@ export const Navbar = ({ onCtaClick }: NavbarProps) => {
             {/* Support number */}
             <a
               href="tel:+919876543210"
-              className={`inline-flex items-center gap-2 text-sm font-medium transition-colors ${
-                scrolled ? "text-foreground/80 hover:text-primary" : "text-white/80 hover:text-white"
-              }`}
+              className="inline-flex items-center gap-2 text-sm font-medium transition-colors text-foreground/80 hover:text-primary"
             >
               <Phone className="w-4 h-4" />
               <span className="hidden sm:inline">+91 98765 43210</span>
