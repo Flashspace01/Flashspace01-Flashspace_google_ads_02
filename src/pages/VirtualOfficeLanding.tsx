@@ -178,7 +178,7 @@ const WhyFlashSpace = () => {
 
   return (
     <section className="py-20 lg:py-28 bg-muted/30">
-      <div className="container mx-auto px-4 lg:px-8 max-w-5xl">
+      <div className="container mx-auto px-4 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-3 md:grid-rows-3 gap-5">
           {/* Element 5 — ₹699/mo — Left col, spans 2 rows */}
           <BentoCard className="bg-foreground text-background border-foreground/20 md:row-span-2 md:min-h-[540px] order-2 md:order-none" delay={0}>
