@@ -163,7 +163,14 @@ const HeroSection = () => {
 
   return (
     <section className="relative flex items-center justify-center overflow-hidden bg-background py-28 lg:py-36">
-      <div className="absolute inset-0 pointer-events-none" style={{ background: "linear-gradient(180deg, hsl(var(--muted)/0.3) 0%, transparent 60%)" }} />
+      {/* Background image */}
+      <img
+        src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1600&h=900&fit=crop"
+        alt=""
+        className="absolute inset-0 w-full h-full object-cover"
+        loading="eager"
+      />
+      <div className="absolute inset-0 bg-foreground/60" />
 
       <div className="relative z-10 container mx-auto px-4 lg:px-8 text-center max-w-3xl">
         <motion.div custom={0} variants={fadeUp} initial="hidden" animate="visible" className="mb-4">
