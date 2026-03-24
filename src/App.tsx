@@ -17,6 +17,7 @@ const App = () => (
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<VirtualOfficeLanding />} />
+          <Route path="/get-started" element={<GetStarted />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
