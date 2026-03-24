@@ -3,12 +3,13 @@ import { Navbar } from "./Navbar";
 
 interface AppLayoutProps {
   children: ReactNode;
+  onNavCtaClick?: () => void;
 }
 
-export const AppLayout = ({ children }: AppLayoutProps) => {
+export const AppLayout = ({ children, onNavCtaClick }: AppLayoutProps) => {
   return (
     <div className="min-h-screen flex flex-col">
-      <Navbar />
+      <Navbar onCtaClick={onNavCtaClick} />
       <main className="flex-1">
         {children}
       </main>
