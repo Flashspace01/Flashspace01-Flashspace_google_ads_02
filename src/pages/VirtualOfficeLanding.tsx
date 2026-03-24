@@ -176,15 +176,26 @@ const BentoCard = ({
 const WhyFlashSpace = () => {
   const scrollTo = (id: string) => document.querySelector(id)?.scrollIntoView({ behavior: "smooth" });
 
+  const IconBox = ({ children }: { children: React.ReactNode }) => (
+    <div className="w-12 h-12 rounded-xl bg-secondary flex items-center justify-center shrink-0">
+      {children}
+    </div>
+  );
+
   return (
     <section className="py-20 lg:py-28 bg-muted/30">
       <div className="container mx-auto px-4 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-3 md:grid-rows-3 gap-5">
           {/* Element 5 — ₹699/mo — Left col, spans 2 rows */}
           <BentoCard className="bg-foreground text-background border-foreground/10 md:row-span-2 md:min-h-[540px] order-2 md:order-none relative overflow-hidden" delay={0}>
+            <div className="absolute inset-0 opacity-[0.06] pointer-events-none" style={{ backgroundImage: 'url("https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=600&q=80")', backgroundSize: 'cover', backgroundPosition: 'center' }} />
             <div className="absolute -top-4 -right-4 text-[120px] leading-none opacity-10 font-extrabold select-none pointer-events-none">₹</div>
-            <div className="text-6xl mb-6">💰</div>
-            <div className="mt-auto">
+            <div className="relative z-10">
+              <div className="w-12 h-12 rounded-xl bg-background/15 flex items-center justify-center">
+                <IndianRupee className="w-6 h-6 text-primary" />
+              </div>
+            </div>
+            <div className="mt-auto relative z-10">
               <h3 className="text-6xl lg:text-7xl font-black tracking-tight mb-1">₹699<span className="text-2xl font-medium opacity-50">/mo</span></h3>
               <p className="text-background/50 text-sm leading-relaxed mt-3">Premium business address.<br/>No premium price.</p>
             </div>
@@ -192,19 +203,23 @@ const WhyFlashSpace = () => {
 
           {/* Element 1 — 5-10x Cheaper — Top right, spans 2 cols */}
           <BentoCard className="md:col-span-2 bg-card relative overflow-hidden order-3 md:order-none" delay={0.05}>
-            <div className="absolute -bottom-2 -right-2 text-[100px] leading-none opacity-[0.07] font-black select-none pointer-events-none">10x</div>
-            <div className="text-5xl mb-4">📉</div>
-            <div className="mt-auto">
+            <div className="absolute inset-0 opacity-[0.04] pointer-events-none" style={{ backgroundImage: 'url("https://images.unsplash.com/photo-1497366216548-37526070297c?w=600&q=80")', backgroundSize: 'cover', backgroundPosition: 'center' }} />
+            <div className="absolute -bottom-2 -right-2 text-[100px] leading-none opacity-[0.05] font-black select-none pointer-events-none text-foreground">10x</div>
+            <div className="relative z-10">
+              <IconBox><TrendingDown className="w-6 h-6 text-primary" /></IconBox>
+            </div>
+            <div className="mt-auto relative z-10">
               <h3 className="text-6xl lg:text-7xl font-black tracking-tight text-foreground mb-1">5–10x</h3>
               <p className="text-sm text-muted-foreground leading-relaxed mt-2">Cheaper than renting physical office space.</p>
             </div>
           </BentoCard>
 
-          {/* Center Piece — Header + CTA — Glassmorphism */}
-          <BentoCard className="bg-primary/90 backdrop-blur-xl text-primary-foreground border-primary/20 items-center text-center order-first md:order-none shadow-[0_8px_60px_-12px_hsl(var(--primary)/0.4)]" delay={0}>
-            <div className="flex-1 flex flex-col items-center justify-center gap-5">
-              <span className="text-[10px] font-bold uppercase tracking-[0.2em] opacity-70">Why FlashSpace</span>
-              <h2 className="text-2xl sm:text-3xl font-black leading-tight tracking-tight">Why Businesses Choose FlashSpace</h2>
+          {/* Center Piece — Header + CTA */}
+          <BentoCard className="bg-primary text-primary-foreground border-primary/20 items-center text-center order-first md:order-none relative overflow-hidden" delay={0}>
+            <div className="absolute inset-0 opacity-20 pointer-events-none" style={{ backgroundImage: 'url("https://images.unsplash.com/photo-1497366811353-6870744d04b2?w=600&q=80")', backgroundSize: 'cover', backgroundPosition: 'center' }} />
+            <div className="absolute inset-0 bg-primary/80 pointer-events-none" />
+            <div className="flex-1 flex flex-col items-center justify-center gap-5 relative z-10">
+              <h2 className="text-2xl sm:text-3xl font-medium leading-tight tracking-tight">Why Businesses Choose FlashSpace</h2>
               <Button size="lg" variant="white" className="rounded-xl font-bold mt-2 shadow-lg" onClick={() => scrollTo("#contact")}>
                 Get Started <ArrowRight className="w-4 h-4 ml-2" />
               </Button>
@@ -213,9 +228,12 @@ const WhyFlashSpace = () => {
 
           {/* Element 2 — 24hr Setup */}
           <BentoCard className="bg-secondary border-secondary/40 relative overflow-hidden order-4 md:order-none" delay={0.1}>
-            <div className="absolute -top-2 -right-2 text-[90px] leading-none opacity-[0.08] font-black select-none pointer-events-none">⏰</div>
-            <div className="text-5xl mb-4">⚡</div>
-            <div className="mt-auto">
+            <div className="relative z-10">
+              <div className="w-12 h-12 rounded-xl bg-primary/15 flex items-center justify-center">
+                <Clock className="w-6 h-6 text-primary" />
+              </div>
+            </div>
+            <div className="mt-auto relative z-10">
               <h3 className="text-5xl lg:text-6xl font-black tracking-tight text-secondary-foreground mb-1">24hr</h3>
               <p className="text-xs text-secondary-foreground/60 leading-relaxed mt-1">Complete setup within a single day.</p>
             </div>
@@ -223,8 +241,9 @@ const WhyFlashSpace = () => {
 
           {/* Element 4 — Premium Address — Bottom left, spans 2 cols */}
           <BentoCard className="md:col-span-2 bg-card relative overflow-hidden order-5 md:order-none" delay={0.15}>
-            <div className="flex items-center justify-center gap-8 h-full">
-              <div className="text-6xl shrink-0">🏢</div>
+            <div className="absolute inset-0 opacity-[0.04] pointer-events-none" style={{ backgroundImage: 'url("https://images.unsplash.com/photo-1486325212027-8081e485255e?w=600&q=80")', backgroundSize: 'cover', backgroundPosition: 'center' }} />
+            <div className="flex items-center justify-center gap-8 h-full relative z-10">
+              <IconBox><Building2 className="w-6 h-6 text-primary" /></IconBox>
               <div>
                 <h3 className="text-2xl lg:text-3xl font-black text-foreground tracking-tight mb-2">Premium Business Address</h3>
                 <p className="text-sm text-muted-foreground leading-relaxed">Prestigious prime locations in Delhi, Mumbai, Bangalore & more.</p>
@@ -234,8 +253,10 @@ const WhyFlashSpace = () => {
 
           {/* Element 3 — 100% Compliant */}
           <BentoCard className="bg-card relative overflow-hidden order-6 md:order-none" delay={0.18}>
-            <div className="text-5xl mb-4">🛡️</div>
-            <div className="mt-auto">
+            <div className="relative z-10">
+              <IconBox><Shield className="w-6 h-6 text-primary" /></IconBox>
+            </div>
+            <div className="mt-auto relative z-10">
               <h3 className="text-lg font-black text-foreground tracking-tight mb-1">100% Compliant</h3>
               <p className="text-xs text-muted-foreground leading-relaxed">GST & MCA approved across all Indian states.</p>
             </div>
