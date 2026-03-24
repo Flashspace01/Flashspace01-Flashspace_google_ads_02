@@ -192,7 +192,7 @@ const WhyFlashSpace = () => {
         <div className="grid grid-cols-1 md:grid-cols-3 md:grid-rows-3 gap-4">
 
           {/* Element 5 — ₹699/mo — Warm cream/beige */}
-          <BentoCard className="md:row-span-2 md:min-h-[360px] order-2 md:order-none relative overflow-hidden border-transparent" delay={0} style={{ background: 'hsl(40 40% 96%)' }}>
+          <BentoCard className="md:row-span-2 md:min-h-[360px] order-2 md:order-none relative overflow-hidden border-transparent" delay={0} style={{ background: 'hsl(40 30% 97%)' }}>
             <div className="absolute inset-0 opacity-[0.08] pointer-events-none" style={{ backgroundImage: 'url("https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=600&q=80")', backgroundSize: 'cover', backgroundPosition: 'center' }} aria-hidden="true" />
             <div className="relative z-10">
               <span className="inline-flex items-center gap-1.5 text-xs font-semibold text-primary tracking-wide">
