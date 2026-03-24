@@ -3,16 +3,11 @@ import { Button } from "@/components/ui/button";
 import {
   ArrowRight,
   Shield,
-  Mail,
-  Globe,
   Clock,
   BadgeCheck,
   IndianRupee,
   Headphones,
   CheckCircle2,
-  MessageCircle,
-  Plus,
-  Building2,
   TrendingDown,
 } from "lucide-react";
 import {
