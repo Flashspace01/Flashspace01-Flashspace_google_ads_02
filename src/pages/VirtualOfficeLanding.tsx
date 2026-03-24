@@ -213,7 +213,7 @@ const HeroSection = () => {
           </Button>
         </motion.div>
 
-        <motion.div custom={0.2} variants={fadeUp} initial="hidden" animate="visible" className="flex flex-wrap justify-center gap-5 text-muted-foreground text-sm">
+        <motion.div custom={0.2} variants={fadeUp} initial="hidden" animate="visible" className="flex flex-wrap justify-center gap-5 text-white/80 text-sm">
           {["1000+ Businesses", "GST Approved", "No Hidden Fees", "Setup in 1-2 Days"].map((t) => (
             <span key={t} className="inline-flex items-center gap-1.5">
               <CheckCircle2 className="w-4 h-4 text-primary" />
