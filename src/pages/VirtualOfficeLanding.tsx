@@ -205,27 +205,22 @@ const WhyFlashSpace = () => {
 
           {/* 5-10x Cheaper — Light green */}
           <BentoCard className="md:col-span-2 relative overflow-hidden order-3 md:order-none border-transparent" delay={0.05} style={{ background: 'hsl(140 30% 96%)' }}>
-            <div className="flex justify-between items-start gap-4">
-              <div className="relative z-10 flex-1">
-                <span className="inline-flex items-center gap-1.5 text-xs font-semibold text-primary tracking-wide mb-4">
-                  <TrendingDown className="w-3.5 h-3.5" /> Cost Savings
-                </span>
-                <h3 className="text-4xl lg:text-5xl font-black tracking-tighter text-foreground leading-none mb-3">5–10x Cheaper.</h3>
-                <p className="text-muted-foreground text-sm leading-relaxed mb-4">Than renting physical office space. Save thousands every month.</p>
-                <span className="inline-flex items-center gap-1 text-sm font-semibold text-foreground hover:text-primary transition-colors cursor-pointer">
-                  Compare Costs <ArrowRight className="w-3.5 h-3.5" />
-                </span>
-              </div>
-              <div className="hidden lg:block">
-                <DashboardSnippet title="Cost Comparison" rows={["Physical: ₹8,000", "Virtual: ₹699", "You save: ₹7,301"]} />
-              </div>
+            <div className="relative z-10">
+              <span className="inline-flex items-center gap-1.5 text-xs font-semibold text-primary tracking-wide mb-4">
+                <TrendingDown className="w-3.5 h-3.5" /> Cost Savings
+              </span>
+              <h3 className="text-2xl lg:text-3xl font-bold tracking-tight text-foreground leading-none mb-3">5–10x Cheaper.</h3>
+              <p className="text-muted-foreground text-sm leading-relaxed mb-4">Than renting physical office space. Save thousands every month.</p>
+              <span className="inline-flex items-center gap-1 text-sm font-semibold text-foreground hover:text-primary transition-colors cursor-pointer">
+                Compare Costs <ArrowRight className="w-3.5 h-3.5" />
+              </span>
             </div>
           </BentoCard>
 
           {/* Center — Dark green anchor */}
           <BentoCard className="bg-primary text-primary-foreground border-primary/20 items-center text-center order-first md:order-none" delay={0}>
             <div className="flex-1 flex flex-col items-center justify-center gap-4">
-              <h2 id="why-flashspace-heading" className="text-xl sm:text-2xl font-semibold leading-tight tracking-tight">Why Businesses Choose FlashSpace</h2>
+              <h2 id="why-flashspace-heading" className="text-xl sm:text-2xl font-bold leading-tight tracking-tight">Why Businesses Choose FlashSpace</h2>
               <Button size="lg" variant="white" className="rounded-xl font-bold shadow-lg" onClick={() => scrollTo("#contact")} aria-label="Get started with FlashSpace virtual office">
                 Get Started <ArrowRight className="w-4 h-4 ml-2" aria-hidden="true" />
               </Button>
@@ -240,30 +235,24 @@ const WhyFlashSpace = () => {
               </span>
             </div>
             <div className="mt-auto relative z-10">
-              <DashboardSnippet title="Setup Progress" rows={["KYC Verified", "Address Assigned", "GST Ready ✓"]} />
-              <h3 className="text-3xl lg:text-4xl font-black tracking-tighter text-foreground leading-none mb-2 mt-3">24hr Setup.</h3>
-              <span className="inline-flex items-center gap-1 text-xs font-semibold text-foreground hover:text-primary transition-colors cursor-pointer">
-                Start Now <ArrowRight className="w-3 h-3" />
+              <h3 className="text-2xl lg:text-3xl font-bold tracking-tight text-foreground leading-none mb-2">24hr Setup.</h3>
+              <span className="inline-flex items-center gap-1 text-sm font-semibold text-foreground hover:text-primary transition-colors cursor-pointer">
+                Start Now <ArrowRight className="w-3.5 h-3.5" />
               </span>
             </div>
           </BentoCard>
 
           {/* Premium Address — Soft peach */}
           <BentoCard className="md:col-span-2 relative overflow-hidden order-5 md:order-none border-transparent" delay={0.15} style={{ background: 'hsl(30 30% 97%)' }}>
-            <div className="flex justify-between items-center gap-6 h-full">
-              <div className="relative z-10 flex-1">
-                <span className="inline-flex items-center gap-1.5 text-xs font-semibold text-primary tracking-wide mb-3">
-                  <Building2 className="w-3.5 h-3.5" /> Premium Locations
-                </span>
-                <h3 className="text-xl lg:text-2xl font-black text-foreground tracking-tighter mb-1">Premium Business Address.</h3>
-                <p className="text-sm text-muted-foreground leading-relaxed mb-3">Prestigious prime locations in Delhi, Mumbai, Bangalore & more.</p>
-                <span className="inline-flex items-center gap-1 text-sm font-semibold text-foreground hover:text-primary transition-colors cursor-pointer">
-                  See Locations <ArrowRight className="w-3.5 h-3.5" />
-                </span>
-              </div>
-              <div className="hidden lg:block">
-                <DashboardSnippet title="Your Office" rows={["Delhi NCR", "Mumbai BKC", "Bangalore HSR"]} />
-              </div>
+            <div className="relative z-10">
+              <span className="inline-flex items-center gap-1.5 text-xs font-semibold text-primary tracking-wide mb-3">
+                <Building2 className="w-3.5 h-3.5" /> Premium Locations
+              </span>
+              <h3 className="text-2xl lg:text-3xl font-bold text-foreground tracking-tight mb-1">Premium Business Address.</h3>
+              <p className="text-sm text-muted-foreground leading-relaxed mb-3">Prestigious prime locations in Delhi, Mumbai, Bangalore & more.</p>
+              <span className="inline-flex items-center gap-1 text-sm font-semibold text-foreground hover:text-primary transition-colors cursor-pointer">
+                See Locations <ArrowRight className="w-3.5 h-3.5" />
+              </span>
             </div>
           </BentoCard>
 
@@ -275,10 +264,10 @@ const WhyFlashSpace = () => {
               </span>
             </div>
             <div className="mt-auto relative z-10">
-              <h3 className="text-lg font-black text-foreground tracking-tighter mb-1">100% Compliant.</h3>
-              <p className="text-xs text-muted-foreground leading-relaxed mb-3">GST & MCA approved across all Indian states.</p>
-              <span className="inline-flex items-center gap-1 text-xs font-semibold text-foreground hover:text-primary transition-colors cursor-pointer">
-                Learn More <ArrowRight className="w-3 h-3" />
+              <h3 className="text-2xl lg:text-3xl font-bold text-foreground tracking-tight mb-1">100% Compliant.</h3>
+              <p className="text-sm text-muted-foreground leading-relaxed mb-3">GST & MCA approved across all Indian states.</p>
+              <span className="inline-flex items-center gap-1 text-sm font-semibold text-foreground hover:text-primary transition-colors cursor-pointer">
+                Learn More <ArrowRight className="w-3.5 h-3.5" />
               </span>
             </div>
           </BentoCard>
