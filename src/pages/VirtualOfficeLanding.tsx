@@ -176,53 +176,70 @@ const BentoCard = ({
   </motion.div>
 );
 
+const DashboardSnippet = ({ title, rows }: { title: string; rows: string[] }) => (
+  <div className="rounded-xl border border-border/30 bg-background/80 backdrop-blur-sm shadow-sm p-3 max-w-[200px]" aria-hidden="true">
+    <div className="flex items-center gap-1.5 mb-2">
+      <div className="w-2 h-2 rounded-full bg-red-400" />
+      <div className="w-2 h-2 rounded-full bg-yellow-400" />
+      <div className="w-2 h-2 rounded-full bg-green-400" />
+      <span className="text-[10px] text-muted-foreground ml-1 font-medium">{title}</span>
+    </div>
+    {rows.map((r, i) => (
+      <div key={i} className="flex items-center gap-2 mb-1.5">
+        <div className="h-1.5 rounded-full bg-primary/20" style={{ width: `${60 + i * 15}%` }} />
+        <span className="text-[9px] text-muted-foreground whitespace-nowrap">{r}</span>
+      </div>
+    ))}
+  </div>
+);
+
 const WhyFlashSpace = () => {
   const scrollTo = (id: string) => document.querySelector(id)?.scrollIntoView({ behavior: "smooth" });
-
-  /* Icon: primary (green) container + secondary (yellow) icon */
-  const IconBox = ({ children }: { children: React.ReactNode }) => (
-    <div className="w-12 h-12 rounded-xl bg-primary flex items-center justify-center shrink-0">
-      {children}
-    </div>
-  );
 
   return (
     <section className="py-12 lg:py-16 bg-muted/30" aria-labelledby="why-flashspace-heading">
       <div className="container mx-auto px-4 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-3 md:grid-rows-3 gap-4">
 
-          {/* Element 5 — ₹699/mo — Warm cream/beige */}
-          <BentoCard className="md:row-span-2 md:min-h-[360px] order-2 md:order-none relative overflow-hidden border-transparent" delay={0} style={{ background: 'hsl(40 30% 97%)' }}>
-            <div className="absolute inset-0 opacity-[0.08] pointer-events-none" style={{ backgroundImage: 'url("https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=600&q=80")', backgroundSize: 'cover', backgroundPosition: 'center' }} aria-hidden="true" />
+          {/* ₹699/mo — Pale yellow */}
+          <BentoCard className="md:row-span-2 md:min-h-[360px] order-2 md:order-none relative overflow-hidden border-transparent" delay={0} style={{ background: 'hsl(48 60% 96%)' }}>
             <div className="relative z-10">
               <span className="inline-flex items-center gap-1.5 text-xs font-semibold text-primary tracking-wide">
                 <IndianRupee className="w-3.5 h-3.5" /> Pricing
               </span>
             </div>
             <div className="mt-auto relative z-10">
-              <h3 className="text-4xl lg:text-5xl font-black tracking-tight text-foreground leading-none mb-2">
+              <h3 className="text-5xl lg:text-6xl font-black tracking-tighter text-foreground leading-none mb-3">
                 ₹699<span className="text-lg font-medium text-muted-foreground">/mo</span>
               </h3>
-              <p className="text-foreground/80 font-semibold text-base mb-1">Premium Address. No Premium Price.</p>
-              <p className="text-muted-foreground text-sm leading-relaxed">Everything you need to register your business — without the overhead of a physical office.</p>
-            </div>
-          </BentoCard>
-
-          {/* Element 1 — 5-10x Cheaper — Light mint/sage */}
-          <BentoCard className="md:col-span-2 relative overflow-hidden order-3 md:order-none border-transparent" delay={0.05} style={{ background: 'hsl(150 20% 97%)' }}>
-            <div className="absolute inset-0 opacity-[0.08] pointer-events-none" style={{ backgroundImage: 'url("https://images.unsplash.com/photo-1497366216548-37526070297c?w=600&q=80")', backgroundSize: 'cover', backgroundPosition: 'center' }} aria-hidden="true" />
-            <div className="relative z-10">
-              <span className="inline-flex items-center gap-1.5 text-xs font-semibold text-primary tracking-wide">
-                <TrendingDown className="w-3.5 h-3.5" /> Cost Savings
+              <p className="text-foreground font-semibold text-base mb-1">Premium Address. No Premium Price.</p>
+              <p className="text-muted-foreground text-sm leading-relaxed mb-4">Everything you need to register — without the overhead of a physical office.</p>
+              <span className="inline-flex items-center gap-1 text-sm font-semibold text-foreground hover:text-primary transition-colors cursor-pointer">
+                View Plans <ArrowRight className="w-3.5 h-3.5" />
               </span>
             </div>
-            <div className="mt-auto relative z-10">
-              <h3 className="text-4xl lg:text-5xl font-black tracking-tight text-foreground leading-none mb-2">5–10x Cheaper.</h3>
-              <p className="text-muted-foreground text-sm leading-relaxed">Than renting physical office space. Save thousands every month while staying fully compliant.</p>
+          </BentoCard>
+
+          {/* 5-10x Cheaper — Light green */}
+          <BentoCard className="md:col-span-2 relative overflow-hidden order-3 md:order-none border-transparent" delay={0.05} style={{ background: 'hsl(140 30% 96%)' }}>
+            <div className="flex justify-between items-start gap-4">
+              <div className="relative z-10 flex-1">
+                <span className="inline-flex items-center gap-1.5 text-xs font-semibold text-primary tracking-wide mb-4">
+                  <TrendingDown className="w-3.5 h-3.5" /> Cost Savings
+                </span>
+                <h3 className="text-4xl lg:text-5xl font-black tracking-tighter text-foreground leading-none mb-3">5–10x Cheaper.</h3>
+                <p className="text-muted-foreground text-sm leading-relaxed mb-4">Than renting physical office space. Save thousands every month.</p>
+                <span className="inline-flex items-center gap-1 text-sm font-semibold text-foreground hover:text-primary transition-colors cursor-pointer">
+                  Compare Costs <ArrowRight className="w-3.5 h-3.5" />
+                </span>
+              </div>
+              <div className="hidden lg:block">
+                <DashboardSnippet title="Cost Comparison" rows={["Physical: ₹8,000", "Virtual: ₹699", "You save: ₹7,301"]} />
+              </div>
             </div>
           </BentoCard>
 
-          {/* Center Piece — Primary green, clean */}
+          {/* Center — Dark green anchor */}
           <BentoCard className="bg-primary text-primary-foreground border-primary/20 items-center text-center order-first md:order-none" delay={0}>
             <div className="flex-1 flex flex-col items-center justify-center gap-4">
               <h2 id="why-flashspace-heading" className="text-xl sm:text-2xl font-semibold leading-tight tracking-tight">Why Businesses Choose FlashSpace</h2>
@@ -232,43 +249,54 @@ const WhyFlashSpace = () => {
             </div>
           </BentoCard>
 
-          {/* Element 2 — 24hr Setup — Soft lavender */}
-          <BentoCard className="relative overflow-hidden order-4 md:order-none border-transparent" delay={0.1} style={{ background: 'hsl(40 25% 97%)' }}>
-            <div className="absolute inset-0 opacity-[0.08] pointer-events-none" style={{ backgroundImage: 'url("https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=600&q=80")', backgroundSize: 'cover', backgroundPosition: 'center' }} aria-hidden="true" />
+          {/* 24hr Setup — Light blue */}
+          <BentoCard className="relative overflow-hidden order-4 md:order-none border-transparent" delay={0.1} style={{ background: 'hsl(210 40% 97%)' }}>
             <div className="relative z-10">
               <span className="inline-flex items-center gap-1.5 text-xs font-semibold text-primary tracking-wide">
                 <Clock className="w-3.5 h-3.5" /> Quick Setup
               </span>
             </div>
             <div className="mt-auto relative z-10">
-              <h3 className="text-3xl lg:text-4xl font-black tracking-tight text-foreground leading-none mb-2">24hr Setup.</h3>
-              <p className="text-muted-foreground text-xs leading-relaxed">Complete documentation and setup within a single business day.</p>
-            </div>
-          </BentoCard>
-
-          {/* Element 4 — Premium Address — Soft peach */}
-          <BentoCard className="md:col-span-2 relative overflow-hidden order-5 md:order-none border-transparent" delay={0.15} style={{ background: 'hsl(30 20% 97%)' }}>
-            <div className="absolute inset-0 opacity-[0.08] pointer-events-none" style={{ backgroundImage: 'url("https://images.unsplash.com/photo-1486325212027-8081e485255e?w=600&q=80")', backgroundSize: 'cover', backgroundPosition: 'center' }} aria-hidden="true" />
-            <div className="relative z-10">
-              <span className="inline-flex items-center gap-1.5 text-xs font-semibold text-primary tracking-wide mb-3">
-                <Building2 className="w-3.5 h-3.5" /> Premium Locations
+              <DashboardSnippet title="Setup Progress" rows={["KYC Verified", "Address Assigned", "GST Ready ✓"]} />
+              <h3 className="text-3xl lg:text-4xl font-black tracking-tighter text-foreground leading-none mb-2 mt-3">24hr Setup.</h3>
+              <span className="inline-flex items-center gap-1 text-xs font-semibold text-foreground hover:text-primary transition-colors cursor-pointer">
+                Start Now <ArrowRight className="w-3 h-3" />
               </span>
-              <h3 className="text-xl lg:text-2xl font-black text-foreground tracking-tight mb-1">Premium Business Address.</h3>
-              <p className="text-sm text-muted-foreground leading-relaxed">Prestigious prime locations in Delhi, Mumbai, Bangalore & more cities across India.</p>
             </div>
           </BentoCard>
 
-          {/* Element 3 — 100% Compliant — Cool slate */}
-          <BentoCard className="relative overflow-hidden order-6 md:order-none border-transparent" delay={0.18} style={{ background: 'hsl(160 15% 97%)' }}>
-            <div className="absolute inset-0 opacity-[0.08] pointer-events-none" style={{ backgroundImage: 'url("https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=600&q=80")', backgroundSize: 'cover', backgroundPosition: 'center' }} aria-hidden="true" />
+          {/* Premium Address — Soft peach */}
+          <BentoCard className="md:col-span-2 relative overflow-hidden order-5 md:order-none border-transparent" delay={0.15} style={{ background: 'hsl(30 30% 97%)' }}>
+            <div className="flex justify-between items-center gap-6 h-full">
+              <div className="relative z-10 flex-1">
+                <span className="inline-flex items-center gap-1.5 text-xs font-semibold text-primary tracking-wide mb-3">
+                  <Building2 className="w-3.5 h-3.5" /> Premium Locations
+                </span>
+                <h3 className="text-xl lg:text-2xl font-black text-foreground tracking-tighter mb-1">Premium Business Address.</h3>
+                <p className="text-sm text-muted-foreground leading-relaxed mb-3">Prestigious prime locations in Delhi, Mumbai, Bangalore & more.</p>
+                <span className="inline-flex items-center gap-1 text-sm font-semibold text-foreground hover:text-primary transition-colors cursor-pointer">
+                  See Locations <ArrowRight className="w-3.5 h-3.5" />
+                </span>
+              </div>
+              <div className="hidden lg:block">
+                <DashboardSnippet title="Your Office" rows={["Delhi NCR", "Mumbai BKC", "Bangalore HSR"]} />
+              </div>
+            </div>
+          </BentoCard>
+
+          {/* 100% Compliant — Mint green */}
+          <BentoCard className="relative overflow-hidden order-6 md:order-none border-transparent" delay={0.18} style={{ background: 'hsl(160 30% 96%)' }}>
             <div className="relative z-10">
               <span className="inline-flex items-center gap-1.5 text-xs font-semibold text-primary tracking-wide">
                 <Shield className="w-3.5 h-3.5" /> Compliance
               </span>
             </div>
             <div className="mt-auto relative z-10">
-              <h3 className="text-lg font-black text-foreground tracking-tight mb-1">100% Compliant.</h3>
-              <p className="text-xs text-muted-foreground leading-relaxed">GST & MCA approved across all Indian states.</p>
+              <h3 className="text-lg font-black text-foreground tracking-tighter mb-1">100% Compliant.</h3>
+              <p className="text-xs text-muted-foreground leading-relaxed mb-3">GST & MCA approved across all Indian states.</p>
+              <span className="inline-flex items-center gap-1 text-xs font-semibold text-foreground hover:text-primary transition-colors cursor-pointer">
+                Learn More <ArrowRight className="w-3 h-3" />
+              </span>
             </div>
           </BentoCard>
         </div>
