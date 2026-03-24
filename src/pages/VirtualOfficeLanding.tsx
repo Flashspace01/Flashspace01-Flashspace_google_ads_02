@@ -492,7 +492,8 @@ const ThreeStepsSection = () => {
   const { open } = useFormDialog();
 
   return (
-    <section className="py-20 lg:py-28 bg-muted/20">
+    <section className="py-20 lg:py-28 bg-muted/20 relative overflow-hidden">
+      <img src="https://images.unsplash.com/photo-1497366811353-6870744d04b2?w=1600&h=900&fit=crop" alt="" className="absolute inset-0 w-full h-full object-cover opacity-[0.04]" loading="lazy" />
       <div className="container mx-auto px-4 lg:px-8">
         <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center mb-14">
           <span className="text-xs font-bold text-primary uppercase tracking-widest mb-3 block">How It Works</span>
