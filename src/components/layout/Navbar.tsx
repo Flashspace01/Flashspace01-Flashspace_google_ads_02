@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import { Menu, X, LogIn, UserPlus } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import flashspaceLogo from "@/assets/flashspace-logo.png";
 
 const navLinks = [
