@@ -167,7 +167,7 @@ const BentoCard = ({
     whileInView={{ opacity: 1, y: 0 }}
     viewport={{ once: true }}
     transition={{ delay, duration: 0.5, ease: [0.25, 0.4, 0.25, 1] }}
-    className={`rounded-[24px] bg-card border border-border/60 p-7 flex flex-col justify-between hover:scale-[1.03] hover:-translate-y-1 hover:shadow-xl transition-all duration-300 ${className}`}
+    className={`rounded-[24px] border border-border/40 p-8 lg:p-10 flex flex-col justify-between shadow-[0_2px_40px_-12px_rgba(0,0,0,0.08)] hover:shadow-[0_8px_50px_-12px_rgba(0,0,0,0.15)] hover:scale-[1.02] hover:-translate-y-1 transition-all duration-300 ${className}`}
   >
     {children}
   </motion.div>
