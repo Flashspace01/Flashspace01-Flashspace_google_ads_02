@@ -192,7 +192,7 @@ const WhyFlashSpace = () => {
         <div className="grid grid-cols-1 md:grid-cols-3 md:grid-rows-3 gap-4">
 
           {/* Element 5 — ₹699/mo — Warm cream/beige */}
-          <BentoCard className="md:row-span-2 md:min-h-[360px] order-2 md:order-none relative overflow-hidden border-transparent" delay={0} style={{ background: 'hsl(40 40% 96%)' }}>
+          <BentoCard className="md:row-span-2 md:min-h-[360px] order-2 md:order-none relative overflow-hidden border-transparent" delay={0} style={{ background: 'hsl(40 30% 97%)' }}>
             <div className="absolute inset-0 opacity-[0.08] pointer-events-none" style={{ backgroundImage: 'url("https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=600&q=80")', backgroundSize: 'cover', backgroundPosition: 'center' }} aria-hidden="true" />
             <div className="relative z-10">
               <span className="inline-flex items-center gap-1.5 text-xs font-semibold text-primary tracking-wide">
@@ -209,7 +209,7 @@ const WhyFlashSpace = () => {
           </BentoCard>
 
           {/* Element 1 — 5-10x Cheaper — Light mint/sage */}
-          <BentoCard className="md:col-span-2 relative overflow-hidden order-3 md:order-none border-transparent" delay={0.05} style={{ background: 'hsl(140 25% 95%)' }}>
+          <BentoCard className="md:col-span-2 relative overflow-hidden order-3 md:order-none border-transparent" delay={0.05} style={{ background: 'hsl(150 20% 97%)' }}>
             <div className="absolute inset-0 opacity-[0.08] pointer-events-none" style={{ backgroundImage: 'url("https://images.unsplash.com/photo-1497366216548-37526070297c?w=600&q=80")', backgroundSize: 'cover', backgroundPosition: 'center' }} aria-hidden="true" />
             <div className="relative z-10">
               <span className="inline-flex items-center gap-1.5 text-xs font-semibold text-primary tracking-wide">
@@ -233,7 +233,7 @@ const WhyFlashSpace = () => {
           </BentoCard>
 
           {/* Element 2 — 24hr Setup — Soft lavender */}
-          <BentoCard className="relative overflow-hidden order-4 md:order-none border-transparent" delay={0.1} style={{ background: 'hsl(45 50% 95%)' }}>
+          <BentoCard className="relative overflow-hidden order-4 md:order-none border-transparent" delay={0.1} style={{ background: 'hsl(40 25% 97%)' }}>
             <div className="absolute inset-0 opacity-[0.08] pointer-events-none" style={{ backgroundImage: 'url("https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=600&q=80")', backgroundSize: 'cover', backgroundPosition: 'center' }} aria-hidden="true" />
             <div className="relative z-10">
               <span className="inline-flex items-center gap-1.5 text-xs font-semibold text-primary tracking-wide">
@@ -247,7 +247,7 @@ const WhyFlashSpace = () => {
           </BentoCard>
 
           {/* Element 4 — Premium Address — Soft peach */}
-          <BentoCard className="md:col-span-2 relative overflow-hidden order-5 md:order-none border-transparent" delay={0.15} style={{ background: 'hsl(20 40% 96%)' }}>
+          <BentoCard className="md:col-span-2 relative overflow-hidden order-5 md:order-none border-transparent" delay={0.15} style={{ background: 'hsl(30 20% 97%)' }}>
             <div className="absolute inset-0 opacity-[0.08] pointer-events-none" style={{ backgroundImage: 'url("https://images.unsplash.com/photo-1486325212027-8081e485255e?w=600&q=80")', backgroundSize: 'cover', backgroundPosition: 'center' }} aria-hidden="true" />
             <div className="relative z-10">
               <span className="inline-flex items-center gap-1.5 text-xs font-semibold text-primary tracking-wide mb-3">
@@ -259,7 +259,7 @@ const WhyFlashSpace = () => {
           </BentoCard>
 
           {/* Element 3 — 100% Compliant — Cool slate */}
-          <BentoCard className="relative overflow-hidden order-6 md:order-none border-transparent" delay={0.18} style={{ background: 'hsl(160 20% 95%)' }}>
+          <BentoCard className="relative overflow-hidden order-6 md:order-none border-transparent" delay={0.18} style={{ background: 'hsl(160 15% 97%)' }}>
             <div className="absolute inset-0 opacity-[0.08] pointer-events-none" style={{ backgroundImage: 'url("https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=600&q=80")', backgroundSize: 'cover', backgroundPosition: 'center' }} aria-hidden="true" />
             <div className="relative z-10">
               <span className="inline-flex items-center gap-1.5 text-xs font-semibold text-primary tracking-wide">
