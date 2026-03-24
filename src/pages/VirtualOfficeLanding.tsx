@@ -218,10 +218,10 @@ const WhyFlashSpace = () => {
           </BentoCard>
 
           {/* Center — Dark green anchor */}
-          <BentoCard className="bg-primary text-primary-foreground border-primary/20 items-center text-center order-first md:order-none" delay={0}>
+          <BentoCard className="bg-secondary text-foreground border-secondary/20 items-center text-center order-first md:order-none" delay={0}>
             <div className="flex-1 flex flex-col items-center justify-center gap-4">
-              <h2 id="why-flashspace-heading" className="text-xl sm:text-2xl font-bold leading-tight tracking-tight">Why Businesses Choose FlashSpace</h2>
-              <Button size="lg" variant="white" className="rounded-xl font-bold shadow-lg" onClick={() => scrollTo("#contact")} aria-label="Get started with FlashSpace virtual office">
+              <h2 id="why-flashspace-heading" className="text-xl sm:text-2xl font-bold leading-tight tracking-tight text-primary">Why Businesses Choose FlashSpace</h2>
+              <Button size="lg" className="rounded-xl font-bold shadow-lg bg-primary text-primary-foreground hover:bg-primary/90" onClick={() => scrollTo("#contact")} aria-label="Get started with FlashSpace virtual office">
                 Get Started <ArrowRight className="w-4 h-4 ml-2" aria-hidden="true" />
               </Button>
             </div>
