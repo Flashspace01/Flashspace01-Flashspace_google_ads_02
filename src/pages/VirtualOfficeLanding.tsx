@@ -163,7 +163,14 @@ const HeroSection = () => {
 
   return (
     <section className="relative flex items-center justify-center overflow-hidden bg-background py-28 lg:py-36">
-      <div className="absolute inset-0 pointer-events-none" style={{ background: "linear-gradient(180deg, hsl(var(--muted)/0.3) 0%, transparent 60%)" }} />
+      {/* Background image */}
+      <img
+        src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1600&h=900&fit=crop"
+        alt=""
+        className="absolute inset-0 w-full h-full object-cover"
+        loading="eager"
+      />
+      <div className="absolute inset-0 bg-foreground/60" />
 
       <div className="relative z-10 container mx-auto px-4 lg:px-8 text-center max-w-3xl">
         <motion.div custom={0} variants={fadeUp} initial="hidden" animate="visible" className="mb-4">
@@ -177,12 +184,12 @@ const HeroSection = () => {
           variants={fadeUp}
           initial="hidden"
           animate="visible"
-          className="text-3xl sm:text-4xl lg:text-[52px] font-bold tracking-tight text-foreground leading-[1.2] lg:leading-[1.15] mb-5"
+          className="text-3xl sm:text-4xl lg:text-[52px] font-bold tracking-tight text-white leading-[1.2] lg:leading-[1.15] mb-5"
         >
           Virtual Office{" "}
-          <span className="text-primary">@ ₹699/month</span>
+          <span className="text-secondary">@ ₹699/month</span>
           <br />
-          <span className="text-muted-foreground text-xl sm:text-2xl lg:text-3xl font-medium">Activated in Just 1–2 Days</span>
+          <span className="text-white/70 text-xl sm:text-2xl lg:text-3xl font-medium">Activated in Just 1–2 Days</span>
         </motion.h1>
 
         <motion.p
@@ -190,7 +197,7 @@ const HeroSection = () => {
           variants={fadeUp}
           initial="hidden"
           animate="visible"
-          className="text-muted-foreground text-base sm:text-lg leading-relaxed mb-8 max-w-xl mx-auto"
+          className="text-white/80 text-base sm:text-lg leading-relaxed mb-8 max-w-xl mx-auto"
         >
           GST & MCA approved. Premium business address. No office rent. The cheapest and fastest way to get your business registered.
         </motion.p>
@@ -198,7 +205,7 @@ const HeroSection = () => {
         <motion.div custom={0.15} variants={fadeUp} initial="hidden" animate="visible" className="mb-10">
           <Button
             size="lg"
-            className="bg-primary text-primary-foreground hover:bg-primary/90 shadow-lg font-medium px-10 h-14 rounded-xl text-base"
+            className="bg-secondary text-secondary-foreground hover:bg-secondary/90 shadow-lg font-medium px-10 h-14 rounded-xl text-base"
             onClick={open}
           >
             Get Virtual Office Now
@@ -206,7 +213,7 @@ const HeroSection = () => {
           </Button>
         </motion.div>
 
-        <motion.div custom={0.2} variants={fadeUp} initial="hidden" animate="visible" className="flex flex-wrap justify-center gap-5 text-muted-foreground text-sm">
+        <motion.div custom={0.2} variants={fadeUp} initial="hidden" animate="visible" className="flex flex-wrap justify-center gap-5 text-white/80 text-sm">
           {["1000+ Businesses", "GST Approved", "No Hidden Fees", "Setup in 1-2 Days"].map((t) => (
             <span key={t} className="inline-flex items-center gap-1.5">
               <CheckCircle2 className="w-4 h-4 text-primary" />
@@ -485,7 +492,8 @@ const ThreeStepsSection = () => {
   const { open } = useFormDialog();
 
   return (
-    <section className="py-20 lg:py-28 bg-muted/20">
+    <section className="py-20 lg:py-28 bg-muted/20 relative overflow-hidden">
+      <img src="https://images.unsplash.com/photo-1497366811353-6870744d04b2?w=1600&h=900&fit=crop" alt="" className="absolute inset-0 w-full h-full object-cover opacity-[0.04]" loading="lazy" />
       <div className="container mx-auto px-4 lg:px-8">
         <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center mb-14">
           <span className="text-xs font-bold text-primary uppercase tracking-widest mb-3 block">How It Works</span>
@@ -555,7 +563,8 @@ const testimonials = [
 ];
 
 const TestimonialsSection = () => (
-  <section className="py-20 lg:py-28 bg-background">
+  <section className="py-20 lg:py-28 bg-background relative overflow-hidden">
+    <img src="https://images.unsplash.com/photo-1497215842964-222b430dc094?w=1600&h=900&fit=crop" alt="" className="absolute inset-0 w-full h-full object-cover opacity-[0.03]" loading="lazy" />
     <div className="container mx-auto px-4 lg:px-8">
       <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center mb-12">
         <span className="text-xs font-bold text-primary uppercase tracking-widest mb-3 block">Testimonials</span>
@@ -699,7 +708,7 @@ const VirtualOfficeLanding = () => {
 
   return (
     <FormDialogContext.Provider value={{ open: () => setFormOpen(true) }}>
-      <AppLayout>
+      <AppLayout onNavCtaClick={() => setFormOpen(true)}>
         <main>
           <HeroSection />
           <PainAndCards />
