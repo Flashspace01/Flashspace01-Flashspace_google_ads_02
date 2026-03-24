@@ -89,16 +89,6 @@ export const Navbar = () => {
                   {link.label}
                 </button>
               ))}
-              <div className="flex gap-2 mt-3 pt-3 border-t border-border/30">
-                <Button variant="outline" className="flex-1">
-                  <LogIn className="w-4 h-4 mr-1.5" />
-                  Log In
-                </Button>
-                <Button className="flex-1">
-                  <UserPlus className="w-4 h-4 mr-1.5" />
-                  Sign Up
-                </Button>
-              </div>
             </div>
           </motion.div>
         )}
