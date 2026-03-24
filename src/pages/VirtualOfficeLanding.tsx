@@ -150,14 +150,26 @@ const PainAndCards = () => (
   </section>
 );
 
-/* ─── WHY FLASHSPACE — split layout ─── */
-const whyPoints = [
-  { icon: IndianRupee, text: "5–10x cheaper than renting office space" },
-  { icon: Clock, text: "Complete setup within 24 hours" },
-  { icon: BadgeCheck, text: "Plans starting at just ₹699/month" },
-  { icon: Shield, text: "100% GST & MCA compliant" },
-  { icon: Headphones, text: "Dedicated support after purchase" },
-];
+/* ─── WHY FLASHSPACE — Bento Grid ─── */
+const BentoCard = ({
+  children,
+  className = "",
+  delay = 0,
+}: {
+  children: React.ReactNode;
+  className?: string;
+  delay?: number;
+}) => (
+  <motion.div
+    initial={{ opacity: 0, y: 20 }}
+    whileInView={{ opacity: 1, y: 0 }}
+    viewport={{ once: true }}
+    transition={{ delay, duration: 0.5, ease: [0.25, 0.4, 0.25, 1] }}
+    className={`rounded-[24px] bg-card border border-border/60 p-7 flex flex-col justify-between hover:scale-[1.03] hover:-translate-y-1 hover:shadow-xl transition-all duration-300 ${className}`}
+  >
+    {children}
+  </motion.div>
+);
 
 const WhyFlashSpace = () => {
   const scrollTo = (id: string) => document.querySelector(id)?.scrollIntoView({ behavior: "smooth" });
@@ -165,36 +177,85 @@ const WhyFlashSpace = () => {
   return (
     <section className="py-20 lg:py-28 bg-muted/30">
       <div className="container mx-auto px-4 lg:px-8">
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-start">
-          {/* Left — heading + intro */}
-          <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
-            <span className="text-xs font-bold text-primary uppercase tracking-widest mb-3 block">Why FlashSpace</span>
-            <h2 className="text-2xl sm:text-3xl lg:text-[38px] font-bold text-foreground tracking-tight leading-[1.15] mb-5">
-              Why Businesses Choose FlashSpace
-            </h2>
-            <p className="text-muted-foreground text-base leading-relaxed mb-8 max-w-md">
-              Everything you need to register and run your business — without the overhead of a physical office.
-            </p>
-            <Button size="lg" className="rounded-xl font-bold px-8" onClick={() => scrollTo("#contact")}>
-              Get Started — ₹699/month
-              <ArrowRight className="w-4 h-4 ml-2" />
-            </Button>
-          </motion.div>
+        {/* Header */}
+        <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center mb-12">
+          <span className="text-xs font-bold text-primary uppercase tracking-widest mb-3 block">Why FlashSpace</span>
+          <h2 className="text-2xl sm:text-3xl lg:text-[42px] font-bold text-foreground tracking-tight leading-[1.15]">
+            Why Businesses Choose FlashSpace
+          </h2>
+        </motion.div>
 
-          {/* Right — stacked benefit rows */}
-          <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.1 }}>
-            <div className="space-y-4">
-              {whyPoints.map((b, i) => (
-                <div key={i} className="flex items-start gap-4 py-4 border-b border-border/50 last:border-0">
-                  <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center shrink-0 mt-0.5">
-                    <b.icon className="w-5 h-5 text-primary" />
-                  </div>
-                  <span className="text-base font-semibold text-foreground">{b.text}</span>
-                </div>
-              ))}
+        {/* Bento Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-4 lg:gap-5 auto-rows-[180px] md:auto-rows-[200px]">
+          {/* 1 — Featured: ₹699/month (large, spans 2 cols + 2 rows) */}
+          <BentoCard className="md:col-span-2 md:row-span-2 bg-primary text-primary-foreground border-primary/20 p-10" delay={0}>
+            <div className="w-16 h-16 rounded-2xl bg-primary-foreground/15 flex items-center justify-center mb-4">
+              <IndianRupee className="w-9 h-9" />
             </div>
-          </motion.div>
+            <div>
+              <h3 className="text-3xl lg:text-4xl font-bold mb-2">₹699/month</h3>
+              <p className="text-primary-foreground/80 text-base lg:text-lg font-medium leading-relaxed">
+                Plans starting at just ₹699. Premium business address without the premium price tag.
+              </p>
+            </div>
+          </BentoCard>
+
+          {/* 2 — 5-10x cheaper (vertical, spans 2 rows) */}
+          <BentoCard className="md:row-span-2" delay={0.05}>
+            <div className="w-12 h-12 rounded-2xl bg-secondary flex items-center justify-center">
+              <IndianRupee className="w-6 h-6 text-secondary-foreground" />
+            </div>
+            <div className="mt-auto">
+              <h3 className="text-xl font-bold text-foreground mb-1.5">5–10x Cheaper</h3>
+              <p className="text-sm text-muted-foreground leading-relaxed">
+                Than renting a physical office space. Save lakhs every year.
+              </p>
+            </div>
+          </BentoCard>
+
+          {/* 3 — Setup in 24hrs (small square) */}
+          <BentoCard className="bg-secondary border-secondary/60" delay={0.1}>
+            <div className="w-12 h-12 rounded-2xl bg-secondary-foreground/10 flex items-center justify-center">
+              <Clock className="w-6 h-6 text-secondary-foreground" />
+            </div>
+            <div>
+              <h3 className="text-lg font-bold text-secondary-foreground">24hr Setup</h3>
+              <p className="text-xs text-secondary-foreground/70">Complete setup within a day</p>
+            </div>
+          </BentoCard>
+
+          {/* 4 — GST & MCA (small square) */}
+          <BentoCard delay={0.15}>
+            <div className="w-12 h-12 rounded-2xl bg-primary/10 flex items-center justify-center">
+              <Shield className="w-6 h-6 text-primary" />
+            </div>
+            <div>
+              <h3 className="text-lg font-bold text-foreground">100% Compliant</h3>
+              <p className="text-xs text-muted-foreground">GST & MCA approved addresses</p>
+            </div>
+          </BentoCard>
+
+          {/* 5 — Dedicated Support (horizontal, spans 2 cols) */}
+          <BentoCard className="md:col-span-2 flex-row items-center gap-6" delay={0.2}>
+            <div className="w-14 h-14 rounded-2xl bg-primary/10 flex items-center justify-center shrink-0">
+              <Headphones className="w-7 h-7 text-primary" />
+            </div>
+            <div>
+              <h3 className="text-xl font-bold text-foreground mb-1">Dedicated Support</h3>
+              <p className="text-sm text-muted-foreground leading-relaxed">
+                Expert assistance after purchase — we're always just a call away.
+              </p>
+            </div>
+          </BentoCard>
         </div>
+
+        {/* CTA below grid */}
+        <motion.div initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center mt-12">
+          <Button size="lg" className="rounded-xl font-bold px-8" onClick={() => scrollTo("#contact")}>
+            Get Started — ₹699/month
+            <ArrowRight className="w-4 h-4 ml-2" />
+          </Button>
+        </motion.div>
       </div>
     </section>
   );
