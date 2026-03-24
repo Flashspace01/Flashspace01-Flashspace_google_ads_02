@@ -152,7 +152,7 @@ const PainAndCards = () => (
   </section>
 );
 
-/* ─── WHY FLASHSPACE — Bento Grid ─── */
+/* ─── WHY FLASHSPACE — Nike-style Bento ─── */
 const BentoCard = ({
   children,
   className = "",
@@ -167,7 +167,7 @@ const BentoCard = ({
     whileInView={{ opacity: 1, y: 0 }}
     viewport={{ once: true }}
     transition={{ delay, duration: 0.5, ease: [0.25, 0.4, 0.25, 1] }}
-    className={`rounded-[24px] bg-card border border-border/60 p-7 flex flex-col justify-between hover:scale-[1.03] hover:-translate-y-1 hover:shadow-xl transition-all duration-300 ${className}`}
+    className={`rounded-[24px] p-7 flex flex-col justify-between hover:scale-[1.02] hover:-translate-y-1 transition-all duration-300 ${className}`}
   >
     {children}
   </motion.div>
@@ -177,129 +177,94 @@ const WhyFlashSpace = () => {
   const scrollTo = (id: string) => document.querySelector(id)?.scrollIntoView({ behavior: "smooth" });
 
   return (
-    <section className="py-20 lg:py-28 bg-muted/30">
-      <div className="container mx-auto px-4 lg:px-8 max-w-5xl">
-        {/* Strict 3×3 Bento Grid — header card in center */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {/* Row 1, Col 1 — ₹699/month (high-contrast dark) */}
-          <BentoCard className="bg-foreground text-background border-foreground/20 aspect-square md:aspect-auto md:h-[260px]" delay={0}>
-            <div className="w-[72px] h-[72px] rounded-2xl bg-background/15 flex items-center justify-center mb-6">
-              <IndianRupee className="w-10 h-10" />
+    <section className="py-20 lg:py-28 bg-background">
+      <div className="container mx-auto px-4 lg:px-8 max-w-4xl">
+        {/* Header — like the Nike reference top section */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="rounded-[24px] bg-primary/5 border border-primary/10 p-8 lg:p-10 mb-6 flex flex-col md:flex-row md:items-center md:justify-between gap-6"
+        >
+          <div>
+            <span className="text-xs font-bold text-primary uppercase tracking-widest mb-2 block">Why FlashSpace</span>
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-foreground tracking-tight leading-tight">
+              Why Businesses Choose<br />FlashSpace.
+            </h2>
+          </div>
+          <Button
+            size="lg"
+            className="bg-primary text-primary-foreground hover:bg-primary/90 rounded-xl font-bold shrink-0"
+            onClick={() => scrollTo("#contact")}
+          >
+            Get Started
+            <ArrowRight className="w-4 h-4 ml-2" />
+          </Button>
+        </motion.div>
+
+        {/* 2-column bento grid — 5 cards */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+          {/* Card 1 — ₹699/month (primary tint, large) */}
+          <BentoCard className="bg-primary text-primary-foreground min-h-[240px]" delay={0}>
+            <div className="w-14 h-14 rounded-2xl bg-primary-foreground/15 flex items-center justify-center mb-auto">
+              <IndianRupee className="w-7 h-7 text-primary-foreground" />
             </div>
             <div className="mt-auto">
-              <h3 className="text-4xl lg:text-5xl font-extrabold mb-1">₹699<span className="text-xl font-medium opacity-60">/mo</span></h3>
-              <p className="text-background/60 text-sm leading-relaxed">
-                Premium address. No premium price.
+              <h3 className="text-4xl lg:text-5xl font-extrabold mb-1">₹699<span className="text-lg font-medium opacity-60">/mo</span></h3>
+              <p className="text-primary-foreground/70 text-sm leading-relaxed">
+                Premium address. No premium price. Start your business without the overhead.
               </p>
             </div>
           </BentoCard>
 
-          {/* Row 1, Col 2 — 5-10x Cheaper */}
-          <BentoCard className="md:h-[260px]" delay={0.05}>
-            <div className="w-[72px] h-[72px] rounded-2xl bg-primary/10 flex items-center justify-center mb-6">
-              <TrendingDown className="w-10 h-10 text-primary" />
+          {/* Card 2 — 5-10x Cheaper (secondary tint) */}
+          <BentoCard className="bg-secondary/60 border border-secondary min-h-[240px]" delay={0.05}>
+            <div className="w-14 h-14 rounded-2xl bg-secondary-foreground/8 flex items-center justify-center mb-auto">
+              <TrendingDown className="w-7 h-7 text-secondary-foreground" />
             </div>
             <div className="mt-auto">
-              <h3 className="text-4xl lg:text-5xl font-extrabold text-foreground mb-1">5–10x</h3>
+              <h3 className="text-4xl lg:text-5xl font-extrabold text-secondary-foreground mb-1">5–10x</h3>
+              <p className="text-sm text-secondary-foreground/70 leading-relaxed">
+                Cheaper than renting a physical office space.
+              </p>
+            </div>
+          </BentoCard>
+
+          {/* Card 3 — 24hr Setup (light primary tint) */}
+          <BentoCard className="bg-primary/8 border border-primary/10 min-h-[200px]" delay={0.1}>
+            <div className="w-14 h-14 rounded-2xl bg-primary/10 flex items-center justify-center mb-auto">
+              <Clock className="w-7 h-7 text-primary" />
+            </div>
+            <div className="mt-auto">
+              <h3 className="text-2xl font-bold text-foreground mb-1">24hr Setup</h3>
               <p className="text-sm text-muted-foreground leading-relaxed">
-                Cheaper than renting a physical office.
+                Complete setup within a single business day. Start operating immediately.
               </p>
             </div>
           </BentoCard>
 
-          {/* Row 1, Col 3 — 24hr Setup */}
-          <BentoCard className="bg-secondary border-secondary/60 md:h-[260px]" delay={0.1}>
-            <div className="w-[72px] h-[72px] rounded-2xl bg-secondary-foreground/10 flex items-center justify-center mb-6">
-              <Clock className="w-10 h-10 text-secondary-foreground" />
+          {/* Card 4 — 100% Compliant (light secondary tint) */}
+          <BentoCard className="bg-secondary/30 border border-secondary/50 min-h-[200px]" delay={0.12}>
+            <div className="w-14 h-14 rounded-2xl bg-secondary-foreground/8 flex items-center justify-center mb-auto">
+              <Shield className="w-7 h-7 text-secondary-foreground" />
             </div>
             <div className="mt-auto">
-              <h3 className="text-2xl font-bold text-secondary-foreground mb-1">24hr Setup</h3>
-              <p className="text-xs text-secondary-foreground/70 leading-relaxed">
-                Complete setup within a single day.
-              </p>
-            </div>
-          </BentoCard>
-
-          {/* Row 2, Col 1 — 100% Compliant */}
-          <BentoCard className="md:h-[260px]" delay={0.12}>
-            <div className="w-[72px] h-[72px] rounded-2xl bg-primary/10 flex items-center justify-center mb-6">
-              <Shield className="w-10 h-10 text-primary" />
-            </div>
-            <div className="mt-auto">
-              <h3 className="text-lg font-bold text-foreground mb-1">100% Compliant</h3>
-              <p className="text-xs text-muted-foreground leading-relaxed">
+              <h3 className="text-2xl font-bold text-foreground mb-1">100% Compliant</h3>
+              <p className="text-sm text-muted-foreground leading-relaxed">
                 GST & MCA approved across all Indian states.
               </p>
             </div>
           </BentoCard>
 
-          {/* Row 2, Col 2 — CENTER HEADER CARD */}
-          <BentoCard className="bg-primary text-primary-foreground border-primary/20 md:h-[260px] items-center text-center order-first md:order-none" delay={0}>
-            <div className="flex-1 flex flex-col items-center justify-center gap-4">
-              <span className="text-xs font-bold uppercase tracking-widest opacity-80">Why FlashSpace</span>
-              <h2 className="text-xl sm:text-2xl font-bold leading-tight">
-                Why Businesses Choose FlashSpace
-              </h2>
-              <Button
-                size="lg"
-                variant="white"
-                className="rounded-xl font-bold mt-2"
-                onClick={() => scrollTo("#contact")}
-              >
-                Get Started
-                <ArrowRight className="w-4 h-4 ml-2" />
-              </Button>
+          {/* Card 5 — Dedicated Support (full width, primary dark) */}
+          <BentoCard className="md:col-span-2 bg-foreground text-background min-h-[180px] flex-row items-center gap-8" delay={0.15}>
+            <div className="w-14 h-14 rounded-2xl bg-background/10 flex items-center justify-center shrink-0">
+              <Headphones className="w-7 h-7 text-background" />
             </div>
-          </BentoCard>
-
-          {/* Row 2, Col 3 — Dedicated Support */}
-          <BentoCard className="md:h-[260px]" delay={0.15}>
-            <div className="w-[72px] h-[72px] rounded-2xl bg-primary/10 flex items-center justify-center mb-6">
-              <Headphones className="w-10 h-10 text-primary" />
-            </div>
-            <div className="mt-auto">
-              <h3 className="text-lg font-bold text-foreground mb-1">Dedicated Support</h3>
-              <p className="text-xs text-muted-foreground leading-relaxed">
-                Expert help — always just a call away.
-              </p>
-            </div>
-          </BentoCard>
-
-          {/* Row 3, Col 1 — Premium Business Address */}
-          <BentoCard className="md:h-[260px]" delay={0.18}>
-            <div className="w-[72px] h-[72px] rounded-2xl bg-primary/10 flex items-center justify-center mb-6">
-              <Building2 className="w-10 h-10 text-primary" />
-            </div>
-            <div className="mt-auto">
-              <h3 className="text-lg font-bold text-foreground mb-1">Premium Address</h3>
-              <p className="text-xs text-muted-foreground leading-relaxed">
-                Prime locations in Delhi, Mumbai, Bangalore & more.
-              </p>
-            </div>
-          </BentoCard>
-
-          {/* Row 3, Col 2 — Mail Handling */}
-          <BentoCard className="md:h-[260px]" delay={0.2}>
-            <div className="w-[72px] h-[72px] rounded-2xl bg-primary/10 flex items-center justify-center mb-6">
-              <Mail className="w-10 h-10 text-primary" />
-            </div>
-            <div className="mt-auto">
-              <h3 className="text-lg font-bold text-foreground mb-1">Mail Handling</h3>
-              <p className="text-xs text-muted-foreground leading-relaxed">
-                We receive, scan & forward your mail digitally.
-              </p>
-            </div>
-          </BentoCard>
-
-          {/* Row 3, Col 3 — Work From Anywhere */}
-          <BentoCard className="bg-foreground text-background border-foreground/20 md:h-[260px]" delay={0.22}>
-            <div className="w-[72px] h-[72px] rounded-2xl bg-background/15 flex items-center justify-center mb-6">
-              <Globe className="w-10 h-10" />
-            </div>
-            <div className="mt-auto">
-              <h3 className="text-lg font-bold mb-1">Work From Anywhere</h3>
-              <p className="text-background/60 text-xs leading-relaxed">
-                Your address stays professional wherever you are.
+            <div>
+              <h3 className="text-2xl font-bold mb-1">Dedicated Support</h3>
+              <p className="text-background/60 text-sm leading-relaxed max-w-md">
+                Expert help — always just a call or message away. We're here to make your business run smoothly.
               </p>
             </div>
           </BentoCard>
@@ -308,7 +273,6 @@ const WhyFlashSpace = () => {
     </section>
   );
 };
-
 /* ─── TRUST ─── */
 const trustStats = [
   { value: "1,000+", label: "Businesses Registered" },
