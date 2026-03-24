@@ -197,7 +197,7 @@ const HeroSection = () => {
           variants={fadeUp}
           initial="hidden"
           animate="visible"
-          className="text-muted-foreground text-base sm:text-lg leading-relaxed mb-8 max-w-xl mx-auto"
+          className="text-white/80 text-base sm:text-lg leading-relaxed mb-8 max-w-xl mx-auto"
         >
           GST & MCA approved. Premium business address. No office rent. The cheapest and fastest way to get your business registered.
         </motion.p>
@@ -205,7 +205,7 @@ const HeroSection = () => {
         <motion.div custom={0.15} variants={fadeUp} initial="hidden" animate="visible" className="mb-10">
           <Button
             size="lg"
-            className="bg-primary text-primary-foreground hover:bg-primary/90 shadow-lg font-medium px-10 h-14 rounded-xl text-base"
+            className="bg-secondary text-secondary-foreground hover:bg-secondary/90 shadow-lg font-medium px-10 h-14 rounded-xl text-base"
             onClick={open}
           >
             Get Virtual Office Now
