@@ -1,5 +1,7 @@
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 import {
   ArrowRight,
   Shield,
@@ -14,6 +16,9 @@ import {
   Plus,
   Building2,
   TrendingDown,
+  Send,
+  CheckCircle,
+  MapPin,
 } from "lucide-react";
 import {
   Accordion,
@@ -390,6 +395,120 @@ const FAQSection = () => (
 
 
 
+/* ─── LEAD CAPTURE FORM ─── */
+const cities = [
+  "Mumbai", "Delhi", "Bangalore", "Hyderabad", "Chennai",
+  "Pune", "Kolkata", "Ahmedabad", "Jaipur", "Lucknow", "Other",
+];
+
+const LeadCaptureForm = () => {
+  const [form, setForm] = useState({ name: "", email: "", city: "" });
+  const [errors, setErrors] = useState<Record<string, string>>({});
+  const [submitted, setSubmitted] = useState(false);
+
+  const validate = () => {
+    const errs: Record<string, string> = {};
+    if (!form.name.trim()) errs.name = "Name is required";
+    if (!form.email.trim()) errs.email = "Email is required";
+    else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)) errs.email = "Enter a valid email";
+    if (!form.city) errs.city = "Please select a city";
+    return errs;
+  };
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    const errs = validate();
+    if (Object.keys(errs).length) { setErrors(errs); return; }
+    setSubmitted(true);
+  };
+
+  const handleChange = (field: string, value: string) => {
+    setForm((p) => ({ ...p, [field]: value }));
+    if (errors[field]) setErrors((p) => ({ ...p, [field]: "" }));
+  };
+
+  if (submitted) {
+    return (
+      <section id="contact" className="py-20 lg:py-28 bg-card/30">
+        <div className="container mx-auto px-4 lg:px-8">
+          <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} className="max-w-lg mx-auto text-center py-16">
+            <CheckCircle className="w-16 h-16 text-primary mx-auto mb-6" />
+            <h2 className="text-3xl font-medium text-foreground mb-4 tracking-tight">Thank you!</h2>
+            <p className="text-muted-foreground text-lg leading-relaxed">
+              We've received your enquiry. Our team will reach out within 24 hours with a tailored plan for your city.
+            </p>
+          </motion.div>
+        </div>
+      </section>
+    );
+  }
+
+  return (
+    <section id="contact" className="py-20 lg:py-28 bg-card/30">
+      <div className="container mx-auto px-4 lg:px-8">
+        <div className="grid lg:grid-cols-[1fr_1.2fr] gap-12 lg:gap-20 max-w-5xl mx-auto">
+          {/* Left copy */}
+          <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.2 }} className="lg:sticky lg:top-24 lg:self-start">
+            <span className="inline-flex items-center gap-2 text-sm text-muted-foreground mb-4">
+              <span className="text-primary">+</span> Get In Touch
+            </span>
+            <h2 className="text-3xl sm:text-4xl lg:text-[44px] font-medium text-foreground leading-[1.15] tracking-tight mb-5">
+              Get your virtual<br />office address today
+            </h2>
+            <p className="text-muted-foreground text-base leading-relaxed mb-8 max-w-sm">
+              Fill in the form and our team will reach out within 24 hours with a tailored plan for your city.
+            </p>
+            <div className="space-y-4 text-sm text-muted-foreground">
+              <p className="flex items-center gap-2"><span className="w-1.5 h-1.5 rounded-full bg-primary shrink-0" />Free consultation — no obligation</p>
+              <p className="flex items-center gap-2"><span className="w-1.5 h-1.5 rounded-full bg-primary shrink-0" />Starting at just ₹699/month</p>
+              <p className="flex items-center gap-2"><span className="w-1.5 h-1.5 rounded-full bg-primary shrink-0" />Available in 20+ Indian cities</p>
+            </div>
+          </motion.div>
+
+          {/* Right form */}
+          <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.2 }} transition={{ delay: 0.1 }}>
+            <form onSubmit={handleSubmit} className="bg-card rounded-2xl border border-border/50 p-8 lg:p-10 space-y-5 shadow-sm">
+              <div>
+                <Label htmlFor="lead-name" className="text-sm font-medium text-foreground mb-1.5 block">Full Name *</Label>
+                <Input id="lead-name" placeholder="Your name" value={form.name} onChange={(e) => handleChange("name", e.target.value)} className={errors.name ? "border-destructive" : ""} />
+                {errors.name && <p className="text-xs text-destructive mt-1">{errors.name}</p>}
+              </div>
+
+              <div>
+                <Label htmlFor="lead-email" className="text-sm font-medium text-foreground mb-1.5 block">Email Address *</Label>
+                <Input id="lead-email" type="email" placeholder="you@company.com" value={form.email} onChange={(e) => handleChange("email", e.target.value)} className={errors.email ? "border-destructive" : ""} />
+                {errors.email && <p className="text-xs text-destructive mt-1">{errors.email}</p>}
+              </div>
+
+              <div>
+                <Label htmlFor="lead-city" className="text-sm font-medium text-foreground mb-1.5 block">
+                  <MapPin className="w-3.5 h-3.5 inline mr-1 -mt-0.5" />
+                  City for Virtual Office *
+                </Label>
+                <select
+                  id="lead-city"
+                  value={form.city}
+                  onChange={(e) => handleChange("city", e.target.value)}
+                  className={`flex h-10 w-full rounded-md border bg-background px-3 py-2 text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 ${errors.city ? "border-destructive" : "border-input"}`}
+                >
+                  <option value="">Select your city</option>
+                  {cities.map((c) => <option key={c} value={c}>{c}</option>)}
+                </select>
+                {errors.city && <p className="text-xs text-destructive mt-1">{errors.city}</p>}
+              </div>
+
+              <Button type="submit" size="lg" className="w-full h-12 text-base font-medium rounded-xl bg-primary text-primary-foreground hover:bg-primary/90">
+                <Send className="w-4 h-4 mr-2" />
+                Get Your Virtual Office
+              </Button>
+            </form>
+          </motion.div>
+        </div>
+      </div>
+    </section>
+  );
+};
+
 /* ─── STICKY MOBILE CTA ─── */
 const StickyMobileCTA = () => {
   const [visible, setVisible] = useState(false);
@@ -427,7 +546,7 @@ const VirtualOfficeLanding = () => (
       <WhyFlashSpace />
       <HowItWorksSection />
       <TrustSection />
-      
+      <LeadCaptureForm />
       <FAQSection />
       
     </main>
