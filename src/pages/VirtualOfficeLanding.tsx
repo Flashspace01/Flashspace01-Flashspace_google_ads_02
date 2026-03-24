@@ -192,8 +192,8 @@ const WhyFlashSpace = () => {
               </span>
             </div>
             <div className="mt-auto relative z-10">
-              <h3 className="text-5xl lg:text-6xl font-black tracking-tighter text-foreground leading-none mb-3">
-                ₹699<span className="text-lg font-medium text-muted-foreground">/mo</span>
+              <h3 className="text-2xl lg:text-3xl font-bold tracking-tight text-foreground leading-none mb-3">
+                ₹699<span className="text-base font-medium text-muted-foreground">/mo</span>
               </h3>
               <p className="text-foreground font-semibold text-base mb-1">Premium Address. No Premium Price.</p>
               <p className="text-muted-foreground text-sm leading-relaxed mb-4">Everything you need to register — without the overhead of a physical office.</p>
