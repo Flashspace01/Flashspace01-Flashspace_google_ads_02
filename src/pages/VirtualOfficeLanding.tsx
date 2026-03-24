@@ -12,6 +12,8 @@ import {
   CheckCircle2,
   MessageCircle,
   Plus,
+  Building2,
+  TrendingDown,
 } from "lucide-react";
 import {
   Accordion,
@@ -176,86 +178,109 @@ const WhyFlashSpace = () => {
 
   return (
     <section className="py-20 lg:py-28 bg-muted/30">
-      <div className="container mx-auto px-4 lg:px-8">
-        {/* Header */}
-        <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center mb-12">
-          <span className="text-xs font-bold text-primary uppercase tracking-widest mb-3 block">Why FlashSpace</span>
-          <h2 className="text-2xl sm:text-3xl lg:text-[42px] font-bold text-foreground tracking-tight leading-[1.15]">
-            Why Businesses Choose FlashSpace
-          </h2>
-        </motion.div>
-
-        {/* Bento Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-4 lg:gap-5 auto-rows-[180px] md:auto-rows-[200px]">
-          {/* 1 — Featured: ₹699/month (large, spans 2 cols + 2 rows) */}
-          <BentoCard className="md:col-span-2 md:row-span-2 bg-primary text-primary-foreground border-primary/20 p-10" delay={0}>
-            <div className="w-16 h-16 rounded-2xl bg-primary-foreground/15 flex items-center justify-center mb-4">
-              <IndianRupee className="w-9 h-9" />
-            </div>
-            <div>
-              <h3 className="text-3xl lg:text-4xl font-bold mb-2">₹699/month</h3>
-              <p className="text-primary-foreground/80 text-base lg:text-lg font-medium leading-relaxed">
-                Plans starting at just ₹699. Premium business address without the premium price tag.
-              </p>
-            </div>
-          </BentoCard>
-
-          {/* 2 — 5-10x cheaper (vertical, spans 2 rows) */}
-          <BentoCard className="md:row-span-2" delay={0.05}>
-            <div className="w-12 h-12 rounded-2xl bg-secondary flex items-center justify-center">
-              <IndianRupee className="w-6 h-6 text-secondary-foreground" />
+      <div className="container mx-auto px-4 lg:px-8 max-w-5xl">
+        {/* 3×3 Bento Grid — header card in center */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 lg:gap-5">
+          {/* Row 1 */}
+          {/* 1 — ₹699/month (high-contrast dark card) */}
+          <BentoCard className="bg-foreground text-background border-foreground/20 min-h-[220px]" delay={0}>
+            <div className="w-14 h-14 rounded-2xl bg-background/15 flex items-center justify-center">
+              <IndianRupee className="w-8 h-8" />
             </div>
             <div className="mt-auto">
-              <h3 className="text-xl font-bold text-foreground mb-1.5">5–10x Cheaper</h3>
-              <p className="text-sm text-muted-foreground leading-relaxed">
-                Than renting a physical office space. Save lakhs every year.
+              <h3 className="text-3xl lg:text-4xl font-bold mb-1">₹699<span className="text-lg font-medium opacity-70">/mo</span></h3>
+              <p className="text-background/70 text-sm leading-relaxed">
+                Premium business address without the premium price tag.
               </p>
             </div>
           </BentoCard>
 
-          {/* 3 — Setup in 24hrs (small square) */}
-          <BentoCard className="bg-secondary border-secondary/60" delay={0.1}>
-            <div className="w-12 h-12 rounded-2xl bg-secondary-foreground/10 flex items-center justify-center">
-              <Clock className="w-6 h-6 text-secondary-foreground" />
+          {/* 2 — 5-10x Cheaper */}
+          <BentoCard className="min-h-[220px]" delay={0.05}>
+            <div className="w-14 h-14 rounded-2xl bg-primary/10 flex items-center justify-center">
+              <TrendingDown className="w-8 h-8 text-primary" />
             </div>
-            <div>
-              <h3 className="text-lg font-bold text-secondary-foreground">24hr Setup</h3>
-              <p className="text-xs text-secondary-foreground/70">Complete setup within a day</p>
-            </div>
-          </BentoCard>
-
-          {/* 4 — GST & MCA (small square) */}
-          <BentoCard delay={0.15}>
-            <div className="w-12 h-12 rounded-2xl bg-primary/10 flex items-center justify-center">
-              <Shield className="w-6 h-6 text-primary" />
-            </div>
-            <div>
-              <h3 className="text-lg font-bold text-foreground">100% Compliant</h3>
-              <p className="text-xs text-muted-foreground">GST & MCA approved addresses</p>
-            </div>
-          </BentoCard>
-
-          {/* 5 — Dedicated Support (horizontal, spans 2 cols) */}
-          <BentoCard className="md:col-span-2 flex-row items-center gap-6" delay={0.2}>
-            <div className="w-14 h-14 rounded-2xl bg-primary/10 flex items-center justify-center shrink-0">
-              <Headphones className="w-7 h-7 text-primary" />
-            </div>
-            <div>
-              <h3 className="text-xl font-bold text-foreground mb-1">Dedicated Support</h3>
+            <div className="mt-auto">
+              <h3 className="text-3xl font-bold text-foreground mb-1">5–10x</h3>
               <p className="text-sm text-muted-foreground leading-relaxed">
-                Expert assistance after purchase — we're always just a call away.
+                Cheaper than renting. Save lakhs every year on office space.
+              </p>
+            </div>
+          </BentoCard>
+
+          {/* 3 — 24hr Setup */}
+          <BentoCard className="bg-secondary border-secondary/60 min-h-[220px]" delay={0.1}>
+            <div className="w-14 h-14 rounded-2xl bg-secondary-foreground/10 flex items-center justify-center">
+              <Clock className="w-8 h-8 text-secondary-foreground" />
+            </div>
+            <div className="mt-auto">
+              <h3 className="text-2xl font-bold text-secondary-foreground mb-1">24hr Setup</h3>
+              <p className="text-xs text-secondary-foreground/70 leading-relaxed">
+                Complete documentation and address setup within a single day.
+              </p>
+            </div>
+          </BentoCard>
+
+          {/* Row 2 */}
+          {/* 4 — 100% Compliant */}
+          <BentoCard className="min-h-[220px]" delay={0.12}>
+            <div className="w-14 h-14 rounded-2xl bg-primary/10 flex items-center justify-center">
+              <Shield className="w-8 h-8 text-primary" />
+            </div>
+            <div className="mt-auto">
+              <h3 className="text-lg font-bold text-foreground mb-1">100% Compliant</h3>
+              <p className="text-xs text-muted-foreground leading-relaxed">
+                GST & MCA approved addresses accepted across all Indian states.
+              </p>
+            </div>
+          </BentoCard>
+
+          {/* 5 — CENTER HEADER CARD */}
+          <BentoCard className="bg-primary text-primary-foreground border-primary/20 min-h-[220px] items-center text-center order-first md:order-none" delay={0}>
+            <div className="flex-1 flex flex-col items-center justify-center gap-4">
+              <span className="text-xs font-bold uppercase tracking-widest opacity-80">Why FlashSpace</span>
+              <h2 className="text-xl sm:text-2xl font-bold leading-tight">
+                Why Businesses Choose FlashSpace
+              </h2>
+              <Button
+                size="lg"
+                variant="white"
+                className="rounded-xl font-bold mt-2"
+                onClick={() => scrollTo("#contact")}
+              >
+                Get Started
+                <ArrowRight className="w-4 h-4 ml-2" />
+              </Button>
+            </div>
+          </BentoCard>
+
+          {/* 6 — Dedicated Support */}
+          <BentoCard className="min-h-[220px]" delay={0.15}>
+            <div className="w-14 h-14 rounded-2xl bg-primary/10 flex items-center justify-center">
+              <Headphones className="w-8 h-8 text-primary" />
+            </div>
+            <div className="mt-auto">
+              <h3 className="text-lg font-bold text-foreground mb-1">Dedicated Support</h3>
+              <p className="text-xs text-muted-foreground leading-relaxed">
+                Expert assistance — we're always just a call away.
+              </p>
+            </div>
+          </BentoCard>
+
+          {/* Row 3 — only the new card, spans full width on its own row... or we add it as 7th */}
+          {/* 7 — Premium Business Address */}
+          <BentoCard className="md:col-span-3 min-h-[140px] flex-row items-center gap-8" delay={0.2}>
+            <div className="w-16 h-16 rounded-2xl bg-primary/10 flex items-center justify-center shrink-0">
+              <Building2 className="w-9 h-9 text-primary" />
+            </div>
+            <div>
+              <h3 className="text-xl font-bold text-foreground mb-1">Premium Business Address</h3>
+              <p className="text-sm text-muted-foreground leading-relaxed max-w-lg">
+                Get a prestigious address in prime commercial locations across Delhi, Mumbai, Bangalore & more. Build instant credibility.
               </p>
             </div>
           </BentoCard>
         </div>
-
-        {/* CTA below grid */}
-        <motion.div initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center mt-12">
-          <Button size="lg" className="rounded-xl font-bold px-8" onClick={() => scrollTo("#contact")}>
-            Get Started — ₹699/month
-            <ArrowRight className="w-4 h-4 ml-2" />
-          </Button>
-        </motion.div>
       </div>
     </section>
   );
