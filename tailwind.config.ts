@@ -15,14 +15,17 @@ export default {
   	extend: {
 		fontFamily: {
 			sans: [
+				'Manrope',
 				'InterTight',
-				'Lato',
+				'Inter',
 				'ui-sans-serif',
 				'system-ui',
 				'sans-serif'
 			],
 			display: [
+				'Manrope',
 				'InterTight',
+				'Inter',
 				'ui-sans-serif',
 				'system-ui',
 				'sans-serif'

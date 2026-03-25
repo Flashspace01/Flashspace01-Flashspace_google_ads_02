@@ -9,7 +9,7 @@ const benefits = [
     image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=400&h=300&fit=crop&auto=format",
   },
   {
-    icon: MapPin,
+    icon: MapPin, 
     title: "Prime Locations",
     description: "Establish your presence in India's most prestigious business districts across 100+ cities.",
     image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=400&h=300&fit=crop&auto=format",

@@ -23,7 +23,11 @@ const footerLinks = {
   ],
 };
 
-export const Footer = () => {
+interface FooterProps {
+  onPrimaryCtaClick?: () => void;
+}
+
+export const Footer = ({ onPrimaryCtaClick }: FooterProps) => {
   return (
     <footer className="bg-foreground text-background">
       <div className="container mx-auto px-4 lg:px-8 max-w-[1200px] pt-16 lg:pt-24 pb-16 lg:pb-20">
@@ -34,10 +38,19 @@ export const Footer = () => {
             across India today
           </h2>
           <div className="flex flex-wrap gap-3">
-            <Button size="lg" className="bg-primary hover:bg-primary/90 text-primary-foreground font-normal rounded-xl h-12 px-7">
+            <Button
+              size="lg"
+              className="bg-primary hover:bg-primary/90 text-primary-foreground font-normal rounded-xl h-12 px-7"
+              onClick={onPrimaryCtaClick}
+            >
               Get Started
             </Button>
-            <Button size="lg" variant="outline" className="border-background/20 bg-background text-foreground hover:bg-background/90 font-normal rounded-xl h-12 px-7">
+            <Button
+              size="lg"
+              variant="outline"
+              className="border-background/20 bg-background text-foreground hover:bg-background/90 font-normal rounded-xl h-12 px-7"
+              onClick={onPrimaryCtaClick}
+            >
               Book a Call
             </Button>
           </div>
