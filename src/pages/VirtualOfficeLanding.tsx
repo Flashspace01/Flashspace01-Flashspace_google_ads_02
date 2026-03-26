@@ -46,6 +46,14 @@ import officeImg4 from "@/assets/office-interior-4.jpg";
 
 const heroBg = "https://www.flashspace.ai/hero-illustrated.jpg";
 
+const getLeadApiBaseUrl = () => {
+  if (import.meta.env.VITE_API_BASE_URL) return import.meta.env.VITE_API_BASE_URL;
+  if (import.meta.env.DEV) return "http://localhost:8787";
+  return window.location.origin;
+};
+
+const leadApiBaseUrl = getLeadApiBaseUrl();
+
 const fadeUp = {
   hidden: { opacity: 0, y: 20 },
   visible: (d: number) => ({
@@ -76,6 +84,8 @@ const LeadFormDialog = ({
 }) => {
   const [form, setForm] = useState({ name: "", email: "", phone: "", city: "" });
   const [errors, setErrors] = useState<Record<string, string>>({});
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState("");
 
   const validate = () => {
     const errs: Record<string, string> = {};
@@ -93,14 +103,46 @@ const LeadFormDialog = ({
     if (errors[field]) setErrors((prev) => ({ ...prev, [field]: "" }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     const errs = validate();
     if (Object.keys(errs).length > 0) {
       setErrors(errs);
       return;
     }
-    onSubmitSuccess();
+    
+    setSubmitError("");
+    setIsSubmitting(true);
+
+    try {
+      const response = await fetch(`${leadApiBaseUrl}/api/leads`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          ...(import.meta.env.VITE_LEAD_API_KEY
+            ? { "x-api-key": import.meta.env.VITE_LEAD_API_KEY }
+            : {}),
+        },
+        body: JSON.stringify({
+          ...form,
+          source: "Virtual Office Landing CTA",
+          page: window.location.pathname,
+          utm: window.location.search,
+        }),
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json().catch(() => ({}));
+        throw new Error(errorData.message || `Lead API failed with status ${response.status}`);
+      }
+
+      onSubmitSuccess();
+    } catch (error: any) {
+      console.error("Lead submission failed", error);
+      setSubmitError(error.message || "Could not submit your request right now. Please try again.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleOpenChange = (open: boolean) => {
@@ -182,10 +224,15 @@ const LeadFormDialog = ({
               {errors.city && <p className="text-xs text-destructive mt-1">{errors.city}</p>}
             </div>
 
-            <Button type="submit" size="lg" className="w-full h-12 text-base font-semibold rounded-xl bg-primary text-primary-foreground hover:bg-primary/90">
-              <Send className="w-4 h-4 mr-2" />
-              Get Your Virtual Office
+            <Button type="submit" size="lg" disabled={isSubmitting} className="w-full h-12 text-base font-semibold rounded-xl bg-primary text-primary-foreground hover:bg-primary/90 disabled:opacity-70">
+              {isSubmitting ? "Submitting..." : (
+                <>
+                  <Send className="w-4 h-4 mr-2" />
+                  Get Your Virtual Office
+                </>
+              )}
             </Button>
+            {submitError && <p className="text-xs text-destructive text-center">{submitError}</p>}
           </form>
         </>
       </DialogContent>

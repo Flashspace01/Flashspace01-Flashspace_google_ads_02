@@ -12,6 +12,15 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Send, CheckCircle } from "lucide-react";
+
+const getLeadApiBaseUrl = () => {
+  if (import.meta.env.VITE_API_BASE_URL) return import.meta.env.VITE_API_BASE_URL;
+  if (import.meta.env.DEV) return "http://localhost:8787";
+  return window.location.origin;
+};
+
+const leadApiBaseUrl = getLeadApiBaseUrl();
+
 import { z } from "zod";
 
 const contactSchema = z.object({
@@ -48,13 +57,15 @@ export const ContactForm = () => {
   const [form, setForm] = useState<Partial<ContactForm>>({});
   const [errors, setErrors] = useState<Partial<Record<keyof ContactForm, string>>>({});
   const [submitted, setSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState("");
 
   const handleChange = (field: keyof ContactForm, value: string) => {
     setForm((prev) => ({ ...prev, [field]: value }));
     if (errors[field]) setErrors((prev) => ({ ...prev, [field]: undefined }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     const result = contactSchema.safeParse(form);
     if (!result.success) {
@@ -66,7 +77,38 @@ export const ContactForm = () => {
       setErrors(fieldErrors);
       return;
     }
-    setSubmitted(true);
+
+    setSubmitError("");
+    setIsSubmitting(true);
+
+    try {
+      const response = await fetch(`${leadApiBaseUrl}/api/leads`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          ...(import.meta.env.VITE_LEAD_API_KEY
+            ? { "x-api-key": import.meta.env.VITE_LEAD_API_KEY }
+            : {}),
+        },
+        body: JSON.stringify({
+          ...form,
+          source: "Website Contact Form",
+          page: window.location.pathname,
+          utm: window.location.search,
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error(`Lead API failed with status ${response.status}`);
+      }
+
+      setSubmitted(true);
+    } catch (error) {
+      console.error("Lead submission failed", error);
+      setSubmitError("Could not submit your enquiry right now. Please try again.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   if (submitted) {
@@ -213,10 +255,15 @@ export const ContactForm = () => {
                 />
               </div>
 
-              <Button type="submit" size="lg" className="w-full h-12 text-base font-medium rounded-xl">
-                <Send className="w-4 h-4 mr-2" />
-                Submit Enquiry
+              <Button type="submit" size="lg" disabled={isSubmitting} className="w-full h-12 text-base font-medium rounded-xl">
+                {isSubmitting ? "Submitting..." : (
+                  <>
+                    <Send className="w-4 h-4 mr-2" />
+                    Submit Enquiry
+                  </>
+                )}
               </Button>
+              {submitError && <p className="text-xs text-destructive text-center">{submitError}</p>}
             </form>
           </motion.div>
         </div>
