@@ -279,7 +279,7 @@ const LeadFormDialog = ({
               <Input
                 id="lead-phone"
                 type="tel"
-                placeholder="+916002111457"
+                placeholder="+918100888777"
                 value={form.phone}
                 onChange={(e) => handleChange("phone", e.target.value)}
                 className={errors.phone ? "border-destructive" : ""}
