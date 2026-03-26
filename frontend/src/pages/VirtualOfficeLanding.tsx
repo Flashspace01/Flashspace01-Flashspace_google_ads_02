@@ -46,6 +46,16 @@ import officeImg3 from "@/assets/office-interior-3.jpg";
 import officeImg4 from "@/assets/office-interior-4.jpg";
 
 const heroBg = "https://www.flashspace.ai/hero-illustrated.jpg";
+const TRACKING_QUERY_KEY = "fs_tracking_query";
+
+const getTrackingQuery = () => {
+  const currentSearch = window.location.search;
+  if (currentSearch) {
+    sessionStorage.setItem(TRACKING_QUERY_KEY, currentSearch);
+    return currentSearch;
+  }
+  return sessionStorage.getItem(TRACKING_QUERY_KEY) || "";
+};
 
 const getLeadApiBaseUrl = () => {
   if (import.meta.env.VITE_API_BASE_URL) return import.meta.env.VITE_API_BASE_URL;
@@ -128,7 +138,7 @@ const LeadFormDialog = ({
           ...form,
           source: "Virtual Office Landing CTA",
           page: window.location.pathname,
-          utm: window.location.search,
+          utm: getTrackingQuery(),
         }),
       });
 
@@ -1008,14 +1018,26 @@ const VirtualOfficeLanding = () => {
 
   const formOpen = location.pathname === "/lead-form";
 
+  useEffect(() => {
+    if (location.search) {
+      sessionStorage.setItem(TRACKING_QUERY_KEY, location.search);
+    }
+  }, [location.search]);
+
   const openForm = () => {
-    if (!formOpen) navigate("/lead-form");
+    if (!formOpen) {
+      const search = location.search || sessionStorage.getItem(TRACKING_QUERY_KEY) || "";
+      navigate({ pathname: "/lead-form", search });
+    }
   };
 
   const openThankYouPage = () => navigate("/thank-you");
 
   const closeFormDialog = () => {
-    if (location.pathname !== "/") navigate("/");
+    if (location.pathname !== "/") {
+      const search = location.search || sessionStorage.getItem(TRACKING_QUERY_KEY) || "";
+      navigate({ pathname: "/", search });
+    }
   };
 
   return (
