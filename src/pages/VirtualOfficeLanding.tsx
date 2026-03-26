@@ -47,14 +47,84 @@ import officeImg4 from "@/assets/office-interior-4.jpg";
 
 const heroBg = "https://www.flashspace.ai/hero-illustrated.jpg";
 const TRACKING_QUERY_KEY = "fs_tracking_query";
+const TRACKING_FIELDS_KEY = "fs_tracking_fields";
+
+type TrackingFields = {
+  utm_source?: string;
+  utm_medium?: string;
+  utm_campaign?: string;
+  utm_term?: string;
+  utm_content?: string;
+  gclid?: string;
+  fbclid?: string;
+};
+
+const TRACKING_KEYS = [
+  "utm_source",
+  "utm_medium",
+  "utm_campaign",
+  "utm_term",
+  "utm_content",
+  "gclid",
+  "fbclid",
+] as const;
+
+const parseTrackingFields = (search: string): TrackingFields => {
+  if (!search) return {};
+  const params = new URLSearchParams(search);
+  const fields: TrackingFields = {};
+  for (const key of TRACKING_KEYS) {
+    const exact = params.get(key);
+    if (exact) {
+      fields[key] = exact;
+      continue;
+    }
+    // Case-insensitive fallback for non-standard links
+    for (const [paramKey, value] of params.entries()) {
+      if (paramKey.toLowerCase() === key && value) {
+        fields[key] = value;
+        break;
+      }
+    }
+  }
+  return fields;
+};
+
+const getStoredTrackingFields = (): TrackingFields => {
+  const raw = sessionStorage.getItem(TRACKING_FIELDS_KEY);
+  if (!raw) return {};
+  try {
+    return JSON.parse(raw) as TrackingFields;
+  } catch {
+    return {};
+  }
+};
+
+const rememberTracking = (search: string) => {
+  if (!search) return;
+  sessionStorage.setItem(TRACKING_QUERY_KEY, search);
+  const parsed = parseTrackingFields(search);
+  if (Object.keys(parsed).length > 0) {
+    sessionStorage.setItem(TRACKING_FIELDS_KEY, JSON.stringify(parsed));
+  }
+};
 
 const getTrackingQuery = () => {
   const currentSearch = window.location.search;
   if (currentSearch) {
-    sessionStorage.setItem(TRACKING_QUERY_KEY, currentSearch);
+    rememberTracking(currentSearch);
     return currentSearch;
   }
   return sessionStorage.getItem(TRACKING_QUERY_KEY) || "";
+};
+
+const getTrackingFields = (): TrackingFields => {
+  const currentSearch = window.location.search;
+  if (currentSearch) {
+    rememberTracking(currentSearch);
+    return parseTrackingFields(currentSearch);
+  }
+  return getStoredTrackingFields();
 };
 
 const getLeadApiBaseUrl = () => {
@@ -139,6 +209,7 @@ const LeadFormDialog = ({
           source: "Virtual Office Landing CTA",
           page: window.location.pathname,
           utm: getTrackingQuery(),
+          ...getTrackingFields(),
         }),
       });
 
@@ -1020,7 +1091,7 @@ const VirtualOfficeLanding = () => {
 
   useEffect(() => {
     if (location.search) {
-      sessionStorage.setItem(TRACKING_QUERY_KEY, location.search);
+      rememberTracking(location.search);
     }
   }, [location.search]);
 
