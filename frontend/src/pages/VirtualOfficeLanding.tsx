@@ -133,13 +133,14 @@ const LeadFormDialog = ({
       });
 
       if (!response.ok) {
-        throw new Error(`Lead API failed with status ${response.status}`);
+        const errorData = await response.json().catch(() => ({}));
+        throw new Error(errorData.message || `Lead API failed with status ${response.status}`);
       }
 
       onSubmitSuccess();
-    } catch (error) {
+    } catch (error: any) {
       console.error("Lead submission failed", error);
-      setSubmitError("Could not submit your request right now. Please try again.");
+      setSubmitError(error.message || "Could not submit your request right now. Please try again.");
     } finally {
       setIsSubmitting(false);
     }
