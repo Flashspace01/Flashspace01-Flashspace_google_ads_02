@@ -1,4 +1,13 @@
 import { useState } from "react";
+
+const getLeadApiBaseUrl = () => {
+  if (import.meta.env.VITE_API_BASE_URL) return import.meta.env.VITE_API_BASE_URL;
+  if (import.meta.env.DEV) return "http://localhost:8787";
+  return window.location.origin;
+};
+
+const leadApiBaseUrl = getLeadApiBaseUrl();
+
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -29,6 +38,8 @@ const inquiryOptions = [
 
 export const InquiryForm = ({ inquiryType }: InquiryFormProps) => {
   const [submitted, setSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState("");
   const [form, setForm] = useState({
     name: "",
     phone: "",
@@ -36,9 +47,39 @@ export const InquiryForm = ({ inquiryType }: InquiryFormProps) => {
     inquiry: inquiryType,
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setSubmitted(true);
+    setSubmitError("");
+    setIsSubmitting(true);
+
+    try {
+      const response = await fetch(`${leadApiBaseUrl}/api/leads`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          ...(import.meta.env.VITE_LEAD_API_KEY
+            ? { "x-api-key": import.meta.env.VITE_LEAD_API_KEY }
+            : {}),
+        },
+        body: JSON.stringify({
+          ...form,
+          source: `Service Page Inquiry (${form.inquiry})`,
+          page: window.location.pathname,
+          utm: window.location.search,
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error(`Lead API failed with status ${response.status}`);
+      }
+
+      setSubmitted(true);
+    } catch (error) {
+      console.error("Lead submission failed", error);
+      setSubmitError("Failed to submit. Please try again.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   if (submitted) {
@@ -114,9 +155,11 @@ export const InquiryForm = ({ inquiryType }: InquiryFormProps) => {
         </div>
       </div>
 
-      <Button type="submit" className="w-full" size="lg">
-        Get Started
+      <Button type="submit" className="w-full" size="lg" disabled={isSubmitting}>
+        {isSubmitting ? "Submitting..." : "Get Started"}
       </Button>
+
+      {submitError && <p className="text-[10px] text-destructive text-center">{submitError}</p>}
 
       <p className="text-[11px] text-muted-foreground text-center">
         By submitting, you agree to our Privacy Policy.
