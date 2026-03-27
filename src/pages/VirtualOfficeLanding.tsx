@@ -45,7 +45,7 @@ import officeImg2 from "@/assets/office-interior-2.jpg";
 import officeImg3 from "@/assets/office-interior-3.jpg";
 import officeImg4 from "@/assets/office-interior-4.jpg";
 
-const heroBg = "https://www.flashspace.ai/hero-illustrated.jpg";
+const heroBg = "https://res.cloudinary.com/diwna43hl/image/upload/v1774589409/Gemini_Generated_Image_w6hr22w6hr22w6hr_bzbezk.png";
 const TRACKING_QUERY_KEY = "fs_tracking_query";
 const TRACKING_FIELDS_KEY = "fs_tracking_fields";
 
@@ -365,7 +365,7 @@ const HeroSection = () => {
             className="text-3xl sm:text-4xl lg:text-[52px] font-black tracking-[-0.02em] text-foreground leading-[1.16] pb-1"
             style={{ textShadow: "0 1px 0 rgba(255,255,255,0.45)" }}
           >
-            Virtual office starting <span className="text-primary">@699/month</span>
+            Virtual office starting <span className="text-secondary">@699/month</span>
           </motion.h1>
 
           <motion.p
