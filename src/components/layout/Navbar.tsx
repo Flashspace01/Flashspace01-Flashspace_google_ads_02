@@ -57,7 +57,7 @@ export const Navbar = ({ onCtaClick }: NavbarProps) => {
               }`}
             >
               <Phone className="w-4 h-4" />
-              <span className="hidden sm:inline">+918100888777</span>
+              <span className="hidden sm:inline ">+918100888777</span>
             </a>
 
             {/* CTA Button */}
