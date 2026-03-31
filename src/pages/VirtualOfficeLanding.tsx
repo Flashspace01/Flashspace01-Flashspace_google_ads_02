@@ -128,7 +128,14 @@ const getTrackingFields = (): TrackingFields => {
 };
 
 const getLeadApiBaseUrl = () => {
-  if (import.meta.env.VITE_API_BASE_URL) return import.meta.env.VITE_API_BASE_URL;
+  if (import.meta.env.VITE_API_BASE_URL) {
+    let url = import.meta.env.VITE_API_BASE_URL;
+    // Ensure HTTPS in production
+    if (!import.meta.env.DEV && url.startsWith("http://")) {
+      url = url.replace("http://", "https://");
+    }
+    return url;
+  }
   if (import.meta.env.DEV) return "http://localhost:8787";
   return window.location.origin;
 };
