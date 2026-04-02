@@ -44,8 +44,6 @@ import officeImg1 from "@/assets/office-interior-1.jpg";
 import officeImg2 from "@/assets/office-interior-2.jpg";
 import officeImg3 from "@/assets/office-interior-3.jpg";
 import officeImg4 from "@/assets/office-interior-4.jpg";
-
-const heroBg = "https://res.cloudinary.com/diwna43hl/image/upload/v1774589409/Gemini_Generated_Image_w6hr22w6hr22w6hr_bzbezk.png";
 const TRACKING_QUERY_KEY = "fs_tracking_query";
 const TRACKING_FIELDS_KEY = "fs_tracking_fields";
 
@@ -334,45 +332,38 @@ const HeroSection = () => {
   const { open } = useFormDialog();
 
   return (
-    <section className="relative flex min-h-screen items-center justify-center overflow-hidden bg-background pt-28 pb-16 lg:pt-32 lg:pb-20">
-      <img
-        src={heroBg}
-        alt=""
-        className="absolute inset-0 w-full h-full object-cover"
-        loading="eager"
-        fetchPriority="high"
-        decoding="async"
-        width={1600}
-        height={900}
-      />
-      <div className="absolute inset-0 bg-white/34" />
-      <div className="absolute inset-0 bg-gradient-to-r from-white/55 via-white/14 to-white/52" />
+    <section className="relative overflow-hidden bg-[linear-gradient(145deg,#f8fbff_0%,#f8f8f2_50%,#f1f8f1_100%)] pt-28 pb-16 lg:pt-32 lg:pb-20">
       <div
-        className="absolute inset-0"
+        className="absolute inset-0 opacity-35"
         style={{
-          background:
-            "radial-gradient(circle at 50% 28%, rgba(255,255,255,0.04) 0%, rgba(255,255,255,0.22) 58%, rgba(255,255,255,0.36) 100%)",
+          backgroundImage:
+            "linear-gradient(rgba(15,23,42,0.06) 1px, transparent 1px), linear-gradient(90deg, rgba(15,23,42,0.06) 1px, transparent 1px)",
+          backgroundSize: "44px 44px",
         }}
       />
+      <div className="absolute -left-20 top-24 h-72 w-72 rounded-full bg-primary/10 blur-3xl" />
+      <div className="absolute -right-16 top-16 h-80 w-80 rounded-full bg-emerald-200/60 blur-3xl" />
 
-      <div className="relative z-10 container mx-auto px-4 lg:px-8 text-center max-w-5xl">
-        <div className="mx-auto max-w-5xl rounded-3xl bg-white/34 px-4 py-5 backdrop-blur-[2px] sm:px-6 lg:px-8">
-        <motion.div custom={0} variants={fadeUp} initial="hidden" animate="visible" className="mb-4">
-          <span className="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-white/70 px-3 py-1 text-xs font-bold uppercase tracking-wider text-primary">
+      <div className="relative z-10 container mx-auto px-4 lg:px-8">
+        <div className="grid items-center gap-10 lg:grid-cols-[1.05fr_0.95fr]">
+          <div className="rounded-3xl border border-white/60 bg-white/78 p-6 text-center shadow-[0_14px_40px_-20px_rgba(15,23,42,0.35)] backdrop-blur-sm sm:p-8 lg:text-left">
+        <motion.div custom={0} variants={fadeUp} initial="hidden" animate="visible" className="mb-5">
+          <span className="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-white/80 px-4 py-1.5 text-xs font-extrabold uppercase tracking-[0.08em] text-primary">
             <Zap className="w-3 h-3" /> Fast-Track Business Setup
           </span>
         </motion.div>
 
-        <div className="mb-5">
+        <div className="mb-6">
           <motion.h1
             custom={0.05}
             variants={fadeUp}
             initial="hidden"
             animate="visible"
-            className="text-3xl sm:text-4xl lg:text-[52px] font-black tracking-[-0.02em] text-foreground leading-[1.16] pb-1"
+            className="mb-5 text-4xl sm:text-6xl lg:text-[58px] font-black tracking-[-0.03em] text-foreground leading-[1.05]"
             style={{ textShadow: "0 1px 0 rgba(255,255,255,0.45)" }}
           >
-            Virtual office starting <span className="text-secondary">@699/month</span>
+            <span className="block">Virtual office starting</span>
+            <span className="mt-1 block text-primary">@699/month</span>
           </motion.h1>
 
           <motion.p
@@ -380,7 +371,7 @@ const HeroSection = () => {
             variants={fadeUp}
             initial="hidden"
             animate="visible"
-            className="mt-2 text-foreground/80 text-xl sm:text-2xl lg:text-[34px] font-bold tracking-[-0.01em] leading-[1.22]"
+            className="mt-2 text-foreground/80 text-2xl sm:text-[2.1rem] lg:text-[42px] font-extrabold tracking-[-0.02em] leading-[1.08]"
           >
             Activated in just 3 days
           </motion.p>
@@ -391,15 +382,15 @@ const HeroSection = () => {
           variants={fadeUp}
           initial="hidden"
           animate="visible"
-          className="text-foreground/85 text-base sm:text-lg font-semibold leading-relaxed mb-8 max-w-3xl mx-auto"
+          className="text-foreground/85 text-base sm:text-lg font-semibold leading-relaxed mb-8 max-w-2xl mx-auto lg:mx-0"
         >
           GST & MCA approved. Premium business address. No office rent. The cheapest and fastest way to get your business registered.
         </motion.p>
 
-        <motion.div custom={0.16} variants={fadeUp} initial="hidden" animate="visible" className="mt-2 mb-2">
+        <motion.div custom={0.16} variants={fadeUp} initial="hidden" animate="visible" className="mt-1 mb-3">
           <Button
             size="lg"
-            className="h-12 rounded-xl bg-primary px-8 text-base font-semibold text-primary-foreground hover:bg-primary/90"
+            className="h-12 rounded-2xl bg-primary px-8 text-base font-bold text-primary-foreground shadow-[0_10px_22px_-12px_hsl(var(--primary))] hover:bg-primary/90"
             onClick={open}
           >
             Get Best Price
@@ -407,14 +398,64 @@ const HeroSection = () => {
           </Button>
         </motion.div>
 
-        <motion.div custom={0.2} variants={fadeUp} initial="hidden" animate="visible" className="mt-7 flex flex-wrap justify-center gap-5 text-foreground/90 text-sm font-semibold">
+        <motion.div custom={0.2} variants={fadeUp} initial="hidden" animate="visible" className="mt-7 flex flex-wrap justify-center gap-3 text-foreground/90 text-sm font-semibold lg:justify-start">
           {["1000+ Businesses", "GST Approved", "No Hidden Fees", "Setup in 3days"].map((t) => (
-            <span key={t} className="inline-flex items-center gap-1.5">
+            <span key={t} className="inline-flex items-center gap-1.5 rounded-full border border-primary/15 bg-white/70 px-3 py-1.5">
               <CheckCircle2 className="w-4 h-4 text-primary" />
               {t}
             </span>
           ))}
         </motion.div>
+          </div>
+
+          <motion.div
+            custom={0.12}
+            variants={fadeUp}
+            initial="hidden"
+            animate="visible"
+            className="relative mx-auto w-full max-w-[560px]"
+          >
+            <div className="relative rounded-[28px] border border-primary/20 bg-white/86 p-5 shadow-[0_24px_56px_-28px_rgba(15,23,42,0.45)] backdrop-blur-sm sm:p-6">
+              <div className="mb-4 flex items-center gap-2">
+                <span className="h-2.5 w-2.5 rounded-full bg-red-400/80" />
+                <span className="h-2.5 w-2.5 rounded-full bg-yellow-400/85" />
+                <span className="h-2.5 w-2.5 rounded-full bg-emerald-500/85" />
+              </div>
+
+              <div className="grid gap-3 sm:grid-cols-2">
+                <div className="rounded-2xl border border-primary/15 bg-primary/5 p-4">
+                  <p className="text-[11px] font-semibold uppercase tracking-wide text-muted-foreground">Plan</p>
+                  <p className="mt-1 text-lg font-extrabold text-foreground">Virtual Office</p>
+                  <p className="mt-2 text-sm font-semibold text-primary">Starts @ ₹699/mo</p>
+                </div>
+                <div className="rounded-2xl border border-emerald-200 bg-emerald-50/80 p-4">
+                  <p className="text-[11px] font-semibold uppercase tracking-wide text-muted-foreground">Activation</p>
+                  <p className="mt-1 text-lg font-extrabold text-foreground">Within 3 days</p>
+                  <p className="mt-2 text-sm font-semibold text-emerald-700">Quick documentation flow</p>
+                </div>
+              </div>
+
+              <div className="mt-4 rounded-2xl border border-primary/15 bg-white p-4">
+                <p className="mb-3 text-[11px] font-semibold uppercase tracking-wide text-muted-foreground">Compliance checklist</p>
+                <div className="space-y-2.5">
+                  {["GST registration accepted", "MCA documentation verified", "Business mail handling included"].map((item) => (
+                    <div key={item} className="inline-flex w-full items-center gap-2 rounded-lg bg-muted/40 px-3 py-2 text-xs font-semibold text-foreground/90">
+                      <CheckCircle2 className="h-3.5 w-3.5 text-primary" />
+                      {item}
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <div className="mt-4 flex flex-wrap gap-2">
+                {["Delhi", "Mumbai", "Bangalore", "Hyderabad", "Chennai", "Pune"].map((city) => (
+                  <span key={city} className="rounded-full border border-primary/20 bg-primary/5 px-2.5 py-1 text-xs font-semibold text-foreground/80">
+                    {city}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </motion.div>
         </div>
       </div>
     </section>

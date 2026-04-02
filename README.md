@@ -26,10 +26,7 @@ npm run build
 ## Environment
 
 Copy `.env.example` to `.env` and configure:
-
 - `VITE_API_BASE_URL`
 - `VITE_LEAD_API_KEY` (optional)
-
 ## Backend integration
-
 Lead capture API is in `../backend`.
