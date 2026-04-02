@@ -1,7 +1,6 @@
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { ArrowUpRight, Play, Sparkles, Zap, Shield, BarChart3 } from "lucide-react";
-import officeIllustrated from "@/assets/office-illustrated.jpg";
 
 const capabilities = [
   { id: "booking", label: "Smart Booking", icon: Zap, active: true },
@@ -42,7 +41,7 @@ export const AIFeature = () => {
               className="relative rounded-3xl overflow-hidden illustrated-overlay"
             >
               <img
-                src={officeIllustrated}
+                src="https://res.cloudinary.com/diwna43hl/image/upload/v1774589409/Gemini_Generated_Image_w6hr22w6hr22w6hr_bzbezk.png"
                 alt="Premium private office illustration"
                 className="w-full h-[400px] lg:h-[500px] object-cover"
               />

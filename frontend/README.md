@@ -1,123 +1,32 @@
-# Welcome to your Lovable project
+# FlashSpace Frontend
 
-## Project info
+This folder contains the React + Vite frontend for the FlashSpace landing pages.
 
-**URL**: https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID
+## Tech stack
 
-## How can I edit this code?
-
-There are several ways of editing your application.
-
-**Use Lovable**
-
-Simply visit the [Lovable Project](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and start prompting.
-
-Changes made via Lovable will be committed automatically to this repo.
-
-**Use your preferred IDE**
-
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
-
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
-
-Follow these steps:
-
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
-
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
-```
-
-**Edit a file directly in GitHub**
-
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
-
-**Use GitHub Codespaces**
-
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
-
-## What technologies are used for this project?
-
-This project is built with:
-
-- Vite
-- TypeScript
 - React
-- shadcn-ui
+- TypeScript
+- Vite
 - Tailwind CSS
+- shadcn/ui
 
-## Backend note
-
-Lead capture API is now in the separate `../backend` folder.
-
-## How can I deploy this project?
-
-Simply open [Lovable](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and click on Share -> Publish.
-
-## Can I connect a custom domain to my Lovable project?
-
-Yes, you can!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
-
-## Lead Capture Backend (Google Sheets)
-
-This project now includes a backend API at `server/index.js` that saves CTA form leads to Google Sheets.
-
-### 1. Create environment file
-
-Copy `.env.example` to `.env` and fill these values:
-
-- `GOOGLE_SHEET_ID`
-- `GOOGLE_SHEET_NAME` (default: `Leads`)
-- `GOOGLE_SERVICE_ACCOUNT_EMAIL`
-- `GOOGLE_PRIVATE_KEY`
-- Optional: `LEAD_API_KEY`, `ALLOWED_ORIGIN`, `VITE_API_BASE_URL`, `VITE_LEAD_API_KEY`
-
-### 2. Prepare Google Sheet
-
-Create sheet tab `Leads` with headers:
-
-`Timestamp | Name | Email | Phone | City | Source | Page | UTM | GHL Contact ID | Status`
-
-Share the sheet with your service account email as `Editor`.
-
-### 3. Run backend
+## Local development
 
 ```sh
-npm run dev:api
-```
-
-Health check:
-
-`GET http://localhost:8787/api/health`
-
-### 4. Run frontend
-
-```sh
+npm install
 npm run dev
 ```
 
-If backend runs on another URL, set `VITE_API_BASE_URL` in `.env`.
+## Build
 
-### 5. Production notes
+```sh
+npm run build
+```
 
-- Set `ALLOWED_ORIGIN` to your domain(s).
-- Set `LEAD_API_KEY` and pass same value as `VITE_LEAD_API_KEY` from frontend.
-- Keep service account credentials on backend only.
+## Environment
+
+Copy `.env.example` to `.env` and configure:
+- `VITE_API_BASE_URL`
+- `VITE_LEAD_API_KEY` (optional)
+## Backend integration
+Lead capture API is in `../backend`.

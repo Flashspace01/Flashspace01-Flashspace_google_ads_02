@@ -88,7 +88,7 @@ export const Hero = () => {
             <div>
               <div className="flex items-center gap-2 mb-1">
                 <Building2 className="w-4 h-4 text-primary/60" />
-                <span className="text-2xl font-bold text-foreground">1000+</span>
+                <span className="text-2xl font-bold text-foreground">500+</span>
               </div>
               <div className="text-sm text-muted-foreground">Workspaces</div>
             </div>

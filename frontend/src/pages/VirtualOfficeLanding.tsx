@@ -44,21 +44,97 @@ import officeImg1 from "@/assets/office-interior-1.jpg";
 import officeImg2 from "@/assets/office-interior-2.jpg";
 import officeImg3 from "@/assets/office-interior-3.jpg";
 import officeImg4 from "@/assets/office-interior-4.jpg";
-
-const heroBg = "https://www.flashspace.ai/hero-illustrated.jpg";
+import virtualOfficeAiBg from "@/assets/ai-workspace-office.png";
 const TRACKING_QUERY_KEY = "fs_tracking_query";
+const TRACKING_FIELDS_KEY = "fs_tracking_fields";
+
+type TrackingFields = {
+  utm_source?: string;
+  utm_medium?: string;
+  utm_campaign?: string;
+  utm_term?: string;
+  utm_content?: string;
+  gclid?: string;
+  fbclid?: string;
+};
+
+const TRACKING_KEYS = [
+  "utm_source",
+  "utm_medium",
+  "utm_campaign",
+  "utm_term",
+  "utm_content",
+  "gclid",
+  "fbclid",
+] as const;
+
+const parseTrackingFields = (search: string): TrackingFields => {
+  if (!search) return {};
+  const params = new URLSearchParams(search);
+  const fields: TrackingFields = {};
+  for (const key of TRACKING_KEYS) {
+    const exact = params.get(key);
+    if (exact) {
+      fields[key] = exact;
+      continue;
+    }
+    // Case-insensitive fallback for non-standard links
+    for (const [paramKey, value] of params.entries()) {
+      if (paramKey.toLowerCase() === key && value) {
+        fields[key] = value;
+        break;
+      }
+    }
+  }
+  return fields;
+};
+
+const getStoredTrackingFields = (): TrackingFields => {
+  const raw = sessionStorage.getItem(TRACKING_FIELDS_KEY);
+  if (!raw) return {};
+  try {
+    return JSON.parse(raw) as TrackingFields;
+  } catch {
+    return {};
+  }
+};
+
+const rememberTracking = (search: string) => {
+  if (!search) return;
+  sessionStorage.setItem(TRACKING_QUERY_KEY, search);
+  const parsed = parseTrackingFields(search);
+  if (Object.keys(parsed).length > 0) {
+    sessionStorage.setItem(TRACKING_FIELDS_KEY, JSON.stringify(parsed));
+  }
+};
 
 const getTrackingQuery = () => {
   const currentSearch = window.location.search;
   if (currentSearch) {
-    sessionStorage.setItem(TRACKING_QUERY_KEY, currentSearch);
+    rememberTracking(currentSearch);
     return currentSearch;
   }
   return sessionStorage.getItem(TRACKING_QUERY_KEY) || "";
 };
 
+const getTrackingFields = (): TrackingFields => {
+  const currentSearch = window.location.search;
+  if (currentSearch) {
+    rememberTracking(currentSearch);
+    return parseTrackingFields(currentSearch);
+  }
+  return getStoredTrackingFields();
+};
+
 const getLeadApiBaseUrl = () => {
-  if (import.meta.env.VITE_API_BASE_URL) return import.meta.env.VITE_API_BASE_URL;
+  if (import.meta.env.VITE_API_BASE_URL) {
+    let url = import.meta.env.VITE_API_BASE_URL;
+    // Ensure HTTPS in production
+    if (!import.meta.env.DEV && url.startsWith("http://")) {
+      url = url.replace("http://", "https://");
+    }
+    return url;
+  }
   if (import.meta.env.DEV) return "http://localhost:8787";
   return window.location.origin;
 };
@@ -139,6 +215,7 @@ const LeadFormDialog = ({
           source: "Virtual Office Landing CTA",
           page: window.location.pathname,
           utm: getTrackingQuery(),
+          ...getTrackingFields(),
         }),
       });
 
@@ -208,7 +285,7 @@ const LeadFormDialog = ({
               <Input
                 id="lead-phone"
                 type="tel"
-                placeholder="+916002111457"
+                placeholder="+918100888777"
                 value={form.phone}
                 onChange={(e) => handleChange("phone", e.target.value)}
                 className={errors.phone ? "border-destructive" : ""}
@@ -256,31 +333,22 @@ const HeroSection = () => {
   const { open } = useFormDialog();
 
   return (
-    <section className="relative flex min-h-screen items-center justify-center overflow-hidden bg-background pt-28 pb-16 lg:pt-32 lg:pb-20">
-      <img
-        src={heroBg}
-        alt=""
-        className="absolute inset-0 w-full h-full object-cover"
-        loading="eager"
-        fetchPriority="high"
-        decoding="async"
-        width={1600}
-        height={900}
-      />
-      <div className="absolute inset-0 bg-white/34" />
-      <div className="absolute inset-0 bg-gradient-to-r from-white/55 via-white/14 to-white/52" />
+    <section className="relative overflow-hidden bg-[linear-gradient(145deg,#f8fbff_0%,#f8f8f2_50%,#f1f8f1_100%)] pt-28 pb-16 lg:pt-32 lg:pb-20">
       <div
-        className="absolute inset-0"
+        className="absolute inset-0 bg-cover bg-center"
         style={{
-          background:
-            "radial-gradient(circle at 50% 28%, rgba(255,255,255,0.04) 0%, rgba(255,255,255,0.22) 58%, rgba(255,255,255,0.36) 100%)",
+          backgroundImage: `linear-gradient(130deg, rgba(248, 251, 255, 0.9) 10%, rgba(248, 248, 242, 0.8) 52%, rgba(244, 249, 245, 0.88) 100%), url(${virtualOfficeAiBg})`,
+          backgroundPosition: "center 30%",
         }}
       />
+      <div className="absolute -left-20 top-24 h-72 w-72 rounded-full bg-primary/10 blur-3xl" />
+      <div className="absolute -right-16 top-16 h-80 w-80 rounded-full bg-emerald-200/60 blur-3xl" />
 
-      <div className="relative z-10 container mx-auto px-4 lg:px-8 text-center max-w-5xl">
-        <div className="mx-auto max-w-5xl rounded-3xl bg-white/34 px-4 py-5 backdrop-blur-[2px] sm:px-6 lg:px-8">
+      <div className="relative z-10 container mx-auto px-4 lg:px-8">
+        <div className="grid items-center gap-12 lg:grid-cols-[0.82fr_1.18fr]">
+          <div className="mx-auto w-full max-w-[470px] rounded-[2rem] border border-white/55 bg-white/68 p-4 text-center shadow-[0_12px_32px_-22px_rgba(15,23,42,0.25)] backdrop-blur-[2px] sm:p-5 lg:text-left lg:justify-self-start">
         <motion.div custom={0} variants={fadeUp} initial="hidden" animate="visible" className="mb-4">
-          <span className="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-white/70 px-3 py-1 text-xs font-bold uppercase tracking-wider text-primary">
+          <span className="inline-flex items-center gap-2 rounded-full border border-primary/15 bg-white/75 px-3.5 py-1.5 text-[11px] font-semibold uppercase tracking-[0.14em] text-primary/90">
             <Zap className="w-3 h-3" /> Fast-Track Business Setup
           </span>
         </motion.div>
@@ -291,10 +359,10 @@ const HeroSection = () => {
             variants={fadeUp}
             initial="hidden"
             animate="visible"
-            className="text-3xl sm:text-4xl lg:text-[52px] font-black tracking-[-0.02em] text-foreground leading-[1.16] pb-1"
-            style={{ textShadow: "0 1px 0 rgba(255,255,255,0.45)" }}
+            className="mb-4 text-4xl sm:text-5xl lg:text-[48px] font-semibold tracking-[-0.05em] text-foreground leading-[0.98]"
           >
-            Virtual office starting <span className="text-primary">@699/month</span>
+            <span className="block">Virtual office starting</span>
+            <span className="mt-1 block text-primary font-semibold">@699/month</span>
           </motion.h1>
 
           <motion.p
@@ -302,7 +370,7 @@ const HeroSection = () => {
             variants={fadeUp}
             initial="hidden"
             animate="visible"
-            className="mt-2 text-foreground/80 text-xl sm:text-2xl lg:text-[34px] font-bold tracking-[-0.01em] leading-[1.22]"
+            className="mt-2 text-foreground/75 text-xl sm:text-[1.75rem] lg:text-[34px] font-medium tracking-[-0.03em] leading-[1.05]"
           >
             Activated in just 3 days
           </motion.p>
@@ -313,15 +381,15 @@ const HeroSection = () => {
           variants={fadeUp}
           initial="hidden"
           animate="visible"
-          className="text-foreground/85 text-base sm:text-lg font-semibold leading-relaxed mb-8 max-w-3xl mx-auto"
+          className="text-foreground/80 text-base sm:text-[1.03rem] font-medium leading-relaxed mb-6 max-w-lg mx-auto lg:mx-0"
         >
           GST & MCA approved. Premium business address. No office rent. The cheapest and fastest way to get your business registered.
         </motion.p>
 
-        <motion.div custom={0.16} variants={fadeUp} initial="hidden" animate="visible" className="mt-2 mb-2">
+        <motion.div custom={0.16} variants={fadeUp} initial="hidden" animate="visible" className="mt-1 mb-2">
           <Button
             size="lg"
-            className="h-12 rounded-xl bg-primary px-8 text-base font-semibold text-primary-foreground hover:bg-primary/90"
+            className="h-12 rounded-full bg-primary px-8 text-base font-semibold text-primary-foreground shadow-[0_10px_22px_-12px_hsl(var(--primary))] hover:bg-primary/90"
             onClick={open}
           >
             Get Best Price
@@ -329,14 +397,52 @@ const HeroSection = () => {
           </Button>
         </motion.div>
 
-        <motion.div custom={0.2} variants={fadeUp} initial="hidden" animate="visible" className="mt-7 flex flex-wrap justify-center gap-5 text-foreground/90 text-sm font-semibold">
+        <motion.div custom={0.2} variants={fadeUp} initial="hidden" animate="visible" className="mt-5 flex flex-wrap justify-center gap-2 text-foreground/85 text-xs font-medium lg:justify-start">
           {["1000+ Businesses", "GST Approved", "No Hidden Fees", "Setup in 3days"].map((t) => (
-            <span key={t} className="inline-flex items-center gap-1.5">
-              <CheckCircle2 className="w-4 h-4 text-primary" />
+            <span key={t} className="inline-flex items-center gap-1.5 rounded-full border border-primary/10 bg-white/60 px-2.5 py-1.5">
+              <CheckCircle2 className="w-3.5 h-3.5 text-primary/85" />
               {t}
             </span>
           ))}
         </motion.div>
+          </div>
+
+          <motion.div
+            custom={0.12}
+            variants={fadeUp}
+            initial="hidden"
+            animate="visible"
+            className="relative mx-auto w-full max-w-[560px]"
+          >
+            <div className="relative rounded-[28px] border border-white/75 bg-gradient-to-br from-emerald-50/45 to-emerald-100/38 p-5 shadow-[inset_0_1px_0_rgba(255,255,255,0.78),0_24px_56px_-28px_rgba(6,78,59,0.24)] backdrop-blur-sm sm:p-6">
+              <div className="mb-4 flex items-center gap-2">
+                <span className="h-2.5 w-2.5 rounded-full bg-red-400/85" />
+                <span className="h-2.5 w-2.5 rounded-full bg-yellow-400/90" />
+                <span className="h-2.5 w-2.5 rounded-full bg-emerald-600/85" />
+              </div>
+
+              <div className="rounded-2xl border border-emerald-700/40 bg-gradient-to-br from-emerald-100/36 to-emerald-200/38 p-5">
+                <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-muted-foreground">What you get</p>
+                <h3 className="mt-2 text-2xl font-semibold tracking-[-0.03em] text-foreground">A premium address without the premium rent.</h3>
+                <p className="mt-3 max-w-sm text-sm leading-relaxed text-foreground/75">
+                  Use one clean, compliant setup for registration, mail handling, and business presence across India.
+                </p>
+
+                <div className="mt-5 space-y-3">
+                  {[
+                    { title: "Premium city presence", desc: "Delhi, Mumbai, Bangalore and more" },
+                    { title: "Managed documentation", desc: "Simple onboarding and support flow" },
+                    { title: "Ready for scale", desc: "Built for founders expanding fast" },
+                  ].map((item) => (
+                    <div key={item.title} className="rounded-2xl border border-emerald-800/12 bg-white/82 p-4">
+                      <p className="text-sm font-semibold text-foreground">{item.title}</p>
+                      <p className="mt-1 text-xs leading-relaxed text-muted-foreground">{item.desc}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </motion.div>
         </div>
       </div>
     </section>
@@ -1020,9 +1126,20 @@ const VirtualOfficeLanding = () => {
 
   useEffect(() => {
     if (location.search) {
-      sessionStorage.setItem(TRACKING_QUERY_KEY, location.search);
+      rememberTracking(location.search);
     }
   }, [location.search]);
+
+  useEffect(() => {
+    if (location.pathname !== "/") return;
+
+    const timer = window.setInterval(() => {
+      const search = location.search || sessionStorage.getItem(TRACKING_QUERY_KEY) || "";
+      navigate({ pathname: "/lead-form", search });
+    }, 60000);
+
+    return () => window.clearInterval(timer);
+  }, [location.pathname, location.search, navigate]);
 
   const openForm = () => {
     if (!formOpen) {

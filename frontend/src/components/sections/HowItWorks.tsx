@@ -175,7 +175,7 @@ export const HowItWorks = () => {
                   <Input
                     id="hw-phone"
                     type="tel"
-                    placeholder="+916002111457"
+                    placeholder="+918100888777"
                     value={form.phone || ""}
                     onChange={(e) => handleChange("phone", e.target.value)}
                     className={`bg-white/10 border-secondary/15 text-secondary placeholder:text-secondary/30 ${errors.phone ? "border-destructive" : ""}`}
