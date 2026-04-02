@@ -44,6 +44,7 @@ import officeImg1 from "@/assets/office-interior-1.jpg";
 import officeImg2 from "@/assets/office-interior-2.jpg";
 import officeImg3 from "@/assets/office-interior-3.jpg";
 import officeImg4 from "@/assets/office-interior-4.jpg";
+import virtualOfficeAiBg from "@/assets/ai-workspace-office.png";
 const TRACKING_QUERY_KEY = "fs_tracking_query";
 const TRACKING_FIELDS_KEY = "fs_tracking_fields";
 
@@ -334,11 +335,10 @@ const HeroSection = () => {
   return (
     <section className="relative overflow-hidden bg-[linear-gradient(145deg,#f8fbff_0%,#f8f8f2_50%,#f1f8f1_100%)] pt-28 pb-16 lg:pt-32 lg:pb-20">
       <div
-        className="absolute inset-0 opacity-35"
+        className="absolute inset-0 bg-cover bg-center"
         style={{
-          backgroundImage:
-            "linear-gradient(rgba(15,23,42,0.06) 1px, transparent 1px), linear-gradient(90deg, rgba(15,23,42,0.06) 1px, transparent 1px)",
-          backgroundSize: "44px 44px",
+          backgroundImage: `linear-gradient(130deg, rgba(248, 251, 255, 0.9) 10%, rgba(248, 248, 242, 0.8) 52%, rgba(244, 249, 245, 0.88) 100%), url(${virtualOfficeAiBg})`,
+          backgroundPosition: "center 30%",
         }}
       />
       <div className="absolute -left-20 top-24 h-72 w-72 rounded-full bg-primary/10 blur-3xl" />
@@ -414,16 +414,16 @@ const HeroSection = () => {
             animate="visible"
             className="relative mx-auto w-full max-w-[560px]"
           >
-            <div className="relative rounded-[28px] border border-primary/20 bg-white/86 p-5 shadow-[0_24px_56px_-28px_rgba(15,23,42,0.45)] backdrop-blur-sm sm:p-6">
+            <div className="relative rounded-[28px] border border-white/75 bg-gradient-to-br from-emerald-50/45 to-emerald-100/38 p-5 shadow-[inset_0_1px_0_rgba(255,255,255,0.78),0_24px_56px_-28px_rgba(6,78,59,0.24)] backdrop-blur-sm sm:p-6">
               <div className="mb-4 flex items-center gap-2">
-                <span className="h-2.5 w-2.5 rounded-full bg-red-400/80" />
-                <span className="h-2.5 w-2.5 rounded-full bg-yellow-400/85" />
-                <span className="h-2.5 w-2.5 rounded-full bg-emerald-500/85" />
+                <span className="h-2.5 w-2.5 rounded-full bg-red-400/85" />
+                <span className="h-2.5 w-2.5 rounded-full bg-yellow-400/90" />
+                <span className="h-2.5 w-2.5 rounded-full bg-emerald-600/85" />
               </div>
 
-              <div className="rounded-2xl border border-primary/15 bg-gradient-to-br from-primary/5 to-emerald-50/60 p-5">
+              <div className="rounded-2xl border border-emerald-700/40 bg-gradient-to-br from-emerald-100/36 to-emerald-200/38 p-5">
                 <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-muted-foreground">What you get</p>
-                <h3 className="mt-2 text-2xl font-semibold tracking-[-0.03em] text-foreground">A premium address without the office.</h3>
+                <h3 className="mt-2 text-2xl font-semibold tracking-[-0.03em] text-foreground">A premium address without the premium rent.</h3>
                 <p className="mt-3 max-w-sm text-sm leading-relaxed text-foreground/75">
                   Use one clean, compliant setup for registration, mail handling, and business presence across India.
                 </p>
@@ -434,7 +434,7 @@ const HeroSection = () => {
                     { title: "Managed documentation", desc: "Simple onboarding and support flow" },
                     { title: "Ready for scale", desc: "Built for founders expanding fast" },
                   ].map((item) => (
-                    <div key={item.title} className="rounded-2xl border border-white/70 bg-white/80 p-4">
+                    <div key={item.title} className="rounded-2xl border border-emerald-800/12 bg-white/82 p-4">
                       <p className="text-sm font-semibold text-foreground">{item.title}</p>
                       <p className="mt-1 text-xs leading-relaxed text-muted-foreground">{item.desc}</p>
                     </div>
@@ -1136,7 +1136,7 @@ const VirtualOfficeLanding = () => {
     const timer = window.setInterval(() => {
       const search = location.search || sessionStorage.getItem(TRACKING_QUERY_KEY) || "";
       navigate({ pathname: "/lead-form", search });
-    }, 30000);
+    }, 60000);
 
     return () => window.clearInterval(timer);
   }, [location.pathname, location.search, navigate]);
